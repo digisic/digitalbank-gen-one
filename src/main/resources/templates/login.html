@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"> 
+
+<head th:replace="common/sections :: header-css"/>
+
+<body class="bg-dark">
+
+
+    <div class="sufee-login d-flex align-content-center flex-wrap">
+        <div class="container">
+            <div class="login-content">
+                <div class="login-logo">
+                    <a th:href=@{/home}>
+                        <img class="align-content" src="images/logo.png" alt="">
+                    </a>
+                </div>
+                <div class="login-form">
+                	<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" th:if="${param.error}">
+                       <span class="badge badge-pill badge-danger">Error</span>
+                           Invalid credentials or access not granted.
+                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                       </button>
+                   </div>
+                	<div class="sufee-alert alert with-close alert-success alert-dismissible fade show" th:if="${param.logout}">
+                       <span class="badge badge-pill badge-success">Success</span>
+                           Logout completed.
+                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                       </button>
+                   </div>
+                    <form th:action="@{/login}" method="post">
+                        <div class="form-group">
+                            <label>User Name</label>
+                            <input type="text" class="form-control" name="username" id="username" th:field="${user.username}" placeholder="Enter User Name"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password"/>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"name="remember-me" id="remember-me"/> Remember Me
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Sign in</button>
+                        <div class="register-link m-t-15 text-center">
+                            <p>Don't have account ? <a th:href="@{/signup}"> Sign Up Here</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<div th:replace="common/sections :: footer-scripts"></div>
+
+</body>
+</html>

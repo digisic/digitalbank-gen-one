@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"> 
+
+<head th:replace="common/sections :: header-css"/>
+
+<body class="bg-dark">
+
+
+    <div class="sufee-login d-flex align-content-center flex-wrap">
+        <div class="container">
+            <div class="login-content">
+                <div class="login-logo">
+                    <a th:href="@{/home}">
+                        <img class="align-content" src="images/logo.png" alt="">
+                    </a>
+                </div>
+                <div class="login-form">
+                	<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" th:if="${emailExists}">
+                       <span class="badge badge-pill badge-danger">Error</span>
+                           An account is already registered with the email address provided. Login with the existing account or provide another email address for registration.
+                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                       </button>
+                   </div>
+                	<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" th:if="${ssnExists}">
+                       <span class="badge badge-pill badge-danger">Error</span>
+                           An account is already registered with the Social Security Number provided. Login with the existing account or provide another SSN for registration.
+                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                       </button>
+                   </div>
+                    <form th:action="@{/signup}" method="post">
+                        <div class="form-group">
+                            <label for="title" class=" form-control-label">Title</label>
+                              <select name="title" id="title" class="form-control" th:field="${userProfile.title}" required="required">
+                                <option value="">Please select</option>
+                                <option value="Mr.">Mr.</option>
+                                <option value="Ms.">Ms.</option>
+                                <option value="Mrs.">Mrs.</option>
+                              </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">First Name</label>
+                            <input type="text" class="form-control" id="firstName" th:field="${userProfile.firstName}" required="required">
+                        	<small class="form-text text-muted">ex. James</small>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">Last Name</label>
+                            <input type="text" class="form-control" id="lastName" th:field="${userProfile.lastName}" required="required">
+                        	<small class="form-text text-muted">ex. Smith</small>
+                        </div>
+                        <div>
+                        	<label for="gender" class="form-control-label">Gender</label>
+                       </div>
+                        <div class="form-check-inline form-check">
+                        	<label for="male" class="form-check-label">
+                             	<input type="radio" id="gender" th:field="${userProfile.gender}" name="gender" value="M" class="form-check-input" required="required">M &nbsp;&nbsp;&nbsp;
+                             </label>
+                             <label for="female" class="form-check-label">
+                             	<input type="radio" id="gender" th:field="${userProfile.gender}" name="gender" value="F" class="form-check-input" required="required">F &nbsp;&nbsp;&nbsp;
+                            </label>
+                        </div>
+                        <br><br>
+                        <div class="form-group">
+                            <label class="form-control-label">Date of Birth</label>
+                            <input type="date" class="form-control" id="dob" th:field="${userProfile.dob}" required="required" pattern="\d{1,2}/\d{1,2}/\d{4}">
+                            <small class="form-text text-muted">ex. 01/28/1980</small>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">Social Security Number</label>
+                            <input type="text" class="form-control" id="ssn" th:field="${userProfile.ssn}" required="required" autocomplete="off" pattern="^\d{3}-?\d{2}-?\d{4}$" title="Expected pattern is ###-##-####">
+                        	<small class="form-text text-muted">ex. 123-45-6789</small>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">Email Address</label>
+                            <input type="email" class="form-control" id="emailAddress" th:field="${userProfile.emailAddress}" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                        	<small class="form-text text-muted">ex. user@gmail.com</small>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">Password</label>
+                            <input type="password" class="form-control" id="password" th:field="${user.password}" required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" required="required">
+                        </div>
+                        
+                        <input type="hidden" id="address" name="address" th:field="${userProfile.address}">
+                        <input type="hidden" id="locality" name="locality" th:field="${userProfile.locality}">
+                        <input type="hidden" id="region" name="region" th:field="${userProfile.region}">
+                        <input type="hidden" id="postalCode" name="postalCode" th:field="${userProfile.postalCode}">
+                        <input type="hidden" id="country" name="country" th:field="${userProfile.country}">
+                        <input type="hidden" id="homePhone" name="homePhone" th:field="${userProfile.homePhone}">
+                        <input type="hidden" id="mobilePhone" name="mobilePhone" th:field="${userProfile.mobilePhone}">
+                        <input type="hidden" id="workPhone" name="workPhone" th:field="${userProfile.workPhone}">
+                        <input type="hidden" id="username" name="username" th:field="${user.username}">
+                        <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Next</button>
+
+                        <div class="register-link m-t-15 text-center">
+                            <p>Already have account ? <a th:href="@{/login}"> Sign in</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<div th:replace="common/sections :: footer-scripts"></div>
+	
+	<script type="text/javascript">
+		var password = document.getElementById("password"), confirm_password = document.getElementById("confirmPassword");
+
+		function validatePassword(){
+	  		if(password.value != confirm_password.value) {
+	    		confirm_password.setCustomValidity("Passwords Do Not Match");
+	  		} else {
+	    		confirm_password.setCustomValidity('');
+	 		 }	
+		}
+
+		password.onchange = validatePassword;
+		confirm_password.onkeyup = validatePassword;
+	</script>
+
+</body>
+</html>

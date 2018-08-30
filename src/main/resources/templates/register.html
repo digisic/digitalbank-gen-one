@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"> 
+
+<head th:replace="common/sections :: header-css"/>
+
+<body class="bg-dark">
+
+
+    <div class="sufee-login d-flex align-content-center flex-wrap">
+        <div class="container">
+            <div class="login-content">
+                <div class="login-logo">
+                    <a th:href="@{/home}">
+                        <img class="align-content" src="images/logo.png" alt="">
+                    </a>
+                </div>
+                <div class="login-form">
+                    <form th:action="@{/register}" method="post">
+                        
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input type="text" class="form-control" id="address" th:field="${userProfile.address}" required>
+                        	<small class="form-text text-muted">ex. 123 Digital Lane</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Locality</label>
+                            <input type="text" class="form-control" id="locality" th:field="${userProfile.locality}" required>
+                        	<small class="form-text text-muted">ex. Internet City</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Region</label>
+                            <input type="text" class="form-control" id="region" th:field="${userProfile.region}" required>
+                        	<small class="form-text text-muted">ex. CA</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Postal Code</label>
+                            <input type="text" class="form-control" id="postalCode" th:field="${userProfile.postalCode}" required>
+                        	<small class="form-text text-muted">ex. 94302</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text" class="form-control" id="country" th:field="${userProfile.country}" required>
+                        	<small class="form-text text-muted">ex. US</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Home Phone</label>
+                            <input type="text" class="form-control" id="homePhone" th:field="${userProfile.homePhone}" required>
+                        	<small class="form-text text-muted">ex. (547) 392-5436</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Mobile Phone</label>
+                            <input type="text" class="form-control" id="mobilePhone" th:field="${userProfile.mobilePhone}">
+                        	<small class="form-text text-muted">ex. (547) 392-5436</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Work Phone</label>
+                            <input type="text" class="form-control" id="workPhone" th:field="${userProfile.workPhone}">
+                        	<small class="form-text text-muted">ex. (547) 392-5436</small>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" required="required"> Agree the terms and policy
+                            </label>
+                        </div>
+                        
+                        <input type="hidden" id="title" name="title" th:field="${userProfile.title}">
+                        <input type="hidden" id="firstName" name="firstName" th:field="${userProfile.firstName}">
+                        <input type="hidden" id="lastName" name="lastName" th:field="${userProfile.lastName}">
+                        <input type="hidden" id="gender" name="gender" th:field="${userProfile.gender}">
+                        <input type="hidden" id="ssn" name="ssn" th:field="${userProfile.ssn}">
+                        <input type="hidden" id="dob" name="dob" th:field="${userProfile.dob}">
+                        <input type="hidden" id="emailAddress" name="emailAddress" th:field="${userProfile.emailAddress}">
+                        <input type="hidden" id="username" name="username" th:field="${user.username}">
+                        <input type="hidden" id="password" name="password" th:field="${user.password}">
+                            
+                        <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<div th:replace="common/sections :: footer-scripts"></div>
+
+</body>
+</html>

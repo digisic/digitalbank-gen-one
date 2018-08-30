@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"> 
+
+<head th:replace="common/sections :: header-css"/>
+
+<body>
+
+
+	<!-- Left Panel -->
+	<aside th:replace="common/menus :: left-panel"></aside>
+
+    <!-- Right Panel -->
+	<div id="right-panel" class="right-panel">
+	
+		<header th:replace="common/menus :: rp-header"/>
+		
+		<div th:replace="common/menus :: rp-breadcrumbs"/>
+    
+    	<!-- Page Content Begin -->
+    
+	    	<div class="content mt-3">
+	            <div class="animated fadeIn">
+	                <div class="row">				
+	    				
+	    				
+	    				
+	    				<div class="col-md-4">
+	                        <div class="card">
+	                            <div class="card-header bg-dark">
+	                                <strong class="card-title text-light">Under Construction</strong>
+	                            </div>
+	                            <div class="card-body text-white bg-danger">
+	                                <p class="card-text text-light">At this time, no content has been developed for this application. This is a work in progress. Content will be developed and added as time permits.</p>
+	                            </div>
+	                        </div>
+	                    </div>
+	    			</div><!-- .row -->
+	            </div><!-- .animated -->
+	        </div><!-- .content -->
+	    <!-- Page Content End -->
+	</div> <!-- End right panel -->
+    
+	<!-- Footer -->
+	<div th:replace="common/sections :: footer-scripts"></div>
+
+</body>
+</html>
