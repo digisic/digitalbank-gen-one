@@ -4,6 +4,7 @@ public class Mappings {
 	
 	// Cookies
 	public static final String COO_REMEBER_ME 	= "remeber-me";
+	public static final String COO_JSESSION_ID	= "JSESSIONID";
 	
 	// Directives
 	public static final String DIR_REDIRECT 	= "redirect:";
@@ -27,6 +28,8 @@ public class Mappings {
 	public static final String URI_SIGNUP 		= "/signup";
 	public static final String URI_LOGOUT 		= "/logout";
 	public static final String URI_LOGOUT_SUCC 	= "/login?logout";
+	public static final String URI_PASSWORD 	= "/password";
+	public static final String URI_PROFILE 		= "/profile";
 	  
 	// Authenticated URIs
 	public static final String URI_HOME 		= "/home";
@@ -37,5 +40,8 @@ public class Mappings {
 	public static final String VIEW_REGISTER 	= "register";
 	public static final String VIEW_SIGNUP 		= "signup";
 	public static final String VIEW_HOME 		= "home";
+	public static final String VIEW_NEW_ACCOUNT = "newAccount";
+	public static final String VIEW_PASSWORD 	= "password";
+	public static final String VIEW_PROFILE 	= "profile";
   
 }

@@ -33,7 +33,7 @@
                     <form th:action="@{/signup}" method="post">
                         <div class="form-group">
                             <label for="title" class=" form-control-label">Title</label>
-                              <select name="title" id="title" class="form-control" th:field="${userProfile.title}" required="required">
+                              <select name="title" id="title" class="form-control" th:field="${userProfile.title}" required>
                                 <option value="">Please select</option>
                                 <option value="Mr.">Mr.</option>
                                 <option value="Ms.">Ms.</option>
@@ -42,12 +42,12 @@
                         </div>
                         <div class="form-group">
                             <label class="form-control-label">First Name</label>
-                            <input type="text" class="form-control" id="firstName" th:field="${userProfile.firstName}" required="required">
+                            <input type="text" class="form-control" id="firstName" th:field="${userProfile.firstName}" required>
                         	<small class="form-text text-muted">ex. James</small>
                         </div>
                         <div class="form-group">
                             <label class="form-control-label">Last Name</label>
-                            <input type="text" class="form-control" id="lastName" th:field="${userProfile.lastName}" required="required">
+                            <input type="text" class="form-control" id="lastName" th:field="${userProfile.lastName}" required>
                         	<small class="form-text text-muted">ex. Smith</small>
                         </div>
                         <div>
@@ -55,35 +55,35 @@
                        </div>
                         <div class="form-check-inline form-check">
                         	<label for="male" class="form-check-label">
-                             	<input type="radio" id="gender" th:field="${userProfile.gender}" name="gender" value="M" class="form-check-input" required="required">M &nbsp;&nbsp;&nbsp;
+                             	<input type="radio" id="gender" th:field="${userProfile.gender}" name="gender" value="M" class="form-check-input" required>M &nbsp;&nbsp;&nbsp;
                              </label>
                              <label for="female" class="form-check-label">
-                             	<input type="radio" id="gender" th:field="${userProfile.gender}" name="gender" value="F" class="form-check-input" required="required">F &nbsp;&nbsp;&nbsp;
+                             	<input type="radio" id="gender" th:field="${userProfile.gender}" name="gender" value="F" class="form-check-input" required>F &nbsp;&nbsp;&nbsp;
                             </label>
                         </div>
                         <br><br>
                         <div class="form-group">
                             <label class="form-control-label">Date of Birth</label>
-                            <input type="date" class="form-control" id="dob" th:field="${userProfile.dob}" required="required" pattern="\d{1,2}/\d{1,2}/\d{4}">
+                            <input type="date" class="form-control" id="dob" th:field="${userProfile.dob}" required pattern="\d{1,2}/\d{1,2}/\d{4}">
                             <small class="form-text text-muted">ex. 01/28/1980</small>
                         </div>
                         <div class="form-group">
                             <label class="form-control-label">Social Security Number</label>
-                            <input type="text" class="form-control" id="ssn" th:field="${userProfile.ssn}" required="required" autocomplete="off" pattern="^\d{3}-?\d{2}-?\d{4}$" title="Expected pattern is ###-##-####">
+                            <input type="text" class="form-control" id="ssn" th:field="${userProfile.ssn}" required autocomplete="off" pattern="^\d{3}-?\d{2}-?\d{4}$" title="Expected pattern is ###-##-####">
                         	<small class="form-text text-muted">ex. 123-45-6789</small>
                         </div>
                         <div class="form-group">
                             <label class="form-control-label">Email Address</label>
-                            <input type="email" class="form-control" id="emailAddress" th:field="${userProfile.emailAddress}" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                            <input type="email" class="form-control" id="emailAddress" th:field="${userProfile.emailAddress}" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
                         	<small class="form-text text-muted">ex. user@gmail.com</small>
                         </div>
                         <div class="form-group">
                             <label class="form-control-label">Password</label>
-                            <input type="password" class="form-control" id="password" th:field="${user.password}" required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+                            <input type="password" class="form-control" id="password" th:field="${user.password}" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
                         </div>
                         <div class="form-group">
                             <label class="form-control-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirmPassword" required="required">
+                            <input type="password" class="form-control" id="confirmPassword" required>
                         </div>
                         
                         <input type="hidden" id="address" name="address" th:field="${userProfile.address}">

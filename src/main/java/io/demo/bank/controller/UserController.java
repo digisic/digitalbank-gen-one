@@ -118,8 +118,125 @@ public class UserController {
     
 		User user = userService.findByUsername(principal.getName());
     
+		// Add name for Welcome header
 		model.addAttribute("firstname", user.getUserProfile().getFirstName());
+		
+		if (user.getAccountList().isEmpty()) {
+			return Mappings.VIEW_NEW_ACCOUNT;
+		}
     
 		return Mappings.VIEW_HOME;
+	}
+	
+	@RequestMapping(value=Mappings.URI_PASSWORD, method=RequestMethod.GET)
+	public String password(Principal principal, Model model) {
+    
+		User user = userService.findByUsername(principal.getName());
+    
+		// Add name for Welcome header
+		model.addAttribute("firstname", user.getUserProfile().getFirstName());
+		    
+		return Mappings.VIEW_PASSWORD;
+	}
+	
+	@RequestMapping(value=Mappings.URI_PASSWORD, method=RequestMethod.POST)
+	public String passwordUpdate(Principal principal, 
+								 @ModelAttribute("newPassword") String newPassword,
+								 @ModelAttribute("currentPassword") String oldPassword,
+								 Model model) {
+    
+		User user = userService.findByUsername(principal.getName());
+    
+		// Add name for Welcome header
+		model.addAttribute("firstname", user.getUserProfile().getFirstName());
+		
+		LOG.debug("Change Password: Validate Password Entries.");
+		
+		// Validate Password entries
+		if (userService.passwordMatches(user, oldPassword)) {
+			
+			LOG.debug("Change Password: Current Password is correct.");
+			
+			if (userService.passwordMatches(user, newPassword)) {
+				
+				// new password matches current password, throw error
+				
+				LOG.debug("Change Password: New Password is the same as the current password.");
+				
+				model.addAttribute("failPass", true);
+				
+			} else {
+				
+				// change password
+				LOG.debug("Change Password: New Password is a actualy a new password. Update Password.");
+				
+				userService.changePassword(user, newPassword);
+				model.addAttribute("successChange", true);
+				
+			}
+			
+		} else {
+			
+			LOG.debug("Change Password: Current Password is NOT correct.");
+			
+			// old password not correct, throw error
+			model.addAttribute("failMatch", true);
+			
+		}
+		    
+		return Mappings.VIEW_PASSWORD;
+	}
+	
+	@RequestMapping(value=Mappings.URI_PROFILE, method=RequestMethod.GET)
+	public String profile(Principal principal, Model model) {
+    
+		User user = userService.findByUsername(principal.getName());
+		
+    
+		// Add name for Welcome header
+		model.addAttribute("firstname", user.getUserProfile().getFirstName());
+		model.addAttribute("userProfile", user.getUserProfile());
+		    
+		return Mappings.VIEW_PROFILE;
+	}
+	
+	@RequestMapping(value=Mappings.URI_PROFILE, method=RequestMethod.POST)
+	public String profileUpdate(Principal principal,
+			 					@ModelAttribute("userProfile") UserProfile updateProfile,
+			 					Model model) {
+    
+		User user = userService.findByUsername(principal.getName());
+		UserProfile up = user.getUserProfile();
+		
+		
+		LOG.debug("Update User Profile: " + updateProfile.toString());
+		
+		// Set updated fields into actual user profile
+		up.setTitle(updateProfile.getTitle());
+		up.setFirstName(updateProfile.getFirstName());
+		up.setLastName(updateProfile.getLastName());
+		up.setHomePhone(updateProfile.getHomePhone());
+		up.setMobilePhone(updateProfile.getMobilePhone());
+		up.setWorkPhone(updateProfile.getWorkPhone());
+		up.setAddress(updateProfile.getAddress());
+		up.setLocality(updateProfile.getLocality());
+		up.setRegion(updateProfile.getRegion());
+		up.setPostalCode(updateProfile.getPostalCode());
+		up.setCountry(updateProfile.getCountry());
+		
+		
+		// Save Profile Updates
+		user.setUserProfile(up);
+		userService.save(user);
+		
+		LOG.debug("Updated User Profile: " + user.getUserProfile().toString());
+		
+		
+		// Add name for Welcome header
+		model.addAttribute("firstname", user.getUserProfile().getFirstName());
+		model.addAttribute("userProfile", user.getUserProfile());
+		model.addAttribute("successUpdate", true);
+		    
+		return Mappings.VIEW_PROFILE;
 	}
 }

@@ -2,8 +2,8 @@ package io.demo.bank.model.security;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +17,9 @@ import javax.persistence.OneToOne;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.demo.bank.model.Account;
 import io.demo.bank.model.UserProfile;
+
 
 @Entity
 public class User implements UserDetails {
@@ -52,6 +54,18 @@ public class User implements UserDetails {
         userRoles.forEach(ur -> authorities.add(new Authority(ur.getRole().getName())));
         
         return authorities;
+	}
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Account> accountList;
+	
+	
+	/**
+	 * @return the accounts
+	 */
+	public List<Account> getAccountList() {
+		return accountList;
 	}
 
 	@Override

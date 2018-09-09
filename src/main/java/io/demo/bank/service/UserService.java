@@ -83,7 +83,23 @@ public class UserService {
 	    
 	    newUser = userRepository.save(newUser);
 	    
+	    LOG.debug("Create User: New User Created.");
+	    
 	    return newUser;
 	}
 	
+	public boolean passwordMatches (User user, String newPassword) {
+		
+		return encoder.matches(newPassword, user.getPassword());
+	}
+	
+	public void changePassword (User user, String newPassword) {
+		
+		user.setPassword(encoder.encode(newPassword));
+		
+		userRepository.save(user);
+		
+		LOG.debug("Change Password: Password Changed.");
+		
+	}
 }
