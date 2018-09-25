@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class OwnerType {
+public class OwnershipType {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -16,6 +16,16 @@ public class OwnerType {
 	
 	private String code;
 	private String name;
+	
+	// default constructor
+	public OwnershipType () {}
+	
+	public OwnershipType (String code, String name) {
+		
+		this.code = code;
+		this.name = name;
+	}
+	
 	/**
 	 * @return the id
 	 */
@@ -53,5 +63,16 @@ public class OwnerType {
 		this.name = name;
 	}
 	
+	public String toString() {
+	    
+		String ownerType = "\n\nOwner Type ***********************";
+    
+		ownerType += "\nId:\t\t\t" 			+ this.getId();
+		ownerType += "\nName:\t\t" 			+ this.getName();
+		ownerType += "\nCode:\t\t\t" 		+ this.getCode();
+
+	    return ownerType;
+	    
+	}
 	
 }

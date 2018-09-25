@@ -22,6 +22,13 @@ public class Role {
 	@OneToMany(mappedBy="role", cascade={javax.persistence.CascadeType.ALL}, fetch=FetchType.LAZY)
 	private Set<UserRole> userRoles = new HashSet<>();
 
+	// default constructor
+	public Role () {}
+	
+	public Role (String name) {
+		this.name = name;
+	}
+	
 	/**
 	 * @return the id
 	 */

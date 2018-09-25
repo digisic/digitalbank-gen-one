@@ -1,20 +1,13 @@
 package io.demo.bank.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
-import io.demo.bank.model.security.User;
-
 import java.util.Date;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -52,10 +45,9 @@ public class UserProfile {
 	private String postalCode;
 	private String country;
 	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="userId")
-    private User user;
-  
+	// default constructor
+	public UserProfile () {}
+		
 	/**
 	 * @return the id
 	 */
@@ -360,19 +352,7 @@ public class UserProfile {
 		this.country = country;
 	}
 	
-	/**
-	 * @return the user
-	 */
-	public User getUser() {
-		return user;
-	}
 
-	/**
-	 * @param user the user to set
-	 */
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 	public String toString() {
     

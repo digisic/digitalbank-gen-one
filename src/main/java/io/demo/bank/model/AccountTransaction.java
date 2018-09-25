@@ -1,5 +1,6 @@
 package io.demo.bank.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -22,12 +23,17 @@ public class AccountTransaction {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id", nullable=false, updatable=false)
 	private Long id;
-	private String Description;
-	private double amount;
+	private String description;
+	private BigDecimal amount;
+	private BigDecimal runningBalance;
+	
+	@Column(name="transactionNumber", nullable=false, unique=true)
+	private Long transactionNumber;
+
 	
 	@JsonFormat(pattern="yyyy-MM-dd")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date date;
+	private Date transactionDate;
 	
 	@ManyToOne
     @JoinColumn(name = "account_id")
@@ -57,42 +63,42 @@ public class AccountTransaction {
 	 * @return the description
 	 */
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	/**
 	 * @param description the description to set
 	 */
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
 	/**
 	 * @return the amount
 	 */
-	public double getAmount() {
+	public BigDecimal getAmount() {
 		return amount;
 	}
 
 	/**
 	 * @param amount the amount to set
 	 */
-	public void setAmount(double amount) {
+	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
 
 	/**
-	 * @return the date
+	 * @return the transactionDate
 	 */
-	public Date getDate() {
-		return date;
+	public Date getTransactionDate() {
+		return transactionDate;
 	}
 
 	/**
-	 * @param date the date to set
+	 * @param transactionDate the transactionDate to set
 	 */
-	public void setDate(Date date) {
-		this.date = date;
+	public void setTransactionDate(Date transactionDate) {
+		this.transactionDate = transactionDate;
 	}
 
 	/**
@@ -112,28 +118,64 @@ public class AccountTransaction {
 	/**
 	 * @return the type
 	 */
-	public TransactionType getType() {
+	public TransactionType getTransactionType() {
 		return transactionType;
 	}
 
 	/**
 	 * @param type the type to set
 	 */
-	public void setType(TransactionType transactionType) {
+	public void setTTransactionype(TransactionType transactionType) {
 		this.transactionType = transactionType;
 	}
 
 	/**
 	 * @return the state
 	 */
-	public TransactionState getState() {
+	public TransactionState getTransactionState() {
 		return transactionState;
 	}
 
 	/**
 	 * @param state the state to set
 	 */
-	public void setState(TransactionState transactionState) {
+	public void setTransactionState(TransactionState transactionState) {
 		this.transactionState = transactionState;
 	}
+
+	/**
+	 * @return the runningBalance
+	 */
+	public BigDecimal getRunningBalance() {
+		return runningBalance;
+	}
+
+	/**
+	 * @param runningBalance the runningBalance to set
+	 */
+	public void setRunningBalance(BigDecimal runningBalance) {
+		this.runningBalance = runningBalance;
+	}
+
+	/**
+	 * @return the transactionNumber
+	 */
+	public Long getTransactionNumber() {
+		return transactionNumber;
+	}
+
+	/**
+	 * @param transactionNumber the transactionNumber to set
+	 */
+	public void setTransactionNumber(Long transactionNumber) {
+		this.transactionNumber = transactionNumber;
+	}
+
+	/**
+	 * @param transactionType the transactionType to set
+	 */
+	public void setTransactionType(TransactionType transactionType) {
+		this.transactionType = transactionType;
+	}
+	
 }

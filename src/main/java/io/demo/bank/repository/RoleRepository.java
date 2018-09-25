@@ -5,6 +5,6 @@ import io.demo.bank.model.security.Role;
 
 public interface RoleRepository extends CrudRepository<Role, Long> {
 	
-	Role findByName(String paramString);
+	Role findByName(String name);
 
 }

@@ -17,6 +17,16 @@ public class AccountStanding {
 	private String code;
 	private String name;
 	
+	// default constructor
+	public AccountStanding () {}
+	
+	public AccountStanding (String code, String name) {
+		
+		this.code = code;
+		this.name = name;
+	}
+	
+	
 	/**
 	 * @return the id
 	 */

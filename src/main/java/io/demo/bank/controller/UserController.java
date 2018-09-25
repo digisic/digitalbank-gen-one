@@ -1,154 +1,60 @@
 package io.demo.bank.controller;
 
-import io.demo.bank.model.UserProfile;
-import io.demo.bank.model.security.User;
-import io.demo.bank.service.UserService;
-import io.demo.bank.util.Mappings;
 import java.security.Principal;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
+import io.demo.bank.model.UserProfile;
+import io.demo.bank.model.security.User;
+import io.demo.bank.service.UserService;
+import io.demo.bank.util.Constants;
 
 @Controller
-@RequestMapping(Mappings.URI_ROOT)
+@RequestMapping(Constants.URI_USER)
 public class UserController {
 	
+	// Class Logger
 	private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
-  
+	
+	// model attribute constants
+	private static final String MODEL_ATT_USER_PROFILE 			= "userProfile";
+	private static final String MODEL_ATT_FIRST_NAME 			= "firstName";
+	private static final String MODEL_ATT_NEW_PASS 				= "newPassword";
+	private static final String MODEL_ATT_CUR_PASS 				= "currentPassword";
+	private static final String MODEL_ATT_ERROR_MSG				= "errorMsg";
+	private static final String MODEL_ATT_SUCCESS_MSG			= "successMsg";
+		  
 	@Autowired
 	private UserService userService;
-  
-	@RequestMapping(value=Mappings.URI_ROOT, method=RequestMethod.GET)
-	public String root() {
-		
-		return Mappings.DIR_REDIRECT + Mappings.URI_HOME;
-	}
-  
-	@RequestMapping(value=Mappings.URI_LOGIN, method=RequestMethod.GET)
-	public String login(Model model)
-	{
-		model.addAttribute("user", new User());
-    
-		return Mappings.VIEW_LOGIN;
-	}
-  
-	@RequestMapping(value=Mappings.URI_SIGNUP, method=RequestMethod.GET)
-	public String signupGet(Model model)
-	{
-		model.addAttribute("user", new User());
-		model.addAttribute("userProfile", new UserProfile());
-    
-		return Mappings.VIEW_SIGNUP;
-	}
-  
-	@RequestMapping(value=Mappings.URI_SIGNUP, method=RequestMethod.POST)
-	public String signupPost(@ModelAttribute("user") User newUser, 
-							 @ModelAttribute("userProfile") UserProfile newProfile, 
-							 Model model) {
-		
-		boolean errorExists = false;
-    
-		// Set the email address to also be the username
-		newUser.setUsername(newProfile.getEmailAddress());
-    
-	    LOG.debug("Signup POST begin: ");
-	    LOG.debug("User: " + newUser);
-	    LOG.debug("Profile: " + newProfile);
-    
-	    // Add user objects to the model
-	    model.addAttribute("user", newUser);
-	    model.addAttribute("userProfile", newProfile);
-	    
-	    // If email already exists then return error
-	    if (userService.checkEmailAdressExists(newProfile.getEmailAddress())) {
-	    	model.addAttribute("emailExists", true);
-	    	errorExists = true;
-	    }
-    
-	    // If SSN already exists then return an error
-	    if (userService.checkSsnExists(newProfile.getSsn())) {
-	    	model.addAttribute("ssnExists", true);
-	    	errorExists = true;
-	    }
-	    
-	    LOG.debug("Signup POST End: ");
-    
-	    // if we have an error go back to sign up page
-	    if (errorExists) {
-	    	return Mappings.VIEW_SIGNUP;
-	    }
-	    
-	    return Mappings.VIEW_REGISTER;
-	}
-  
-	@RequestMapping(value=Mappings.URI_REGISTER, method=RequestMethod.GET)
-	public String registerGet(Model model) {
-    
-		// Since this a a registration process, add user object and send them to signup
-		model.addAttribute("user", new User());
-		model.addAttribute("userProfile", new UserProfile());
-    
-		return Mappings.VIEW_SIGNUP;
-	}
-  
-	@RequestMapping(value=Mappings.URI_REGISTER, method=RequestMethod.POST)
-	public String registerPost(@ModelAttribute("user") User newUser, 
-							   @ModelAttribute("userProfile") UserProfile newProfile, 
-							   Model model) {
-		
-		newUser.setUserProfile(newProfile);
-    
-		LOG.debug("Registering new User: " + newUser);
-    
-		newUser = userService.createUser(newUser);
-		model.addAttribute("user", newUser);
-    
-		LOG.debug("User Registered: " + newUser);
-    
-		return Mappings.VIEW_LOGIN;
-	}
-  
-	@RequestMapping(value=Mappings.URI_HOME, method=RequestMethod.GET)
-	public String home(Principal principal, Model model) {
-    
-		User user = userService.findByUsername(principal.getName());
-    
-		// Add name for Welcome header
-		model.addAttribute("firstname", user.getUserProfile().getFirstName());
-		
-		if (user.getAccountList().isEmpty()) {
-			return Mappings.VIEW_NEW_ACCOUNT;
-		}
-    
-		return Mappings.VIEW_HOME;
-	}
-	
-	@RequestMapping(value=Mappings.URI_PASSWORD, method=RequestMethod.GET)
+
+	@GetMapping(Constants.URI_USR_PASSWORD)
 	public String password(Principal principal, Model model) {
     
 		User user = userService.findByUsername(principal.getName());
     
 		// Add name for Welcome header
-		model.addAttribute("firstname", user.getUserProfile().getFirstName());
+		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
 		    
-		return Mappings.VIEW_PASSWORD;
+		return Constants.VIEW_USR_PASSWORD;
 	}
 	
-	@RequestMapping(value=Mappings.URI_PASSWORD, method=RequestMethod.POST)
-	public String passwordUpdate(Principal principal, 
-								 @ModelAttribute("newPassword") String newPassword,
-								 @ModelAttribute("currentPassword") String oldPassword,
-								 Model model) {
+	@PostMapping(Constants.URI_USR_PASSWORD)
+	public String password(Principal principal, Model model,
+						   @ModelAttribute(MODEL_ATT_NEW_PASS) String newPassword,
+						   @ModelAttribute(MODEL_ATT_CUR_PASS) String oldPassword) {
     
 		User user = userService.findByUsername(principal.getName());
     
 		// Add name for Welcome header
-		model.addAttribute("firstname", user.getUserProfile().getFirstName());
+		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
 		
 		LOG.debug("Change Password: Validate Password Entries.");
 		
@@ -157,13 +63,13 @@ public class UserController {
 			
 			LOG.debug("Change Password: Current Password is correct.");
 			
-			if (userService.passwordMatches(user, newPassword)) {
+			if (newPassword.equals(oldPassword)) {
 				
 				// new password matches current password, throw error
 				
 				LOG.debug("Change Password: New Password is the same as the current password.");
 				
-				model.addAttribute("failPass", true);
+				model.addAttribute(MODEL_ATT_ERROR_MSG, "New Password is the same as the current password. Please enter a new Password.");
 				
 			} else {
 				
@@ -171,7 +77,7 @@ public class UserController {
 				LOG.debug("Change Password: New Password is a actualy a new password. Update Password.");
 				
 				userService.changePassword(user, newPassword);
-				model.addAttribute("successChange", true);
+				model.addAttribute(MODEL_ATT_SUCCESS_MSG, "Password Updated Successfully.");
 				
 			}
 			
@@ -180,30 +86,29 @@ public class UserController {
 			LOG.debug("Change Password: Current Password is NOT correct.");
 			
 			// old password not correct, throw error
-			model.addAttribute("failMatch", true);
+			model.addAttribute(MODEL_ATT_ERROR_MSG, "Current Password does not match what is on record. Please enter the correct current password.");
 			
 		}
 		    
-		return Mappings.VIEW_PASSWORD;
+		return Constants.VIEW_USR_PASSWORD;
 	}
 	
-	@RequestMapping(value=Mappings.URI_PROFILE, method=RequestMethod.GET)
+	@GetMapping(Constants.URI_USR_PROFILE)
 	public String profile(Principal principal, Model model) {
     
 		User user = userService.findByUsername(principal.getName());
 		
     
 		// Add name for Welcome header
-		model.addAttribute("firstname", user.getUserProfile().getFirstName());
-		model.addAttribute("userProfile", user.getUserProfile());
+		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
+		model.addAttribute(MODEL_ATT_USER_PROFILE, user.getUserProfile());
 		    
-		return Mappings.VIEW_PROFILE;
+		return Constants.VIEW_USR_PROFILE;
 	}
 	
-	@RequestMapping(value=Mappings.URI_PROFILE, method=RequestMethod.POST)
-	public String profileUpdate(Principal principal,
-			 					@ModelAttribute("userProfile") UserProfile updateProfile,
-			 					Model model) {
+	@PostMapping(Constants.URI_USR_PROFILE)
+	public String profile(Principal principal, Model model,
+			 			  @ModelAttribute(MODEL_ATT_USER_PROFILE) UserProfile updateProfile) {
     
 		User user = userService.findByUsername(principal.getName());
 		UserProfile up = user.getUserProfile();
@@ -233,10 +138,10 @@ public class UserController {
 		
 		
 		// Add name for Welcome header
-		model.addAttribute("firstname", user.getUserProfile().getFirstName());
-		model.addAttribute("userProfile", user.getUserProfile());
-		model.addAttribute("successUpdate", true);
+		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
+		model.addAttribute(MODEL_ATT_USER_PROFILE, user.getUserProfile());
+		model.addAttribute(MODEL_ATT_SUCCESS_MSG, "Profile Updated Successfully.");
 		    
-		return Mappings.VIEW_PROFILE;
+		return Constants.VIEW_USR_PROFILE;
 	}
 }

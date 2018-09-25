@@ -3,7 +3,6 @@ package io.demo.bank.model;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,19 +10,21 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
+import javax.persistence.SequenceGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.demo.bank.model.OwnerType;
-import io.demo.bank.model.security.User;
 import io.demo.bank.model.AccountType;
+import io.demo.bank.model.security.User;
 
 @Entity
 public class Account {
+	
+	@SequenceGenerator(name="ACCOUNT_SEQ", initialValue=1001005)	
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -31,42 +32,47 @@ public class Account {
 	private Long id;
 	private String name;
 	
-	private int accountNumber;
+	@Column(name="accountNumber", nullable=false, unique=true)
+	private Long accountNumber;
+	
 	private BigDecimal currentBalance;
-	private double openingBalance;
+	private BigDecimal openingBalance;
 	private double interestRate;
 	private double paymentAmount;
 	private int paymentTerm;
-	
 	
 	@OneToOne(fetch=FetchType.EAGER)
 	private AccountType accountType;
 	
 	@OneToOne(fetch=FetchType.EAGER)
-	private OwnerType ownerType;
-	
+	private OwnershipType ownershipType;
+		
 	@OneToOne(fetch=FetchType.EAGER)
-	private AccountStanding standing;
+	private AccountStanding accountStanding;
 	
 	@JsonFormat(pattern="yyyy-MM-dd")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date opened;
+	private Date dateOpened;
 	
 	@JsonFormat(pattern="yyyy-MM-dd")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date closed;
+	private Date dateClosed;
 	
 	@JsonFormat(pattern="yyyy-MM-dd")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date payementDue;
+	private Date paymentDue;
 	
-	@ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+	@ManyToOne(fetch=FetchType.EAGER)
+	private User owner;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	private User coowner;
 	
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OrderBy("transaction_date DESC")
     @JsonIgnore
     private List<AccountTransaction> acountTransactionList;
+	
 
 	/**
 	 * @return the id
@@ -99,14 +105,15 @@ public class Account {
 	/**
 	 * @return the accountNumber
 	 */
-	public int getAccountNumber() {
+	public Long getAccountNumber() {
 		return accountNumber;
 	}
-
+	
+	
 	/**
 	 * @param accountNumber the accountNumber to set
 	 */
-	public void setAccountNumber(int accountNumber) {
+	public void setAccountNumber(Long accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 
@@ -127,14 +134,14 @@ public class Account {
 	/**
 	 * @return the openingBalance
 	 */
-	public double getOpeningBalance() {
+	public BigDecimal getOpeningBalance() {
 		return openingBalance;
 	}
 
 	/**
 	 * @param openingBalance the openingBalance to set
 	 */
-	public void setOpeningBalance(double openingBalance) {
+	public void setOpeningBalance(BigDecimal openingBalance) {
 		this.openingBalance = openingBalance;
 	}
 
@@ -195,73 +202,59 @@ public class Account {
 	}
 
 	/**
-	 * @return the ownerType
-	 */
-	public OwnerType getOwnerType() {
-		return ownerType;
-	}
-
-	/**
-	 * @param ownerType the ownerType to set
-	 */
-	public void setOwnerType(OwnerType ownerType) {
-		this.ownerType = ownerType;
-	}
-
-	/**
 	 * @return the standing
 	 */
-	public AccountStanding getStanding() {
-		return standing;
+	public AccountStanding getAccountStanding() {
+		return accountStanding;
 	}
 
 	/**
 	 * @param standing the standing to set
 	 */
-	public void setStanding(AccountStanding standing) {
-		this.standing = standing;
+	public void setAccountStanding(AccountStanding accountStanding) {
+		this.accountStanding = accountStanding;
 	}
 
 	/**
-	 * @return the opened
+	 * @return the dateOpened
 	 */
-	public Date getOpened() {
-		return opened;
+	public Date getDateOpened() {
+		return dateOpened;
 	}
 
 	/**
-	 * @param opened the opened to set
+	 * @param dateOpened the dateOpened to set
 	 */
-	public void setOpened(Date opened) {
-		this.opened = opened;
+	public void setDateOpened(Date dateOpened) {
+		this.dateOpened = dateOpened;
 	}
 
 	/**
-	 * @return the closed
+	 * @return the dateClosed
 	 */
-	public Date getClosed() {
-		return closed;
+	public Date getDateClosed() {
+		return dateClosed;
 	}
 
 	/**
-	 * @param closed the closed to set
+	 * @param dateClosed the dateClosed to set
 	 */
-	public void setClosed(Date closed) {
-		this.closed = closed;
+	public void setDateClosed(Date dateClosed) {
+		this.dateClosed = dateClosed;
 	}
 
 	/**
-	 * @return the payementDue
+	 * @return the paymentDue
 	 */
-	public Date getPayementDue() {
-		return payementDue;
+	public Date getPaymentDue() {
+		return paymentDue;
 	}
 
 	/**
-	 * @param payementDue the payementDue to set
+	 * @param payementDue the paymentDue to set
 	 */
-	public void setPayementDue(Date payementDue) {
-		this.payementDue = payementDue;
+	public void setPaymentDue(Date paymentDue) {
+		this.paymentDue = paymentDue;
 	}
 
 	/**
@@ -269,6 +262,68 @@ public class Account {
 	 */
 	public List<AccountTransaction> getAcountTransactionList() {
 		return acountTransactionList;
+	}
+	
+	/**
+	 * @param acountTransactionList the acountTransactionList to set
+	 */
+	public void setAcountTransactionList(List<AccountTransaction> acountTransactionList) {
+		this.acountTransactionList = acountTransactionList;
+	}
+
+	/**
+	 * @return the ownershipType
+	 */
+	public OwnershipType getOwnershipType() {
+		return ownershipType;
+	}
+
+	/**
+	 * @param ownershipType the ownershipType to set
+	 */
+	public void setOwnershipType(OwnershipType ownershipType) {
+		this.ownershipType = ownershipType;
+	}
+
+	/**
+	 * @return the owner
+	 */
+	public User getOwner() {
+		return owner;
+	}
+
+	/**
+	 * @param owner the owner to set
+	 */
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+
+	/**
+	 * @return the coowner
+	 */
+	public User getCoowner() {
+		return coowner;
+	}
+
+	/**
+	 * @param coowner the coowner to set
+	 */
+	public void setCoowner(User coowner) {
+		this.coowner = coowner;
+	}
+
+
+	public String toString() {
+	    
+		String account = "\n\nAccount ***********************";
+    
+		account += "\nId:\t\t\t" 		+ this.getId();
+		account += "\nName:\t\t" 		+ this.getName();
+		account += "\nType:\t\t\t" 		+ this.getAccountType();
+	    
+	    return account;
+	    
 	}
 	
 }

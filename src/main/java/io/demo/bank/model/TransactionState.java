@@ -17,6 +17,15 @@ public class TransactionState {
 	private String code;
 	private String name;
 	
+	// default constructor
+	public TransactionState () {}
+	
+	public TransactionState (String code, String name) {
+		
+		this.code = code;
+		this.name = name;
+	}
+	
 	/**
 	 * @return the id
 	 */

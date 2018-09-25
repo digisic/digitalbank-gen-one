@@ -31,7 +31,7 @@ public class UserService {
   
 	@Autowired
 	private UserProfileRepository userProfileRepository;
-  
+	  
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 	
@@ -78,7 +78,8 @@ public class UserService {
 	    newUser.setUserProfile(newProfile);
 	    
 	    Set<UserRole> userRoles = new HashSet<>();
-	    userRoles.add(new UserRole(newUser, roleRepository.findByName("ROLE_USER")));
+	    UserRole userRole = new UserRole(newUser, roleRepository.findByName("ROLE_USER"));
+	    userRoles.add(userRole);
 	    newUser.setUserRoles(userRoles);
 	    
 	    newUser = userRepository.save(newUser);
@@ -88,9 +89,9 @@ public class UserService {
 	    return newUser;
 	}
 	
-	public boolean passwordMatches (User user, String newPassword) {
+	public boolean passwordMatches (User user, String password) {
 		
-		return encoder.matches(newPassword, user.getPassword());
+		return encoder.matches(password, user.getPassword());
 	}
 	
 	public void changePassword (User user, String newPassword) {
@@ -102,4 +103,6 @@ public class UserService {
 		LOG.debug("Change Password: Password Changed.");
 		
 	}
+	
+
 }

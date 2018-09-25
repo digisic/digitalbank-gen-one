@@ -19,48 +19,48 @@
                     <form th:action="@{/register}" method="post">
                         
                         <div class="form-group">
-                            <label>Address</label>
+                            <label><strong>Address</strong></label>
                             <input type="text" class="form-control" id="address" th:field="${userProfile.address}" required>
                         	<small class="form-text text-muted">ex. 123 Digital Lane</small>
                         </div>
                         <div class="form-group">
-                            <label>Locality</label>
+                            <label><strong>Locality</strong></label>
                             <input type="text" class="form-control" id="locality" th:field="${userProfile.locality}" required>
                         	<small class="form-text text-muted">ex. Internet City</small>
                         </div>
                         <div class="form-group">
-                            <label>Region</label>
+                            <label><strong>Region</strong></label>
                             <input type="text" class="form-control" id="region" th:field="${userProfile.region}" required>
                         	<small class="form-text text-muted">ex. CA</small>
                         </div>
                         <div class="form-group">
-                            <label>Postal Code</label>
+                            <label><strong>Postal Code</strong></label>
                             <input type="text" class="form-control" id="postalCode" th:field="${userProfile.postalCode}" required>
                         	<small class="form-text text-muted">ex. 94302</small>
                         </div>
                         <div class="form-group">
-                            <label>Country</label>
+                            <label><strong>Country</strong></label>
                             <input type="text" class="form-control" id="country" th:field="${userProfile.country}" required>
                         	<small class="form-text text-muted">ex. US</small>
                         </div>
                         <div class="form-group">
-                            <label>Home Phone</label>
+                            <label><strong>Home Phone</strong></label>
                             <input type="text" class="form-control" id="homePhone" th:field="${userProfile.homePhone}" required pattern="^[+]?([0-9]*[\.\s\-\(\)]|[0-9]+){3,24}$" title="Valid phone number">
                         	<small class="form-text text-muted">ex. (547) 392-5436</small>
                         </div>
                         <div class="form-group">
-                            <label>Mobile Phone</label>
+                            <label><strong>Mobile Phone</strong></label>
                             <input type="text" class="form-control" id="mobilePhone" th:field="${userProfile.mobilePhone}" pattern="^[+]?([0-9]*[\.\s\-\(\)]|[0-9]+){3,24}$" title="Valid phone number">
                         	<small class="form-text text-muted">ex. (547) 392-5436</small>
                         </div>
                         <div class="form-group">
-                            <label>Work Phone</label>
+                            <label><strong>Work Phone</strong></label>
                             <input type="text" class="form-control" id="workPhone" th:field="${userProfile.workPhone}" pattern="^[+]?([0-9]*[\.\s\-\(\)]|[0-9]+){3,24}$" title="Valid phone number">
                         	<small class="form-text text-muted">ex. (547) 392-5436</small>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" required="required"> Agree the terms and policy
+                                <input type="checkbox" required="required"><strong> Agree the terms and policy</strong>
                             </label>
                         </div>
                         
@@ -76,10 +76,10 @@
                             
                         <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Register</button>
                     </form>
-                </div>
-            </div>
-        </div>
-    </div>
+                </div> <!-- End Login Form -->
+            </div> <!-- End Content -->
+        </div> <!-- End Container -->
+    </div> <!-- End Sufee -->
 
 	<div th:replace="common/sections :: footer-scripts"></div>
 

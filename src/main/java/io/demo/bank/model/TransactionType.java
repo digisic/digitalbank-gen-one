@@ -16,6 +16,15 @@ public class TransactionType {
 	
 	private String code;
 	private String name;
+	
+	// default constructor
+	public TransactionType () {}
+	
+	public TransactionType (String code, String name) {
+		
+		this.code = code;
+		this.name = name;
+	}
 	/**
 	 * @return the id
 	 */

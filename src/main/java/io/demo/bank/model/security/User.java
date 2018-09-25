@@ -17,6 +17,7 @@ import javax.persistence.OneToOne;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.demo.bank.model.Account;
 import io.demo.bank.model.UserProfile;
 
@@ -28,7 +29,7 @@ public class User implements UserDetails {
 	private static final long serialVersionUID = -1173435728882792083L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
     private String username;
@@ -40,13 +41,29 @@ public class User implements UserDetails {
     private boolean credentialNotExpired = true;
     
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="profileId")
+    @JoinColumn(name="profile_id")
     private UserProfile userProfile;
     
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<UserRole> userRoles = new HashSet<>();
-	
+    
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="owner_id")
+    private List<Account> ownerAccounts;
+    
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="coowner_id")
+    private List<Account> coownerAccounts;
+       
+    public User () {}
+    
+    public User (String username, String password) {
+    	this.username = username;
+    	this.password = password;
+    }
+    
+    	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		
@@ -56,17 +73,6 @@ public class User implements UserDetails {
         return authorities;
 	}
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<Account> accountList;
-	
-	
-	/**
-	 * @return the accounts
-	 */
-	public List<Account> getAccountList() {
-		return accountList;
-	}
 
 	@Override
 	public String getPassword() {
@@ -187,7 +193,36 @@ public class User implements UserDetails {
 	public void setUserRoles(Set<UserRole> userRoles) {
 		this.userRoles = userRoles;
 	}
+
 	
+	/**
+	 * @return the ownerAccounts
+	 */
+	public List<Account> getOwnerAccounts() {
+		return ownerAccounts;
+	}
+
+	/**
+	 * @param ownerAccounts the ownerAccounts to set
+	 */
+	public void setOwnerAccounts(List<Account> ownerAccounts) {
+		this.ownerAccounts = ownerAccounts;
+	}
+
+	/**
+	 * @return the coownerAccounts
+	 */
+	public List<Account> getCoownerAccounts() {
+		return coownerAccounts;
+	}
+
+	/**
+	 * @param coownerAccounts the coownerAccounts to set
+	 */
+	public void setCoownerAccounts(List<Account> coownerAccounts) {
+		this.coownerAccounts = coownerAccounts;
+	}
+
 	public String toString() {
 	    
 		String user = "\n\nUser Profile ***********************";

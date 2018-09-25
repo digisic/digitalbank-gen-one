@@ -16,23 +16,18 @@
                     </a>
                 </div>
                 <div class="login-form">
-                	<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" th:if="${emailExists}">
-                       <span class="badge badge-pill badge-danger">Error</span>
-                           An account is already registered with the email address provided. Login with the existing account or provide another email address for registration.
-                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                           <span aria-hidden="true">&times;</span>
-                       </button>
-                   </div>
-                	<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" th:if="${ssnExists}">
-                       <span class="badge badge-pill badge-danger">Error</span>
-                           An account is already registered with the Social Security Number provided. Login with the existing account or provide another SSN for registration.
-                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                           <span aria-hidden="true">&times;</span>
-                       </button>
-                   </div>
+                	<div class="form-group text-left">
+	              		<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" th:if="${errorMsg}">
+	                       <span class="badge badge-pill badge-danger">Error</span>
+	                         <span th:text="${errorMsg}"></span>
+	                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	                           <span aria-hidden="true">&times;</span>
+	                       </button>
+	                   </div>
+	              	</div>
                     <form th:action="@{/signup}" method="post">
                         <div class="form-group">
-                            <label for="title" class=" form-control-label">Title</label>
+                            <label for="title" class=" form-control-label"><strong>Title</strong></label>
                               <select name="title" id="title" class="form-control" th:field="${userProfile.title}" required>
                                 <option value="">Please select</option>
                                 <option value="Mr.">Mr.</option>
@@ -41,17 +36,17 @@
                               </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-control-label">First Name</label>
+                            <label class="form-control-label"><strong>First Name</strong></label>
                             <input type="text" class="form-control" id="firstName" th:field="${userProfile.firstName}" required>
                         	<small class="form-text text-muted">ex. James</small>
                         </div>
                         <div class="form-group">
-                            <label class="form-control-label">Last Name</label>
+                            <label class="form-control-label"><strong>Last Name</strong></label>
                             <input type="text" class="form-control" id="lastName" th:field="${userProfile.lastName}" required>
                         	<small class="form-text text-muted">ex. Smith</small>
                         </div>
                         <div>
-                        	<label for="gender" class="form-control-label">Gender</label>
+                        	<label for="gender" class="form-control-label"><strong>Gender</strong></label>
                        </div>
                         <div class="form-check-inline form-check">
                         	<label for="male" class="form-check-label">
@@ -63,26 +58,26 @@
                         </div>
                         <br><br>
                         <div class="form-group">
-                            <label class="form-control-label">Date of Birth</label>
+                            <label class="form-control-label"><strong>Date of Birth</strong></label>
                             <input type="date" class="form-control" id="dob" th:field="${userProfile.dob}" required pattern="\d{1,2}/\d{1,2}/\d{4}">
                             <small class="form-text text-muted">ex. 01/28/1980</small>
                         </div>
                         <div class="form-group">
-                            <label class="form-control-label">Social Security Number</label>
+                            <label class="form-control-label"><strong>Social Security Number</strong></label>
                             <input type="text" class="form-control" id="ssn" th:field="${userProfile.ssn}" required autocomplete="off" pattern="^\d{3}-?\d{2}-?\d{4}$" title="Expected pattern is ###-##-####">
                         	<small class="form-text text-muted">ex. 123-45-6789</small>
                         </div>
                         <div class="form-group">
-                            <label class="form-control-label">Email Address</label>
+                            <label class="form-control-label"><strong>Email Address</strong></label>
                             <input type="email" class="form-control" id="emailAddress" th:field="${userProfile.emailAddress}" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
                         	<small class="form-text text-muted">ex. user@gmail.com</small>
                         </div>
                         <div class="form-group">
-                            <label class="form-control-label">Password</label>
+                            <label class="form-control-label"><strong>Password</strong></label>
                             <input type="password" class="form-control" id="password" th:field="${user.password}" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
                         </div>
                         <div class="form-group">
-                            <label class="form-control-label">Confirm Password</label>
+                            <label class="form-control-label"><strong>Confirm Password</strong></label>
                             <input type="password" class="form-control" id="confirmPassword" required>
                         </div>
                         

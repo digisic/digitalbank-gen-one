@@ -73,5 +73,15 @@ public class UserRole {
 		this.role = role;
 	}
   
-	
+	public String toString() {
+	    
+		String userRole = "\n\nUser Roles ***********************";
+    
+		userRole += "\nId:\t\t\t" 			+ this.getId();
+		userRole += "\nUser:\t\t" 			+ this.getUser().getUsername();
+		userRole += "\nRole:\t\t\t" 		+ this.getRole().getName();
+
+	    return userRole;
+	    
+	}
 }
