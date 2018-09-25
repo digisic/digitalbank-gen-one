@@ -1,2 +1,2 @@
 # Digital-Bank
-Sample Spring Boot application with HTML5 Web UI.
+Sample Spring Boot application with HTML5.
