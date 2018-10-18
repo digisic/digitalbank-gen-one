@@ -12,7 +12,7 @@ import javax.persistence.Id;
 public class AccountType {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name="id", nullable=false, updatable=false)
 	private Long id;
 	

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import io.demo.bank.model.UserProfile;
-import io.demo.bank.model.security.User;
+import io.demo.bank.model.security.Users;
 import io.demo.bank.service.UserService;
 import io.demo.bank.util.Constants;
 
@@ -38,7 +38,7 @@ public class UserController {
 	@GetMapping(Constants.URI_USR_PASSWORD)
 	public String password(Principal principal, Model model) {
     
-		User user = userService.findByUsername(principal.getName());
+		Users user = userService.findByUsername(principal.getName());
     
 		// Add name for Welcome header
 		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
@@ -51,7 +51,7 @@ public class UserController {
 						   @ModelAttribute(MODEL_ATT_NEW_PASS) String newPassword,
 						   @ModelAttribute(MODEL_ATT_CUR_PASS) String oldPassword) {
     
-		User user = userService.findByUsername(principal.getName());
+		Users user = userService.findByUsername(principal.getName());
     
 		// Add name for Welcome header
 		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
@@ -96,7 +96,7 @@ public class UserController {
 	@GetMapping(Constants.URI_USR_PROFILE)
 	public String profile(Principal principal, Model model) {
     
-		User user = userService.findByUsername(principal.getName());
+		Users user = userService.findByUsername(principal.getName());
 		
     
 		// Add name for Welcome header
@@ -110,7 +110,7 @@ public class UserController {
 	public String profile(Principal principal, Model model,
 			 			  @ModelAttribute(MODEL_ATT_USER_PROFILE) UserProfile updateProfile) {
     
-		User user = userService.findByUsername(principal.getName());
+		Users user = userService.findByUsername(principal.getName());
 		UserProfile up = user.getUserProfile();
 		
 		

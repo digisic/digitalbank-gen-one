@@ -1,7 +1,7 @@
 package io.demo.bank.controller;
 
 import io.demo.bank.model.UserProfile;
-import io.demo.bank.model.security.User;
+import io.demo.bank.model.security.Users;
 import io.demo.bank.service.UserService;
 import io.demo.bank.util.Constants;
 import java.security.Principal;
@@ -38,7 +38,7 @@ public class HomeController {
 	@GetMapping(Constants.URI_LOGIN)
 	public String login(Model model) {
 		
-		model.addAttribute(MODEL_ATT_USER, new User());
+		model.addAttribute(MODEL_ATT_USER, new Users());
     
 		return Constants.VIEW_LOGIN;
 	}
@@ -46,7 +46,7 @@ public class HomeController {
 	@GetMapping(Constants.URI_SIGNUP)
 	public String signup(Model model) {
 		
-		model.addAttribute(MODEL_ATT_USER, new User());
+		model.addAttribute(MODEL_ATT_USER, new Users());
 		model.addAttribute(MODEL_ATT_USER_PROFILE, new UserProfile());
     
 		return Constants.VIEW_SIGNUP;
@@ -54,7 +54,7 @@ public class HomeController {
   
 	@PostMapping(Constants.URI_SIGNUP)
 	public String signup(Model model,
-						 @ModelAttribute(MODEL_ATT_USER) User newUser, 
+						 @ModelAttribute(MODEL_ATT_USER) Users newUser, 
 						 @ModelAttribute(MODEL_ATT_USER_PROFILE) UserProfile newProfile) {
 		
 		boolean bError = false;
@@ -104,7 +104,7 @@ public class HomeController {
 	public String register(Model model) {
     
 		// Since this a a registration process, add user object and send them to signup
-		model.addAttribute(MODEL_ATT_USER, new User());
+		model.addAttribute(MODEL_ATT_USER, new Users());
 		model.addAttribute(MODEL_ATT_USER_PROFILE, new UserProfile());
     
 		return Constants.VIEW_SIGNUP;
@@ -112,7 +112,7 @@ public class HomeController {
   
 	@PostMapping(Constants.URI_REGISTER)
 	public String register(Model model,
-						   @ModelAttribute(MODEL_ATT_USER) User newUser, 
+						   @ModelAttribute(MODEL_ATT_USER) Users newUser, 
 						   @ModelAttribute(MODEL_ATT_USER_PROFILE) UserProfile newProfile) {
 		
 		newUser.setUserProfile(newProfile);
@@ -130,7 +130,7 @@ public class HomeController {
 	@GetMapping(Constants.URI_HOME)
 	public String home(Principal principal, Model model) {
     
-		User user = userService.findByUsername(principal.getName());
+		Users user = userService.findByUsername(principal.getName());
     
 		// Add name for Welcome header
 		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());

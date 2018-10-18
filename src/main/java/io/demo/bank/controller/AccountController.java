@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import io.demo.bank.model.Account;
 import io.demo.bank.model.AccountTransaction;
-import io.demo.bank.model.security.User;
+import io.demo.bank.model.security.Users;
 import io.demo.bank.service.AccountService;
 import io.demo.bank.service.UserService;
 import io.demo.bank.util.Constants;
@@ -52,7 +52,7 @@ public class AccountController {
 	@GetMapping(Constants.URI_CHK_ADD)
 	public String checkingAdd(Principal principal, Model model) {
 		
-		User user = userService.findByUsername(principal.getName());
+		Users user = userService.findByUsername(principal.getName());
 		
 		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
 		model.addAttribute(MODEL_ATT_ACCOUNT, new Account());	
@@ -67,7 +67,7 @@ public class AccountController {
 	public String checkingAdd(Principal principal, Model model,
 							  @ModelAttribute(MODEL_ATT_ACCOUNT) Account newAccount) {
 		
-		User user = userService.findByUsername(principal.getName());
+		Users user = userService.findByUsername(principal.getName());
 		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
 		
 		LOG.debug("New Checking: Account Name -> " + newAccount.getName());
@@ -110,7 +110,7 @@ public class AccountController {
 	@GetMapping(Constants.URI_SAV_ADD)
 	public String savingsAdd (Principal principal, Model model) {
 		
-		User user = userService.findByUsername(principal.getName());
+		Users user = userService.findByUsername(principal.getName());
 		
 		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
 		model.addAttribute(MODEL_ATT_ACCOUNT, new Account());
@@ -125,7 +125,7 @@ public class AccountController {
 	public String savingsAdd (Principal principal, Model model,
 							  @ModelAttribute(MODEL_ATT_ACCOUNT) Account newAccount) {
 		
-		User user = userService.findByUsername(principal.getName());
+		Users user = userService.findByUsername(principal.getName());
 		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
 		
 		LOG.debug("Add New Savings: Account Name -> " + newAccount.getName());
@@ -170,7 +170,7 @@ public class AccountController {
 	public String checkingView (Principal principal, Model model,
 							   @ModelAttribute(MODEL_ATT_ACCT_SEL_SWITCH) ArrayList<String> selectSwitch) {
 		
-		User user = userService.findByUsername(principal.getName());
+		Users user = userService.findByUsername(principal.getName());
 		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
 		
 		LOG.debug("SELECTED: ->" + selectSwitch.size());
@@ -225,7 +225,7 @@ public class AccountController {
 	public String savingsView (Principal principal, Model model,
 							   @ModelAttribute(MODEL_ATT_ACCT_SEL_SWITCH) ArrayList<String> selectSwitch) {
 		
-		User user = userService.findByUsername(principal.getName());
+		Users user = userService.findByUsername(principal.getName());
 		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
 		
 		LOG.debug("SELECTED: ->" + selectSwitch.size());
@@ -279,7 +279,7 @@ public class AccountController {
 	@GetMapping(Constants.URI_DEPOSIT)
 	public String deposit (Principal principal, Model model) {
 		
-		User user = userService.findByUsername(principal.getName());
+		Users user = userService.findByUsername(principal.getName());
 		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
 
 		// Get all accounts
@@ -306,7 +306,7 @@ public class AccountController {
 		// get full object from partial object
 		account = accountService.getAccountById(account.getId());
 		
-		User user = userService.findByUsername(principal.getName());
+		Users user = userService.findByUsername(principal.getName());
 		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
 		
 		// Check amount is greater than zero
@@ -344,7 +344,7 @@ public class AccountController {
 	@GetMapping(Constants.URI_WITHDRAW)
 	public String withdraw (Principal principal, Model model) {
 		
-		User user = userService.findByUsername(principal.getName());
+		Users user = userService.findByUsername(principal.getName());
 		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
 
 		// Get all accounts
@@ -373,7 +373,7 @@ public class AccountController {
 		
 		boolean bError = false;
 		
-		User user = userService.findByUsername(principal.getName());
+		Users user = userService.findByUsername(principal.getName());
 		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
 		
 		// Check amount is greater than zero
@@ -437,7 +437,7 @@ public class AccountController {
 	@GetMapping(Constants.URI_XFER_BETWEEN)
 	public String transfer (Principal principal, Model model) {
 		
-		User user = userService.findByUsername(principal.getName());
+		Users user = userService.findByUsername(principal.getName());
 		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
 
 		// Get all accounts
@@ -470,7 +470,7 @@ public class AccountController {
 		Account fromAcct = accountService.getAccountById(fromAccount);
 		Account toAcct = accountService.getAccountById(toAccount);
 		
-		User user = userService.findByUsername(principal.getName());
+		Users user = userService.findByUsername(principal.getName());
 		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
 		
 		if (fromAcct.getId() != toAcct.getId()) {

@@ -1,7 +1,7 @@
 package io.demo.bank.service;
 
 import io.demo.bank.model.UserProfile;
-import io.demo.bank.model.security.User;
+import io.demo.bank.model.security.Users;
 import io.demo.bank.model.security.UserRole;
 import io.demo.bank.repository.RoleRepository;
 import io.demo.bank.repository.UserProfileRepository;
@@ -35,7 +35,7 @@ public class UserService {
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 	
-	public User findByUsername(String username) {
+	public Users findByUsername(String username) {
 	
 		return this.userRepository.findByUsername(username);
 	}
@@ -59,17 +59,17 @@ public class UserService {
 		return false;
 	}
 	  
-	public void save(User user) {
+	public void save(Users user) {
 		
 		userRepository.save(user);
 	}
 	  
-	public List<User> findUserList() {
+	public List<Users> findUserList() {
 	    
 		return this.userRepository.findAll();
 	}
 	  
-	public User createUser(User newUser) {
+	public Users createUser(Users newUser) {
 	
 		newUser.setPassword(encoder.encode(newUser.getPassword()));
 	    
@@ -89,12 +89,12 @@ public class UserService {
 	    return newUser;
 	}
 	
-	public boolean passwordMatches (User user, String password) {
+	public boolean passwordMatches (Users user, String password) {
 		
 		return encoder.matches(password, user.getPassword());
 	}
 	
-	public void changePassword (User user, String newPassword) {
+	public void changePassword (Users user, String newPassword) {
 		
 		user.setPassword(encoder.encode(newPassword));
 		

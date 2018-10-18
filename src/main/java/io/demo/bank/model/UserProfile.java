@@ -15,7 +15,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class UserProfile {
   
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name="id", nullable=false, updatable=false)
 	private Long id;
 	private String firstName;

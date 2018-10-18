@@ -23,13 +23,13 @@ import io.demo.bank.model.UserProfile;
 
 
 @Entity
-public class User implements UserDetails {
+public class Users implements UserDetails {
 	
 
 	private static final long serialVersionUID = -1173435728882792083L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
     private String username;
@@ -56,9 +56,9 @@ public class User implements UserDetails {
     @JoinColumn(name="coowner_id")
     private List<Account> coownerAccounts;
        
-    public User () {}
+    public Users () {}
     
-    public User (String username, String password) {
+    public Users (String username, String password) {
     	this.username = username;
     	this.password = password;
     }

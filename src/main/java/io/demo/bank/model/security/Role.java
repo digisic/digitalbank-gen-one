@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 public class Role {
   
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name="id", nullable=false, updatable=false)
 	private Long id;
 	private String name;

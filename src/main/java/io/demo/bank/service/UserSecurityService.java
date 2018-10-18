@@ -1,6 +1,6 @@
 package io.demo.bank.service;
 
-import io.demo.bank.model.security.User;
+import io.demo.bank.model.security.Users;
 import io.demo.bank.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +22,7 @@ public class UserSecurityService implements UserDetailsService {
 		
 		LOG.debug("Load User by Username: " + username);
     
-		User user = this.userRepository.findByUsername(username);
+		Users user = this.userRepository.findByUsername(username);
     
 		if (user == null) {
 			throw new UsernameNotFoundException("User having username " + username + " not found.");

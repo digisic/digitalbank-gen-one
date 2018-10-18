@@ -16,7 +16,7 @@ import io.demo.bank.model.Account;
 import io.demo.bank.model.AccountTransaction;
 import io.demo.bank.model.AccountType;
 import io.demo.bank.model.OwnershipType;
-import io.demo.bank.model.security.User;
+import io.demo.bank.model.security.Users;
 import io.demo.bank.repository.AccountRepository;
 import io.demo.bank.repository.AccountStandingRepository;
 import io.demo.bank.repository.AccountTransactionRepository;
@@ -54,7 +54,7 @@ public class AccountService {
 	private AccountTransactionRepository accountTransactionRepository;
 			
 	
-	public List<Account> getCheckingAccounts (User user) {
+	public List<Account> getCheckingAccounts (Users user) {
 		
 		List<Account> checkingAccounts = accountRepository.findByOwnerAndAccountType_Category(user, Constants.ACCT_CHK_CAT);
 		checkingAccounts.addAll(accountRepository.findByCoownerAndAccountType_Category(user, Constants.ACCT_CHK_CAT));
@@ -62,7 +62,7 @@ public class AccountService {
 		return checkingAccounts;
 	}
 	
-	public List<Account> getSavingsAccounts (User user) {
+	public List<Account> getSavingsAccounts (Users user) {
 				
 		List<Account> savingsAccounts = accountRepository.findByOwnerAndAccountType_Category(user, Constants.ACCT_SAV_CAT);
 		savingsAccounts.addAll(accountRepository.findByCoownerAndAccountType_Category(user, Constants.ACCT_SAV_CAT));
@@ -95,6 +95,7 @@ public class AccountService {
 		accountTransaction.setTransactionState(transactionStateRepository.findByCode(Constants.ACCT_TRNST_COMP_CODE));
 		accountTransaction.setTTransactionype(transactionTypeRepository.findByCode(Constants.ACCT_TRNTY_DEP_CODE));
 		accountTransaction.setAccount(newAccount);
+		
 		atl.add(accountTransaction);
 		newAccount.setAcountTransactionList(atl);
 		
@@ -121,6 +122,8 @@ public class AccountService {
 		
 		List<AccountTransaction> atl = account.getAcountTransactionList();
 		
+		LOG.debug("Deposit to Account: Current Number of Transactions: ->" + atl.size());
+		
 		BigDecimal balance = account.getCurrentBalance();
 		
 		LOG.debug("Deposit to Account: Current Balance: ->" + balance);
@@ -130,6 +133,8 @@ public class AccountService {
 		LOG.debug("Deposit to Account: Updated Balance: ->" + balance);
 		
 		account.setCurrentBalance(balance);
+		
+		
 		
 		long transactionNumber = accountTransactionRepository.findMaxTransactionNumber();
 		accountTransaction.setTransactionNumber(++transactionNumber);
@@ -141,10 +146,14 @@ public class AccountService {
 		accountTransaction.setAccount(account);
 		atl.add(accountTransaction);
 		
+		LOG.debug("Deposit to Account: New Number of Transactions: ->" + atl.size());
+		
 		account.setAcountTransactionList(atl);
 		
 		// Update Account
 		accountRepository.save(account);
+		
+		
 		
 		LOG.debug("Deposit to Account: Account Updated.");
 		
