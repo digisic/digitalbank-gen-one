@@ -5,6 +5,7 @@
 <head th:replace="common/sections :: header-css"/>
 
 <body class="bg-dark">
+	
 
 
     <div class="sufee-login d-flex align-content-center flex-wrap">
@@ -59,8 +60,8 @@
                         <br><br>
                         <div class="form-group">
                             <label class="form-control-label"><strong>Date of Birth</strong></label>
-                            <input type="date" class="form-control" id="dob" th:field="${userProfile.dob}" required pattern="\d{1,2}/\d{1,2}/\d{4}">
-                            <small class="form-text text-muted">ex. 01/28/1980</small>
+                            <input type="text" class="form-control" id="dob" th:field="${userProfile.dob}" required pattern="\d{1,2}/\d{1,2}/\d{4}">
+                            <small class="form-text text-muted">ex. MM/DD/YYYY</small>
                         </div>
                         <div class="form-group">
                             <label class="form-control-label"><strong>Social Security Number</strong></label>
@@ -103,7 +104,14 @@
 
 	<div th:replace="common/sections :: footer-scripts"></div>
 	
+	<script>
+  			$( function() {
+    			$( "#dob" ).datepicker();
+  			} );
+  	</script>
+	
 	<script type="text/javascript">
+	
 		var password = document.getElementById("password"), confirm_password = document.getElementById("confirmPassword");
 
 		function validatePassword(){
@@ -117,6 +125,7 @@
 		password.onchange = validatePassword;
 		confirm_password.onkeyup = validatePassword;
 	</script>
+	
 
 </body>
 </html>

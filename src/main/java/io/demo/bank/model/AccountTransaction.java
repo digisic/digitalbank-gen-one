@@ -31,8 +31,8 @@ public class AccountTransaction {
 	private Long transactionNumber;
 
 	
-	@JsonFormat(pattern="yyyy-MM-dd")
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd'T'hh:mm")
+	@DateTimeFormat(pattern="yyyy-MM-dd'T'hh:mm")
 	private Date transactionDate;
 	
 	@ManyToOne

@@ -47,16 +47,16 @@ public class Account {
 	@OneToOne(fetch=FetchType.EAGER)
 	private AccountStanding accountStanding;
 	
-	@JsonFormat(pattern="yyyy-MM-dd")
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd'T'hh:mm")
+	@DateTimeFormat(pattern="yyyy-MM-dd'T'hh:mm")
 	private Date dateOpened;
 	
-	@JsonFormat(pattern="yyyy-MM-dd")
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd'T'hh:mm")
+	@DateTimeFormat(pattern="yyyy-MM-dd'T'hh:mm")
 	private Date dateClosed;
 	
-	@JsonFormat(pattern="yyyy-MM-dd")
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd'T'hh:mm")
+	@DateTimeFormat(pattern="yyyy-MM-dd'T'hh:mm")
 	private Date paymentDue;
 	
 	@ManyToOne(fetch=FetchType.EAGER)

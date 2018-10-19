@@ -26,12 +26,12 @@ public class UserProfile {
 	@Column(name="ssn", nullable=false, unique=true)
 	private String ssn;
 	  
-	@JsonFormat(pattern="yyyy-MM-dd")
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="MM/dd/yyyy")
+	@DateTimeFormat(pattern="MM/dd/yyyy")
 	private Date dob;
 	  
-	@JsonFormat(pattern="yyyy-MM-dd")
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="MM/dd/yyyy")
+	@DateTimeFormat(pattern="MM/dd/yyyy")
 	private Date dom;
 	
 	@Column(name="emailAddress", nullable=false, unique=true)
