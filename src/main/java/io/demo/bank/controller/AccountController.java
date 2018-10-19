@@ -100,7 +100,7 @@ public class AccountController {
 			
 			// Create Account
 			newAccount.setOwner(user);
-			accountService.createNewAccount(newAccount);
+			newAccount = accountService.createNewAccount(newAccount);
 		}
 		else {
 			
@@ -120,7 +120,7 @@ public class AccountController {
 			return Constants.VIEW_CHK_ADD;
 		}
 		
-		return Constants.DIR_REDIRECT + Constants.VIEW_CHK_VIEW;
+		return Constants.DIR_REDIRECT + Constants.VIEW_CHK_VIEW + "?" + MODEL_ATT_ACCT_SEL_SWITCH + "=" + newAccount.getId();
 	}
 	
 	
@@ -159,7 +159,7 @@ public class AccountController {
 			// Create Account
 			newAccount.setOwner(user);
 			
-			accountService.createNewAccount(newAccount);
+			newAccount = accountService.createNewAccount(newAccount);
 		}
 		else {
 			
@@ -179,7 +179,7 @@ public class AccountController {
 			return Constants.VIEW_SAV_ADD;
 		}
 		
-		return Constants.DIR_REDIRECT + Constants.VIEW_SAV_VIEW;
+		return Constants.DIR_REDIRECT + Constants.VIEW_SAV_VIEW + "?" + MODEL_ATT_ACCT_SEL_SWITCH + "=" + newAccount.getId();
 	}
 	
 	
