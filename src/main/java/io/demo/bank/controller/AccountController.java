@@ -47,14 +47,32 @@ public class AccountController {
 	private static final String MODEL_ATT_ACCT_SEL_SWITCH	= "selectSwitch";
 	private static final String MODEL_ATT_ACCT_NONE			= "noAccounts";
 	private static final String MODEL_ATT_ERROR_MSG			= "errorMsg";
+	private static final String MODEL_ATT_AVATAR				= "avatar";
+	private static final String MODEL_VAL_AVATAR_MALE			= "/images/admin.jpg";
+	private static final String MODEL_VAL_AVATAR_FEMALE			= "/images/avatar/5.jpg";
+	
+	
+	private void setUserDisplayDefaults (Users user, Model model) {
+		
+		// Add name for Welcome header
+		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
+		
+		// Choose male or female avatar
+		if (user.getUserProfile().getGender().equals(Constants.GENDER_MALE)) {
+			model.addAttribute(MODEL_ATT_AVATAR, MODEL_VAL_AVATAR_MALE);
+		}else {
+			model.addAttribute(MODEL_ATT_AVATAR, MODEL_VAL_AVATAR_FEMALE);
+		}
+		
+	}
 	
 	
 	@GetMapping(Constants.URI_CHK_ADD)
 	public String checkingAdd(Principal principal, Model model) {
 		
 		Users user = userService.findByUsername(principal.getName());
+		this.setUserDisplayDefaults(user, model);
 		
-		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
 		model.addAttribute(MODEL_ATT_ACCOUNT, new Account());	
 		model.addAttribute(MODEL_ATT_ACCT_TYPE_LIST, accountService.getCheckingAccountTypes());
 		model.addAttribute(MODEL_ATT_OWN_TYPE_LIST, accountService.getOwnershipTypes());
@@ -68,7 +86,7 @@ public class AccountController {
 							  @ModelAttribute(MODEL_ATT_ACCOUNT) Account newAccount) {
 		
 		Users user = userService.findByUsername(principal.getName());
-		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
+		this.setUserDisplayDefaults(user, model);
 		
 		LOG.debug("New Checking: Account Name -> " + newAccount.getName());
 		LOG.debug("New Checking: Initial Deposit -> " + newAccount.getOpeningBalance());
@@ -111,8 +129,8 @@ public class AccountController {
 	public String savingsAdd (Principal principal, Model model) {
 		
 		Users user = userService.findByUsername(principal.getName());
+		this.setUserDisplayDefaults(user, model);
 		
-		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
 		model.addAttribute(MODEL_ATT_ACCOUNT, new Account());
 		model.addAttribute(MODEL_ATT_ACCT_TYPE_LIST, accountService.getSavingsAccountTypes());
 		model.addAttribute(MODEL_ATT_OWN_TYPE_LIST, accountService.getOwnershipTypes());
@@ -126,7 +144,7 @@ public class AccountController {
 							  @ModelAttribute(MODEL_ATT_ACCOUNT) Account newAccount) {
 		
 		Users user = userService.findByUsername(principal.getName());
-		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
+		this.setUserDisplayDefaults(user, model);
 		
 		LOG.debug("Add New Savings: Account Name -> " + newAccount.getName());
 		LOG.debug("Add New Savings: Initial Deposit -> " + newAccount.getOpeningBalance());
@@ -171,7 +189,7 @@ public class AccountController {
 							   @ModelAttribute(MODEL_ATT_ACCT_SEL_SWITCH) ArrayList<String> selectSwitch) {
 		
 		Users user = userService.findByUsername(principal.getName());
-		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
+		this.setUserDisplayDefaults(user, model);
 		
 		LOG.debug("SELECTED: ->" + selectSwitch.size());
 		long selectId = 0;
@@ -226,7 +244,7 @@ public class AccountController {
 							   @ModelAttribute(MODEL_ATT_ACCT_SEL_SWITCH) ArrayList<String> selectSwitch) {
 		
 		Users user = userService.findByUsername(principal.getName());
-		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
+		this.setUserDisplayDefaults(user, model);
 		
 		LOG.debug("SELECTED: ->" + selectSwitch.size());
 		long selectId = 0;
@@ -280,7 +298,7 @@ public class AccountController {
 	public String deposit (Principal principal, Model model) {
 		
 		Users user = userService.findByUsername(principal.getName());
-		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
+		this.setUserDisplayDefaults(user, model);
 
 		// Get all accounts
 		List<Account> accountList = accountService.getCheckingAccounts(user);
@@ -307,7 +325,7 @@ public class AccountController {
 		account = accountService.getAccountById(account.getId());
 		
 		Users user = userService.findByUsername(principal.getName());
-		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
+		this.setUserDisplayDefaults(user, model);
 		
 		// Check amount is greater than zero
 		if (accountTransaction.getAmount().signum() != 1) {
@@ -345,7 +363,7 @@ public class AccountController {
 	public String withdraw (Principal principal, Model model) {
 		
 		Users user = userService.findByUsername(principal.getName());
-		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
+		this.setUserDisplayDefaults(user, model);
 
 		// Get all accounts
 		List<Account> accountList = accountService.getCheckingAccounts(user);
@@ -374,7 +392,7 @@ public class AccountController {
 		boolean bError = false;
 		
 		Users user = userService.findByUsername(principal.getName());
-		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
+		this.setUserDisplayDefaults(user, model);
 		
 		// Check amount is greater than zero
 		if (accountTransaction.getAmount().signum() != 1) {
@@ -438,7 +456,7 @@ public class AccountController {
 	public String transfer (Principal principal, Model model) {
 		
 		Users user = userService.findByUsername(principal.getName());
-		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
+		this.setUserDisplayDefaults(user, model);
 
 		// Get all accounts
 		List<Account> accountList = accountService.getCheckingAccounts(user);
@@ -471,7 +489,7 @@ public class AccountController {
 		Account toAcct = accountService.getAccountById(toAccount);
 		
 		Users user = userService.findByUsername(principal.getName());
-		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
+		this.setUserDisplayDefaults(user, model);
 		
 		if (fromAcct.getId() != toAcct.getId()) {
 			

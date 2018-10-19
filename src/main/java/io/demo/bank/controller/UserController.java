@@ -31,17 +31,32 @@ public class UserController {
 	private static final String MODEL_ATT_CUR_PASS 				= "currentPassword";
 	private static final String MODEL_ATT_ERROR_MSG				= "errorMsg";
 	private static final String MODEL_ATT_SUCCESS_MSG			= "successMsg";
+	private static final String MODEL_ATT_AVATAR				= "avatar";
+	private static final String MODEL_VAL_AVATAR_MALE			= "/images/admin.jpg";
+	private static final String MODEL_VAL_AVATAR_FEMALE			= "/images/avatar/5.jpg";
 		  
 	@Autowired
 	private UserService userService;
+	
+	private void setUserDisplayDefaults (Users user, Model model) {
+		
+		// Add name for Welcome header
+		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
+		
+		// Choose male or female avatar
+		if (user.getUserProfile().getGender().equals(Constants.GENDER_MALE)) {
+			model.addAttribute(MODEL_ATT_AVATAR, MODEL_VAL_AVATAR_MALE);
+		}else {
+			model.addAttribute(MODEL_ATT_AVATAR, MODEL_VAL_AVATAR_FEMALE);
+		}
+		
+	}
 
 	@GetMapping(Constants.URI_USR_PASSWORD)
 	public String password(Principal principal, Model model) {
     
 		Users user = userService.findByUsername(principal.getName());
-    
-		// Add name for Welcome header
-		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
+		this.setUserDisplayDefaults(user, model);
 		    
 		return Constants.VIEW_USR_PASSWORD;
 	}
@@ -52,9 +67,7 @@ public class UserController {
 						   @ModelAttribute(MODEL_ATT_CUR_PASS) String oldPassword) {
     
 		Users user = userService.findByUsername(principal.getName());
-    
-		// Add name for Welcome header
-		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
+		this.setUserDisplayDefaults(user, model);
 		
 		LOG.debug("Change Password: Validate Password Entries.");
 		
@@ -97,10 +110,8 @@ public class UserController {
 	public String profile(Principal principal, Model model) {
     
 		Users user = userService.findByUsername(principal.getName());
+		this.setUserDisplayDefaults(user, model);
 		
-    
-		// Add name for Welcome header
-		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
 		model.addAttribute(MODEL_ATT_USER_PROFILE, user.getUserProfile());
 		    
 		return Constants.VIEW_USR_PROFILE;
@@ -111,6 +122,8 @@ public class UserController {
 			 			  @ModelAttribute(MODEL_ATT_USER_PROFILE) UserProfile updateProfile) {
     
 		Users user = userService.findByUsername(principal.getName());
+		this.setUserDisplayDefaults(user, model);
+		
 		UserProfile up = user.getUserProfile();
 		
 		
@@ -137,8 +150,6 @@ public class UserController {
 		LOG.debug("Updated User Profile: " + user.getUserProfile().toString());
 		
 		
-		// Add name for Welcome header
-		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
 		model.addAttribute(MODEL_ATT_USER_PROFILE, user.getUserProfile());
 		model.addAttribute(MODEL_ATT_SUCCESS_MSG, "Profile Updated Successfully.");
 		    

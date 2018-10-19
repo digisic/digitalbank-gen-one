@@ -25,9 +25,26 @@ public class HomeController {
 	private static final String MODEL_ATT_USER_PROFILE 			= "userProfile";
 	private static final String MODEL_ATT_FIRST_NAME 			= "firstName";
 	private static final String MODEL_ATT_ERROR_MSG				= "errorMsg";
+	private static final String MODEL_ATT_AVATAR				= "avatar";
+	private static final String MODEL_VAL_AVATAR_MALE			= "/images/admin.jpg";
+	private static final String MODEL_VAL_AVATAR_FEMALE			= "/images/avatar/5.jpg";
   
 	@Autowired
 	private UserService userService;
+	
+	private void setUserDisplayDefaults (Users user, Model model) {
+		
+		// Add name for Welcome header
+		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
+		
+		// Choose male or female avatar
+		if (user.getUserProfile().getGender().equals(Constants.GENDER_MALE)) {
+			model.addAttribute(MODEL_ATT_AVATAR, MODEL_VAL_AVATAR_MALE);
+		}else {
+			model.addAttribute(MODEL_ATT_AVATAR, MODEL_VAL_AVATAR_FEMALE);
+		}
+		
+	}
 	
   
 	@GetMapping(Constants.URI_ROOT)
@@ -132,10 +149,8 @@ public class HomeController {
 	public String home(Principal principal, Model model) {
     
 		Users user = userService.findByUsername(principal.getName());
+		this.setUserDisplayDefaults(user, model);
     
-		// Add name for Welcome header
-		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
-		
 		return Constants.VIEW_HOME;
 	}
 	

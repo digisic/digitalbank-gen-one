@@ -9,6 +9,10 @@ public class Constants {
 	// Directives
 	public static final String DIR_REDIRECT 		= "redirect:";
 	
+	// Gender
+	public static final String GENDER_MALE 			= "M";
+	public static final String GENDER_FEMALE 		= "F";
+	
 	// Public resources
 	public static final String URI_WEBJARS_RES 		= "/webjars/**";
 	public static final String URI_CSS_RES 			= "/css/**";
