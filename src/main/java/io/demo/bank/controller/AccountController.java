@@ -47,9 +47,9 @@ public class AccountController {
 	private static final String MODEL_ATT_ACCT_SEL_SWITCH	= "selectSwitch";
 	private static final String MODEL_ATT_ACCT_NONE			= "noAccounts";
 	private static final String MODEL_ATT_ERROR_MSG			= "errorMsg";
-	private static final String MODEL_ATT_AVATAR				= "avatar";
-	private static final String MODEL_VAL_AVATAR_MALE			= "/images/admin.jpg";
-	private static final String MODEL_VAL_AVATAR_FEMALE			= "/images/avatar/5.jpg";
+	private static final String MODEL_ATT_AVATAR			= "avatar";
+	private static final String MODEL_VAL_AVATAR_MALE		= "/images/admin.jpg";
+	private static final String MODEL_VAL_AVATAR_FEMALE		= "/images/avatar/5.jpg";
 	
 	
 	private void setUserDisplayDefaults (Users user, Model model) {
