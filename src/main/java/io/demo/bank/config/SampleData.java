@@ -63,6 +63,29 @@ public class SampleData implements CommandLineRunner, Ordered {
 			LOG.info("** Username: jsmith@demo.io");
 			LOG.info("** Password: Demo123!");
 			
+			// Create a second user for testing
+			user = new Users("testuser@demo.io", "Demo123!");
+			userProfile = new UserProfile();
+			
+			userProfile.setEmailAddress("testuser@demo.io");
+			userProfile.setFirstName("Test");
+			userProfile.setLastName("User");
+			userProfile.setTitle("Mr.");
+			userProfile.setGender("M");
+			userProfile.setDob(dateFormat.parse("1985-02-15"));
+			userProfile.setSsn("123-45-6710");
+			userProfile.setAddress("456 Digital Lane");
+			userProfile.setCountry("United States");
+			userProfile.setLocality("Internet City");
+			userProfile.setPostalCode("94302");
+			userProfile.setRegion("CA");
+			userProfile.setHomePhone("123-456-7810");
+			userProfile.setMobilePhone("123-456-7810");
+			userProfile.setWorkPhone("123-456-7810");
+			
+			user.setUserProfile(userProfile);
+			userService.createUser(user);
+			
 		}
 		
 		LOG.info("*********************************");
