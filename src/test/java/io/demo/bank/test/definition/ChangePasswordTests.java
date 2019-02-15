@@ -55,7 +55,11 @@ public class ChangePasswordTests {
 	public void presentedErrorMessageCurrentPasswordIncorrect (){
 		changePassword.currentPasswordError();
 	}
-
+	
+	@Then("I verify I am presented with a Error Message indicating Current Password is required")
+	public void presentedErrorMessageCurrentPasswordRequired(){
+		changePassword.currentPasswordErrorRequired();
+	}
 	
 	
 }
