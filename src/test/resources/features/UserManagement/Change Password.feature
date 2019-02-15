@@ -25,8 +25,8 @@ Scenario: Change Password with conditions of Valid Current Password, New Passwor
   And I click the User Profile menu
   And I click the Change Password menu option
   And I enter 'Valid Current Password' into the Current Password field
-  And I enter 'aUAcebMiLKWUs44162' into the New Password field
-  And I enter 'aUAcebMiLKWUs44162' into the Confirm Password field
+  And I enter 'EbKEpIstw1619' into the New Password field
+  And I enter 'EbKEpIstw1619' into the Confirm Password field
   And I click the Update Password button
   And I verify I am presented with a Success Message
   And I click the User Profile menu
@@ -51,8 +51,8 @@ Scenario: Change Password with conditions of Valid Current Password, New Passwor
   And I click the User Profile menu
   And I click the Change Password menu option
   And I enter 'Valid Current Password' into the Current Password field
-  And I enter 'OERZRIpbSCmoCGUi45' into the New Password field
-  And I enter 'QMiQlExV01083' into the Confirm Password field
+  And I enter 'xTHNJSEIAFwgSLSqdm85' into the New Password field
+  And I enter 'crJgwHlPVAKLpXuyj9' into the Confirm Password field
   And I click the Update Password button
   Then I verify I am presented with a Error Message indicating Confirm Passsword does not match New Password
 
@@ -67,8 +67,8 @@ Scenario: Change Password with conditions of Valid Current Password, New Passwor
   And I click the User Profile menu
   And I click the Change Password menu option
   And I enter 'Valid Current Password' into the Current Password field
-  And I enter 'SXfEMJPhscAANlAuNIuw' into the New Password field
-  And I enter 'SXfEMJPhscAANlAuNIuw' into the Confirm Password field
+  And I enter 'qyASSMDcSNzuIewuFcqP' into the New Password field
+  And I enter 'qyASSMDcSNzuIewuFcqP' into the Confirm Password field
   And I click the Update Password button
   Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
 
@@ -83,8 +83,8 @@ Scenario: Change Password with conditions of Valid Current Password, New Passwor
   And I click the User Profile menu
   And I click the Change Password menu option
   And I enter 'Valid Current Password' into the Current Password field
-  And I enter 'WJpXywaskvfbWwxEnS' into the New Password field
-  And I enter 'lmzxCboASgjNZCyU180' into the Confirm Password field
+  And I enter 'AiJmmKtriGiBlgEJMK' into the New Password field
+  And I enter 'XVXaxkCdevsosGRhXO6775' into the Confirm Password field
   And I click the Update Password button
   Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
 
@@ -99,8 +99,8 @@ Scenario: Change Password with conditions of Valid Current Password, New Passwor
   And I click the User Profile menu
   And I click the Change Password menu option
   And I enter 'Valid Current Password' into the Current Password field
-  And I enter 'xuwdovclmvdseruz4' into the New Password field
-  And I enter 'xuwdovclmvdseruz4' into the Confirm Password field
+  And I enter 'kgsbjuvcdojdph18' into the New Password field
+  And I enter 'kgsbjuvcdojdph18' into the Confirm Password field
   And I click the Update Password button
   Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
 
@@ -115,8 +115,8 @@ Scenario: Change Password with conditions of Valid Current Password, New Passwor
   And I click the User Profile menu
   And I click the Change Password menu option
   And I enter 'Valid Current Password' into the Current Password field
-  And I enter 'wlauvqbxfurafvui9371' into the New Password field
-  And I enter 'mRJHTUJKfbzBkMlGe94' into the Confirm Password field
+  And I enter 'ttbwncqlosrkbzzfbkni7485' into the New Password field
+  And I enter 'cTsjYEorb0939' into the Confirm Password field
   And I click the Update Password button
   Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
 
@@ -131,8 +131,8 @@ Scenario: Change Password with conditions of Valid Current Password, New Passwor
   And I click the User Profile menu
   And I click the Change Password menu option
   And I enter 'Valid Current Password' into the Current Password field
-  And I enter 'QRNWRPIDJBGXHUZS528' into the New Password field
-  And I enter 'QRNWRPIDJBGXHUZS528' into the Confirm Password field
+  And I enter 'PVWCTLGALWWX89073' into the New Password field
+  And I enter 'PVWCTLGALWWX89073' into the Confirm Password field
   And I click the Update Password button
   Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
 
@@ -146,8 +146,8 @@ Scenario: Change Password with conditions of Valid Current Password, New Passwor
   And I click the User Profile menu
   And I click the Change Password menu option
   And I enter 'Valid Current Password' into the Current Password field
-  And I enter 'QKYYBFJSNWPTIDVRH24883' into the New Password field
-  And I enter 'oqJvkOKCrIoeeCa150' into the Confirm Password field
+  And I enter 'RAZOBEHA170' into the New Password field
+  And I enter 'cYffvhTkeh3' into the Confirm Password field
   And I click the Update Password button
   Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
 
@@ -162,8 +162,8 @@ Scenario: Change Password with conditions of Valid Current Password, New Passwor
   And I click the User Profile menu
   And I click the Change Password menu option
   And I enter 'Valid Current Password' into the Current Password field
-  And I enter 'xuo44' into the New Password field
-  And I enter 'xuo44' into the Confirm Password field
+  And I enter 'b79' into the New Password field
+  And I enter 'b79' into the Confirm Password field
   And I click the Update Password button
   Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
 
@@ -178,8 +178,8 @@ Scenario: Change Password with conditions of Valid Current Password, New Passwor
   And I click the User Profile menu
   And I click the Change Password menu option
   And I enter 'Valid Current Password' into the Current Password field
-  And I enter 'ldtu03' into the New Password field
-  And I enter 'tVFVfBSxnzSqogldyE7372' into the Confirm Password field
+  And I enter 'a56' into the New Password field
+  And I enter 'sOimGYjDkiJ73903' into the Confirm Password field
   And I click the Update Password button
   Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
 
@@ -211,7 +211,7 @@ Scenario: Change Password with conditions of Valid Current Password, New Passwor
   And I click the Change Password menu option
   And I enter 'Valid Current Password' into the Current Password field
   And I enter 'Demo123!' into the New Password field
-  And I enter 'QgjEZCvLGVKdnjFT425' into the Confirm Password field
+  And I enter 'HqIAtzIU9726' into the Confirm Password field
   And I click the Update Password button
   Then I verify I am presented with a Error Message indicating Confirm Passsword does not match New Password
 
@@ -225,9 +225,9 @@ Scenario: Change Password with conditions of Invalid Current Password, New Passw
   And I verify the Remember Me cookie is present
   And I click the User Profile menu
   And I click the Change Password menu option
-  And I enter 'OVoovSWz415' into the Current Password field
-  And I enter 'XWbtlqDUzDauKpIsJMEF' into the New Password field
-  And I enter 'XWbtlqDUzDauKpIsJMEF' into the Confirm Password field
+  And I enter 'BQBFaituLDSlAlTg83487' into the Current Password field
+  And I enter 'MhQBdwsgSFXQpxCVNM' into the New Password field
+  And I enter 'MhQBdwsgSFXQpxCVNM' into the Confirm Password field
   And I click the Update Password button
   Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
 
@@ -241,9 +241,9 @@ Scenario: Change Password with conditions of Invalid Current Password, New Passw
   And I verify the Remember Me cookie is present
   And I click the User Profile menu
   And I click the Change Password menu option
-  And I enter 'JAGAJTKIwrHn124' into the Current Password field
-  And I enter 'dJXoLkGhEUQcMaihGj' into the New Password field
-  And I enter 'xFLQVaHjaxHKutXX6193' into the Confirm Password field
+  And I enter 'bJssFcrlwelHHkoddG01' into the Current Password field
+  And I enter 'YVUBeayMi' into the New Password field
+  And I enter 'VgFywoekHOPihPoTbXoS9806' into the Confirm Password field
   And I click the Update Password button
   Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
 
@@ -257,9 +257,9 @@ Scenario: Change Password with conditions of Invalid Current Password, New Passw
   And I verify the Remember Me cookie is present
   And I click the User Profile menu
   And I click the Change Password menu option
-  And I enter 'ryYnOAjEYqeaKPOqkaA5' into the Current Password field
-  And I enter 'dxhlrasxjhylqbzfu0809' into the New Password field
-  And I enter 'dxhlrasxjhylqbzfu0809' into the Confirm Password field
+  And I enter 'IggVZqHtv01883' into the Current Password field
+  And I enter 'hlcipiipuitzlgozvt4' into the New Password field
+  And I enter 'hlcipiipuitzlgozvt4' into the Confirm Password field
   And I click the Update Password button
   Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
 
@@ -273,9 +273,9 @@ Scenario: Change Password with conditions of Invalid Current Password, New Passw
   And I verify the Remember Me cookie is present
   And I click the User Profile menu
   And I click the Change Password menu option
-  And I enter 'lVNkvTIUvxjdnIJjXCk28685' into the Current Password field
-  And I enter 'jjwhjqxyosfgylb32051' into the New Password field
-  And I enter 'clboqccwLgCBstRQX42' into the Confirm Password field
+  And I enter 'yxpchhAcIeewQ6' into the Current Password field
+  And I enter 'whhuhcsyerzvfznbeof344' into the New Password field
+  And I enter 'IMGYVLMBHAsITrk622' into the Confirm Password field
   And I click the Update Password button
   Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
 
@@ -289,9 +289,9 @@ Scenario: Change Password with conditions of Invalid Current Password, New Passw
   And I verify the Remember Me cookie is present
   And I click the User Profile menu
   And I click the Change Password menu option
-  And I enter 'rHreCUiTDymq60' into the Current Password field
-  And I enter 'PQBVQSDIYLTYQIX1390' into the New Password field
-  And I enter 'PQBVQSDIYLTYQIX1390' into the Confirm Password field
+  And I enter 'fKGYpDURenEXyYCBw04' into the Current Password field
+  And I enter 'ABXWNRAMGTEGAFVC43506' into the New Password field
+  And I enter 'ABXWNRAMGTEGAFVC43506' into the Confirm Password field
   And I click the Update Password button
   Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
 
@@ -305,9 +305,9 @@ Scenario: Change Password with conditions of Invalid Current Password, New Passw
   And I verify the Remember Me cookie is present
   And I click the User Profile menu
   And I click the Change Password menu option
-  And I enter 'ETHFCWJQebFlThqCxlD922' into the Current Password field
-  And I enter 'VJSMGQDYCTUUPDTJ504' into the New Password field
-  And I enter 'AfIdlJfTbZ9504' into the Confirm Password field
+  And I enter 'FHpiLjGtZKXjoVU36652' into the Current Password field
+  And I enter 'GHZNOQCGWCYBGN99960' into the New Password field
+  And I enter 'cOkJvnAmUJ89463' into the Confirm Password field
   And I click the Update Password button
   Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
 
@@ -321,9 +321,9 @@ Scenario: Change Password with conditions of Invalid Current Password, New Passw
   And I verify the Remember Me cookie is present
   And I click the User Profile menu
   And I click the Change Password menu option
-  And I enter 'PGCKxCNAwkC4' into the Current Password field
-  And I enter 'wetg9' into the New Password field
-  And I enter 'wetg9' into the Confirm Password field
+  And I enter 'JTPdCbmuV7' into the Current Password field
+  And I enter 'mk956' into the New Password field
+  And I enter 'mk956' into the Confirm Password field
   And I click the Update Password button
   Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
 
@@ -337,9 +337,9 @@ Scenario: Change Password with conditions of Invalid Current Password, New Passw
   And I verify the Remember Me cookie is present
   And I click the User Profile menu
   And I click the Change Password menu option
-  And I enter 'IBcsZKpDeAhkODRMj75248' into the Current Password field
-  And I enter 'iqy314' into the New Password field
-  And I enter 'cSVJednrHClsbDFS17663' into the Confirm Password field
+  And I enter 'wvDefItV40' into the Current Password field
+  And I enter 'clz0' into the New Password field
+  And I enter 'whQsPHRpBNXFF886' into the Confirm Password field
   And I click the Update Password button
   Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
 
@@ -353,9 +353,9 @@ Scenario: Change Password with conditions of Invalid Current Password, New Passw
   And I verify the Remember Me cookie is present
   And I click the User Profile menu
   And I click the Change Password menu option
-  And I enter 'siSfFFsqKqKarAkW1475' into the Current Password field
-  And I enter 'ehkKOndFl779' into the New Password field
-  And I enter 'hkckoJqqBL2' into the Confirm Password field
+  And I enter 'wGCXzPwhmpZNi4' into the Current Password field
+  And I enter 'sNKuysms42521' into the New Password field
+  And I enter 'pVYQvNeLIoDPrLmDlx21' into the Confirm Password field
   And I click the Update Password button
   Then I verify I am presented with a Error Message indicating Confirm Passsword does not match New Password
 
@@ -369,9 +369,9 @@ Scenario: Change Password with conditions of Invalid Current Password, New Passw
   And I verify the Remember Me cookie is present
   And I click the User Profile menu
   And I click the Change Password menu option
-  And I enter 'ptwoISvDTUQPZgqeNmD55' into the Current Password field
-  And I enter 'NnqSvBwIsCSGe87697' into the New Password field
-  And I enter 'NnqSvBwIsCSGe87697' into the Confirm Password field
+  And I enter 'sqQGFgfZCcAiyGqsfxdM6238' into the Current Password field
+  And I enter 'tbeXGUgyJ49' into the New Password field
+  And I enter 'tbeXGUgyJ49' into the Confirm Password field
   And I click the Update Password button
   Then I verify I am presented with a Error Message indicating Current Password is not correct
 
@@ -385,7 +385,7 @@ Scenario: Change Password with conditions of Invalid Current Password, New Passw
   And I verify the Remember Me cookie is present
   And I click the User Profile menu
   And I click the Change Password menu option
-  And I enter 'XTrwrDZB04' into the Current Password field
+  And I enter 'JRkHMjxJleRN755' into the Current Password field
   And I enter 'Demo123!' into the New Password field
   And I enter 'Demo123!' into the Confirm Password field
   And I click the Update Password button
@@ -401,8 +401,8 @@ Scenario: Change Password with conditions of Invalid Current Password, New Passw
   And I verify the Remember Me cookie is present
   And I click the User Profile menu
   And I click the Change Password menu option
-  And I enter 'fHVqtuyIz16' into the Current Password field
+  And I enter 'IWrhpHEzeWwEGkVoKP502' into the Current Password field
   And I enter 'Demo123!' into the New Password field
-  And I enter 'oqxsZZSSyHTnBxGqs5788' into the Confirm Password field
+  And I enter 'HSFSHAYcVbb17785' into the Confirm Password field
   And I click the Update Password button
   Then I verify I am presented with a Error Message indicating Confirm Passsword does not match New Password
