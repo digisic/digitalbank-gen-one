@@ -93,9 +93,50 @@ public class HomeController {
 	    	
 	    	// Return error
 			model.addAttribute(MODEL_ATT_ERROR_MSG, "An account is already registered with the "
-													+ "email address provided. Login with the existing"
+													+ "email address provided. Login with the existing "
 													+ "account or provide another email address for registration.");
 	    	bError = true;
+	    }
+	    
+	    int firstSeparator = newProfile.getSsn().indexOf('-', 0);
+	    int secondSeparator = newProfile.getSsn().indexOf('-', 4);
+	    
+	    // Check if SSN has separators or not
+	    if (firstSeparator == -1 && secondSeparator == -1) {
+	    	
+	    	LOG.debug("Signup-> SSN is missing both separators");
+	    	
+	    	// no separator, so we need to add it
+	    	String ssnPart1 = newProfile.getSsn().substring(0, 3);
+	    	String ssnPart2 = newProfile.getSsn().substring(3, 5);
+	    	String ssnPart3 = newProfile.getSsn().substring(5);
+	    	
+	    	newProfile.setSsn(ssnPart1 + "-" + ssnPart2 + "-" + ssnPart3); 
+	    	
+	    } else {
+	    	
+	    	// first separator is missing
+	    	if (firstSeparator == 5) {
+	    		
+	    		LOG.debug("Signup-> SSN is missing 2nd separator");
+	    		
+	    		String ssnPart1 = newProfile.getSsn().substring(0,3);
+		    	String ssnPart2 = newProfile.getSsn().substring(3);
+		    	
+		    	newProfile.setSsn(ssnPart1 + "-" + ssnPart2);
+	    		
+	    	}
+	    	
+	    	// second separator is missing
+	    	if (firstSeparator == 3 && secondSeparator == -1) {
+	    		
+	    		LOG.debug("Signup-> SSN is missing 1st separator");
+	    		
+	    		String ssnPart1 = newProfile.getSsn().substring(0, 6);
+		    	String ssnPart2 = newProfile.getSsn().substring(6);
+		    	
+		    	newProfile.setSsn(ssnPart1 + "-" + ssnPart2);
+	    	}	
 	    }
     
 	    // If SSN already exists then return an error
@@ -103,8 +144,8 @@ public class HomeController {
 	    	
 	    	// Return error
 			model.addAttribute(MODEL_ATT_ERROR_MSG, "An account is already registered with the "
-													+ "Social Security Number provided. Login with"
-													+ " the existing account or provide another SSN for registration.");
+													+ "Social Security Number provided. Login with "
+													+ "the existing account or provide another SSN for registration.");
 	    	bError = true;
 	    }
 	    
