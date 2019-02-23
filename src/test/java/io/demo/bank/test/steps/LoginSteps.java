@@ -7,9 +7,15 @@ import static org.junit.Assert.assertTrue;
 import io.demo.bank.test.pageobject.HomePage;
 import io.demo.bank.test.pageobject.LoginPage;
 import net.thucydides.core.annotations.Step;
+import net.thucydides.core.steps.ScenarioSteps;
 
 
-public class LoginSteps {
+public class LoginSteps extends ScenarioSteps{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9217777745579627128L;
 	
 	LoginPage loginPage;
 	HomePage homePage;
@@ -19,27 +25,27 @@ public class LoginSteps {
 		loginPage.open();
 	}
 	
-	@Step ("Enter Username '{0}' for User to be Authenticated")
+	@Step ("Enter Username '{0}' into the Username field")
 	public void enterUsername (String username) {
 		loginPage.enterUsername(username);
 	}
 	
-	@Step ("Enter Password '{0}' for User to be Authenticated")
+	@Step ("Enter Password '{0}' into the Password field")
 	public void enterPassword (String password) {
 		loginPage.enterPassword(password);
 	}
 	
-	@Step ("Select the Remember Me check box to remember the Authenticated User")
+	@Step ("Check the Remember Me checkox")
 	public void clickRememberMe () {
 		loginPage.clickRememberMe();
 	}
 	
-	@Step ("Submit credentials for User to be Authenticated")
+	@Step ("Click the Submit button")
 	public void clickSubmit () {
 		loginPage.clickSubmit();
 	}
 	
-	@Step ("Authenticated User redirects to Home Page")
+	@Step ("Authenticated User is expected to redirect the browser to the Home page")
 	public void redirectedToHomePage() {
 		assertTrue (homePage.atHomePage());
 	}

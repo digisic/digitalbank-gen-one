@@ -26,9 +26,6 @@ public class LoginPage extends PageObject{
 	@FindBy(className="alert-success")
 	private WebElementFacade successMessage;
 	
-	
-	
-	
 	private static String loginPageURI = "/login";
 	private static String rememberMeCookie = "remember-me";
 	
@@ -48,8 +45,6 @@ public class LoginPage extends PageObject{
 	public void clickSubmit() {
 		submitButton.click();
 	}
-	
-	
 	
 	public boolean errorMessagePresent () {
 		return errorMessage.isPresent();
