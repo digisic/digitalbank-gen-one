@@ -30,7 +30,7 @@ public class HomePage extends PageObject {
 	public void clickChangePasswordMenuOption() {
 		changePasswordMenuOption.click();
 	}
-	
+		
 	public boolean atHomePage() {
 		return getDriver().getCurrentUrl().contains(homePageURI);
 	}
