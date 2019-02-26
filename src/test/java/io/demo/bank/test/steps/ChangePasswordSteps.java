@@ -3,20 +3,12 @@ package io.demo.bank.test.steps;
 import static org.junit.Assert.assertTrue;
 
 import io.demo.bank.test.pageobject.ChangePasswordPage;
-import io.demo.bank.test.pageobject.HomePage;
 import net.thucydides.core.annotations.Step;
 
 
 public class ChangePasswordSteps {
-	
-	HomePage homePage;
+
 	ChangePasswordPage changePasswordPage;
-	
-	
-	@Step ("Click Change Password menu option")
-	public void clickChangePasswordMenuOption () {
-		homePage.clickChangePasswordMenuOption();
-	}
 	
 	@Step ("Enter Current Password '{0}'")
 	public void enterCurrentPassword (String password) {
@@ -57,7 +49,11 @@ public class ChangePasswordSteps {
 	public void currentPasswordError () {
 		assertTrue (changePasswordPage.errorMessagePresent());
 	}
-	
+
+	@Step ("Assert Change Password Success Message")
+	public void changePasswordSuccess () {
+		assertTrue (changePasswordPage.successMessagePresent());
+	}
 
 
 }

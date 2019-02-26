@@ -64,14 +64,14 @@ public class SampleData implements CommandLineRunner, Ordered {
 			LOG.info("** Password: Demo123!");
 			
 			// Create a second user for testing
-			user = new Users("testuser@demo.io", "Demo123!");
+			user = new Users("nsmith@demo.io", "Demo123!");
 			userProfile = new UserProfile();
 			
-			userProfile.setEmailAddress("testuser@demo.io");
-			userProfile.setFirstName("Test");
-			userProfile.setLastName("User");
-			userProfile.setTitle("Mr.");
-			userProfile.setGender("M");
+			userProfile.setEmailAddress("nsmith@demo.io");
+			userProfile.setFirstName("Nicole");
+			userProfile.setLastName("Smith");
+			userProfile.setTitle("Mrs.");
+			userProfile.setGender("F");
 			userProfile.setDob(dateFormat.parse("1985-02-15"));
 			userProfile.setSsn("123-45-6710");
 			userProfile.setAddress("456 Digital Lane");
