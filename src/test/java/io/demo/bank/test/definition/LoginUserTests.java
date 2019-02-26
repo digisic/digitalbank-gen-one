@@ -14,57 +14,56 @@ public class LoginUserTests {
 	private LoginSteps login;
 	
 	/** Given **/
-	@Given("^I am a Registered User$")
-	public void registeredUser () {
+	@Given("^(.*) is a registered user")
+	public void registeredUser (String persona) {
 		// TODO Data provisioning to get or define a registered user
 		// for now, we will assume a default known user
 	}
 	
-	@And("^I am at the Login page$")
-	public void userAtLoginPage () {
+	/** When **/
+	@When("^(.*) navigates to the Login page$")
+	public void userAtLoginPage (String persona) {
 		login.navigateToLoginPage();
 	}
-	
-	/** When **/
-	
-	@When("^I enter '(.*)' into the Username field$")
+
+	@When("^he or she enters '(.*)' into the login Username field$")
 	public void enterUserName (String username) {
 		login.enterUsername (username);
 	}
 	
-	@And("^I enter '(.*)' into the Password field$")
+	@And("^he or she enters '(.*)' into the login Password field$")
 	public void enterPassword (String password){
 		login.enterPassword (password);
 	}
 	
-	@And("^I click the Remember Me checkbox$")
+	@And("^he or she clicks the Remember Me checkbox$")
 	public void clickRememberMe (){
 		login.clickRememberMe();
 	}
 	
-	@And("^I click the Submit button$")
+	@And("^he or she submits the login request$")
 	public void clickSubmit (){
 		login.clickSubmit ();
 	}
 	
 	/** Then **/
 	
-	@Then("^I verify I am presented with a Error Message$")
-	public void presentedErrorMessage (){
+	@Then("^(.*) verifies he or she is presented with a error message indicating invalid login credentials$")
+	public void presentedErrorMessage (String persona){
 		login.presentedErrorMessage();
 	}
 	
-	@Then("^I verify I am at the Home page$")
-	public void redirectToHomePage (){
+	@Then("^(.*) verifies he or she is at the Home page$")
+	public void redirectToHomePage (String persona){
 		login.redirectedToHomePage();
 	}
 	
-	@And("^I verify the Remember Me Cookie is not present$")
+	@And("^he or she verifies the remember-me cookie is not present$")
 	public void rememberMeNotPresent (){
 		login.remeberMeCookieNotPresent();
 	}
 	
-	@And("^I verify the Remember Me Cookie is present$")
+	@And("^he or she verifies the remember-me cookie is present$")
 	public void rememberMeIsPresent (){
 		login.remeberMeCookiePresent();
 	}
