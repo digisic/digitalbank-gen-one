@@ -1,5 +1,5 @@
 Feature: Change Password
-  As an Authenticated User
+  As a  logged in user
   I want to change my password
   so that my accounts remain secure
 
@@ -15,287 +15,261 @@ Feature: Change Password
 
 
 Scenario: Change Password with conditions of valid Current Password, New Password meets requirements, and Confirm Password does not match New Password
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter 'Demo123!' into the Current Password field
-  And I enter 'lHuFqlGNwLbavGtnx37' into the New Password field
-  And I enter 'fJSeUmRlqByBzFLhG81' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating Confirm Passsword does not match New Password
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters 'Demo123!' into the change password Current Password field
+  And he or she enters 'UtYhRMjadlGqKtjjBd1' into the change password New Password field
+  And he or she enters 'rgzSNEaPs3' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating Confirm Passsword does not match New Password
 
 Scenario: Change Password with conditions of valid Current Password, New Password meets requirements, and Confirm Password is empty
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter 'Demo123!' into the Current Password field
-  And I enter 'llmXWUJfbkMAJaAF5473' into the New Password field
-  And I enter '' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating Confirm Passsword does not match New Password
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters 'Demo123!' into the change password Current Password field
+  And he or she enters 'zwDbvyKhCGeAHZidxZJ62' into the change password New Password field
+  And he or she enters '' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating Confirm Passsword does not match New Password
 
 Scenario: Change Password with conditions of valid Current Password, New Password with no numeric characters, and Confirm Password is empty
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter 'Demo123!' into the Current Password field
-  And I enter 'mImqTEEhiIm' into the New Password field
-  And I enter '' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters 'Demo123!' into the change password Current Password field
+  And he or she enters 'nQTnmBNr' into the change password New Password field
+  And he or she enters '' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating New Password does not meet format requirements
 
 Scenario: Change Password with conditions of valid Current Password, New Password with no upper case characters, and Confirm Password matches New Password
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter 'Demo123!' into the Current Password field
-  And I enter 'rxozddnp2' into the New Password field
-  And I enter 'rxozddnp2' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters 'Demo123!' into the change password Current Password field
+  And he or she enters 'ffzgvwfhkztamovh482' into the change password New Password field
+  And he or she enters 'ffzgvwfhkztamovh482' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating New Password does not meet format requirements
 
 Scenario: Change Password with conditions of valid Current Password, New Password with no lower case characters, and Confirm Password does not match New Password
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter 'Demo123!' into the Current Password field
-  And I enter 'YZILHJFGXRSBCKBN5' into the New Password field
-  And I enter 'uyYLNvKqeCqNQ7' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters 'Demo123!' into the change password Current Password field
+  And he or she enters 'SYCOTAVK51' into the change password New Password field
+  And he or she enters 'xvwHLhjDGePH4671' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating New Password does not meet format requirements
 
 Scenario: Change Password with conditions of valid Current Password, New Password less than 8 characters, and Confirm Password matches New Password
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter 'Demo123!' into the Current Password field
-  And I enter 'jjf82' into the New Password field
-  And I enter 'jjf82' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters 'Demo123!' into the change password Current Password field
+  And he or she enters 'xy82' into the change password New Password field
+  And he or she enters 'xy82' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating New Password does not meet format requirements
 
 Scenario: Change Password with conditions of valid Current Password, New Password same as Current Password, and Confirm Password does not match New Password
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter 'Demo123!' into the Current Password field
-  And I enter 'Demo123!' into the New Password field
-  And I enter 'movqiocwoOAdZ8' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating Confirm Passsword does not match New Password
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters 'Demo123!' into the change password Current Password field
+  And he or she enters 'Demo123!' into the change password New Password field
+  And he or she enters 'nyNewJiDuRzPLqeSirU57' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating Confirm Passsword does not match New Password
 
 Scenario: Change Password with conditions of valid Current Password, New Password same as Current Password, and Confirm Password is empty
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter 'Demo123!' into the Current Password field
-  And I enter 'Demo123!' into the New Password field
-  And I enter '' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating Confirm Passsword does not match New Password
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters 'Demo123!' into the change password Current Password field
+  And he or she enters 'Demo123!' into the change password New Password field
+  And he or she enters '' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating Confirm Passsword does not match New Password
 
 Scenario: Change Password with conditions of valid Current Password, New Password is empty, and Confirm Password matches New Password
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter 'Demo123!' into the Current Password field
-  And I enter '' into the New Password field
-  And I enter '' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters 'Demo123!' into the change password Current Password field
+  And he or she enters '' into the change password New Password field
+  And he or she enters '' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating New Password does not meet format requirements
 
 Scenario: Change Password with conditions of invalid Current Password, New Password with no numeric characters, and Confirm Password is empty
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter 'sMLbXflyJvejBg917' into the Current Password field
-  And I enter 'kjwUZBEMtMqqGtAuXkq' into the New Password field
-  And I enter '' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters 'CyjLcqZSrewefaCCFS2802' into the change password Current Password field
+  And he or she enters 'JkLwCJUIzPiOtaujXO' into the change password New Password field
+  And he or she enters '' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating New Password does not meet format requirements
 
 Scenario: Change Password with conditions of invalid Current Password, New Password with no upper case characters, and Confirm Password matches New Password
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter 'UBnRaOOfG453' into the Current Password field
-  And I enter 'ftmliqetkbyevstnk38' into the New Password field
-  And I enter 'ftmliqetkbyevstnk38' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters 'iEoNEHNdymNkuuKgf94' into the change password Current Password field
+  And he or she enters 'riwqhddcrvmb2385' into the change password New Password field
+  And he or she enters 'riwqhddcrvmb2385' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating New Password does not meet format requirements
 
 Scenario: Change Password with conditions of invalid Current Password, New Password with no lower case characters, and Confirm Password does not match New Password
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter 'hgXRnXJoahQHITqGJP927' into the Current Password field
-  And I enter 'ZGQEDGSFPKHL206' into the New Password field
-  And I enter 'dKjYCeNuUGNOmKFe934' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters 'ToHSCxsdjgkNiOuU6511' into the change password Current Password field
+  And he or she enters 'VAEELLACRJVVSDVVTY01' into the change password New Password field
+  And he or she enters 'slbwpaNVJBSQQtKWsS9' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating New Password does not meet format requirements
 
 Scenario: Change Password with conditions of invalid Current Password, New Password less than 8 characters, and Confirm Password matches New Password
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter 'RCfZcZTyuaUWNJlDPW28' into the Current Password field
-  And I enter 'rx974' into the New Password field
-  And I enter 'rx974' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters 'UcauAuiKeguPKWX65' into the change password Current Password field
+  And he or she enters 'fun20' into the change password New Password field
+  And he or she enters 'fun20' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating New Password does not meet format requirements
 
 Scenario: Change Password with conditions of invalid Current Password, New Password meets requirements, and Confirm Password does not match New Password
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter 'jTtEmJkzPhgHKNEbcRr727' into the Current Password field
-  And I enter 'SbVlhIDljuGtLoQcG78' into the New Password field
-  And I enter 'piTEzYlcNpvgPiGPc703' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating Confirm Passsword does not match New Password
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters 'TcgWhtmezXbLkjTncob8391' into the change password Current Password field
+  And he or she enters 'onloWUgZqdMUlH1010' into the change password New Password field
+  And he or she enters 'CrJFlhMmfhY40968' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating Confirm Passsword does not match New Password
 
 Scenario: Change Password with conditions of invalid Current Password, New Password meets requirements, and Confirm Password matches New Password
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter 'KvPmLTtE16964' into the Current Password field
-  And I enter 'rDKoVSmMhaDS24309' into the New Password field
-  And I enter 'rDKoVSmMhaDS24309' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating Current Password is not correct
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters 'hFkUcjrLRLAUJOBWe40643' into the change password Current Password field
+  And he or she enters 'LAGjWMAlPZGpskliFng779' into the change password New Password field
+  And he or she enters 'LAGjWMAlPZGpskliFng779' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating Current Password is not correct
 
 Scenario: Change Password with conditions of invalid Current Password, New Password meets requirements, and Confirm Password is empty
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter 'nUfzNKXQMOdAljpQwt3747' into the Current Password field
-  And I enter 'ubpkobiw3737' into the New Password field
-  And I enter '' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating Confirm Passsword does not match New Password
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters 'BCIlmzpKWb02200' into the change password Current Password field
+  And he or she enters 'kkNSthxTHRuPmReULTpG7' into the change password New Password field
+  And he or she enters '' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating Confirm Passsword does not match New Password
 
 Scenario: Change Password with conditions of invalid Current Password, New Password same as Current Password, and Confirm Password matches New Password
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter 'hBAxOQUx9124' into the Current Password field
-  And I enter 'Demo123!' into the New Password field
-  And I enter 'Demo123!' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating New Password is the same as the Current Password
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters 'ZwdkBHFILTqDRleVaHH87988' into the change password Current Password field
+  And he or she enters 'Demo123!' into the change password New Password field
+  And he or she enters 'Demo123!' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating New Password is the same as the Current Password
 
 Scenario: Change Password with conditions of invalid Current Password, New Password is empty, and Confirm Password matches New Password
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter 'rMUmQYiWj1' into the Current Password field
-  And I enter '' into the New Password field
-  And I enter '' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating New Password does not meet format requirements
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters 'KYwiZQCjeKhECMgCRg8737' into the change password Current Password field
+  And he or she enters '' into the change password New Password field
+  And he or she enters '' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating New Password does not meet format requirements
 
 Scenario: Change Password with conditions of Empty Current Password, New Password is empty, and Confirm Password matches New Password
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter '' into the Current Password field
-  And I enter '' into the New Password field
-  And I enter '' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating Current Password is required
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters '' into the change password Current Password field
+  And he or she enters '' into the change password New Password field
+  And he or she enters '' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating Current Password is required
 
 Scenario: Change Password with conditions of Empty Current Password, New Password less than 8 characters, and Confirm Password matches New Password
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter '' into the Current Password field
-  And I enter 'k92' into the New Password field
-  And I enter 'k92' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating Current Password is required
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters '' into the change password Current Password field
+  And he or she enters 'k659' into the change password New Password field
+  And he or she enters 'k659' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating Current Password is required
 
 Scenario: Change Password with conditions of Empty Current Password, New Password with no lower case characters, and Confirm Password is empty
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter '' into the Current Password field
-  And I enter 'FPCMQPZU80' into the New Password field
-  And I enter '' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating Current Password is required
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters '' into the change password Current Password field
+  And he or she enters 'BDEIKTPQGSQRRMG4' into the change password New Password field
+  And he or she enters '' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating Current Password is required
 
 Scenario: Change Password with conditions of Empty Current Password, New Password with no numeric characters, and Confirm Password matches New Password
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter '' into the Current Password field
-  And I enter 'jTKfyGphDdeYlA' into the New Password field
-  And I enter 'jTKfyGphDdeYlA' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating Current Password is required
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters '' into the change password Current Password field
+  And he or she enters 'XBZPnACu' into the change password New Password field
+  And he or she enters 'XBZPnACu' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating Current Password is required
 
 Scenario: Change Password with conditions of Empty Current Password, New Password with no upper case characters, and Confirm Password matches New Password
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter '' into the Current Password field
-  And I enter 'gpyfighrghodit4' into the New Password field
-  And I enter 'gpyfighrghodit4' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating Current Password is required
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters '' into the change password Current Password field
+  And he or she enters 'gsqdwconyeibzolbnhrv57706' into the change password New Password field
+  And he or she enters 'gsqdwconyeibzolbnhrv57706' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating Current Password is required
 
 Scenario: Change Password with conditions of Empty Current Password, New Password same as Current Password, and Confirm Password matches New Password
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter '' into the Current Password field
-  And I enter 'Demo123!' into the New Password field
-  And I enter 'Demo123!' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating Current Password is required
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters '' into the change password Current Password field
+  And he or she enters 'Demo123!' into the change password New Password field
+  And he or she enters 'Demo123!' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating Current Password is required
 
 Scenario: Change Password with conditions of Empty Current Password, New Password meets requirements, and Confirm Password does not match New Password
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter '' into the Current Password field
-  And I enter 'dLdXmiBFekFyESVWa41058' into the New Password field
-  And I enter 'suFioiPJwsTpnP5' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Error Message indicating Current Password is required
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters '' into the change password Current Password field
+  And he or she enters 'ZhqkOZgcLP54' into the change password New Password field
+  And he or she enters 'ZPRIHzUxENOgRXdrBDGC66' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Error Message indicating Current Password is required
 
 Scenario: Change Password with conditions of valid Current Password, New Password meets requirements, and Confirm Password matches New Password
-  Given I am an Authenticated User
-  And I am at the Home page
-  When I click the User Profile menu
-  And I click the Change Password menu option
-  And I enter 'Demo123!' into the Current Password field
-  And I enter 'dsUYechPYbYS74904' into the New Password field
-  And I enter 'dsUYechPYbYS74904' into the Confirm Password field
-  And I click the Update Password button
-  Then I verify I am presented with a Success Message indicating a successful change password
+  Given Nicole is logged into the application
+  When Nicole navigates to the User Profile menu
+  And he or she selects 'Change Password' from the User Profile menu
+  And he or she enters 'Demo123!' into the change password Current Password field
+  And he or she enters 'FNNHhwhfyqcMLNl8660' into the change password New Password field
+  And he or she enters 'FNNHhwhfyqcMLNl8660' into the change password Confirm Password field
+  And he or she submits the Update Password request
+  Then Nicole verifies he or she is presented with a Success Message indicating a successful change password

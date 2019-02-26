@@ -1,71 +1,71 @@
 Feature: Login User
-  As a Registered User
+  As a registered user
   I want to authenticate into the application
   so I can manage my accounts
 
-Scenario: Login user with Valid Username, Valid Password and Remember Me Selected
-  Given I am a Registered User
-  And I am at the Login page
-  When I enter 'jsmith@demo.io' into the Username field
-  And I enter 'Demo123!' into the Password field
-  And I click the Remember Me checkbox
-  And I click the Submit button
-  Then I verify I am at the Home page
-  And I verify the Remember Me Cookie is present
+Scenario: Login user with valid username, valid password and remember me selected
+  Given Josh is a registered user
+  When Josh navigates to the Login page
+  And he or she enters 'jsmith@demo.io' into the login Username field
+  And he or she enters 'Demo123!' into the login Password field
+  And he or she clicks the Remember Me checkbox
+  And he or she submits the login request
+  Then Josh verifies he or she is at the Home page
+  And he or she verifies the remember-me cookie is present
 
-Scenario: Login user with Valid Username, Valid Password and Remember Me not Selected
-  Given I am a Registered User
-  And I am at the Login page
-  When I enter 'jsmith@demo.io' into the Username field
-  And I enter 'Demo123!' into the Password field
-  And I click the Submit button
-  Then I verify I am at the Home page
-  And I verify the Remember Me Cookie is not present
+Scenario: Login user with valid username, valid password and remember me not selected
+  Given Josh is a registered user
+  When Josh navigates to the Login page
+  And he or she enters 'jsmith@demo.io' into the login Username field
+  And he or she enters 'Demo123!' into the login Password field
+  And he or she submits the login request
+  Then Josh verifies he or she is at the Home page
+  And he or she verifies the remember-me cookie is not present
 
-Scenario: Login user with Valid Username, Invalid Password
-  Given I am a Registered User
-  And I am at the Login page
-  When I enter 'jsmith@demo.io' into the Username field
-  And I enter 'qHqLmcfjoSmmFW95' into the Password field
-  And I click the Submit button
-  Then I verify I am presented with a Error Message
+Scenario: Login user with valid username, invalid password
+  Given Josh is a registered user
+  When Josh navigates to the Login page
+  And he or she enters 'jsmith@demo.io' into the login Username field
+  And he or she enters 'eQlGVmTg0' into the login Password field
+  And he or she submits the login request
+  Then Josh verifies he or she is presented with a error message indicating invalid login credentials
 
-Scenario: Login user with Valid Username, Empty Password
-  Given I am a Registered User
-  And I am at the Login page
-  When I enter 'jsmith@demo.io' into the Username field
-  And I enter '' into the Password field
-  And I click the Submit button
-  Then I verify I am presented with a Error Message
+Scenario: Login user with valid username, empty password
+  Given Josh is a registered user
+  When Josh navigates to the Login page
+  And he or she enters 'jsmith@demo.io' into the login Username field
+  And he or she enters '' into the login Password field
+  And he or she submits the login request
+  Then Josh verifies he or she is presented with a error message indicating invalid login credentials
 
-Scenario: Login user with Invalid Username, Valid Password
-  Given I am a Registered User
-  And I am at the Login page
-  When I enter 'PcBjr7YCTeGip@demo.io' into the Username field
-  And I enter 'Demo123!' into the Password field
-  And I click the Submit button
-  Then I verify I am presented with a Error Message
+Scenario: Login user with invalid username, valid password
+  Given Josh is a registered user
+  When Josh navigates to the Login page
+  And he or she enters '04NTJcH@demo.io' into the login Username field
+  And he or she enters 'Demo123!' into the login Password field
+  And he or she submits the login request
+  Then Josh verifies he or she is presented with a error message indicating invalid login credentials
 
-Scenario: Login user with Invalid Username, Invalid Password
-  Given I am a Registered User
-  And I am at the Login page
-  When I enter 'oPj74JIY@demo.io' into the Username field
-  And I enter 'xoSDxpfFQDhcDeUVyf1' into the Password field
-  And I click the Submit button
-  Then I verify I am presented with a Error Message
+Scenario: Login user with invalid username, invalid password
+  Given Josh is a registered user
+  When Josh navigates to the Login page
+  And he or she enters 'WKQmdgqXwY@demo.io' into the login Username field
+  And he or she enters 'gcjkmPRCVyzxYswHi1' into the login Password field
+  And he or she submits the login request
+  Then Josh verifies he or she is presented with a error message indicating invalid login credentials
 
-Scenario: Login user with Empty Username, Valid Password
-  Given I am a Registered User
-  And I am at the Login page
-  When I enter 'Empty Username' into the Username field
-  And I enter 'Demo123!' into the Password field
-  And I click the Submit button
-  Then I verify I am presented with a Error Message
+Scenario: Login user with empty username, valid password
+  Given Josh is a registered user
+  When Josh navigates to the Login page
+  And he or she enters '' into the login Username field
+  And he or she enters 'Demo123!' into the login Password field
+  And he or she submits the login request
+  Then Josh verifies he or she is presented with a error message indicating invalid login credentials
 
-Scenario: Login user with Empty Username, Invalid Password
-  Given I am a Registered User
-  And I am at the Login page
-  When I enter 'Empty Username' into the Username field
-  And I enter 'iULsAfVNfvxRneYdmKa9941' into the Password field
-  And I click the Submit button
-  Then I verify I am presented with a Error Message
+Scenario: Login user with empty username, invalid password
+  Given Josh is a registered user
+  When Josh navigates to the Login page
+  And he or she enters '' into the login Username field
+  And he or she enters 'nuQaKkSIULC63474' into the login Password field
+  And he or she submits the login request
+  Then Josh verifies he or she is presented with a error message indicating invalid login credentials
