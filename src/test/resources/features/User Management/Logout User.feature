@@ -1,7 +1,10 @@
+@ui, @user, @security
 Feature: Logout User
   As a user logged into the application
   I want to logout
   so that my accounts remain secure
+
+
 
 Scenario: Logout user and end the application session
   Given Josh is logged into the application
