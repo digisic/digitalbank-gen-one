@@ -1,4 +1,4 @@
-@ui, @user, @security
+@ui, @user, @security, @password
 Feature: Change Password
   As a logged in user
   I want to change my password
@@ -22,8 +22,8 @@ Scenario: Change Password with conditions of valid Current Password, New Passwor
   When Nicole navigates to the User Profile menu
   And he or she selects 'Change Password' from the User Profile menu
   And he or she enters 'Demo123!' into the change password Current Password field
-  And he or she enters 'BlFxryrdGF933' into the change password New Password field
-  And he or she enters 'wUNFVYGGDIgnNELbx88392' into the change password Confirm Password field
+  And he or she enters 'xAxGXLbnksBhqaD59' into the change password New Password field
+  And he or she enters 'QTgHiEecGiUbSltCmODK60' into the change password Confirm Password field
   And he or she submits the Update Password request
   Then Nicole verifies he or she is presented with a Error Message indicating Confirm Passsword does not match New Password
 
@@ -33,7 +33,7 @@ Scenario: Change Password with conditions of valid Current Password, New Passwor
   When Nicole navigates to the User Profile menu
   And he or she selects 'Change Password' from the User Profile menu
   And he or she enters 'Demo123!' into the change password Current Password field
-  And he or she enters 'hpTBsiTqv9597' into the change password New Password field
+  And he or she enters 'peFhouTUdBYBr6161' into the change password New Password field
   And he or she enters '' into the change password Confirm Password field
   And he or she submits the Update Password request
   Then Nicole verifies he or she is presented with a Error Message indicating Confirm Passsword does not match New Password
@@ -44,7 +44,7 @@ Scenario: Change Password with conditions of valid Current Password, New Passwor
   When Nicole navigates to the User Profile menu
   And he or she selects 'Change Password' from the User Profile menu
   And he or she enters 'Demo123!' into the change password Current Password field
-  And he or she enters 'AnplGnHxWKLxIwoHNH' into the change password New Password field
+  And he or she enters 'XbKRFnIDUIm' into the change password New Password field
   And he or she enters '' into the change password Confirm Password field
   And he or she submits the Update Password request
   Then Nicole verifies he or she is presented with a Error Message indicating New Password does not meet format requirements
@@ -55,8 +55,8 @@ Scenario: Change Password with conditions of valid Current Password, New Passwor
   When Nicole navigates to the User Profile menu
   And he or she selects 'Change Password' from the User Profile menu
   And he or she enters 'Demo123!' into the change password Current Password field
-  And he or she enters 'dzqmmwygzifdxktc985' into the change password New Password field
-  And he or she enters 'dzqmmwygzifdxktc985' into the change password Confirm Password field
+  And he or she enters 'bhspelmhhcghawhlmze31' into the change password New Password field
+  And he or she enters 'bhspelmhhcghawhlmze31' into the change password Confirm Password field
   And he or she submits the Update Password request
   Then Nicole verifies he or she is presented with a Error Message indicating New Password does not meet format requirements
 
@@ -66,8 +66,8 @@ Scenario: Change Password with conditions of valid Current Password, New Passwor
   When Nicole navigates to the User Profile menu
   And he or she selects 'Change Password' from the User Profile menu
   And he or she enters 'Demo123!' into the change password Current Password field
-  And he or she enters 'SGSFYFQCWQDOJDP51' into the change password New Password field
-  And he or she enters 'jIUpXXmSffy42334' into the change password Confirm Password field
+  And he or she enters 'ODLJKVONDD526' into the change password New Password field
+  And he or she enters 'boimTIMWaR220' into the change password Confirm Password field
   And he or she submits the Update Password request
   Then Nicole verifies he or she is presented with a Error Message indicating New Password does not meet format requirements
 
@@ -77,8 +77,8 @@ Scenario: Change Password with conditions of valid Current Password, New Passwor
   When Nicole navigates to the User Profile menu
   And he or she selects 'Change Password' from the User Profile menu
   And he or she enters 'Demo123!' into the change password Current Password field
-  And he or she enters 'uhm039' into the change password New Password field
-  And he or she enters 'uhm039' into the change password Confirm Password field
+  And he or she enters 'luvq4' into the change password New Password field
+  And he or she enters 'luvq4' into the change password Confirm Password field
   And he or she submits the Update Password request
   Then Nicole verifies he or she is presented with a Error Message indicating New Password does not meet format requirements
 
@@ -89,7 +89,7 @@ Scenario: Change Password with conditions of valid Current Password, New Passwor
   And he or she selects 'Change Password' from the User Profile menu
   And he or she enters 'Demo123!' into the change password Current Password field
   And he or she enters 'Demo123!' into the change password New Password field
-  And he or she enters 'EXRxJtmGalFy1' into the change password Confirm Password field
+  And he or she enters 'DHfDdsYiolXNwZ1' into the change password Confirm Password field
   And he or she submits the Update Password request
   Then Nicole verifies he or she is presented with a Error Message indicating Confirm Passsword does not match New Password
 
@@ -120,8 +120,8 @@ Scenario: Change Password with conditions of invalid Current Password, New Passw
   Given Nicole is logged into the application
   When Nicole navigates to the User Profile menu
   And he or she selects 'Change Password' from the User Profile menu
-  And he or she enters 'KNfPLJsWylPVdyLdtu4388' into the change password Current Password field
-  And he or she enters 'hpddUmVwc' into the change password New Password field
+  And he or she enters 'iUoTnUXhsJPRI95498' into the change password Current Password field
+  And he or she enters 'vFwVTDMzvmMDrWaTYdhI' into the change password New Password field
   And he or she enters '' into the change password Confirm Password field
   And he or she submits the Update Password request
   Then Nicole verifies he or she is presented with a Error Message indicating New Password does not meet format requirements
@@ -131,9 +131,9 @@ Scenario: Change Password with conditions of invalid Current Password, New Passw
   Given Nicole is logged into the application
   When Nicole navigates to the User Profile menu
   And he or she selects 'Change Password' from the User Profile menu
-  And he or she enters 'yWMfVilPFTfJ14' into the change password Current Password field
-  And he or she enters 'jgmwzwet8861' into the change password New Password field
-  And he or she enters 'jgmwzwet8861' into the change password Confirm Password field
+  And he or she enters 'lZafWjdFND09' into the change password Current Password field
+  And he or she enters 'qzmdpmvsimpdntnnpfxw12' into the change password New Password field
+  And he or she enters 'qzmdpmvsimpdntnnpfxw12' into the change password Confirm Password field
   And he or she submits the Update Password request
   Then Nicole verifies he or she is presented with a Error Message indicating New Password does not meet format requirements
 
@@ -142,9 +142,9 @@ Scenario: Change Password with conditions of invalid Current Password, New Passw
   Given Nicole is logged into the application
   When Nicole navigates to the User Profile menu
   And he or she selects 'Change Password' from the User Profile menu
-  And he or she enters 'MvhsEqsaqsDAUsjYmMP48' into the change password Current Password field
-  And he or she enters 'VWCNHBYFK8108' into the change password New Password field
-  And he or she enters 'ebooxuFw33' into the change password Confirm Password field
+  And he or she enters 'xZqUBqrlrYooQNrXQV6968' into the change password Current Password field
+  And he or she enters 'GAHWRZWFV84' into the change password New Password field
+  And he or she enters 'BfSrNyBXWFej73' into the change password Confirm Password field
   And he or she submits the Update Password request
   Then Nicole verifies he or she is presented with a Error Message indicating New Password does not meet format requirements
 
@@ -153,9 +153,9 @@ Scenario: Change Password with conditions of invalid Current Password, New Passw
   Given Nicole is logged into the application
   When Nicole navigates to the User Profile menu
   And he or she selects 'Change Password' from the User Profile menu
-  And he or she enters 'IffClatLVYs1' into the change password Current Password field
-  And he or she enters 'ch7' into the change password New Password field
-  And he or she enters 'ch7' into the change password Confirm Password field
+  And he or she enters 'axURbFrmZqKYWBFn79252' into the change password Current Password field
+  And he or she enters 'pcxi917' into the change password New Password field
+  And he or she enters 'pcxi917' into the change password Confirm Password field
   And he or she submits the Update Password request
   Then Nicole verifies he or she is presented with a Error Message indicating New Password does not meet format requirements
 
@@ -164,9 +164,9 @@ Scenario: Change Password with conditions of invalid Current Password, New Passw
   Given Nicole is logged into the application
   When Nicole navigates to the User Profile menu
   And he or she selects 'Change Password' from the User Profile menu
-  And he or she enters 'WodHonDRQGuiY25' into the change password Current Password field
-  And he or she enters 'oTpjbATaHjOcHyvrjZ5606' into the change password New Password field
-  And he or she enters 'bzBXtpfTOZnOo06029' into the change password Confirm Password field
+  And he or she enters 'dPxNBosweBPPNnanmOUb15' into the change password Current Password field
+  And he or she enters 'jXKhgQPIkxiqhxop698' into the change password New Password field
+  And he or she enters 'btFbkaiwcaZxYrHVR9415' into the change password Confirm Password field
   And he or she submits the Update Password request
   Then Nicole verifies he or she is presented with a Error Message indicating Confirm Passsword does not match New Password
 
@@ -175,9 +175,9 @@ Scenario: Change Password with conditions of invalid Current Password, New Passw
   Given Nicole is logged into the application
   When Nicole navigates to the User Profile menu
   And he or she selects 'Change Password' from the User Profile menu
-  And he or she enters 'AmgQhtcDwOygVPhnY1' into the change password Current Password field
-  And he or she enters 'KsfpAhbaMxajhNPzRQPd1' into the change password New Password field
-  And he or she enters 'KsfpAhbaMxajhNPzRQPd1' into the change password Confirm Password field
+  And he or she enters 'kApzeDvGKnuLOTjw7826' into the change password Current Password field
+  And he or she enters 'jXPxkxGUDkNEHCAHb471' into the change password New Password field
+  And he or she enters 'jXPxkxGUDkNEHCAHb471' into the change password Confirm Password field
   And he or she submits the Update Password request
   Then Nicole verifies he or she is presented with a Error Message indicating Current Password is not correct
 
@@ -186,8 +186,8 @@ Scenario: Change Password with conditions of invalid Current Password, New Passw
   Given Nicole is logged into the application
   When Nicole navigates to the User Profile menu
   And he or she selects 'Change Password' from the User Profile menu
-  And he or she enters 'YwOfhLLGeoLyrRNJkyx13535' into the change password Current Password field
-  And he or she enters 'ILErgCqEnOWgwfI729' into the change password New Password field
+  And he or she enters 'mQayzNueIc40562' into the change password Current Password field
+  And he or she enters 'OPfpSFqzMSafXmNji23' into the change password New Password field
   And he or she enters '' into the change password Confirm Password field
   And he or she submits the Update Password request
   Then Nicole verifies he or she is presented with a Error Message indicating Confirm Passsword does not match New Password
@@ -197,7 +197,7 @@ Scenario: Change Password with conditions of invalid Current Password, New Passw
   Given Nicole is logged into the application
   When Nicole navigates to the User Profile menu
   And he or she selects 'Change Password' from the User Profile menu
-  And he or she enters 'yHKUMbEUj7808' into the change password Current Password field
+  And he or she enters 'iUuWhmhb73' into the change password Current Password field
   And he or she enters 'Demo123!' into the change password New Password field
   And he or she enters 'Demo123!' into the change password Confirm Password field
   And he or she submits the Update Password request
@@ -208,7 +208,7 @@ Scenario: Change Password with conditions of invalid Current Password, New Passw
   Given Nicole is logged into the application
   When Nicole navigates to the User Profile menu
   And he or she selects 'Change Password' from the User Profile menu
-  And he or she enters 'FcxFZIOoqlEkD7' into the change password Current Password field
+  And he or she enters 'VQsysQWtKGjFzAV30' into the change password Current Password field
   And he or she enters '' into the change password New Password field
   And he or she enters '' into the change password Confirm Password field
   And he or she submits the Update Password request
@@ -231,8 +231,8 @@ Scenario: Change Password with conditions of Empty Current Password, New Passwor
   When Nicole navigates to the User Profile menu
   And he or she selects 'Change Password' from the User Profile menu
   And he or she enters '' into the change password Current Password field
-  And he or she enters 'd278' into the change password New Password field
-  And he or she enters 'd278' into the change password Confirm Password field
+  And he or she enters 'zomm0' into the change password New Password field
+  And he or she enters 'zomm0' into the change password Confirm Password field
   And he or she submits the Update Password request
   Then Nicole verifies he or she is presented with a Error Message indicating Current Password is required
 
@@ -242,7 +242,7 @@ Scenario: Change Password with conditions of Empty Current Password, New Passwor
   When Nicole navigates to the User Profile menu
   And he or she selects 'Change Password' from the User Profile menu
   And he or she enters '' into the change password Current Password field
-  And he or she enters 'GDPGQYSGUPVEZZ2' into the change password New Password field
+  And he or she enters 'BGNDULPB8109' into the change password New Password field
   And he or she enters '' into the change password Confirm Password field
   And he or she submits the Update Password request
   Then Nicole verifies he or she is presented with a Error Message indicating Current Password is required
@@ -253,8 +253,8 @@ Scenario: Change Password with conditions of Empty Current Password, New Passwor
   When Nicole navigates to the User Profile menu
   And he or she selects 'Change Password' from the User Profile menu
   And he or she enters '' into the change password Current Password field
-  And he or she enters 'UBtwqJQj' into the change password New Password field
-  And he or she enters 'UBtwqJQj' into the change password Confirm Password field
+  And he or she enters 'VIeSTYsKChaacixkiPa' into the change password New Password field
+  And he or she enters 'VIeSTYsKChaacixkiPa' into the change password Confirm Password field
   And he or she submits the Update Password request
   Then Nicole verifies he or she is presented with a Error Message indicating Current Password is required
 
@@ -264,8 +264,8 @@ Scenario: Change Password with conditions of Empty Current Password, New Passwor
   When Nicole navigates to the User Profile menu
   And he or she selects 'Change Password' from the User Profile menu
   And he or she enters '' into the change password Current Password field
-  And he or she enters 'oyiujlppcan2' into the change password New Password field
-  And he or she enters 'oyiujlppcan2' into the change password Confirm Password field
+  And he or she enters 'cioaqgvdkdt3' into the change password New Password field
+  And he or she enters 'cioaqgvdkdt3' into the change password Confirm Password field
   And he or she submits the Update Password request
   Then Nicole verifies he or she is presented with a Error Message indicating Current Password is required
 
@@ -286,8 +286,8 @@ Scenario: Change Password with conditions of Empty Current Password, New Passwor
   When Nicole navigates to the User Profile menu
   And he or she selects 'Change Password' from the User Profile menu
   And he or she enters '' into the change password Current Password field
-  And he or she enters 'hqUEiHeBYypTPK47060' into the change password New Password field
-  And he or she enters 'wJIADhoHgLDZxwVEX2755' into the change password Confirm Password field
+  And he or she enters 'AWsgdYfSoARhy9960' into the change password New Password field
+  And he or she enters 'NGaCOtnivxpVhy059' into the change password Confirm Password field
   And he or she submits the Update Password request
   Then Nicole verifies he or she is presented with a Error Message indicating Current Password is required
 
@@ -297,7 +297,7 @@ Scenario: Change Password with conditions of valid Current Password, New Passwor
   When Nicole navigates to the User Profile menu
   And he or she selects 'Change Password' from the User Profile menu
   And he or she enters 'Demo123!' into the change password Current Password field
-  And he or she enters 'TlaKMcasq3' into the change password New Password field
-  And he or she enters 'TlaKMcasq3' into the change password Confirm Password field
+  And he or she enters 'LQjONBuDu5' into the change password New Password field
+  And he or she enters 'LQjONBuDu5' into the change password Confirm Password field
   And he or she submits the Update Password request
   Then Nicole verifies he or she is presented with a Success Message indicating a successful change password

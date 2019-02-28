@@ -1,4 +1,4 @@
-@ui, @user, @security
+@ui, @user, @security, @logout
 Feature: Logout User
   As a user logged into the application
   I want to logout

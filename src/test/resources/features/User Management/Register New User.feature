@@ -1,4 +1,4 @@
-@ui, @user, @registration
+@ui, @user, @security, @register
 Feature: Register New User
   As a new customer
   I want to register as a new user
@@ -7,640 +7,640 @@ Feature: Register New User
 
 
 Scenario: Register user with Mr. title, M gender, empty Email Address
-  Given Allen is a new customer
-  When Allen navigates to the Registration page
+  Given Adan is a new customer
+  When Adan navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Allen' into the First Name field
-  And he or she enters 'Pearson' into the Last Name field
+  And he or she enters 'Adan' into the First Name field
+  And he or she enters 'Lott' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '09/07/1972' into the Date of Birth field
-  And he or she enters '247-81-8873' into the Social Security Number field
+  And he or she enters '09/29/1998' into the Date of Birth field
+  And he or she enters '294-22-9905' into the Social Security Number field
   And he or she enters '' into the Email Address field
   And he or she navigates to the Contact Details page
-  Then Allen verifies he or she is presented with a Error Message indicating the field is required
+  Then Adan verifies he or she is presented with a Error Message indicating the field is required
 
 
 Scenario: Register user with Mr. title, M gender, Email Address with no at sign
-  Given Roy is a new customer
-  When Roy navigates to the Registration page
+  Given Mauricio is a new customer
+  When Mauricio navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Roy' into the First Name field
-  And he or she enters 'Anthony' into the Last Name field
+  And he or she enters 'Mauricio' into the First Name field
+  And he or she enters 'Washington' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '07/04/1980' into the Date of Birth field
-  And he or she enters '315-66-7286' into the Social Security Number field
-  And he or she enters 'Roy.Anthonydemo.io' into the Email Address field
+  And he or she enters '07/17/1938' into the Date of Birth field
+  And he or she enters '395-58-3031' into the Social Security Number field
+  And he or she enters 'Mauricio.Washingtondemo.io' into the Email Address field
   And he or she navigates to the Contact Details page
-  Then Roy verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
+  Then Mauricio verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
 
 
 Scenario: Register user with Mr. title, M gender, Email Address without domain
-  Given Dillon is a new customer
-  When Dillon navigates to the Registration page
+  Given Alvaro is a new customer
+  When Alvaro navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Dillon' into the First Name field
-  And he or she enters 'Short' into the Last Name field
+  And he or she enters 'Alvaro' into the First Name field
+  And he or she enters 'Beach' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '05/11/1972' into the Date of Birth field
-  And he or she enters '827-55-6830' into the Social Security Number field
-  And he or she enters 'Dillon.Short' into the Email Address field
+  And he or she enters '01/25/1936' into the Date of Birth field
+  And he or she enters '310-31-7083' into the Social Security Number field
+  And he or she enters 'Alvaro.Beach' into the Email Address field
   And he or she navigates to the Contact Details page
-  Then Dillon verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
+  Then Alvaro verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
 
 
 Scenario: Register user with Mr. title, M gender, empty Confirm Password
-  Given Kirk is a new customer
-  When Kirk navigates to the Registration page
+  Given Jamari is a new customer
+  When Jamari navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Kirk' into the First Name field
-  And he or she enters 'Oconnor' into the Last Name field
+  And he or she enters 'Jamari' into the First Name field
+  And he or she enters 'Tyson' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '01/01/1935' into the Date of Birth field
-  And he or she enters '976-27-0802' into the Social Security Number field
-  And he or she enters 'Kirk.Oconnor@demo.io' into the Email Address field
-  And he or she enters 'WJuwUZsmTnBzxFOcq8' into the registration Password field
+  And he or she enters '03/22/1997' into the Date of Birth field
+  And he or she enters '137-55-3341' into the Social Security Number field
+  And he or she enters 'Jamari.Tyson@demo.io' into the Email Address field
+  And he or she enters 'qcadLYdNojAubrMwvlh89663' into the registration Password field
   And he or she enters '' into the registration Confirm Password field
   And he or she navigates to the Contact Details page
-  Then Kirk verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
+  Then Jamari verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
 
 
 Scenario: Register user with Mr. title, M gender, non-matching Confirm Password
-  Given Terrell is a new customer
-  When Terrell navigates to the Registration page
+  Given Asa is a new customer
+  When Asa navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Terrell' into the First Name field
-  And he or she enters 'Mccarty' into the Last Name field
+  And he or she enters 'Asa' into the First Name field
+  And he or she enters 'Benson' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '10/04/1987' into the Date of Birth field
-  And he or she enters '824-65-7128' into the Social Security Number field
-  And he or she enters 'Terrell.Mccarty@demo.io' into the Email Address field
-  And he or she enters 'xahUPdpyVdOlEKCarzss18654' into the registration Password field
+  And he or she enters '01/14/1993' into the Date of Birth field
+  And he or she enters '682-94-5136' into the Social Security Number field
+  And he or she enters 'Asa.Benson@demo.io' into the Email Address field
+  And he or she enters 'rJQxNyJxvEslIvQZsfnC69669' into the registration Password field
   And he or she enters '' into the registration Confirm Password field
   And he or she navigates to the Contact Details page
-  Then Terrell verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
+  Then Asa verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
 
 
 Scenario: Register user with Mr. title, M gender, empty Region
-  Given Fredrick is a new customer
-  When Fredrick navigates to the Registration page
+  Given Haden is a new customer
+  When Haden navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Fredrick' into the First Name field
-  And he or she enters 'Hodges' into the Last Name field
+  And he or she enters 'Haden' into the First Name field
+  And he or she enters 'Barry' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '04/29/1997' into the Date of Birth field
-  And he or she enters '266-03-8287' into the Social Security Number field
-  And he or she enters 'Fredrick.Hodges@demo.io' into the Email Address field
-  And he or she enters 'qtXhIceswuSLHBzv8458' into the registration Password field
-  And he or she enters 'qtXhIceswuSLHBzv8458' into the registration Confirm Password field
+  And he or she enters '03/10/1941' into the Date of Birth field
+  And he or she enters '750-29-7683' into the Social Security Number field
+  And he or she enters 'Haden.Barry@demo.io' into the Email Address field
+  And he or she enters 'MPyMFMFZEcWSF0930' into the registration Password field
+  And he or she enters 'MPyMFMFZEcWSF0930' into the registration Confirm Password field
   And he or she navigates to the Contact Details page
   And he or she verifies he or she is the Contact Details page
-  And he or she enters 'HC 02 BOX 7455' into the registration Address field
-  And he or she enters 'Farmingdale' into the registration Locality field
+  And he or she enters 'HC-02 BOX 3929' into the registration Address field
+  And he or she enters 'Oklahoma city' into the registration Locality field
   And he or she enters '' into the registration Region field
   And he or she submits the Registration request
-  Then Fredrick verifies he or she is presented with a Error Message indicating the field is required
+  Then Haden verifies he or she is presented with a Error Message indicating the field is required
 
 
 Scenario: Register user with Mr. title, M gender, empty Postal Code
-  Given Zachariah is a new customer
-  When Zachariah navigates to the Registration page
+  Given Rogelio is a new customer
+  When Rogelio navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Zachariah' into the First Name field
-  And he or she enters 'Stephenson' into the Last Name field
+  And he or she enters 'Rogelio' into the First Name field
+  And he or she enters 'Santos' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '05/11/1970' into the Date of Birth field
-  And he or she enters '728-50-4951' into the Social Security Number field
-  And he or she enters 'Zachariah.Stephenson@demo.io' into the Email Address field
-  And he or she enters 'wnwFOeUq45440' into the registration Password field
-  And he or she enters 'wnwFOeUq45440' into the registration Confirm Password field
+  And he or she enters '07/29/1927' into the Date of Birth field
+  And he or she enters '926-17-9079' into the Social Security Number field
+  And he or she enters 'Rogelio.Santos@demo.io' into the Email Address field
+  And he or she enters 'yPaLZQHWTWRPWySARbzN7' into the registration Password field
+  And he or she enters 'yPaLZQHWTWRPWySARbzN7' into the registration Confirm Password field
   And he or she navigates to the Contact Details page
   And he or she verifies he or she is the Contact Details page
-  And he or she enters '36 AMERICO HERNANDEZ' into the registration Address field
-  And he or she enters 'North chelmsford' into the registration Locality field
-  And he or she enters 'MA' into the registration Region field
+  And he or she enters 'K-4 CALLE 11 VEGA BAJA LKS' into the registration Address field
+  And he or she enters 'Quincy' into the registration Locality field
+  And he or she enters 'WA' into the registration Region field
   And he or she enters '' into the registration Postal Code field
   And he or she submits the Registration request
-  Then Zachariah verifies he or she is presented with a Error Message indicating the field is required
+  Then Rogelio verifies he or she is presented with a Error Message indicating the field is required
 
 
 Scenario: Register user with Mr. title, M gender, empty Country
-  Given Dominique is a new customer
-  When Dominique navigates to the Registration page
+  Given Casey is a new customer
+  When Casey navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Dominique' into the First Name field
-  And he or she enters 'Rowland' into the Last Name field
+  And he or she enters 'Casey' into the First Name field
+  And he or she enters 'Rosa' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '10/09/1997' into the Date of Birth field
-  And he or she enters '232-71-5261' into the Social Security Number field
-  And he or she enters 'Dominique.Rowland@demo.io' into the Email Address field
-  And he or she enters 'IESncMuzVSfCqFvISlqs7' into the registration Password field
-  And he or she enters 'IESncMuzVSfCqFvISlqs7' into the registration Confirm Password field
+  And he or she enters '12/04/2000' into the Date of Birth field
+  And he or she enters '705-85-4521' into the Social Security Number field
+  And he or she enters 'Casey.Rosa@demo.io' into the Email Address field
+  And he or she enters 'NOromJmqPLZashKfwi36401' into the registration Password field
+  And he or she enters 'NOromJmqPLZashKfwi36401' into the registration Confirm Password field
   And he or she navigates to the Contact Details page
   And he or she verifies he or she is the Contact Details page
-  And he or she enters 'URB MONTERREY 1031 ARAMANA' into the registration Address field
-  And he or she enters 'Frederick' into the registration Locality field
-  And he or she enters 'MD' into the registration Region field
-  And he or she enters '21704' into the registration Postal Code field
+  And he or she enters 'POBOX 64' into the registration Address field
+  And he or she enters 'Keyesport' into the registration Locality field
+  And he or she enters 'IL' into the registration Region field
+  And he or she enters '62253' into the registration Postal Code field
   And he or she enters '' into the registration Country field
   And he or she submits the Registration request
-  Then Dominique verifies he or she is presented with a Error Message indicating the field is required
+  Then Casey verifies he or she is presented with a Error Message indicating the field is required
 
 
 Scenario: Register user with Mr. title, M gender, empty Home Phone
-  Given Payton is a new customer
-  When Payton navigates to the Registration page
+  Given Lukas is a new customer
+  When Lukas navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Payton' into the First Name field
-  And he or she enters 'Clay' into the Last Name field
+  And he or she enters 'Lukas' into the First Name field
+  And he or she enters 'Shaffer' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '07/10/1953' into the Date of Birth field
-  And he or she enters '258-85-3465' into the Social Security Number field
-  And he or she enters 'Payton.Clay@demo.io' into the Email Address field
-  And he or she enters 'LhhYuIXvsA999' into the registration Password field
-  And he or she enters 'LhhYuIXvsA999' into the registration Confirm Password field
+  And he or she enters '07/25/1935' into the Date of Birth field
+  And he or she enters '927-27-7949' into the Social Security Number field
+  And he or she enters 'Lukas.Shaffer@demo.io' into the Email Address field
+  And he or she enters 'dPYiYFPveopTs56' into the registration Password field
+  And he or she enters 'dPYiYFPveopTs56' into the registration Confirm Password field
   And he or she navigates to the Contact Details page
   And he or she verifies he or she is the Contact Details page
-  And he or she enters 'URB BORINQUEN I35 CALLE 3' into the registration Address field
-  And he or she enters 'Lincoln' into the registration Locality field
-  And he or she enters 'KS' into the registration Region field
-  And he or she enters '67455' into the registration Postal Code field
+  And he or she enters 'VILLAS DEL CAFETAL CALLE1 CASA' into the registration Address field
+  And he or she enters 'Dallas' into the registration Locality field
+  And he or she enters 'TX' into the registration Region field
+  And he or she enters '75252' into the registration Postal Code field
   And he or she enters 'United States' into the registration Country field
   And he or she enters '' into the registration Home Phone field
   And he or she submits the Registration request
-  Then Payton verifies he or she is presented with a Error Message indicating the field is required
+  Then Lukas verifies he or she is presented with a Error Message indicating the field is required
 
 
 Scenario: Register user with Mr. title, M gender, Invalid Home Phone
-  Given Jaxon is a new customer
-  When Jaxon navigates to the Registration page
+  Given Zion is a new customer
+  When Zion navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Jaxon' into the First Name field
-  And he or she enters 'Hood' into the Last Name field
+  And he or she enters 'Zion' into the First Name field
+  And he or she enters 'Berg' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '10/13/1925' into the Date of Birth field
-  And he or she enters '138-15-5342' into the Social Security Number field
-  And he or she enters 'Jaxon.Hood@demo.io' into the Email Address field
-  And he or she enters 'aIozTEBDBR839' into the registration Password field
-  And he or she enters 'aIozTEBDBR839' into the registration Confirm Password field
+  And he or she enters '12/03/1948' into the Date of Birth field
+  And he or she enters '095-90-0143' into the Social Security Number field
+  And he or she enters 'Zion.Berg@demo.io' into the Email Address field
+  And he or she enters 'pDouDjExFTBvvNcmx687' into the registration Password field
+  And he or she enters 'pDouDjExFTBvvNcmx687' into the registration Confirm Password field
   And he or she navigates to the Contact Details page
   And he or she verifies he or she is the Contact Details page
-  And he or she enters '26 BUCARE PARC MARQUEZ' into the registration Address field
-  And he or she enters 'Gillham' into the registration Locality field
-  And he or she enters 'AR' into the registration Region field
-  And he or she enters '71841' into the registration Postal Code field
+  And he or she enters 'HC01 BOX 6150' into the registration Address field
+  And he or she enters 'Naytahwaush' into the registration Locality field
+  And he or she enters 'MN' into the registration Region field
+  And he or she enters '56566' into the registration Postal Code field
   And he or she enters 'United States' into the registration Country field
-  And he or she enters '6' into the registration Home Phone field
+  And he or she enters '525' into the registration Home Phone field
   And he or she submits the Registration request
-  Then Jaxon verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
+  Then Zion verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
 
 
 Scenario: Register user with Mr. title, M genderAgree False
-  Given Roderick is a new customer
-  When Roderick navigates to the Registration page
+  Given Cruz is a new customer
+  When Cruz navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Roderick' into the First Name field
-  And he or she enters 'Velasquez' into the Last Name field
+  And he or she enters 'Cruz' into the First Name field
+  And he or she enters 'Hodge' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '05/03/1947' into the Date of Birth field
-  And he or she enters '716-54-6821' into the Social Security Number field
-  And he or she enters 'Roderick.Velasquez@demo.io' into the Email Address field
-  And he or she enters 'drcOxmGvJDyaLzxtMzd91268' into the registration Password field
-  And he or she enters 'drcOxmGvJDyaLzxtMzd91268' into the registration Confirm Password field
+  And he or she enters '03/31/1923' into the Date of Birth field
+  And he or she enters '009-22-4069' into the Social Security Number field
+  And he or she enters 'Cruz.Hodge@demo.io' into the Email Address field
+  And he or she enters 'KULQFYNYPyDTYhEj455' into the registration Password field
+  And he or she enters 'KULQFYNYPyDTYhEj455' into the registration Confirm Password field
   And he or she navigates to the Contact Details page
   And he or she verifies he or she is the Contact Details page
-  And he or she enters '1 GRANDE ALLEE EST APP 17' into the registration Address field
-  And he or she enters 'Novelty' into the registration Locality field
-  And he or she enters 'OH' into the registration Region field
-  And he or she enters '44072' into the registration Postal Code field
+  And he or she enters 'HC 02 BOX 10343' into the registration Address field
+  And he or she enters 'Hollywood' into the registration Locality field
+  And he or she enters 'FL' into the registration Region field
+  And he or she enters '33021' into the registration Postal Code field
   And he or she enters 'United States' into the registration Country field
-  And he or she enters '6286937490' into the registration Home Phone field
-  And he or she enters '6286937490' into the registration Mobile Phone field
-  And he or she enters '6286937490' into the registration Work Phone field
+  And he or she enters '8667418351' into the registration Home Phone field
+  And he or she enters '8667418351' into the registration Mobile Phone field
+  And he or she enters '8667418351' into the registration Work Phone field
   And he or she selects 'False' from the Agree to Terms and Policy checkbox
   And he or she submits the Registration request
-  Then Roderick verifies he or she is presented with a Error Message indicating the field is required
+  Then Cruz verifies he or she is presented with a Error Message indicating the field is required
 
 
 Scenario: Register user with Mr. title, M gender, empty Work PhoneAgree False
-  Given Maximo is a new customer
-  When Maximo navigates to the Registration page
+  Given Nathen is a new customer
+  When Nathen navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Maximo' into the First Name field
-  And he or she enters 'Tyler' into the Last Name field
+  And he or she enters 'Nathen' into the First Name field
+  And he or she enters 'Boyd' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '02/22/1958' into the Date of Birth field
-  And he or she enters '346-13-5902' into the Social Security Number field
-  And he or she enters 'Maximo.Tyler@demo.io' into the Email Address field
-  And he or she enters 'IPctGAcsMNWhqIKTBH469' into the registration Password field
-  And he or she enters 'IPctGAcsMNWhqIKTBH469' into the registration Confirm Password field
+  And he or she enters '08/24/1959' into the Date of Birth field
+  And he or she enters '517-54-0152' into the Social Security Number field
+  And he or she enters 'Nathen.Boyd@demo.io' into the Email Address field
+  And he or she enters 'MFgrZpoDDGPswFXM876' into the registration Password field
+  And he or she enters 'MFgrZpoDDGPswFXM876' into the registration Confirm Password field
   And he or she navigates to the Contact Details page
   And he or she verifies he or she is the Contact Details page
-  And he or she enters 'URB BELLA VISTA A #5' into the registration Address field
-  And he or she enters 'Hilger' into the registration Locality field
-  And he or she enters 'MT' into the registration Region field
-  And he or she enters '59451' into the registration Postal Code field
+  And he or she enters 'CALL BOX 2600' into the registration Address field
+  And he or she enters 'Lacrosse' into the registration Locality field
+  And he or she enters 'WA' into the registration Region field
+  And he or she enters '99143' into the registration Postal Code field
   And he or she enters 'United States' into the registration Country field
-  And he or she enters '2421904295' into the registration Home Phone field
-  And he or she enters '2421904295' into the registration Mobile Phone field
+  And he or she enters '4014365806' into the registration Home Phone field
+  And he or she enters '4014365806' into the registration Mobile Phone field
   And he or she enters '' into the registration Work Phone field
   And he or she selects 'False' from the Agree to Terms and Policy checkbox
   And he or she submits the Registration request
-  Then Maximo verifies he or she is presented with a Error Message indicating the field is required
+  Then Nathen verifies he or she is presented with a Error Message indicating the field is required
 
 
 Scenario: Register user with Mr. title, M gender, invalid Work Phone
-  Given Stanley is a new customer
-  When Stanley navigates to the Registration page
+  Given Ali is a new customer
+  When Ali navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Stanley' into the First Name field
-  And he or she enters 'Murphy' into the Last Name field
+  And he or she enters 'Ali' into the First Name field
+  And he or she enters 'Holden' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '03/22/1992' into the Date of Birth field
-  And he or she enters '718-94-3492' into the Social Security Number field
-  And he or she enters 'Stanley.Murphy@demo.io' into the Email Address field
-  And he or she enters 'ZxUMoDRzU5717' into the registration Password field
-  And he or she enters 'ZxUMoDRzU5717' into the registration Confirm Password field
+  And he or she enters '04/29/1966' into the Date of Birth field
+  And he or she enters '448-24-3498' into the Social Security Number field
+  And he or she enters 'Ali.Holden@demo.io' into the Email Address field
+  And he or she enters 'qARntyhCbqroetT25' into the registration Password field
+  And he or she enters 'qARntyhCbqroetT25' into the registration Confirm Password field
   And he or she navigates to the Contact Details page
   And he or she verifies he or she is the Contact Details page
-  And he or she enters '145 H CALLE JOSE PAREZ BO BARA' into the registration Address field
-  And he or she enters 'Homestead' into the registration Locality field
-  And he or she enters 'FL' into the registration Region field
-  And he or she enters '33035' into the registration Postal Code field
+  And he or she enters 'APARTADO 182' into the registration Address field
+  And he or she enters 'Seattle' into the registration Locality field
+  And he or she enters 'WA' into the registration Region field
+  And he or she enters '98199' into the registration Postal Code field
   And he or she enters 'United States' into the registration Country field
-  And he or she enters '8077211278' into the registration Home Phone field
-  And he or she enters '8077211278' into the registration Mobile Phone field
-  And he or she enters '4710' into the registration Work Phone field
+  And he or she enters '5616695042' into the registration Home Phone field
+  And he or she enters '5616695042' into the registration Mobile Phone field
+  And he or she enters '39' into the registration Work Phone field
   And he or she submits the Registration request
-  Then Stanley verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
+  Then Ali verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
 
 
 Scenario: Register user with Mr. title, M gender, empty Mobile Phone, empty Work Phone
-  Given Corey is a new customer
-  When Corey navigates to the Registration page
+  Given Alexandre is a new customer
+  When Alexandre navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Corey' into the First Name field
-  And he or she enters 'Bender' into the Last Name field
+  And he or she enters 'Alexandre' into the First Name field
+  And he or she enters 'Rogers' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '07/11/1950' into the Date of Birth field
-  And he or she enters '389-25-9844' into the Social Security Number field
-  And he or she enters 'Corey.Bender@demo.io' into the Email Address field
-  And he or she enters 'yLPqkAdLIel14635' into the registration Password field
-  And he or she enters 'yLPqkAdLIel14635' into the registration Confirm Password field
+  And he or she enters '07/12/1952' into the Date of Birth field
+  And he or she enters '330-15-8433' into the Social Security Number field
+  And he or she enters 'Alexandre.Rogers@demo.io' into the Email Address field
+  And he or she enters 'hAuEGKZzjlkfJynH1' into the registration Password field
+  And he or she enters 'hAuEGKZzjlkfJynH1' into the registration Confirm Password field
   And he or she navigates to the Contact Details page
   And he or she verifies he or she is the Contact Details page
-  And he or she enters 'URB SAN AUGUSTO' into the registration Address field
-  And he or she enters 'Randallstown' into the registration Locality field
-  And he or she enters 'MD' into the registration Region field
-  And he or she enters '21133' into the registration Postal Code field
+  And he or she enters 'CALLE 2 #235 PARCELAS NUEVAS T' into the registration Address field
+  And he or she enters 'Middletown' into the registration Locality field
+  And he or she enters 'IN' into the registration Region field
+  And he or she enters '47356' into the registration Postal Code field
   And he or she enters 'United States' into the registration Country field
-  And he or she enters '7183365522' into the registration Home Phone field
+  And he or she enters '2365706314' into the registration Home Phone field
   And he or she enters '' into the registration Mobile Phone field
   And he or she enters '' into the registration Work Phone field
   And he or she selects 'True' from the Agree to Terms and Policy checkbox
   And he or she submits the Registration request
-  Then Corey verifies he or she is at the Login page
+  Then Alexandre verifies he or she is at the Login page
   And he or she verifies he or she is presented with a Registration Success Message
-  And he or she verifies login Username contains Corey.Bender@demo.io
-  And he or she enters 'yLPqkAdLIel14635' into the login Password field
+  And he or she verifies login Username contains Alexandre.Rogers@demo.io
+  And he or she enters 'hAuEGKZzjlkfJynH1' into the login Password field
   And he or she submits the login request
   And he or she verifies he or she is at the Home page
 
 
 Scenario: Register user with Mr. title, M gender, empty Mobile Phone, invalid Work Phone
-  Given Zion is a new customer
-  When Zion navigates to the Registration page
+  Given Emmett is a new customer
+  When Emmett navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Zion' into the First Name field
-  And he or she enters 'Dyer' into the Last Name field
+  And he or she enters 'Emmett' into the First Name field
+  And he or she enters 'Walter' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '06/27/1956' into the Date of Birth field
-  And he or she enters '994-05-5539' into the Social Security Number field
-  And he or she enters 'Zion.Dyer@demo.io' into the Email Address field
-  And he or she enters 'psogrsVuLeMUthe14' into the registration Password field
-  And he or she enters 'psogrsVuLeMUthe14' into the registration Confirm Password field
+  And he or she enters '11/11/1950' into the Date of Birth field
+  And he or she enters '599-18-8135' into the Social Security Number field
+  And he or she enters 'Emmett.Walter@demo.io' into the Email Address field
+  And he or she enters 'svshEbpV853' into the registration Password field
+  And he or she enters 'svshEbpV853' into the registration Confirm Password field
   And he or she navigates to the Contact Details page
   And he or she verifies he or she is the Contact Details page
-  And he or she enters 'CALLE BONET BUZON #803' into the registration Address field
-  And he or she enters 'Los gatos' into the registration Locality field
-  And he or she enters 'CA' into the registration Region field
-  And he or she enters '95033' into the registration Postal Code field
+  And he or she enters 'JARD VIL ALBA NO 19' into the registration Address field
+  And he or she enters 'Bluefield' into the registration Locality field
+  And he or she enters 'VA' into the registration Region field
+  And he or she enters '24605' into the registration Postal Code field
   And he or she enters 'United States' into the registration Country field
-  And he or she enters '8724102617' into the registration Home Phone field
+  And he or she enters '4386474458' into the registration Home Phone field
   And he or she enters '' into the registration Mobile Phone field
-  And he or she enters '976051' into the registration Work Phone field
+  And he or she enters '771' into the registration Work Phone field
   And he or she submits the Registration request
-  Then Zion verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
+  Then Emmett verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
 
 
 Scenario: Register user with Mr. title, M gender, Invalid Mobile Phone
-  Given Kory is a new customer
-  When Kory navigates to the Registration page
+  Given Davon is a new customer
+  When Davon navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Kory' into the First Name field
-  And he or she enters 'Cortez' into the Last Name field
+  And he or she enters 'Davon' into the First Name field
+  And he or she enters 'Hernandez' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '08/30/1946' into the Date of Birth field
-  And he or she enters '475-80-2174' into the Social Security Number field
-  And he or she enters 'Kory.Cortez@demo.io' into the Email Address field
-  And he or she enters 'PhReqGLTSZnldIZ412' into the registration Password field
-  And he or she enters 'PhReqGLTSZnldIZ412' into the registration Confirm Password field
+  And he or she enters '11/04/1932' into the Date of Birth field
+  And he or she enters '326-08-8495' into the Social Security Number field
+  And he or she enters 'Davon.Hernandez@demo.io' into the Email Address field
+  And he or she enters 'vIxzdfFis5664' into the registration Password field
+  And he or she enters 'vIxzdfFis5664' into the registration Confirm Password field
   And he or she navigates to the Contact Details page
   And he or she verifies he or she is the Contact Details page
-  And he or she enters 'ARECIBO GARDENS CALLE 5' into the registration Address field
-  And he or she enters 'Madison' into the registration Locality field
-  And he or she enters 'MN' into the registration Region field
-  And he or she enters '56256' into the registration Postal Code field
+  And he or she enters '1035 CHEMIN ROYAL' into the registration Address field
+  And he or she enters 'Kingsville' into the registration Locality field
+  And he or she enters 'MO' into the registration Region field
+  And he or she enters '64061' into the registration Postal Code field
   And he or she enters 'United States' into the registration Country field
-  And he or she enters '9311426350' into the registration Home Phone field
-  And he or she enters '98997191' into the registration Mobile Phone field
+  And he or she enters '2501678045' into the registration Home Phone field
+  And he or she enters '3258047' into the registration Mobile Phone field
   And he or she submits the Registration request
-  Then Kory verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
+  Then Davon verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
 
 
 Scenario: Register user with Mr. title, M gender, empty Locality
-  Given Aaron is a new customer
-  When Aaron navigates to the Registration page
+  Given Marquez is a new customer
+  When Marquez navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Aaron' into the First Name field
-  And he or she enters 'Ingram' into the Last Name field
+  And he or she enters 'Marquez' into the First Name field
+  And he or she enters 'Terry' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '08/04/1939' into the Date of Birth field
-  And he or she enters '659-55-0653' into the Social Security Number field
-  And he or she enters 'Aaron.Ingram@demo.io' into the Email Address field
-  And he or she enters 'YgySfKpFqrJ6' into the registration Password field
-  And he or she enters 'YgySfKpFqrJ6' into the registration Confirm Password field
+  And he or she enters '11/12/1960' into the Date of Birth field
+  And he or she enters '541-38-5398' into the Social Security Number field
+  And he or she enters 'Marquez.Terry@demo.io' into the Email Address field
+  And he or she enters 'GuDGJOFMyhoWwTIrOdtM694' into the registration Password field
+  And he or she enters 'GuDGJOFMyhoWwTIrOdtM694' into the registration Confirm Password field
   And he or she navigates to the Contact Details page
   And he or she verifies he or she is the Contact Details page
-  And he or she enters 'BOX 541' into the registration Address field
+  And he or she enters 'HC1 BOX 6536' into the registration Address field
   And he or she enters '' into the registration Locality field
   And he or she submits the Registration request
-  Then Aaron verifies he or she is presented with a Error Message indicating the field is required
+  Then Marquez verifies he or she is presented with a Error Message indicating the field is required
 
 
 Scenario: Register user with Mr. title, M gender, empty Address
-  Given Gaige is a new customer
-  When Gaige navigates to the Registration page
+  Given Lance is a new customer
+  When Lance navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Gaige' into the First Name field
-  And he or she enters 'Barker' into the Last Name field
+  And he or she enters 'Lance' into the First Name field
+  And he or she enters 'Juarez' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '08/11/1965' into the Date of Birth field
-  And he or she enters '437-67-5772' into the Social Security Number field
-  And he or she enters 'Gaige.Barker@demo.io' into the Email Address field
-  And he or she enters 'nscNhXtIvZkhYdxeJF744' into the registration Password field
-  And he or she enters 'nscNhXtIvZkhYdxeJF744' into the registration Confirm Password field
+  And he or she enters '01/16/1986' into the Date of Birth field
+  And he or she enters '833-06-0882' into the Social Security Number field
+  And he or she enters 'Lance.Juarez@demo.io' into the Email Address field
+  And he or she enters 'tjXeUneVYRyQMLEvJPRk3' into the registration Password field
+  And he or she enters 'tjXeUneVYRyQMLEvJPRk3' into the registration Confirm Password field
   And he or she navigates to the Contact Details page
   And he or she verifies he or she is the Contact Details page
   And he or she enters '' into the registration Address field
   And he or she submits the Registration request
-  Then Gaige verifies he or she is presented with a Error Message indicating the field is required
+  Then Lance verifies he or she is presented with a Error Message indicating the field is required
 
 
 Scenario: Register user with Mr. title, M gender, empty Password
-  Given Randy is a new customer
-  When Randy navigates to the Registration page
+  Given Aden is a new customer
+  When Aden navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Randy' into the First Name field
-  And he or she enters 'Buckley' into the Last Name field
+  And he or she enters 'Aden' into the First Name field
+  And he or she enters 'House' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '02/11/1985' into the Date of Birth field
-  And he or she enters '265-13-1536' into the Social Security Number field
-  And he or she enters 'Randy.Buckley@demo.io' into the Email Address field
+  And he or she enters '09/12/1972' into the Date of Birth field
+  And he or she enters '651-14-5982' into the Social Security Number field
+  And he or she enters 'Aden.House@demo.io' into the Email Address field
   And he or she enters '' into the registration Password field
   And he or she navigates to the Contact Details page
-  Then Randy verifies he or she is presented with a Error Message indicating the field is required
+  Then Aden verifies he or she is presented with a Error Message indicating the field is required
 
 
 Scenario: Register user with Mr. title, M gender, Password less than 8 characters
-  Given Dane is a new customer
-  When Dane navigates to the Registration page
+  Given Kristian is a new customer
+  When Kristian navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Dane' into the First Name field
-  And he or she enters 'Fischer' into the Last Name field
+  And he or she enters 'Kristian' into the First Name field
+  And he or she enters 'Hayes' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '01/17/1958' into the Date of Birth field
-  And he or she enters '966-02-5148' into the Social Security Number field
-  And he or she enters 'Dane.Fischer@demo.io' into the Email Address field
-  And he or she enters 'y488' into the registration Password field
+  And he or she enters '01/22/1963' into the Date of Birth field
+  And he or she enters '517-39-8196' into the Social Security Number field
+  And he or she enters 'Kristian.Hayes@demo.io' into the Email Address field
+  And he or she enters 's322' into the registration Password field
   And he or she navigates to the Contact Details page
-  Then Dane verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
+  Then Kristian verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
 
 
 Scenario: Register user with Mr. title, M gender, Password with no lowercase
-  Given Rylee is a new customer
-  When Rylee navigates to the Registration page
+  Given Grant is a new customer
+  When Grant navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Rylee' into the First Name field
-  And he or she enters 'Robbins' into the Last Name field
+  And he or she enters 'Grant' into the First Name field
+  And he or she enters 'May' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '08/08/1949' into the Date of Birth field
-  And he or she enters '315-28-0525' into the Social Security Number field
-  And he or she enters 'Rylee.Robbins@demo.io' into the Email Address field
-  And he or she enters 'TPNEDPWCEFPKLW2237' into the registration Password field
+  And he or she enters '08/29/1948' into the Date of Birth field
+  And he or she enters '874-22-0597' into the Social Security Number field
+  And he or she enters 'Grant.May@demo.io' into the Email Address field
+  And he or she enters 'NVJEOEUPA416' into the registration Password field
   And he or she navigates to the Contact Details page
-  Then Rylee verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
+  Then Grant verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
 
 
 Scenario: Register user with Mr. title, M gender, Password with no numeric
-  Given Ramiro is a new customer
-  When Ramiro navigates to the Registration page
+  Given Eddie is a new customer
+  When Eddie navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Ramiro' into the First Name field
-  And he or she enters 'Mcfarland' into the Last Name field
+  And he or she enters 'Eddie' into the First Name field
+  And he or she enters 'Santiago' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '05/02/1930' into the Date of Birth field
-  And he or she enters '669-83-9883' into the Social Security Number field
-  And he or she enters 'Ramiro.Mcfarland@demo.io' into the Email Address field
-  And he or she enters 'nluPOjavDOpaljS' into the registration Password field
+  And he or she enters '11/11/1960' into the Date of Birth field
+  And he or she enters '080-96-7059' into the Social Security Number field
+  And he or she enters 'Eddie.Santiago@demo.io' into the Email Address field
+  And he or she enters 'icGotgYMjCA' into the registration Password field
   And he or she navigates to the Contact Details page
-  Then Ramiro verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
+  Then Eddie verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
 
 
 Scenario: Register user with Mr. title, M gender, Password with no upper
-  Given Jaylin is a new customer
-  When Jaylin navigates to the Registration page
+  Given Milton is a new customer
+  When Milton navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Jaylin' into the First Name field
-  And he or she enters 'Alvarado' into the Last Name field
+  And he or she enters 'Milton' into the First Name field
+  And he or she enters 'Finley' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '03/16/1947' into the Date of Birth field
-  And he or she enters '936-29-2244' into the Social Security Number field
-  And he or she enters 'Jaylin.Alvarado@demo.io' into the Email Address field
-  And he or she enters 'bkuaslfrwf1' into the registration Password field
+  And he or she enters '09/16/1947' into the Date of Birth field
+  And he or she enters '469-99-8623' into the Social Security Number field
+  And he or she enters 'Milton.Finley@demo.io' into the Email Address field
+  And he or she enters 'vnocuwnzsibsuaqxhodv777' into the registration Password field
   And he or she navigates to the Contact Details page
-  Then Jaylin verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
+  Then Milton verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
 
 
 Scenario: Register user with Mr. title, M gender, registered Email Address
-  Given Damian is a new customer
-  When Damian navigates to the Registration page
+  Given Dallas is a new customer
+  When Dallas navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Damian' into the First Name field
-  And he or she enters 'Stewart' into the Last Name field
+  And he or she enters 'Dallas' into the First Name field
+  And he or she enters 'Massey' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '09/05/1932' into the Date of Birth field
-  And he or she enters '647-05-7630' into the Social Security Number field
+  And he or she enters '05/25/1935' into the Date of Birth field
+  And he or she enters '709-24-3916' into the Social Security Number field
   And he or she enters 'jsmith@demo.io' into the Email Address field
-  And he or she enters 'sQUWDMahQAlsfazb65' into the registration Password field
-  And he or she enters 'sQUWDMahQAlsfazb65' into the registration Confirm Password field
+  And he or she enters 'uMcuHGhbNTB16842' into the registration Password field
+  And he or she enters 'uMcuHGhbNTB16842' into the registration Confirm Password field
   And he or she navigates to the Contact Details page
-  Then Damian verifies he or she is presented with a Error Message indicating the input value entered matches an existing Registered User Account
+  Then Dallas verifies he or she is presented with a Error Message indicating the input value entered matches an existing Registered User Account
 
 
 Scenario: Register user with Mr. title, M gender, registered SSN
-  Given Rocco is a new customer
-  When Rocco navigates to the Registration page
+  Given Ahmed is a new customer
+  When Ahmed navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Rocco' into the First Name field
-  And he or she enters 'Foreman' into the Last Name field
+  And he or she enters 'Ahmed' into the First Name field
+  And he or she enters 'Mitchell' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '03/20/1968' into the Date of Birth field
+  And he or she enters '11/02/1945' into the Date of Birth field
   And he or she enters '123-45-6789' into the Social Security Number field
-  And he or she enters 'Rocco.Foreman@demo.io' into the Email Address field
-  And he or she enters 'OawkvRNEFKVZVnM96883' into the registration Password field
-  And he or she enters 'OawkvRNEFKVZVnM96883' into the registration Confirm Password field
+  And he or she enters 'Ahmed.Mitchell@demo.io' into the Email Address field
+  And he or she enters 'cREmQbTCDO807' into the registration Password field
+  And he or she enters 'cREmQbTCDO807' into the registration Confirm Password field
   And he or she navigates to the Contact Details page
-  Then Rocco verifies he or she is presented with a Error Message indicating the input value entered matches an existing Registered User Account
+  Then Ahmed verifies he or she is presented with a Error Message indicating the input value entered matches an existing Registered User Account
 
 
 Scenario: Register user with Mr. title, M gender, empty DoB
-  Given Sebastian is a new customer
-  When Sebastian navigates to the Registration page
+  Given Maximilian is a new customer
+  When Maximilian navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Sebastian' into the First Name field
-  And he or she enters 'Trevino' into the Last Name field
+  And he or she enters 'Maximilian' into the First Name field
+  And he or she enters 'Fleming' into the Last Name field
   And he or she selects 'M' from the Gender radio button
   And he or she enters '' into the Date of Birth field
   And he or she navigates to the Contact Details page
-  Then Sebastian verifies he or she is presented with a Error Message indicating the field is required
+  Then Maximilian verifies he or she is presented with a Error Message indicating the field is required
 
 
 Scenario: Register user with Mr. title, M gender, invalid DoB
-  Given Max is a new customer
-  When Max navigates to the Registration page
+  Given Stanley is a new customer
+  When Stanley navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Max' into the First Name field
-  And he or she enters 'Sandoval' into the Last Name field
+  And he or she enters 'Stanley' into the First Name field
+  And he or she enters 'Bowers' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '1959-09-30vx' into the Date of Birth field
+  And he or she enters '1924-05-10t' into the Date of Birth field
   And he or she navigates to the Contact Details page
-  Then Max verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
+  Then Stanley verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
 
 
 Scenario: Register user with Mr. title, F gender, SSN less than 9 digits
-  Given Nicholas is a new customer
-  When Nicholas navigates to the Registration page
+  Given Darryl is a new customer
+  When Darryl navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Nicholas' into the First Name field
-  And he or she enters 'Melendez' into the Last Name field
+  And he or she enters 'Darryl' into the First Name field
+  And he or she enters 'Haynes' into the Last Name field
   And he or she selects 'F' from the Gender radio button
-  And he or she enters '03/10/1930' into the Date of Birth field
-  And he or she enters '5977' into the Social Security Number field
+  And he or she enters '01/13/1924' into the Date of Birth field
+  And he or she enters '5752122' into the Social Security Number field
   And he or she navigates to the Contact Details page
-  Then Nicholas verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
+  Then Darryl verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
 
 
 Scenario: Register user with Mr. title, F gender, SSN greater than 9 digits
-  Given Gaige is a new customer
-  When Gaige navigates to the Registration page
+  Given Maurice is a new customer
+  When Maurice navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Gaige' into the First Name field
-  And he or she enters 'Hughes' into the Last Name field
+  And he or she enters 'Maurice' into the First Name field
+  And he or she enters 'Goodman' into the Last Name field
   And he or she selects 'F' from the Gender radio button
-  And he or she enters '07/09/1967' into the Date of Birth field
-  And he or she enters '70580856621' into the Social Security Number field
+  And he or she enters '07/13/1925' into the Date of Birth field
+  And he or she enters '56192066682275' into the Social Security Number field
   And he or she navigates to the Contact Details page
-  Then Gaige verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
+  Then Maurice verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
 
 
 Scenario: Register user with Mr. title, F gender, SSN with invalid characters
-  Given Brock is a new customer
-  When Brock navigates to the Registration page
+  Given Sean is a new customer
+  When Sean navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Brock' into the First Name field
-  And he or she enters 'Barrera' into the Last Name field
+  And he or she enters 'Sean' into the First Name field
+  And he or she enters 'Oneill' into the Last Name field
   And he or she selects 'F' from the Gender radio button
-  And he or she enters '06/15/1995' into the Date of Birth field
-  And he or she enters '765$86$3567' into the Social Security Number field
+  And he or she enters '02/07/1952' into the Date of Birth field
+  And he or she enters '249$13$1491' into the Social Security Number field
   And he or she navigates to the Contact Details page
-  Then Brock verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
+  Then Sean verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
 
 
 Scenario: Register user with Mr. title, F gender, empty Mobile Phone
-  Given Darrell is a new customer
-  When Darrell navigates to the Registration page
+  Given Jamal is a new customer
+  When Jamal navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Darrell' into the First Name field
-  And he or she enters 'Orr' into the Last Name field
+  And he or she enters 'Jamal' into the First Name field
+  And he or she enters 'Owens' into the Last Name field
   And he or she selects 'F' from the Gender radio button
-  And he or she enters '12/16/1937' into the Date of Birth field
-  And he or she enters '798-74-7089' into the Social Security Number field
-  And he or she enters 'Darrell.Orr@demo.io' into the Email Address field
-  And he or she enters 'FHigUuXMKmYZd77' into the registration Password field
-  And he or she enters 'FHigUuXMKmYZd77' into the registration Confirm Password field
+  And he or she enters '05/04/1931' into the Date of Birth field
+  And he or she enters '244-04-3694' into the Social Security Number field
+  And he or she enters 'Jamal.Owens@demo.io' into the Email Address field
+  And he or she enters 'CDCvvSzL7427' into the registration Password field
+  And he or she enters 'CDCvvSzL7427' into the registration Confirm Password field
   And he or she navigates to the Contact Details page
   And he or she verifies he or she is the Contact Details page
-  And he or she enters 'SANTANA URB. EXT. TANTAMA' into the registration Address field
-  And he or she enters 'Paducah' into the registration Locality field
-  And he or she enters 'KY' into the registration Region field
-  And he or she enters '42001' into the registration Postal Code field
+  And he or she enters 'RES SABANA CALLE CHILE #E 6' into the registration Address field
+  And he or she enters 'North myrtle beach' into the registration Locality field
+  And he or she enters 'SC' into the registration Region field
+  And he or she enters '29582' into the registration Postal Code field
   And he or she enters 'United States' into the registration Country field
-  And he or she enters '6506142002' into the registration Home Phone field
+  And he or she enters '2469765369' into the registration Home Phone field
   And he or she enters '' into the registration Mobile Phone field
-  And he or she enters '6506142002' into the registration Work Phone field
+  And he or she enters '2469765369' into the registration Work Phone field
   And he or she selects 'True' from the Agree to Terms and Policy checkbox
   And he or she submits the Registration request
-  Then Darrell verifies he or she is at the Login page
+  Then Jamal verifies he or she is at the Login page
   And he or she verifies he or she is presented with a Registration Success Message
-  And he or she verifies login Username contains Darrell.Orr@demo.io
-  And he or she enters 'FHigUuXMKmYZd77' into the login Password field
+  And he or she verifies login Username contains Jamal.Owens@demo.io
+  And he or she enters 'CDCvvSzL7427' into the login Password field
   And he or she submits the login request
   And he or she verifies he or she is at the Home page
 
 
 Scenario: Register user with Mr. title, F gender, empty DoB
-  Given Abraham is a new customer
-  When Abraham navigates to the Registration page
+  Given Tyrone is a new customer
+  When Tyrone navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Abraham' into the First Name field
-  And he or she enters 'Randolph' into the Last Name field
+  And he or she enters 'Tyrone' into the First Name field
+  And he or she enters 'Coffey' into the Last Name field
   And he or she selects 'F' from the Gender radio button
   And he or she enters '' into the Date of Birth field
   And he or she navigates to the Contact Details page
-  Then Abraham verifies he or she is presented with a Error Message indicating the field is required
+  Then Tyrone verifies he or she is presented with a Error Message indicating the field is required
 
 
 Scenario: Register user with Mr. title, F gender, invalid DoB
-  Given Kenyon is a new customer
-  When Kenyon navigates to the Registration page
+  Given Jovan is a new customer
+  When Jovan navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Kenyon' into the First Name field
-  And he or she enters 'Newton' into the Last Name field
+  And he or she enters 'Jovan' into the First Name field
+  And he or she enters 'Gould' into the Last Name field
   And he or she selects 'F' from the Gender radio button
-  And he or she enters '1948-10-18n' into the Date of Birth field
+  And he or she enters '1982-08-23f' into the Date of Birth field
   And he or she navigates to the Contact Details page
-  Then Kenyon verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
+  Then Jovan verifies he or she is presented with a Error Message indicating input value does not meet required format for the field
 
 
 Scenario: Register user with Mr. title, gender not selected
-  Given Jamari is a new customer
-  When Jamari navigates to the Registration page
+  Given Elvis is a new customer
+  When Elvis navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Jamari' into the First Name field
-  And he or she enters 'Ferguson' into the Last Name field
+  And he or she enters 'Elvis' into the First Name field
+  And he or she enters 'Hogan' into the Last Name field
   And he or she selects '' from the Gender radio button
   And he or she navigates to the Contact Details page
-  Then Jamari verifies he or she is presented with a Error Message indicating the field is required
+  Then Elvis verifies he or she is presented with a Error Message indicating the field is required
 
 
 Scenario: Register user with Mr. title, empty Last Name
-  Given Wilson is a new customer
-  When Wilson navigates to the Registration page
+  Given Kelton is a new customer
+  When Kelton navigates to the Registration page
   And he or she selects 'Mr.' from the Title radio button
-  And he or she enters 'Wilson' into the First Name field
+  And he or she enters 'Kelton' into the First Name field
   And he or she enters '' into the Last Name field
   And he or she navigates to the Contact Details page
-  Then Wilson verifies he or she is presented with a Error Message indicating the field is required
+  Then Kelton verifies he or she is presented with a Error Message indicating the field is required
 
 
 Scenario: Register user with Mr. title, empty First Name
@@ -653,19 +653,19 @@ Scenario: Register user with Mr. title, empty First Name
 
 
 Scenario: Register user with Ms. title, M gender, registered SSN, registered Email Address
-  Given Annie is a new customer
-  When Annie navigates to the Registration page
+  Given Cierra is a new customer
+  When Cierra navigates to the Registration page
   And he or she selects 'Ms.' from the Title radio button
-  And he or she enters 'Annie' into the First Name field
-  And he or she enters 'Edwards' into the Last Name field
+  And he or she enters 'Cierra' into the First Name field
+  And he or she enters 'Salas' into the Last Name field
   And he or she selects 'M' from the Gender radio button
-  And he or she enters '02/23/1969' into the Date of Birth field
+  And he or she enters '08/19/1997' into the Date of Birth field
   And he or she enters '123-45-6789' into the Social Security Number field
   And he or she enters 'jsmith@demo.io' into the Email Address field
-  And he or she enters 'CNiovhqmxeWj73' into the registration Password field
-  And he or she enters 'CNiovhqmxeWj73' into the registration Confirm Password field
+  And he or she enters 'WwdZkaYc82568' into the registration Password field
+  And he or she enters 'WwdZkaYc82568' into the registration Confirm Password field
   And he or she navigates to the Contact Details page
-  Then Annie verifies he or she is presented with a Error Message indicating the input value entered matches an existing Registered User Account
+  Then Cierra verifies he or she is presented with a Error Message indicating the input value entered matches an existing Registered User Account
 
 
 Scenario: Register user with Ms. title, empty First Name
@@ -678,16 +678,16 @@ Scenario: Register user with Ms. title, empty First Name
 
 
 Scenario: Register user with Mrs. title, F gender, empty SSN
-  Given Monique is a new customer
-  When Monique navigates to the Registration page
+  Given Autumn is a new customer
+  When Autumn navigates to the Registration page
   And he or she selects 'Mrs.' from the Title radio button
-  And he or she enters 'Monique' into the First Name field
-  And he or she enters 'Fletcher' into the Last Name field
+  And he or she enters 'Autumn' into the First Name field
+  And he or she enters 'Hensley' into the Last Name field
   And he or she selects 'F' from the Gender radio button
-  And he or she enters '12/21/1979' into the Date of Birth field
+  And he or she enters '02/02/1968' into the Date of Birth field
   And he or she enters '' into the Social Security Number field
   And he or she navigates to the Contact Details page
-  Then Monique verifies he or she is presented with a Error Message indicating the field is required
+  Then Autumn verifies he or she is presented with a Error Message indicating the field is required
 
 
 Scenario: Register user with Mrs. title, empty First Name

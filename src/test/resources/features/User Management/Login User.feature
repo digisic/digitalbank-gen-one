@@ -1,4 +1,4 @@
-@ui, @user, @security
+@ui, @user, @security, @login
 Feature: Login User
   As a registered user
   I want to authenticate into the application
@@ -31,7 +31,7 @@ Scenario: Login user with valid username, invalid password
   Given Josh is a registered user
   When Josh navigates to the Login page
   And he or she enters 'jsmith@demo.io' into the login Username field
-  And he or she enters 'BiaaAAkvcbpdJiYhvLi06246' into the login Password field
+  And he or she enters 'JNznoLNbr5' into the login Password field
   And he or she submits the login request
   Then Josh verifies he or she is presented with a error message indicating invalid login credentials
 
@@ -48,7 +48,7 @@ Scenario: Login user with valid username, empty password
 Scenario: Login user with invalid username, valid password
   Given Josh is a registered user
   When Josh navigates to the Login page
-  And he or she enters 'rYPyFh6g6CDiR2@demo.io' into the login Username field
+  And he or she enters 'kEqr8J@demo.io' into the login Username field
   And he or she enters 'Demo123!' into the login Password field
   And he or she submits the login request
   Then Josh verifies he or she is presented with a error message indicating invalid login credentials
@@ -57,8 +57,8 @@ Scenario: Login user with invalid username, valid password
 Scenario: Login user with invalid username, invalid password
   Given Josh is a registered user
   When Josh navigates to the Login page
-  And he or she enters 'LeNk0sxzRfzEz@demo.io' into the login Username field
-  And he or she enters 'MkBTQCEtabelNbZ1014' into the login Password field
+  And he or she enters '3nOHoDp0eA@demo.io' into the login Username field
+  And he or she enters 'GVChtTNtXaQmcpjAZAOM33978' into the login Password field
   And he or she submits the login request
   Then Josh verifies he or she is presented with a error message indicating invalid login credentials
 
@@ -76,6 +76,6 @@ Scenario: Login user with empty username, invalid password
   Given Josh is a registered user
   When Josh navigates to the Login page
   And he or she enters '' into the login Username field
-  And he or she enters 'cBFYgKSu16144' into the login Password field
+  And he or she enters 'WwvbtFgQRoDtzZFB96942' into the login Password field
   And he or she submits the login request
   Then Josh verifies he or she is presented with a error message indicating invalid login credentials
