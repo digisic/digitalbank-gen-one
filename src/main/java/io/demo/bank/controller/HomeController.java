@@ -25,6 +25,7 @@ public class HomeController {
 	private static final String MODEL_ATT_USER_PROFILE 			= "userProfile";
 	private static final String MODEL_ATT_FIRST_NAME 			= "firstName";
 	private static final String MODEL_ATT_ERROR_MSG				= "errorMsg";
+	private static final String MODEL_ATT_SUCCESS_MSG			= "successMsg";
 	private static final String MODEL_ATT_AVATAR				= "avatar";
 	private static final String MODEL_VAL_AVATAR_MALE			= "/images/admin.jpg";
 	private static final String MODEL_VAL_AVATAR_FEMALE			= "/images/avatar/5.jpg";
@@ -180,6 +181,7 @@ public class HomeController {
     
 		newUser = userService.createUser(newUser);
 		model.addAttribute(MODEL_ATT_USER, newUser);
+		model.addAttribute(MODEL_ATT_SUCCESS_MSG, "Registration Successful. Please Login.");
     
 		LOG.debug("User Registered: " + newUser);
     
