@@ -5,7 +5,7 @@ Feature: Logout User
   so that my accounts remain secure
 
 
-
+@positive
 Scenario: Logout user and end the application session
   Given Josh is logged into the application
   When Josh navigates to the User Profile menu
