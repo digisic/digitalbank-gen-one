@@ -67,5 +67,10 @@ public class LoginUserTests {
 	public void rememberMeIsPresent (){
 		login.remeberMeCookiePresent();
 	}
+	
+	@And("^he or she verifies login (.*) contains (.*)$")
+	public void fieldContainsValue (String field, String value){
+		login.assertFieldContainsValue(field, value);
+	}
 		
 }

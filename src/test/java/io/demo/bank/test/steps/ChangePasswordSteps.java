@@ -4,10 +4,16 @@ import static org.junit.Assert.assertTrue;
 
 import io.demo.bank.test.pageobject.ChangePasswordPage;
 import net.thucydides.core.annotations.Step;
+import net.thucydides.core.steps.ScenarioSteps;
 
 
-public class ChangePasswordSteps {
+public class ChangePasswordSteps extends ScenarioSteps {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3473781951391128600L;
+	
 	ChangePasswordPage changePasswordPage;
 	
 	@Step ("Enter Current Password '{0}'")

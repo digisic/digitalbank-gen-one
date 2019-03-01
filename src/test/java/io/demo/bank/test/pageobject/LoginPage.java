@@ -17,8 +17,11 @@ public class LoginPage extends PageObject{
 	@FindBy(id="remember-me")
 	private WebElementFacade rememberMeCheckBox;
 	
-	@FindBy(tagName="button")
+	@FindBy(id="submit")
 	private WebElementFacade submitButton;
+	
+	@FindBy(tagName="form")
+	private WebElementFacade loginForm;
 	
 	@FindBy(className="alert-danger")
 	private WebElementFacade errorMessage;
@@ -26,7 +29,7 @@ public class LoginPage extends PageObject{
 	@FindBy(className="alert-success")
 	private WebElementFacade successMessage;
 	
-	private static String loginPageURI = "/login";
+
 	private static String rememberMeCookie = "remember-me";
 	
 	
@@ -63,7 +66,20 @@ public class LoginPage extends PageObject{
 	}
 	
 	public boolean atLoginPage() {
-		return getDriver().getCurrentUrl().contains(loginPageURI);
+		return loginForm.getAttribute("action").contains("/login");
+	}
+	
+	public boolean fieldContainsValue (String field, String value) {
+		
+		switch (field) {
+			case "Username":
+				return userField.containsValue(value);
+			case "Password":
+				return passwordField.containsValue(value);
+			default:
+				return false;
+				
+		}
 	}
 
 }

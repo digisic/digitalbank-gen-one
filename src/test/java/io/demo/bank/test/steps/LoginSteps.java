@@ -64,5 +64,10 @@ public class LoginSteps extends ScenarioSteps{
 	public void remeberMeCookieNotPresent() {
 		assertFalse (loginPage.cookiePresent());
 	}
+	
+	@Step ("Assert the '{0}' field contains value '{0}'")
+	public void assertFieldContainsValue(String field, String value) {
+		assertTrue (true);
+	}
 
 }
