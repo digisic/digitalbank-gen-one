@@ -44,8 +44,8 @@
 	                        					<label class="form-control-label"><strong>Select Checking Account Type</strong></label>
 	                       					</div>
 		                   					<div class="form-check-inline form-check">
-		                            			<label class="form-check-label" th:each="acctType : ${accountTypeList}" th:for="${#ids.next('account.accountType')}">
-								                    <input type="radio" class="form-check-input" th:onclick="|document.getElementById('minDeposit').innerHTML='ex. Minimum opening deposit is $${acctType.minDeposit}';|" th:field="*{account.accountType}" th:text="${acctType.name} + '&nbsp;&nbsp;&nbsp;'" th:value="${acctType.id}" required/>
+		                            			<label class="form-check-label" th:each="acctType : ${accountTypeList}" th:for="${acctType.name}">
+								                    <input type="radio" class="form-check-input" th:id="${acctType.name}" th:onclick="|document.getElementById('minDeposit').innerHTML='ex. Minimum opening deposit is $${acctType.minDeposit}';|" th:field="*{account.accountType}" th:text="${acctType.name} + '&nbsp;&nbsp;&nbsp;'" th:value="${acctType.id}" required/>
 								                </label>
 		                        			</div>
 		                        			<br><br>
@@ -55,8 +55,8 @@
 	                        					<label class="form-control-label"><strong>Select Account Ownership</strong></label>
 	                       					</div>
 		                   					<div class="form-check-inline form-check">
-		                            			<label class="form-check-label" th:each="ownType : ${ownershipTypeList}" th:for="${#ids.next('account.ownershipType')}">
-								                    <input type="radio" class="form-check-input" th:field="*{account.ownershipType}" th:text="${ownType.name} + '&nbsp;&nbsp;&nbsp;'" th:value="${ownType.id}" required/>
+		                            			<label class="form-check-label" th:each="ownType : ${ownershipTypeList}" th:for="${ownType.name}">
+								                    <input type="radio" class="form-check-input" th:id="${ownType.name}" th:field="*{account.ownershipType}" th:text="${ownType.name} + '&nbsp;&nbsp;&nbsp;'" th:value="${ownType.id}" required/>
 								                </label>
 		                        			</div>
 		                        		<br><br>
