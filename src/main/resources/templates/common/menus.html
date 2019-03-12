@@ -115,14 +115,26 @@
                         <div class="dropdown for-notification">
                           <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-bell"></i>
-                            <span class="count bg-danger">1</span>
+                            
+                            <!--<span class="count bg-danger" th:text="${#lists.size(notifications)}">[Num Notifications]</span>-->
+                            <span class="count bg-danger" th:text="${notificationCount}">[Num Notifications]</span>
+                            <!--<span class="count bg-danger">1</span>-->
+                            
                           </button>
                           <div class="dropdown-menu" aria-labelledby="notification">
-                            <p class="red">You have 1 Notification</p>
-                            <a class="dropdown-item media bg-flat-color-5" href="#">
+                            
+                            <!--<p class="red" th:text="'You have ' + ${#lists.size(notifications)} + ' notifications'">You have Notifications</p>-->
+                            <p class="red">You have <span th:text="${notificationCount}">[Num Notifications]</span> Notification[s]</p>
+                            
+                            <a class="dropdown-item media bg-flat-color-5" th:each="notification : ${notifications}" href="#">
+                                <i class="fa fa-warning"></i>
+                                <p>${notification.content}</p>
+                            </a>
+                            <!-- <a class="dropdown-item media bg-flat-color-5" href="#">
                                 <i class="fa fa-warning"></i>
                                 <p>Schedule Maintenance this weekend.</p>
-                            </a>
+                            </a> -->
+                            
                           </div>
                         </div>
 
@@ -133,10 +145,17 @@
                             <i class="ti-email"></i>
                             <span class="count bg-primary">0</span>
                           </button>
+                       
+
                           <div class="dropdown-menu" aria-labelledby="message">
                             <p class="red">You have 0 Mails</p>
-                            
+                            <a class="dropdown-item media bg-flat-color-5" href="#">
+                                <i class="fa fa-warning"></i>
+                                <p>You opened a checking account</p>
+                            </a>
                           </div>
+                          
+                          
                         </div>
                     </div>
                 </div>

@@ -1,12 +1,17 @@
 package io.demo.bank.config;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
+
+import io.demo.bank.model.Message;
+import io.demo.bank.model.Notification;
 import io.demo.bank.model.UserProfile;
 import io.demo.bank.model.security.Users;
 import io.demo.bank.service.UserService;

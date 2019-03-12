@@ -27,6 +27,8 @@ public class UserController {
 	// model attribute constants
 	private static final String MODEL_ATT_USER_PROFILE 			= "userProfile";
 	private static final String MODEL_ATT_FIRST_NAME 			= "firstName";
+	private static final String MODEL_ATT_NOTIFICATIONS 		= "notifications";
+	private static final String MODEL_ATT_MESSAGES 				= "messages";
 	private static final String MODEL_ATT_NEW_PASS 				= "newPassword";
 	private static final String MODEL_ATT_CUR_PASS 				= "currentPassword";
 	private static final String MODEL_ATT_ERROR_MSG				= "errorMsg";
@@ -42,6 +44,12 @@ public class UserController {
 		
 		// Add name for Welcome header
 		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
+		
+		// Add user's notifications for header
+		model.addAttribute(MODEL_ATT_NOTIFICATIONS, user.getNotifications());
+		
+		// Add user's messages for header
+//		model.addAttribute(MODEL_ATT_MESSAGES, user.getMessages());
 		
 		// Choose male or female avatar
 		if (user.getUserProfile().getGender().equals(Constants.GENDER_MALE)) {
