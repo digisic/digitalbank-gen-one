@@ -112,7 +112,7 @@ public class AccountController {
 			newAccount = accountService.createNewAccount(newAccount);
 			
 			// Add notification to user
-			userService.addNotification(user, "New "+newAccount.getAccountType().getName()+" account created");
+			userService.addNotification(user, "New "+newAccount.getAccountType().getName()+" account named "+newAccount.getName()+" created");
 		}
 		else {
 			
