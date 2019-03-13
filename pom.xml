@@ -6,7 +6,7 @@
 	<groupId>io.demo</groupId>
 	<artifactId>Digital-Bank</artifactId>
 	<version>0.0.5-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>Digital-Bank</name>
 	<description>Sample Spring Boot Project</description>
