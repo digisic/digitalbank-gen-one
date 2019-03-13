@@ -1,5 +1,5 @@
 version: 0.0
 os: linux
 files:
-  - source: ./Digital-Bank-0.0.5-SNAPSHOT.jar
+  - source: ./Digital-Bank-0.0.5-SNAPSHOT.war
     destination: /tmp
