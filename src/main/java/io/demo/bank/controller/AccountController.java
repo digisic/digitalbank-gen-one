@@ -35,6 +35,8 @@ public class AccountController {
 	
 	// model attribute constants
 	private static final String MODEL_ATT_FIRST_NAME 		= "firstName";
+	private static final String MODEL_ATT_NOTIFICATIONS 		= "notifications";
+	private static final String MODEL_ATT_MESSAGES 				= "messages";
 	private static final String MODEL_ATT_ACCOUNT 			= "account";
 	private static final String MODEL_ATT_TO_ACCOUNT 		= "toAccount";
 	private static final String MODEL_ATT_FROM_ACCOUNT 		= "fromAccount";
@@ -56,6 +58,13 @@ public class AccountController {
 		
 		// Add name for Welcome header
 		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
+		
+		// Add user's notifications for header
+		LOG.info("its me!");
+		model.addAttribute(MODEL_ATT_NOTIFICATIONS, user.getNotifications());
+		
+		// Add user's messages for header
+//		model.addAttribute(MODEL_ATT_MESSAGES, user.getMessages());
 		
 		// Choose male or female avatar
 		if (user.getUserProfile().getGender().equals(Constants.GENDER_MALE)) {
@@ -101,6 +110,9 @@ public class AccountController {
 			// Create Account
 			newAccount.setOwner(user);
 			newAccount = accountService.createNewAccount(newAccount);
+			
+			// Add notification to user
+			userService.addNotification(user, "New "+newAccount.getAccountType().getName()+" account named "+newAccount.getName()+" created");
 		}
 		else {
 			

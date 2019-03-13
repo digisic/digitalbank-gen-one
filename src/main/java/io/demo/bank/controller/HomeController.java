@@ -24,6 +24,9 @@ public class HomeController {
 	private static final String MODEL_ATT_USER 					= "user";
 	private static final String MODEL_ATT_USER_PROFILE 			= "userProfile";
 	private static final String MODEL_ATT_FIRST_NAME 			= "firstName";
+	private static final String MODEL_ATT_NOTIFICATIONS 		= "notifications";
+	private static final String MODEL_ATT_NOTIFICATIONS_COUNT 	= "notificationCount";
+	private static final String MODEL_ATT_MESSAGES 				= "messages";
 	private static final String MODEL_ATT_ERROR_MSG				= "errorMsg";
 	private static final String MODEL_ATT_SUCCESS_MSG			= "successMsg";
 	private static final String MODEL_ATT_AVATAR				= "avatar";
@@ -37,6 +40,14 @@ public class HomeController {
 		
 		// Add name for Welcome header
 		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
+		
+		// Add user's notifications for header
+		model.addAttribute(MODEL_ATT_NOTIFICATIONS, user.getNotifications());
+		
+		model.addAttribute(MODEL_ATT_NOTIFICATIONS_COUNT, user.getNotifications().size());
+		
+		// Add user's messages for header
+//		model.addAttribute(MODEL_ATT_MESSAGES, user.getMessages());
 		
 		// Choose male or female avatar
 		if (user.getUserProfile().getGender().equals(Constants.GENDER_MALE)) {
