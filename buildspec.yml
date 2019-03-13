@@ -11,6 +11,6 @@ phases:
       - mvn package
 artifacts:
   files:
-    - target/digitalbank-1.0-SNAPSHOT.jar
+    - target/Digital-Bank-0.0.5-SNAPSHOT.jar
     - appspec.yml
   discard-paths: yes
