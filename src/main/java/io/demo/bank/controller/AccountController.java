@@ -35,8 +35,8 @@ public class AccountController {
 	
 	// model attribute constants
 	private static final String MODEL_ATT_FIRST_NAME 		= "firstName";
-	private static final String MODEL_ATT_NOTIFICATIONS 		= "notifications";
-	private static final String MODEL_ATT_MESSAGES 				= "messages";
+	private static final String MODEL_ATT_NOTIFICATIONS 	= "notifications";
+//	private static final String MODEL_ATT_MESSAGES 			= "messages";
 	private static final String MODEL_ATT_ACCOUNT 			= "account";
 	private static final String MODEL_ATT_TO_ACCOUNT 		= "toAccount";
 	private static final String MODEL_ATT_FROM_ACCOUNT 		= "fromAccount";

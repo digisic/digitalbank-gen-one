@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import io.demo.bank.model.UserProfile;
 import io.demo.bank.model.security.Users;
 import io.demo.bank.service.UserService;
@@ -28,7 +27,7 @@ public class UserController {
 	private static final String MODEL_ATT_USER_PROFILE 			= "userProfile";
 	private static final String MODEL_ATT_FIRST_NAME 			= "firstName";
 	private static final String MODEL_ATT_NOTIFICATIONS 		= "notifications";
-	private static final String MODEL_ATT_MESSAGES 				= "messages";
+//	private static final String MODEL_ATT_MESSAGES 				= "messages";
 	private static final String MODEL_ATT_NEW_PASS 				= "newPassword";
 	private static final String MODEL_ATT_CUR_PASS 				= "currentPassword";
 	private static final String MODEL_ATT_ERROR_MSG				= "errorMsg";

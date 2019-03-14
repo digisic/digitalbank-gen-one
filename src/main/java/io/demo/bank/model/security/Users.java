@@ -16,14 +16,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import io.demo.bank.controller.AccountController;
 import io.demo.bank.model.Account;
 import io.demo.bank.model.Message;
 import io.demo.bank.model.Notification;
