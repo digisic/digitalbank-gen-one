@@ -2,11 +2,16 @@ package io.demo.bank.controller;
 
 import java.math.BigDecimal;
 import java.security.Principal;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.info.BuildProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +37,9 @@ public class AccountController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private BuildProperties buildProperties;
+	
 	
 	// model attribute constants
 	private static final String MODEL_ATT_FIRST_NAME 		= "firstName";
@@ -50,6 +58,9 @@ public class AccountController {
 	private static final String MODEL_ATT_ACCT_NONE			= "noAccounts";
 	private static final String MODEL_ATT_ERROR_MSG			= "errorMsg";
 	private static final String MODEL_ATT_AVATAR			= "avatar";
+	private static final String MODEL_ATT_APP_VERSION		= "appVersion";
+	private static final String MODEL_ATT_APP_NAME			= "appName";
+	private static final String MODEL_ATT_APP_BUILD_DATE	= "appBuildDate";
 	private static final String MODEL_VAL_AVATAR_MALE		= "/images/admin.jpg";
 	private static final String MODEL_VAL_AVATAR_FEMALE		= "/images/avatar/5.jpg";
 	
@@ -73,6 +84,15 @@ public class AccountController {
 			model.addAttribute(MODEL_ATT_AVATAR, MODEL_VAL_AVATAR_FEMALE);
 		}
 		
+		// Get build date in a proper display format
+		DateTimeFormatter dtFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
+														 .withLocale(Locale.US)
+														 .withZone(ZoneId.systemDefault());
+		
+		// Add Application Version for About
+		model.addAttribute(MODEL_ATT_APP_NAME, buildProperties.getName());
+		model.addAttribute(MODEL_ATT_APP_VERSION, buildProperties.getVersion());
+		model.addAttribute(MODEL_ATT_APP_BUILD_DATE, dtFormatter.format(buildProperties.getTime()));
 	}
 	
 	
