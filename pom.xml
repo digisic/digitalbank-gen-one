@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.demo</groupId>
-	<artifactId>Digital-Bank</artifactId>
-	<version>0.0.5-SNAPSHOT</version>
+	<artifactId>digitalbank</artifactId>
+	<version>${revision}</version>
 	<packaging>jar</packaging>
 
-	<name>Digital-Bank</name>
+	<name>Digital Bank</name>
 	<description>Sample Spring Boot Project</description>
 
 	<parent>
@@ -32,6 +32,8 @@
         <webdriver.base.url></webdriver.base.url>
         <webdriver.driver>firefox</webdriver.driver>
         <webdriver.base.url>http://localhost:8080/</webdriver.base.url>
+        <buildNumber>local</buildNumber>
+        <revision>1.0.1.${buildNumber}</revision>
 	</properties>
 
 	<dependencies>
