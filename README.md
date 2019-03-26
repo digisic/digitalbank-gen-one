@@ -5,4 +5,4 @@ An example Spring MVC application that has an HTML5 web interface. The applicati
 - Serenity BDD Test Automation Framework
 - Docker Container for Distribution (https://hub.docker.com/r/asburymr/digitalbank)
 
-Running automated tests on Windows requires Firefox Quantum (64-bit) to be installed
+Running automated tests on Windows requires Firefox Quantum (64-bit) to be installed 

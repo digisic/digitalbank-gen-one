@@ -59,6 +59,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 			.deleteCookies(Constants.COO_JSESSION_ID).permitAll()
 			.and()
 			.rememberMe().key(Constants.COO_REMEBER_ME).tokenValiditySeconds(86400);
+		
+		http.headers().frameOptions().disable();
   }
   
 	@Autowired
