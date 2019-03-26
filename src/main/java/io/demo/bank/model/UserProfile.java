@@ -1,23 +1,14 @@
 package io.demo.bank.model;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -385,15 +376,8 @@ public class UserProfile {
 	    userProfile += "\nRegion:\t\t\t" 		+ this.getRegion();
 	    userProfile += "\nPostal Code:\t\t" 	+ this.getPostalCode();
 	    userProfile += "\nCountry:\t\t" 		+ this.getCountry();
-	    userProfile += "\nNotifications:";
-//	    for (Notification notif : this.notifications) {
-//	    	userProfile += "\n\tNotification:\t\t" + notif;
-//	    }
-//	    userProfile += "\nMessages:";
-//	    for (Message msg : this.messages) {
-//	    	userProfile += "\n\tMessage:\t\t" + msg;
-//	    }
-//	    userProfile += "\n*******************************************\n";
+
+	    userProfile += "\n*******************************************\n";
 	    
 	    return userProfile;
 	}

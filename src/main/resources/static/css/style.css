@@ -594,7 +594,8 @@ header .form-inline {
       #language-select .dropdown-menu .dropdown-item .flag-icon {
         margin-right: 0;
         width: 25px; }
-
+ 
+ 
 .notification-show + .dropdown-menu,
 .message-show + .dropdown-menu,
 .language-show + .dropdown-menu {

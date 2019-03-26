@@ -1,7 +1,6 @@
 package io.demo.bank.controller;
 
 import java.security.Principal;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import io.demo.bank.model.UserProfile;
 import io.demo.bank.model.security.Users;
 import io.demo.bank.service.UserService;
@@ -19,52 +17,20 @@ import io.demo.bank.util.Constants;
 
 @Controller
 @RequestMapping(Constants.URI_USER)
-public class UserController {
+public class UserController extends CommonController {
 	
 	// Class Logger
 	private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
-	
-	// model attribute constants
-	private static final String MODEL_ATT_USER_PROFILE 			= "userProfile";
-	private static final String MODEL_ATT_FIRST_NAME 			= "firstName";
-	private static final String MODEL_ATT_NOTIFICATIONS 		= "notifications";
-	private static final String MODEL_ATT_MESSAGES 				= "messages";
-	private static final String MODEL_ATT_NEW_PASS 				= "newPassword";
-	private static final String MODEL_ATT_CUR_PASS 				= "currentPassword";
-	private static final String MODEL_ATT_ERROR_MSG				= "errorMsg";
-	private static final String MODEL_ATT_SUCCESS_MSG			= "successMsg";
-	private static final String MODEL_ATT_AVATAR				= "avatar";
-	private static final String MODEL_VAL_AVATAR_MALE			= "/images/admin.jpg";
-	private static final String MODEL_VAL_AVATAR_FEMALE			= "/images/avatar/5.jpg";
 		  
 	@Autowired
 	private UserService userService;
-	
-	private void setUserDisplayDefaults (Users user, Model model) {
 		
-		// Add name for Welcome header
-		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
-		
-		// Add user's notifications for header
-		model.addAttribute(MODEL_ATT_NOTIFICATIONS, user.getNotifications());
-		
-		// Add user's messages for header
-//		model.addAttribute(MODEL_ATT_MESSAGES, user.getMessages());
-		
-		// Choose male or female avatar
-		if (user.getUserProfile().getGender().equals(Constants.GENDER_MALE)) {
-			model.addAttribute(MODEL_ATT_AVATAR, MODEL_VAL_AVATAR_MALE);
-		}else {
-			model.addAttribute(MODEL_ATT_AVATAR, MODEL_VAL_AVATAR_FEMALE);
-		}
-		
-	}
 
 	@GetMapping(Constants.URI_USR_PASSWORD)
 	public String password(Principal principal, Model model) {
     
-		Users user = userService.findByUsername(principal.getName());
-		this.setUserDisplayDefaults(user, model);
+		// Set Display Defaults
+		setDisplayDefaults(principal, model);
 		    
 		return Constants.VIEW_USR_PASSWORD;
 	}
@@ -74,8 +40,10 @@ public class UserController {
 						   @ModelAttribute(MODEL_ATT_NEW_PASS) String newPassword,
 						   @ModelAttribute(MODEL_ATT_CUR_PASS) String oldPassword) {
     
+		// Set Display Defaults
+		setDisplayDefaults(principal, model);
+				
 		Users user = userService.findByUsername(principal.getName());
-		this.setUserDisplayDefaults(user, model);
 		
 		LOG.debug("Change Password: Validate Password Entries.");
 		
@@ -117,8 +85,11 @@ public class UserController {
 	@GetMapping(Constants.URI_USR_PROFILE)
 	public String profile(Principal principal, Model model) {
     
+		
+		// Set Display Defaults
+		setDisplayDefaults(principal, model);
+				
 		Users user = userService.findByUsername(principal.getName());
-		this.setUserDisplayDefaults(user, model);
 		
 		model.addAttribute(MODEL_ATT_USER_PROFILE, user.getUserProfile());
 		    
@@ -129,8 +100,10 @@ public class UserController {
 	public String profile(Principal principal, Model model,
 			 			  @ModelAttribute(MODEL_ATT_USER_PROFILE) UserProfile updateProfile) {
     
+		// Set Display Defaults
+		setDisplayDefaults(principal, model);
+				
 		Users user = userService.findByUsername(principal.getName());
-		this.setUserDisplayDefaults(user, model);
 		
 		UserProfile up = user.getUserProfile();
 		
