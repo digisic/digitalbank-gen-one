@@ -1,24 +1,20 @@
 package io.demo.bank.service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import io.demo.bank.model.Notification;
 import io.demo.bank.model.UserProfile;
 import io.demo.bank.model.enums.NotificationType;
 import io.demo.bank.model.security.UserRole;
 import io.demo.bank.model.security.Users;
-import io.demo.bank.repository.NotificationRepository;
 import io.demo.bank.repository.RoleRepository;
 import io.demo.bank.repository.UserProfileRepository;
 import io.demo.bank.repository.UserRepository;
@@ -37,9 +33,6 @@ public class UserService {
   
 	@Autowired
 	private UserProfileRepository userProfileRepository;
-	
-	@Autowired
-	private NotificationRepository notificationRepository;
 	  
 	@Autowired
 	private BCryptPasswordEncoder encoder;
