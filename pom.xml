@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>Digital Bank</name>
-	<description>Sample Spring Boot Project</description>
+	<description>Digital Online Banking Sample Application</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -259,6 +259,4 @@
             </plugin> 
 		</plugins>
 	</build>
-
-
 </project>
