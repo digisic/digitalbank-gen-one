@@ -203,6 +203,18 @@
 							<goal>build-info</goal>
 						</goals>
 					</execution>
+					<execution>
+			          <id>pre-integration-test</id>
+			          <goals>
+			            <goal>start</goal>
+			          </goals>
+			        </execution>
+			        <execution>
+			          <id>post-integration-test</id>
+			          <goals>
+			            <goal>stop</goal>
+			          </goals>
+			        </execution>
 				</executions>
 			</plugin>    
 			<plugin>
