@@ -223,6 +223,7 @@
                 <version>2.22.1</version>
                 <configuration>
                     <skip>true</skip>
+                    <forkCount>0</forkCount>
                 </configuration>
             </plugin>
             <plugin>
