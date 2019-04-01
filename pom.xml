@@ -34,6 +34,8 @@
         <webdriver.base.url>http://localhost:8080/</webdriver.base.url>
         <buildNumber>local</buildNumber>
         <revision>1.0.1.${buildNumber}</revision>
+        <included.packages>-Dincluded.packages=io.demo.bank</included.packages>
+		<included.adapters>-Dincluded.adapters=coverage:complexity:dependency</included.adapters>
 	</properties>
 
 	<dependencies>
@@ -225,6 +227,7 @@
                     <skip>true</skip>
                     <forkCount>0</forkCount>
                     <threadCount>1</threadCount>
+                    <argLine>-javaagent:serenity/serenity.jar -Xms512m -Xmx1024m ${included.packages} ${included.adapters}</argLine>
                 </configuration>
             </plugin>
             <plugin>
