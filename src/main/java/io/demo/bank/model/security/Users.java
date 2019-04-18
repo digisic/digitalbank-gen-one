@@ -1,5 +1,6 @@
 package io.demo.bank.model.security;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -14,18 +15,23 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import io.demo.bank.model.Account;
+import io.demo.bank.model.Message;
+import io.demo.bank.model.Notification;
 import io.demo.bank.model.UserProfile;
 
 
 @Entity
 public class Users implements UserDetails {
 	
-
+	private static final Logger LOG = LoggerFactory.getLogger(Users.class);
+	
 	private static final long serialVersionUID = -1173435728882792083L;
 
 	@Id
@@ -55,8 +61,37 @@ public class Users implements UserDetails {
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="coowner_id")
     private List<Account> coownerAccounts;
+    
+    /*@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OrderBy("timestamp DESC")
+	private List<Message> messages = new ArrayList<>();*/
+	
+	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OrderBy("timestamp DESC")
+	private List<Notification> notifications = new ArrayList<>();
        
-    public Users () {}
+    /*public List<Message> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
+	}*/
+
+	public List<Notification> getNotifications() {
+		if (notifications == null) {
+			LOG.info("notifcations=null, returning new empty arraylist");
+			return new ArrayList<Notification>();
+		}
+		LOG.info("getting notifications which has size "+notifications.size());
+		return notifications;
+	}
+
+	public void setNotifications(List<Notification> notifications) {
+		this.notifications = notifications;
+	}
+
+	public Users () {}
     
     public Users (String username, String password) {
     	this.username = username;

@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.demo</groupId>
-	<artifactId>Digital-Bank</artifactId>
-	<version>0.0.5-SNAPSHOT</version>
+	<artifactId>digitalbank</artifactId>
+	<version>${revision}</version>
 	<packaging>jar</packaging>
 
-	<name>Digital-Bank</name>
-	<description>Sample Spring Boot Project</description>
+	<name>Digital Bank</name>
+	<description>Digital Online Banking Sample Application</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -32,12 +32,19 @@
         <webdriver.base.url></webdriver.base.url>
         <webdriver.driver>firefox</webdriver.driver>
         <webdriver.base.url>http://localhost:8080/</webdriver.base.url>
+        <buildNumber>local</buildNumber>
+        <revision>1.0.1.${buildNumber}</revision>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -189,13 +196,36 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+				<executions>
+					<execution>
+						<id>build-info</id>
+						<goals>
+							<goal>build-info</goal>
+						</goals>
+					</execution>
+					<execution>
+			          <id>pre-integration-test</id>
+			          <goals>
+			            <goal>start</goal>
+			          </goals>
+			        </execution>
+			        <execution>
+			          <id>post-integration-test</id>
+			          <goals>
+			            <goal>stop</goal>
+			          </goals>
+			        </execution>
+				</executions>
+			</plugin>    
 			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.1</version>
+                <version>3.0.0-M3</version>
                 <configuration>
                     <skip>true</skip>
+                    <forkCount>0</forkCount>
+                    <threadCount>1</threadCount>
+                    <argLine></argLine>
                 </configuration>
             </plugin>
             <plugin>
@@ -209,7 +239,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.22.1</version>
+                <version>3.0.0-M3</version>
                 <configuration>
                     <includes>
                         <include>**/*Test*.java</include>
@@ -249,6 +279,4 @@
             </plugin> 
 		</plugins>
 	</build>
-
-
 </project>

@@ -1,18 +1,20 @@
 package io.demo.bank.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class UserProfile {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(UserProfile.class);
   
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
@@ -353,7 +355,6 @@ public class UserProfile {
 	}
 	
 
-
 	public String toString() {
     
 		String userProfile = "\n\nUser Profile ***********************";
@@ -375,8 +376,9 @@ public class UserProfile {
 	    userProfile += "\nRegion:\t\t\t" 		+ this.getRegion();
 	    userProfile += "\nPostal Code:\t\t" 	+ this.getPostalCode();
 	    userProfile += "\nCountry:\t\t" 		+ this.getCountry();
+
 	    userProfile += "\n*******************************************\n";
-    
+	    
 	    return userProfile;
 	}
 }

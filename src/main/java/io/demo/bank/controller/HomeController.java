@@ -16,40 +16,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
-public class HomeController {
+public class HomeController extends CommonController {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(HomeController.class);
 	
-	// model attribute constants
-	private static final String MODEL_ATT_USER 					= "user";
-	private static final String MODEL_ATT_USER_PROFILE 			= "userProfile";
-	private static final String MODEL_ATT_FIRST_NAME 			= "firstName";
-	private static final String MODEL_ATT_ERROR_MSG				= "errorMsg";
-	private static final String MODEL_ATT_SUCCESS_MSG			= "successMsg";
-	private static final String MODEL_ATT_AVATAR				= "avatar";
-	private static final String MODEL_VAL_AVATAR_MALE			= "/images/admin.jpg";
-	private static final String MODEL_VAL_AVATAR_FEMALE			= "/images/avatar/5.jpg";
-  
+	
 	@Autowired
 	private UserService userService;
-	
-	private void setUserDisplayDefaults (Users user, Model model) {
-		
-		// Add name for Welcome header
-		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
-		
-		// Choose male or female avatar
-		if (user.getUserProfile().getGender().equals(Constants.GENDER_MALE)) {
-			model.addAttribute(MODEL_ATT_AVATAR, MODEL_VAL_AVATAR_MALE);
-		}else {
-			model.addAttribute(MODEL_ATT_AVATAR, MODEL_VAL_AVATAR_FEMALE);
-		}
-		
-	}
 	
   
 	@GetMapping(Constants.URI_ROOT)
 	public String root() {
+		
 		
 		return Constants.DIR_REDIRECT + Constants.URI_HOME;
 	}
@@ -191,8 +169,7 @@ public class HomeController {
 	@GetMapping(Constants.URI_HOME)
 	public String home(Principal principal, Model model) {
     
-		Users user = userService.findByUsername(principal.getName());
-		this.setUserDisplayDefaults(user, model);
+		this.setDisplayDefaults(principal, model);
     
 		return Constants.VIEW_HOME;
 	}

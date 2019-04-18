@@ -1,0 +1,5 @@
+version: 0.0
+os: linux
+files:
+  - source: ./Digital-Bank-0.0.5-SNAPSHOT.jar
+    destination: /tmp

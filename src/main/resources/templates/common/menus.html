@@ -21,6 +21,7 @@
                     <li class="active">
                         <a th:href="@{/home}"> <i class="menu-icon fa fa-home"></i>Home </a>
                     </li>
+                    
                     <h3 class="menu-title">Accounts</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-pencil-square-o"></i>Checking</a>
@@ -85,6 +86,7 @@
                         </ul>
                     </li>
            -->          
+           		    
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -115,14 +117,26 @@
                         <div class="dropdown for-notification">
                           <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-bell"></i>
-                            <span class="count bg-danger">1</span>
+                            
+                            <span class="count bg-danger" th:text="${#lists.size(notifications)}">[Num Notifications]</span>
+                            <!--<span class="count bg-danger" th:text="${notificationCount}">[Num Notifications]</span>-->
+                            <!--<span class="count bg-danger">1</span>-->
+                            
                           </button>
                           <div class="dropdown-menu" aria-labelledby="notification">
-                            <p class="red">You have 1 Notification</p>
-                            <a class="dropdown-item media bg-flat-color-5" href="#">
+                            
+                            <!--<p class="red" th:text="'You have ' + ${#lists.size(notifications)} + ' notifications'">You have Notifications</p>-->
+                            <p class="red">You have <span th:text="${notificationCount}">[Num Notifications]</span> Notification[s]</p>
+                            
+                            <a class="dropdown-item media bg-flat-color-5" th:each="notification : ${notifications}" href="#">
+                                <i class="fa fa-warning"></i>
+                                <p th:text="${notification.content}">[Msg Content]</p>
+                            </a>
+                            <!-- <a class="dropdown-item media bg-flat-color-5" href="#">
                                 <i class="fa fa-warning"></i>
                                 <p>Schedule Maintenance this weekend.</p>
-                            </a>
+                            </a> -->
+                            
                           </div>
                         </div>
 
@@ -133,18 +147,24 @@
                             <i class="ti-email"></i>
                             <span class="count bg-primary">0</span>
                           </button>
+                       
+
                           <div class="dropdown-menu" aria-labelledby="message">
                             <p class="red">You have 0 Mails</p>
-                            
+                            <a class="dropdown-item media bg-flat-color-5" href="#">
+                                <i class="fa fa-warning"></i>
+                            </a>
                           </div>
+                          
+                          
                         </div>
                     </div>
                 </div>
 
                 <div class="col-sm-5">
-                    <div class="user-area dropdown float-right">
+                    <div class="user-area dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" th:src="${avatar}" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" th:src="${avatar}" alt="User Avatar"></img>
                         </a>
 
                         <div class="user-menu dropdown-menu">
@@ -159,8 +179,33 @@
                             <i class="flag-icon flag-icon-us"></i>
                         </a>
                     </div>
-
+                    
+                    <div class="user-area">
+                    	<a data-toggle="modal" href="#aboutModal" id="aboutLink">
+                    		<img class="user-avatar rounded-circle"  src="/images/info.png" alt="About"></img>
+                    	</a>
+					</div>
                 </div>
+                
+                 <!--  About Modal Begin -->
+		        <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-backdrop="static">
+		       		<div class="modal-dialog modal-sm" role="document">
+		           		<div class="modal-content">
+		               		<div class="modal-header">
+		               			<a href="#"><img class="align-self-center rounded-circle mr-3" style="width:40px; height:40px;" alt="" src="/favicon.ico"></a>
+		                   		<h3 class="modal-title" id="aboutModalTitle" th:text="${appName}"></h3>
+		                   		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                	<span aria-hidden="true">×</span>
+                                </button>
+		                   	</div>
+		                	<div class="modal-body">
+		                		<p th:utext="'Version: ' + ${appVersion} + '&lt;br /&gt;Date: ' + ${appBuildDate}"></p>
+		                	</div>
+		           		</div>
+		        	</div>
+		    	</div>
+		    	
+		    	<!--  About Modal End -->
             </div>
 
         </header><!-- /header -->
@@ -184,6 +229,8 @@
                 </div>
             </div>
         </div>
+        
+       
 
 
 		<!-- Content Begin -->
@@ -193,6 +240,6 @@
 
 
     </div><!-- /#right-panel -->
-
+    
 </body>
 </html>
