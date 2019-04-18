@@ -13,7 +13,6 @@ Scenario: Login user with valid username, valid password and remember me selecte
   And he or she enters 'Demo123!' into the login Password field
   And he or she clicks the Remember Me checkbox
   And he or she submits the login request
-  And he or she enters 'dfsdgfsdgdfgdfg' into the Phone Number field
   Then Josh verifies he or she is at the Home page
   And he or she verifies the remember-me cookie is present
 
@@ -24,7 +23,6 @@ Scenario: Login user with valid username, valid password and remember me not sel
   And he or she enters 'jsmith@demo.io' into the login Username field
   And he or she enters 'Demo123!' into the login Password field
   And he or she submits the login request
-  And he or she enters 'dfsdgfsdgdfgdfg' into the Phone Number field
   Then Josh verifies he or she is at the Home page
   And he or she verifies the remember-me cookie is not present
 
@@ -33,9 +31,8 @@ Scenario: Login user with valid username, invalid password
   Given Josh is a registered user
   When Josh navigates to the Login page
   And he or she enters 'jsmith@demo.io' into the login Username field
-  And he or she enters 'RTHyzWXxs3755' into the login Password field
+  And he or she enters 'WzUPxQPhwalgEoaa4' into the login Password field
   And he or she submits the login request
-  And he or she enters '' into the Phone Number field
   Then Josh verifies he or she is presented with a error message indicating invalid login credentials
 
 @negative
@@ -45,27 +42,24 @@ Scenario: Login user with valid username, empty password
   And he or she enters 'jsmith@demo.io' into the login Username field
   And he or she enters '' into the login Password field
   And he or she submits the login request
-  And he or she enters '' into the Phone Number field
   Then Josh verifies he or she is presented with a error message indicating invalid login credentials
 
 @negative
 Scenario: Login user with invalid username, valid password
   Given Josh is a registered user
   When Josh navigates to the Login page
-  And he or she enters 'wCAk0mD@demo.io' into the login Username field
+  And he or she enters 'SCbr2I3Y@demo.io' into the login Username field
   And he or she enters 'Demo123!' into the login Password field
   And he or she submits the login request
-  And he or she enters '' into the Phone Number field
   Then Josh verifies he or she is presented with a error message indicating invalid login credentials
 
 @negative
 Scenario: Login user with invalid username, invalid password
   Given Josh is a registered user
   When Josh navigates to the Login page
-  And he or she enters '8W6Wjax@demo.io' into the login Username field
-  And he or she enters 'mnZnSJRRSPKVKx44471' into the login Password field
+  And he or she enters 'DLObWXQJ6f09@demo.io' into the login Username field
+  And he or she enters 'FBwdUqIYNjtCU25' into the login Password field
   And he or she submits the login request
-  And he or she enters '' into the Phone Number field
   Then Josh verifies he or she is presented with a error message indicating invalid login credentials
 
 @negative
@@ -75,7 +69,6 @@ Scenario: Login user with empty username, valid password
   And he or she enters '' into the login Username field
   And he or she enters 'Demo123!' into the login Password field
   And he or she submits the login request
-  And he or she enters '' into the Phone Number field
   Then Josh verifies he or she is presented with a error message indicating invalid login credentials
 
 @negative
@@ -83,7 +76,6 @@ Scenario: Login user with empty username, invalid password
   Given Josh is a registered user
   When Josh navigates to the Login page
   And he or she enters '' into the login Username field
-  And he or she enters 'LPvYiEzIsqmpJEiNJZ77892' into the login Password field
+  And he or she enters 'AtZibbndkbwhbP333' into the login Password field
   And he or she submits the login request
-  And he or she enters '' into the Phone Number field
   Then Josh verifies he or she is presented with a error message indicating invalid login credentials
