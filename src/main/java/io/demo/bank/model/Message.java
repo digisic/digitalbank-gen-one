@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import io.demo.bank.model.security.Users;
+import io.demo.bank.model.security.User;
 
 @Entity
 public class Message {
@@ -29,12 +29,12 @@ public class Message {
 	
 	@ManyToOne
     @JoinColumn(name = "id", insertable=false, updatable=false)
-    private Users users;
+    private User users;
 	
-	public Users getUsers() {
+	public User getUsers() {
 		return users;
 	}
-	public void setUsers(Users users) {
+	public void setUsers(User users) {
 		this.users = users;
 	}
 	

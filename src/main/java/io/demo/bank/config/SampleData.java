@@ -8,7 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
 import io.demo.bank.model.UserProfile;
-import io.demo.bank.model.security.Users;
+import io.demo.bank.model.security.Role;
+import io.demo.bank.model.security.User;
 import io.demo.bank.service.UserService;
 
 
@@ -37,7 +38,7 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			LOG.info("** Loading Sample User...");
 			
-			Users user = new Users("jsmith@demo.io", "Demo123!");
+			User user = new User("jsmith@demo.io", "Demo123!");
 			UserProfile userProfile = new UserProfile();
 			SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
 			
@@ -58,13 +59,13 @@ public class SampleData implements CommandLineRunner, Ordered {
 			userProfile.setWorkPhone("123-456-7890");
 			
 			user.setUserProfile(userProfile);
-			userService.createUser(user);
+			userService.createUser(user, Role.ROLE_USER);
 			
 			LOG.info("** Username: jsmith@demo.io");
 			LOG.info("** Password: Demo123!");
 			
 			// Create a second user for testing
-			user = new Users("nsmith@demo.io", "Demo123!");
+			user = new User("nsmith@demo.io", "Demo123!");
 			userProfile = new UserProfile();
 			
 			userProfile.setEmailAddress("nsmith@demo.io");
@@ -84,7 +85,7 @@ public class SampleData implements CommandLineRunner, Ordered {
 			userProfile.setWorkPhone("123-456-7810");
 			
 			user.setUserProfile(userProfile);
-			userService.createUser(user);
+			userService.createUser(user, Role.ROLE_USER);
 			
 		}
 		

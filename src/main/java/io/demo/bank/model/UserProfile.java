@@ -6,15 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class UserProfile {
 	
-	private static final Logger LOG = LoggerFactory.getLogger(UserProfile.class);
   
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)

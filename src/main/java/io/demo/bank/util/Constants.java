@@ -23,6 +23,12 @@ public class Constants {
 	public static final String URI_ABOUT_RES 		= "/about/**";
 	public static final String URI_CONTACT_RES 		= "/contact/**";
 	public static final String URI_ERROR_RES 		= "/error/**";
+	public static final String URI_H2_CONSOLE		= "/h2-console/**";
+	public static final String URI_SWAGGER_UI		= "/swagger-ui.html";
+	public static final String URI_SWAGGER_V2		= "/v2/api-docs";
+	public static final String URI_SWAGGER_RES		= "/swagger-resources/**";
+	public static final String URI_SWAGGER_CONF		= "/configuration/**";
+	public static final String URI_SWAGGER_DOC		= "/swagger-ui.html";
 	
 	// Public URIs
 	public static final String URI_ROOT 			= "/";

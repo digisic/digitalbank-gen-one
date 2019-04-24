@@ -22,15 +22,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.demo.bank.model.Account;
-import io.demo.bank.model.Message;
 import io.demo.bank.model.Notification;
 import io.demo.bank.model.UserProfile;
 
 
 @Entity
-public class Users implements UserDetails {
+public class User implements UserDetails {
 	
-	private static final Logger LOG = LoggerFactory.getLogger(Users.class);
+	private static final Logger LOG = LoggerFactory.getLogger(User.class);
 	
 	private static final long serialVersionUID = -1173435728882792083L;
 
@@ -39,6 +38,8 @@ public class Users implements UserDetails {
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
     private String username;
+    
+    @JsonIgnore
     private String password;
 
     private boolean enabled = true;
@@ -46,18 +47,21 @@ public class Users implements UserDetails {
     private boolean accountNotLocked = true;
     private boolean credentialNotExpired = true;
     
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="profile_id")
     private UserProfile userProfile;
     
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<UserRole> userRoles = new HashSet<>();
     
+    @JsonIgnore
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="owner_id")
     private List<Account> ownerAccounts;
     
+    @JsonIgnore
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="coowner_id")
     private List<Account> coownerAccounts;
@@ -66,6 +70,7 @@ public class Users implements UserDetails {
 	@OrderBy("timestamp DESC")
 	private List<Message> messages = new ArrayList<>();*/
 	
+    @JsonIgnore
 	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@OrderBy("timestamp DESC")
 	private List<Notification> notifications = new ArrayList<>();
@@ -91,14 +96,14 @@ public class Users implements UserDetails {
 		this.notifications = notifications;
 	}
 
-	public Users () {}
+	public User () {}
     
-    public Users (String username, String password) {
+    public User (String username, String password) {
     	this.username = username;
     	this.password = password;
     }
     
-    	
+    @JsonIgnore
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		

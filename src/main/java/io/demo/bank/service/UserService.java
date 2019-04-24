@@ -14,7 +14,7 @@ import io.demo.bank.model.Notification;
 import io.demo.bank.model.UserProfile;
 import io.demo.bank.model.enums.NotificationType;
 import io.demo.bank.model.security.UserRole;
-import io.demo.bank.model.security.Users;
+import io.demo.bank.model.security.User;
 import io.demo.bank.repository.RoleRepository;
 import io.demo.bank.repository.UserProfileRepository;
 import io.demo.bank.repository.UserRepository;
@@ -37,7 +37,7 @@ public class UserService {
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 	
-	public Users findByUsername(String username) {
+	public User findByUsername(String username) {
 	
 		return this.userRepository.findByUsername(username);
 	}
@@ -61,17 +61,17 @@ public class UserService {
 		return false;
 	}
 	  
-	public void save(Users user) {
+	public void save(User user) {
 		
 		userRepository.save(user);
 	}
 	  
-	public List<Users> findUserList() {
+	public List<User> findUserList() {
 	    
 		return this.userRepository.findAll();
 	}
 	  
-	public Users createUser(Users newUser) {
+	public User createUser(User newUser, String role) {
 	
 		newUser.setPassword(encoder.encode(newUser.getPassword()));
 	    
@@ -80,7 +80,7 @@ public class UserService {
 	    newUser.setUserProfile(newProfile);
 	    
 	    Set<UserRole> userRoles = new HashSet<>();
-	    UserRole userRole = new UserRole(newUser, roleRepository.findByName("ROLE_USER"));
+	    UserRole userRole = new UserRole(newUser, roleRepository.findByName(role));
 	    userRoles.add(userRole);
 	    newUser.setUserRoles(userRoles);
 	    
@@ -91,12 +91,12 @@ public class UserService {
 	    return newUser;
 	}
 	
-	public boolean passwordMatches (Users user, String password) {
+	public boolean passwordMatches (User user, String password) {
 		
 		return encoder.matches(password, user.getPassword());
 	}
 	
-	public void changePassword (Users user, String newPassword) {
+	public void changePassword (User user, String newPassword) {
 		
 		user.setPassword(encoder.encode(newPassword));
 		
@@ -106,7 +106,7 @@ public class UserService {
 		
 	}
 	
-	public void addNotification(Users user, String content) {
+	public void addNotification(User user, String content) {
 		
 		Notification notif = new Notification();
 		

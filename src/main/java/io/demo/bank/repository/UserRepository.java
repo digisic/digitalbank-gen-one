@@ -2,11 +2,11 @@ package io.demo.bank.repository;
 
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
-import io.demo.bank.model.security.Users;
+import io.demo.bank.model.security.User;
 
-public interface UserRepository extends CrudRepository<Users, Long> {
+public interface UserRepository extends CrudRepository<User, Long> {
 
-	Users findByUsername(String paramString);
+	User findByUsername(String paramString);
 	  
-	List<Users> findAll();
+	List<User> findAll();
 }

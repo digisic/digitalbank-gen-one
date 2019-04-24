@@ -1,5 +1,7 @@
 package io.demo.bank.config;
 
+import java.util.Collections;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -20,11 +22,25 @@ public class SwaggerConfig {
     public Docket api() { 
         return new Docket(DocumentationType.SWAGGER_2)  
           .select()                                  
-          .apis(RequestHandlerSelectors.any())              
-          .paths(PathSelectors.regex("/api.*"))                          
-          .build();                                           
+          .apis(RequestHandlerSelectors.basePackage("io.demo.bank.controller.rest"))              
+          .paths(PathSelectors.regex("/api.*"))
+          .build()
+          .apiInfo(apiInfo());
     }
 	
+	private ApiInfo apiInfo() {
+		ApiInfo apiInfo = new ApiInfo ("Digital Bank API",
+									   "Digial Bank API provides Administration and User functionality through API Endpoints.",
+									   "API TOS",
+									   "Terms of Service",
+									   new Contact("Digital Bank",
+											       "www.demo.io", 
+											       "digitalbank@demo.io"),
+									   "License of API",
+									   "API License URL",
+									   Collections.emptyList());
+		return apiInfo;
+	}
 	
 
 }
