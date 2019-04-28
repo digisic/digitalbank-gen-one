@@ -1,4 +1,4 @@
-package io.demo.bank.controller;
+package io.demo.bank.controller.ui;
 
 import java.math.BigDecimal;
 import java.security.Principal;
@@ -19,6 +19,7 @@ import io.demo.bank.model.security.User;
 import io.demo.bank.service.AccountService;
 import io.demo.bank.service.UserService;
 import io.demo.bank.util.Constants;
+import io.demo.bank.util.Patterns;
 
 @Controller
 @RequestMapping(Constants.URI_ACCOUNT)
@@ -38,6 +39,9 @@ public class AccountController extends CommonController {
 		
 		// Set Display Defaults
 		setDisplayDefaults(principal, model);
+		
+		// Add format patterns
+		model.addAttribute(MODEL_ATT_PATTERN_TRANS_AMOUNT, Patterns.TRANSACTION_AMOUNT);
 		
 		model.addAttribute(MODEL_ATT_ACCOUNT, new Account());	
 		model.addAttribute(MODEL_ATT_ACCT_TYPE_LIST, accountService.getCheckingAccountTypes());
@@ -77,6 +81,9 @@ public class AccountController extends CommonController {
 			
 			LOG.debug("New Checking: Error meeting minimum deposit requirement.");
 			
+			// Add format patterns
+			model.addAttribute(MODEL_ATT_PATTERN_TRANS_AMOUNT, Patterns.TRANSACTION_AMOUNT);
+			
 			// Return Error Message
 			model.addAttribute(MODEL_ATT_ERROR_MSG, "The initial deposit ($" 
 													 + newAccount.getOpeningBalance() 
@@ -105,6 +112,9 @@ public class AccountController extends CommonController {
 		model.addAttribute(MODEL_ATT_ACCOUNT, new Account());
 		model.addAttribute(MODEL_ATT_ACCT_TYPE_LIST, accountService.getSavingsAccountTypes());
 		model.addAttribute(MODEL_ATT_OWN_TYPE_LIST, accountService.getOwnershipTypes());
+		
+		// Add format patterns
+		model.addAttribute(MODEL_ATT_PATTERN_TRANS_AMOUNT, Patterns.TRANSACTION_AMOUNT);
     
 		return Constants.VIEW_SAV_ADD;
 	}
@@ -148,6 +158,9 @@ public class AccountController extends CommonController {
 			model.addAttribute(MODEL_ATT_OWN_TYPE_LIST, accountService.getOwnershipTypes());
 			model.addAttribute(MODEL_ATT_ACCT_TYPE_LIST, accountService.getSavingsAccountTypes());
 			model.addAttribute(MODEL_ATT_ACCOUNT, newAccount);
+			
+			// Add format patterns
+			model.addAttribute(MODEL_ATT_PATTERN_TRANS_AMOUNT, Patterns.TRANSACTION_AMOUNT);
 			
 			return Constants.VIEW_SAV_ADD;
 		}
@@ -278,6 +291,9 @@ public class AccountController extends CommonController {
 		setDisplayDefaults(principal, model);
 				
 		User user = userService.findByUsername(principal.getName());
+		
+		// Add format patterns
+		model.addAttribute(MODEL_ATT_PATTERN_TRANS_AMOUNT, Patterns.TRANSACTION_AMOUNT);
 
 		// Get all accounts
 		List<Account> accountList = accountService.getCheckingAccounts(user);
@@ -323,6 +339,9 @@ public class AccountController extends CommonController {
 			model.addAttribute(MODEL_ATT_ACCOUNT, account);
 			model.addAttribute(MODEL_ATT_ACCT_TRANS, accountTransaction);
 			
+			// Add format patterns
+			model.addAttribute(MODEL_ATT_PATTERN_TRANS_AMOUNT, Patterns.TRANSACTION_AMOUNT);
+			
 			return Constants.VIEW_DEPOSIT;
 		}
 		
@@ -356,6 +375,9 @@ public class AccountController extends CommonController {
 		
 		AccountTransaction accountTransaction = new AccountTransaction();
 		model.addAttribute(MODEL_ATT_ACCT_TRANS, accountTransaction);
+		
+		// Add format patterns
+		model.addAttribute(MODEL_ATT_PATTERN_TRANS_AMOUNT, Patterns.TRANSACTION_AMOUNT);
 		
 		return Constants.VIEW_WITHDRAW;
 		
@@ -418,6 +440,9 @@ public class AccountController extends CommonController {
 			model.addAttribute(MODEL_ATT_ACCOUNT, account);
 			model.addAttribute(MODEL_ATT_ACCT_TRANS, accountTransaction);
 			
+			// Add format patterns
+			model.addAttribute(MODEL_ATT_PATTERN_TRANS_AMOUNT, Patterns.TRANSACTION_AMOUNT);
+			
 			return Constants.VIEW_WITHDRAW;
 			
 		}
@@ -455,6 +480,9 @@ public class AccountController extends CommonController {
 		
 		AccountTransaction accountTransaction = new AccountTransaction();
 		model.addAttribute(MODEL_ATT_ACCT_TRANS, accountTransaction);
+		
+		// Add format patterns
+		model.addAttribute(MODEL_ATT_PATTERN_TRANS_AMOUNT, Patterns.TRANSACTION_AMOUNT);
 		
 		return Constants.VIEW_XFER_BETWEEN;
 		
@@ -521,6 +549,9 @@ public class AccountController extends CommonController {
 			model.addAttribute(MODEL_ATT_FROM_ACCOUNT, fromAccount);
 			model.addAttribute(MODEL_ATT_TO_ACCOUNT, toAccount);
 			model.addAttribute(MODEL_ATT_ACCT_TRANS, accountTransaction);
+			
+			// Add format patterns
+			model.addAttribute(MODEL_ATT_PATTERN_TRANS_AMOUNT, Patterns.TRANSACTION_AMOUNT);
 			
 			return Constants.VIEW_XFER_BETWEEN;
 		}

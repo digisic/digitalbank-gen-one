@@ -1,4 +1,4 @@
-package io.demo.bank.controller;
+package io.demo.bank.controller.ui;
 
 import java.security.Principal;
 import java.time.ZoneId;
@@ -59,6 +59,19 @@ abstract class CommonController {
 	public static final String MODEL_ATT_USER_PROFILE 			= "userProfile";
 	public static final String MODEL_ATT_NEW_PASS 				= "newPassword";
 	public static final String MODEL_ATT_CUR_PASS 				= "currentPassword";
+	
+	// model attribute constants -> Required Format Patters
+	public static final String MODEL_ATT_PATTERN_SSN			= "patternSSN";
+	public static final String MODEL_ATT_PATTERN_EMAIL			= "patternEmail";
+	public static final String MODEL_ATT_PATTERN_PASSWORD		= "patternPassword";
+	public static final String MODEL_ATT_PATTERN_DOB			= "patternDOB";
+	public static final String MODEL_ATT_PATTERN_PHONE			= "patternPhone";
+	public static final String MODEL_ATT_PATTERN_TRANS_AMOUNT	= "patternTransactionAmount";
+	
+	// model attribute constants -> Pattern Messages
+	public static final String MODEL_ATT_PATTERN_PASSWORD_MSG	= "patternPasswordMSG";
+	public static final String MODEL_ATT_PATTERN_SSN_MSG		= "patternSSNMSG";
+	public static final String MODEL_ATT_PATTERN_PHONE_MSG		= "patternPhoneMSG";
 
 
 	

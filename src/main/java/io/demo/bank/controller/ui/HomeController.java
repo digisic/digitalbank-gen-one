@@ -1,10 +1,13 @@
-package io.demo.bank.controller;
+package io.demo.bank.controller.ui;
 
 import io.demo.bank.model.UserProfile;
 import io.demo.bank.model.security.Role;
 import io.demo.bank.model.security.User;
 import io.demo.bank.service.UserService;
 import io.demo.bank.util.Constants;
+import io.demo.bank.util.Messages;
+import io.demo.bank.util.Patterns;
+
 import java.security.Principal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,6 +49,14 @@ public class HomeController extends CommonController {
 		
 		model.addAttribute(MODEL_ATT_USER, new User());
 		model.addAttribute(MODEL_ATT_USER_PROFILE, new UserProfile());
+		
+		// Add format patterns
+	    model.addAttribute(MODEL_ATT_PATTERN_SSN, Patterns.USER_SSN);
+	    model.addAttribute(MODEL_ATT_PATTERN_EMAIL, Patterns.USER_EMAIL);
+	    model.addAttribute(MODEL_ATT_PATTERN_PASSWORD, Patterns.USER_PASSWORD);
+	    model.addAttribute(MODEL_ATT_PATTERN_DOB, Patterns.USER_DOB);
+	    model.addAttribute(MODEL_ATT_PATTERN_SSN_MSG, Messages.USER_SSN);
+	    model.addAttribute(MODEL_ATT_PATTERN_PASSWORD_MSG, Messages.USER_PASSWORD);
     
 		return Constants.VIEW_SIGNUP;
 	}
@@ -72,60 +83,15 @@ public class HomeController extends CommonController {
 	    if (userService.checkEmailAdressExists(newProfile.getEmailAddress())) {
 	    	
 	    	// Return error
-			model.addAttribute(MODEL_ATT_ERROR_MSG, "An account is already registered with the "
-													+ "email address provided. Login with the existing "
-													+ "account or provide another email address for registration.");
+			model.addAttribute(MODEL_ATT_ERROR_MSG, Messages.USER_EMAIL_EXISTS);
 	    	bError = true;
 	    }
-	    
-	    int firstSeparator = newProfile.getSsn().indexOf('-', 0);
-	    int secondSeparator = newProfile.getSsn().indexOf('-', 4);
-	    
-	    // Check if SSN has separators or not
-	    if (firstSeparator == -1 && secondSeparator == -1) {
-	    	
-	    	LOG.debug("Signup-> SSN is missing both separators");
-	    	
-	    	// no separator, so we need to add it
-	    	String ssnPart1 = newProfile.getSsn().substring(0, 3);
-	    	String ssnPart2 = newProfile.getSsn().substring(3, 5);
-	    	String ssnPart3 = newProfile.getSsn().substring(5);
-	    	
-	    	newProfile.setSsn(ssnPart1 + "-" + ssnPart2 + "-" + ssnPart3); 
-	    	
-	    } else {
-	    	
-	    	// first separator is missing
-	    	if (firstSeparator == 5) {
-	    		
-	    		LOG.debug("Signup-> SSN is missing 2nd separator");
-	    		
-	    		String ssnPart1 = newProfile.getSsn().substring(0,3);
-		    	String ssnPart2 = newProfile.getSsn().substring(3);
-		    	
-		    	newProfile.setSsn(ssnPart1 + "-" + ssnPart2);
-	    		
-	    	}
-	    	
-	    	// second separator is missing
-	    	if (firstSeparator == 3 && secondSeparator == -1) {
-	    		
-	    		LOG.debug("Signup-> SSN is missing 1st separator");
-	    		
-	    		String ssnPart1 = newProfile.getSsn().substring(0, 6);
-		    	String ssnPart2 = newProfile.getSsn().substring(6);
-		    	
-		    	newProfile.setSsn(ssnPart1 + "-" + ssnPart2);
-	    	}	
-	    }
-    
+	        
 	    // If SSN already exists then return an error
 	    if (userService.checkSsnExists(newProfile.getSsn())) {
 	    	
 	    	// Return error
-			model.addAttribute(MODEL_ATT_ERROR_MSG, "An account is already registered with the "
-													+ "Social Security Number provided. Login with "
-													+ "the existing account or provide another SSN for registration.");
+			model.addAttribute(MODEL_ATT_ERROR_MSG, Messages.USER_SSN_EXISTS);
 	    	bError = true;
 	    }
 	    
@@ -133,8 +99,21 @@ public class HomeController extends CommonController {
     
 	    // if we have an error go back to sign up page
 	    if (bError) {
+	    	
+	    	// Add format patterns
+		    model.addAttribute(MODEL_ATT_PATTERN_SSN, Patterns.USER_SSN);
+		    model.addAttribute(MODEL_ATT_PATTERN_EMAIL, Patterns.USER_EMAIL);
+		    model.addAttribute(MODEL_ATT_PATTERN_PASSWORD, Patterns.USER_PASSWORD);
+		    model.addAttribute(MODEL_ATT_PATTERN_DOB, Patterns.USER_DOB);
+		    model.addAttribute(MODEL_ATT_PATTERN_SSN_MSG, Messages.USER_SSN);
+		    model.addAttribute(MODEL_ATT_PATTERN_PASSWORD_MSG, Messages.USER_PASSWORD);
+		    
 	    	return Constants.VIEW_SIGNUP;
 	    }
+	    
+	    // Add format patterns
+	    model.addAttribute(MODEL_ATT_PATTERN_PHONE, Patterns.USER_PHONE_REQ);
+	    model.addAttribute(MODEL_ATT_PATTERN_PHONE_MSG, Messages.USER_PHONE_GENERIC);
 	    
 	    return Constants.VIEW_REGISTER;
 	}
@@ -145,6 +124,14 @@ public class HomeController extends CommonController {
 		// Since this a a registration process, add user object and send them to signup
 		model.addAttribute(MODEL_ATT_USER, new User());
 		model.addAttribute(MODEL_ATT_USER_PROFILE, new UserProfile());
+		
+		// Add format patterns
+	    model.addAttribute(MODEL_ATT_PATTERN_SSN, Patterns.USER_SSN);
+	    model.addAttribute(MODEL_ATT_PATTERN_EMAIL, Patterns.USER_EMAIL);
+	    model.addAttribute(MODEL_ATT_PATTERN_PASSWORD, Patterns.USER_PASSWORD);
+	    model.addAttribute(MODEL_ATT_PATTERN_DOB, Patterns.USER_DOB);
+	    model.addAttribute(MODEL_ATT_PATTERN_SSN_MSG, Messages.USER_SSN);
+	    model.addAttribute(MODEL_ATT_PATTERN_PASSWORD_MSG, Messages.USER_PASSWORD);
     
 		return Constants.VIEW_SIGNUP;
 	}
@@ -160,7 +147,7 @@ public class HomeController extends CommonController {
     
 		newUser = userService.createUser(newUser, Role.ROLE_USER);
 		model.addAttribute(MODEL_ATT_USER, newUser);
-		model.addAttribute(MODEL_ATT_SUCCESS_MSG, "Registration Successful. Please Login.");
+		model.addAttribute(MODEL_ATT_SUCCESS_MSG, Messages.USER_REGIST_SUCC);
     
 		LOG.debug("User Registered: " + newUser);
     

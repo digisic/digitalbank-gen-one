@@ -66,17 +66,17 @@
 					                   	<div class="row form-group">
 					                       	<div class="col col-sm-4">
 					                            <label><strong>Home Phone</strong></label>
-					                            <input type="text" class="form-control" id="homePhone" th:field="${userProfile.homePhone}" required pattern="^[+]?([0-9]*[\.\s\-\(\)]|[0-9]+){3,24}$" title="Valid phone number">
+					                            <input type="text" class="form-control" id="homePhone" th:field="${userProfile.homePhone}" required th:pattern="${patternPhone}" th:title="${patternPhoneMSG}">
 					                        	<small class="form-text text-muted">ex. (547) 392-5436</small>
 					                        </div>
 					                        <div class="col col-sm-4">
 					                            <label><strong>Mobile Phone</strong></label>
-					                            <input type="text" class="form-control" id="mobilePhone" th:field="${userProfile.mobilePhone}" pattern="^[+]?([0-9]*[\.\s\-\(\)]|[0-9]+){3,24}$" title="Valid phone number">
+					                            <input type="text" class="form-control" id="mobilePhone" th:field="${userProfile.mobilePhone}" th:pattern="${patternPhone}" th:title="${patternPhoneMSG}">
 					                        	<small class="form-text text-muted">ex. (547) 392-5436</small>
 					                        </div>
 					                        <div class="col col-sm-4">
 					                            <label><strong>Work Phone</strong></label>
-					                            <input type="text" class="form-control" id="workPhone" th:field="${userProfile.workPhone}" pattern="^[+]?([0-9]*[\.\s\-\(\)]|[0-9]+){3,24}$" title="Valid phone number">
+					                            <input type="text" class="form-control" id="workPhone" th:field="${userProfile.workPhone}" th:pattern="${patternPhone}" th:title="${patternPhoneMSG}">
 					                        	<small class="form-text text-muted">ex. (547) 392-5436</small>
 					                        </div>
 					                 	</div>

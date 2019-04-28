@@ -6,43 +6,79 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import io.demo.bank.util.Messages;
+import io.demo.bank.util.Patterns;
 
 @Entity
 public class UserProfile {
 	
-  
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	@Column(name="id", nullable=false, updatable=false)
+	@Column(nullable=false, updatable=false)
+	@JsonProperty (access = Access.READ_ONLY)
 	private Long id;
+	
+	@NotEmpty (message=Messages.USER_FIRST_NAME)
 	private String firstName;
+	
+	@NotEmpty (message=Messages.USER_LAST_NAME)
 	private String lastName;
+	
+	@Pattern(regexp=Patterns.USER_TITLE, message=Messages.USER_TITLE)
 	private String title;
+	
+	@Pattern(regexp=Patterns.USER_GENDER, message=Messages.USER_GENDER)
 	private String gender;
-	  
+	
+	@Pattern(regexp=Patterns.USER_SSN, message=Messages.USER_SSN)
 	@Column(name="ssn", nullable=false, unique=true)
 	private String ssn;
 	  
-	@JsonFormat(pattern="MM/dd/yyyy")
-	@DateTimeFormat(pattern="MM/dd/yyyy")
+	@NotNull (message=Messages.USER_DOB)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern=Patterns.DATE_FORMAT)
+	@DateTimeFormat(pattern=Patterns.DATE_FORMAT)
 	private Date dob;
-	  
-	@JsonFormat(pattern="MM/dd/yyyy")
-	@DateTimeFormat(pattern="MM/dd/yyyy")
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern=Patterns.DATE_FORMAT)
+	@DateTimeFormat(pattern=Patterns.DATE_FORMAT)
 	private Date dom;
 	
-	@Column(name="emailAddress", nullable=false, unique=true)
+	@Pattern(regexp=Patterns.USER_EMAIL, message=Messages.USER_EMAIL)
+	@Column(nullable=false, unique=true)
 	private String emailAddress;
+	
+	@Pattern(regexp=Patterns.USER_PHONE_REQ, message=Messages.USER_PHONE_HOME)
 	private String homePhone;
+	
+	@Pattern(regexp=Patterns.USER_PHONE_NOT_REQ, message=Messages.USER_PHONE_MOBILE)
 	private String mobilePhone;
+	
+	@Pattern(regexp=Patterns.USER_PHONE_NOT_REQ, message=Messages.USER_PHONE_WORK)
 	private String workPhone;
+	
+	@NotEmpty (message=Messages.USER_ADDRESS)
 	private String address;
+	
+	@NotEmpty (message=Messages.USER_LOCALITY)
 	private String locality;
+	
+	@NotEmpty (message=Messages.USER_REGION)
 	private String region;
+	
+	@NotEmpty (message=Messages.USER_POSTAL_CODE)
 	private String postalCode;
+	
+	@NotEmpty (message=Messages.USER_COUNTRY)
 	private String country;
+	
+	
 	
 	// default constructor
 	public UserProfile () {}

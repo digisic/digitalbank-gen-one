@@ -1,4 +1,4 @@
-package io.demo.bank.controller;
+package io.demo.bank.controller.ui;
 
 import java.security.Principal;
 import org.slf4j.Logger;
@@ -14,6 +14,8 @@ import io.demo.bank.model.UserProfile;
 import io.demo.bank.model.security.User;
 import io.demo.bank.service.UserService;
 import io.demo.bank.util.Constants;
+import io.demo.bank.util.Messages;
+import io.demo.bank.util.Patterns;
 
 @Controller
 @RequestMapping(Constants.URI_USER)
@@ -31,6 +33,10 @@ public class UserController extends CommonController {
     
 		// Set Display Defaults
 		setDisplayDefaults(principal, model);
+		
+		// Add format patterns
+		model.addAttribute(MODEL_ATT_PATTERN_PASSWORD, Patterns.USER_PASSWORD);
+		model.addAttribute(MODEL_ATT_PATTERN_PASSWORD_MSG, Messages.USER_PASSWORD);
 		    
 		return Constants.VIEW_USR_PASSWORD;
 	}
@@ -58,7 +64,7 @@ public class UserController extends CommonController {
 				
 				LOG.debug("Change Password: New Password is the same as the current password.");
 				
-				model.addAttribute(MODEL_ATT_ERROR_MSG, "New Password is the same as the current password. Please enter a new Password.");
+				model.addAttribute(MODEL_ATT_ERROR_MSG, Messages.USER_NEW_PASS_SAME);
 				
 			} else {
 				
@@ -66,7 +72,7 @@ public class UserController extends CommonController {
 				LOG.debug("Change Password: New Password is a actualy a new password. Update Password.");
 				
 				userService.changePassword(user, newPassword);
-				model.addAttribute(MODEL_ATT_SUCCESS_MSG, "Password Updated Successfully.");
+				model.addAttribute(MODEL_ATT_SUCCESS_MSG, Messages.USER_PASSWORD_UPDATED);
 				
 			}
 			
@@ -75,9 +81,13 @@ public class UserController extends CommonController {
 			LOG.debug("Change Password: Current Password is NOT correct.");
 			
 			// old password not correct, throw error
-			model.addAttribute(MODEL_ATT_ERROR_MSG, "Current Password does not match what is on record. Please enter the correct current password.");
+			model.addAttribute(MODEL_ATT_ERROR_MSG, Messages.USER_CURR_PASS_MATCH);
 			
 		}
+		
+		// Add format patterns
+		model.addAttribute(MODEL_ATT_PATTERN_PASSWORD, Patterns.USER_PASSWORD);
+		model.addAttribute(MODEL_ATT_PATTERN_PASSWORD_MSG, Messages.USER_PASSWORD);
 		    
 		return Constants.VIEW_USR_PASSWORD;
 	}
@@ -92,6 +102,10 @@ public class UserController extends CommonController {
 		User user = userService.findByUsername(principal.getName());
 		
 		model.addAttribute(MODEL_ATT_USER_PROFILE, user.getUserProfile());
+		
+		// Add format patterns
+	    model.addAttribute(MODEL_ATT_PATTERN_PHONE, Patterns.USER_PHONE_REQ);
+	    model.addAttribute(MODEL_ATT_PATTERN_PHONE_MSG, Messages.USER_PHONE_GENERIC);
 		    
 		return Constants.VIEW_USR_PROFILE;
 	}
@@ -130,9 +144,12 @@ public class UserController extends CommonController {
 		
 		LOG.debug("Updated User Profile: " + user.getUserProfile().toString());
 		
-		
+		// Add format patterns
+	    model.addAttribute(MODEL_ATT_PATTERN_PHONE, Patterns.USER_PHONE_REQ);
+	    model.addAttribute(MODEL_ATT_PATTERN_PHONE_MSG, Messages.USER_PHONE_GENERIC);
+	    
 		model.addAttribute(MODEL_ATT_USER_PROFILE, user.getUserProfile());
-		model.addAttribute(MODEL_ATT_SUCCESS_MSG, "Profile Updated Successfully.");
+		model.addAttribute(MODEL_ATT_SUCCESS_MSG, Messages.USER_PROFILE_UPDATED);
 		    
 		return Constants.VIEW_USR_PROFILE;
 	}

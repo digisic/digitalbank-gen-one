@@ -81,7 +81,7 @@ public class DefaultData implements CommandLineRunner, Ordered {
 		
 		// Create a Default API User
 		// If the default user data does not exist, then create it.
-		if (!userService.checkEmailAdressExists("api@demo.io") && !userService.checkSsnExists("000-00-0000")) {
+		if (!userService.checkEmailAdressExists("api@demo.io") && !userService.checkSsnExists("111-11-1111")) {
 			
 			LOG.info("** Loading Default API User...");
 			
@@ -95,7 +95,7 @@ public class DefaultData implements CommandLineRunner, Ordered {
 			userProfile.setTitle("Mr.");
 			userProfile.setGender("M");
 			userProfile.setDob(dateFormat.parse("1985-02-15"));
-			userProfile.setSsn("000-00-0000");
+			userProfile.setSsn("111-11-1111");
 			userProfile.setAddress("123 Digital Lane");
 			userProfile.setCountry("United States");
 			userProfile.setLocality("Internet City");

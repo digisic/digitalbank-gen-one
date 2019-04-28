@@ -16,14 +16,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import io.demo.bank.model.Account;
 import io.demo.bank.model.Notification;
 import io.demo.bank.model.UserProfile;
+import io.demo.bank.util.Messages;
+import io.demo.bank.util.Patterns;
 
 
 @Entity
@@ -35,19 +41,23 @@ public class User implements UserDetails {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false)
+	@JsonProperty (access = Access.READ_ONLY)
     private Long id;
+	
+	@JsonProperty (access = Access.READ_ONLY)
     private String username;
     
-    @JsonIgnore
+    @JsonProperty(access = Access.WRITE_ONLY)
+    @Pattern(regexp=Patterns.USER_PASSWORD, message=Messages.USER_PASSWORD)
     private String password;
 
     private boolean enabled = true;
-    private boolean accountNotExpired = true;
-    private boolean accountNotLocked = true;
-    private boolean credentialNotExpired = true;
+    private boolean accountNonExpired = true;
+    private boolean accountNonLocked = true;
+    private boolean credentialsNonExpired = true;
     
-    @JsonIgnore
+    @Valid
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="profile_id")
     private UserProfile userProfile;
@@ -65,24 +75,12 @@ public class User implements UserDetails {
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="coowner_id")
     private List<Account> coownerAccounts;
-    
-    /*@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@OrderBy("timestamp DESC")
-	private List<Message> messages = new ArrayList<>();*/
-	
+    	
     @JsonIgnore
 	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@OrderBy("timestamp DESC")
 	private List<Notification> notifications = new ArrayList<>();
        
-    /*public List<Message> getMessages() {
-		return messages;
-	}
-
-	public void setMessages(List<Message> messages) {
-		this.messages = messages;
-	}*/
-
 	public List<Notification> getNotifications() {
 		if (notifications == null) {
 			LOG.info("notifcations=null, returning new empty arraylist");
@@ -126,22 +124,21 @@ public class User implements UserDetails {
 		return username;
 	}
 
-	@Override
 	public boolean isAccountNonExpired() {
 		
-		return accountNotExpired;
+		return accountNonExpired;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
 		
-		return accountNotLocked;
+		return accountNonLocked;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
 		
-		return credentialNotExpired;
+		return credentialsNonExpired;
 	}
 
 	@Override
@@ -165,24 +162,24 @@ public class User implements UserDetails {
 	}
 
 	/**
-	 * @param accountNotExpired the accountNotExpired to set
+	 * @param accountNonExpired the accountNotExpired to set
 	 */
-	public void setAccountNotExpired(boolean accountNotExpired) {
-		this.accountNotExpired = accountNotExpired;
+	public void setAccountNonExpired(boolean accountNonExpired) {
+		this.accountNonExpired = accountNonExpired;
 	}
 
 	/**
-	 * @param accountNotLocked the accountNotLocked to set
+	 * @param accountNonLocked the accountNotLocked to set
 	 */
-	public void setAccountNotLocked(boolean accountNotLocked) {
-		this.accountNotLocked = accountNotLocked;
+	public void setAccountNonLocked(boolean accountNonLocked) {
+		this.accountNonLocked = accountNonLocked;
 	}
 
 	/**
-	 * @param credentialNotExpired the credentialNotExpired to set
+	 * @param credentialsNonExpired the credentialNotExpired to set
 	 */
-	public void setCredentialNotExpired(boolean credentialNotExpired) {
-		this.credentialNotExpired = credentialNotExpired;
+	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+		this.credentialsNonExpired = credentialsNonExpired;
 	}
 
 	/**
@@ -271,9 +268,9 @@ public class User implements UserDetails {
 	    user += "\nUser Name:\t\t" 				+ this.getUsername();
 	    user += "\nPassword:\t\t" 				+ this.getPassword();
 	    user += "\nEnabled:\t\t" 				+ this.isEnabled();
-	    user += "\nNot Locked:\t\t" 			+ this.isAccountNonLocked();
-	    user += "\nNot Expired:\t\t" 			+ this.isAccountNonExpired();
-	    user += "\nCredential Not Expired:\t" 	+ this.isCredentialsNonExpired();
+	    user += "\nNon Locked:\t\t" 			+ this.isAccountNonLocked();
+	    user += "\nNon Expired:\t\t" 			+ this.isAccountNonExpired();
+	    user += "\nCredentials Non Expired:\t" 	+ this.isCredentialsNonExpired();
 	    user += "\n" 							+ this.getUserProfile();
 
 	    user += "\n*******************************************\n";
