@@ -1,6 +1,6 @@
 FROM java:8
 EXPOSE 8080
-COPY /target/digitalbank-1.0.1.127.jar /opt/digitalbank/
+COPY /target/digitalbank-1.0.1.128.jar /opt/digitalbank/
 COPY /target/classes/application.properties /opt/digitalbank/digitalbank.properties
 WORKDIR /opt/digitalbank
-CMD ["java", "-jar", "digitalbank-1.0.1.127.jar", "--spring.config.location=digitalbank.properties"]
+CMD ["java", "-jar", "digitalbank-1.0.1.128.jar", "--spring.config.location=digitalbank.properties"]
