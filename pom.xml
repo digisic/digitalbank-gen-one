@@ -156,37 +156,37 @@
 		<dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>${selenium.version}</version>
+            <version>${selenium.version}</version><!--$NO-MVN-MAN-VER$-->
             <scope>test</scope>
         </dependency>
 		<dependency>
 	       	<groupId>org.seleniumhq.selenium</groupId>
 	       	<artifactId>selenium-remote-driver</artifactId>
-	       	<version>${selenium.version}</version>
+	       	<version>${selenium.version}</version><!--$NO-MVN-MAN-VER$-->
 	       	<scope>test</scope>
     	</dependency>
     	<dependency>
         	<groupId>org.seleniumhq.selenium</groupId>
         	<artifactId>selenium-firefox-driver</artifactId>
-        	<version>${selenium.version}</version>
+        	<version>${selenium.version}</version><!--$NO-MVN-MAN-VER$-->
         	<scope>test</scope>
     	</dependency>
     	<dependency>
         	<groupId>org.seleniumhq.selenium</groupId>
         	<artifactId>selenium-chrome-driver</artifactId>
-        	<version>${selenium.version}</version>
+        	<version>${selenium.version}</version><!--$NO-MVN-MAN-VER$-->
         	<scope>test</scope>
     	</dependency>
     	<dependency>
         	<groupId>org.seleniumhq.selenium</groupId>
         	<artifactId>selenium-support</artifactId>
-        	<version>${selenium.version}</version>
+        	<version>${selenium.version}</version><!--$NO-MVN-MAN-VER$-->
         	<scope>test</scope>
     	</dependency>
     	<dependency>
         	<groupId>org.seleniumhq.selenium</groupId>
         	<artifactId>selenium-api</artifactId>
-        	<version>${selenium.version}</version>
+        	<version>${selenium.version}</version><!--$NO-MVN-MAN-VER$-->
         	<scope>test</scope>
     	</dependency>  
 	</dependencies>
@@ -220,7 +220,7 @@
 			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M3</version>
+                <version>3.0.0-M3</version><!--$NO-MVN-MAN-VER$-->
                 <configuration>
                     <skip>true</skip>
                     <forkCount>0</forkCount>
@@ -231,7 +231,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
+                <version>3.8.0</version><!--$NO-MVN-MAN-VER$-->
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -239,7 +239,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M3</version>
+                <version>3.0.0-M3</version><!--$NO-MVN-MAN-VER$-->
                 <configuration>
                     <includes>
                         <include>**/*Test*.java</include>
