@@ -84,10 +84,10 @@ public class User implements UserDetails {
        
 	public List<Notification> getNotifications() {
 		if (notifications == null) {
-			LOG.info("notifcations=null, returning new empty arraylist");
+			LOG.debug("notifcations=null, returning new empty arraylist");
 			return new ArrayList<Notification>();
 		}
-		LOG.info("getting notifications which has size "+notifications.size());
+		LOG.debug("getting notifications which has size "+notifications.size());
 		return notifications;
 	}
 

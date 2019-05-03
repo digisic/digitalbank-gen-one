@@ -29,7 +29,6 @@ abstract class CommonController {
 	// private model attribute constants
 	private static final String MODEL_ATT_FIRST_NAME 			= "firstName";
 	private static final String MODEL_ATT_NOTIFICATIONS 		= "notifications";
-//	private static final String MODEL_ATT_MESSAGES 				= "messages";
 	private static final String MODEL_ATT_AVATAR				= "avatar";
 	private static final String MODEL_ATT_APP_VERSION			= "appVersion";
 	private static final String MODEL_ATT_APP_NAME				= "appName";
@@ -87,10 +86,7 @@ abstract class CommonController {
 		
 		// Add user's notifications for header
 		model.addAttribute(MODEL_ATT_NOTIFICATIONS, user.getNotifications());
-				
-		// Add user's messages for header
-//		model.addAttribute(MODEL_ATT_MESSAGES, user.getMessages());
-		
+						
 		// Choose male or female avatar
 		if (user.getUserProfile().getGender().equals(Constants.GENDER_MALE)) {
 			model.addAttribute(MODEL_ATT_AVATAR, MODEL_VAL_AVATAR_MALE);
