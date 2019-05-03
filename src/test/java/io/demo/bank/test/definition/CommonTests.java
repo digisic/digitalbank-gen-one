@@ -40,7 +40,7 @@ public class CommonTests {
 				username = "nsmith@demo.io";
 				password = "Demo123!";
 				break;
-				
+			
 			default:
 				username = "jsmith@demo.io";
 				password = "Demo123!";

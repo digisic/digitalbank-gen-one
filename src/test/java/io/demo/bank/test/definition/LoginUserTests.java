@@ -14,10 +14,30 @@ public class LoginUserTests {
 	private LoginSteps login;
 	
 	/** Given **/
-	@Given("^(.*) is a registered user")
+	@Given("^(.*) is a registered user$")
 	public void registeredUser (String persona) {
 		// TODO Data provisioning to get or define a registered user
 		// for now, we will assume a default known user
+	}
+	
+	@And("^he or she has an expired account$")
+	public void expiredAccount (){
+		// TODO Data provisioning to get or define user with this criteria
+	}
+	
+	@And("^he or she has an account with expired credentials$")
+	public void expiredAccountCredentials (){
+		// TODO Data provisioning to get or define user with this criteria
+	}
+	
+	@And("^he or she has a locked account$")
+	public void lockedAccount (){
+		// TODO Data provisioning to get or define user with this criteria
+	}
+	
+	@And("^he or she has a disabled account$")
+	public void disabledAccount (){
+
 	}
 	
 	/** When **/
@@ -48,7 +68,7 @@ public class LoginUserTests {
 	
 	/** Then **/
 	
-	@Then("^(.*) verifies he or she is presented with a error message indicating invalid login credentials$")
+	@Then("^(.*) verifies he or she is presented with a error message indicating invalid credentials or access denied$")
 	public void presentedErrorMessage (String persona){
 		login.presentedErrorMessage();
 	}
@@ -72,5 +92,6 @@ public class LoginUserTests {
 	public void fieldContainsValue (String field, String value){
 		login.assertFieldContainsValue(field, value);
 	}
+
 		
 }
