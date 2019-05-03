@@ -36,7 +36,7 @@ public class UserController extends CommonController {
 		
 		// Add format patterns
 		model.addAttribute(MODEL_ATT_PATTERN_PASSWORD, Patterns.USER_PASSWORD);
-		model.addAttribute(MODEL_ATT_PATTERN_PASSWORD_MSG, Messages.USER_PASSWORD);
+		model.addAttribute(MODEL_ATT_PATTERN_PASSWORD_MSG, Messages.USER_PASSWORD_FORMAT);
 		    
 		return Constants.VIEW_USR_PASSWORD;
 	}
@@ -64,7 +64,7 @@ public class UserController extends CommonController {
 				
 				LOG.debug("Change Password: New Password is the same as the current password.");
 				
-				model.addAttribute(MODEL_ATT_ERROR_MSG, Messages.USER_NEW_PASS_SAME);
+				model.addAttribute(MODEL_ATT_ERROR_MSG, Messages.USER_PASSWORD_SAME);
 				
 			} else {
 				
@@ -81,13 +81,13 @@ public class UserController extends CommonController {
 			LOG.debug("Change Password: Current Password is NOT correct.");
 			
 			// old password not correct, throw error
-			model.addAttribute(MODEL_ATT_ERROR_MSG, Messages.USER_CURR_PASS_MATCH);
+			model.addAttribute(MODEL_ATT_ERROR_MSG, Messages.USER_PASSWORD_NO_MATCH);
 			
 		}
 		
 		// Add format patterns
 		model.addAttribute(MODEL_ATT_PATTERN_PASSWORD, Patterns.USER_PASSWORD);
-		model.addAttribute(MODEL_ATT_PATTERN_PASSWORD_MSG, Messages.USER_PASSWORD);
+		model.addAttribute(MODEL_ATT_PATTERN_PASSWORD_MSG, Messages.USER_PASSWORD_FORMAT);
 		    
 		return Constants.VIEW_USR_PASSWORD;
 	}
@@ -105,7 +105,7 @@ public class UserController extends CommonController {
 		
 		// Add format patterns
 	    model.addAttribute(MODEL_ATT_PATTERN_PHONE, Patterns.USER_PHONE_REQ);
-	    model.addAttribute(MODEL_ATT_PATTERN_PHONE_MSG, Messages.USER_PHONE_GENERIC);
+	    model.addAttribute(MODEL_ATT_PATTERN_PHONE_MSG, Messages.USER_PHONE_GENERIC_FORMAT);
 		    
 		return Constants.VIEW_USR_PROFILE;
 	}
@@ -119,34 +119,11 @@ public class UserController extends CommonController {
 				
 		User user = userService.findByUsername(principal.getName());
 		
-		UserProfile up = user.getUserProfile();
-		
-		
-		LOG.debug("Update User Profile: " + updateProfile.toString());
-		
-		// Set updated fields into actual user profile
-		up.setTitle(updateProfile.getTitle());
-		up.setFirstName(updateProfile.getFirstName());
-		up.setLastName(updateProfile.getLastName());
-		up.setHomePhone(updateProfile.getHomePhone());
-		up.setMobilePhone(updateProfile.getMobilePhone());
-		up.setWorkPhone(updateProfile.getWorkPhone());
-		up.setAddress(updateProfile.getAddress());
-		up.setLocality(updateProfile.getLocality());
-		up.setRegion(updateProfile.getRegion());
-		up.setPostalCode(updateProfile.getPostalCode());
-		up.setCountry(updateProfile.getCountry());
-		
-		
-		// Save Profile Updates
-		user.setUserProfile(up);
-		userService.save(user);
-		
-		LOG.debug("Updated User Profile: " + user.getUserProfile().toString());
+		user = userService.updateUserProfile(user, updateProfile);
 		
 		// Add format patterns
 	    model.addAttribute(MODEL_ATT_PATTERN_PHONE, Patterns.USER_PHONE_REQ);
-	    model.addAttribute(MODEL_ATT_PATTERN_PHONE_MSG, Messages.USER_PHONE_GENERIC);
+	    model.addAttribute(MODEL_ATT_PATTERN_PHONE_MSG, Messages.USER_PHONE_GENERIC_FORMAT);
 	    
 		model.addAttribute(MODEL_ATT_USER_PROFILE, user.getUserProfile());
 		model.addAttribute(MODEL_ATT_SUCCESS_MSG, Messages.USER_PROFILE_UPDATED);

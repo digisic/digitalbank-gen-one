@@ -25,23 +25,26 @@ public class UserProfile {
 	@JsonProperty (access = Access.READ_ONLY)
 	private Long id;
 	
-	@NotEmpty (message=Messages.USER_FIRST_NAME)
+	@NotEmpty (message=Messages.USER_FIRST_NAME_REQUIRED)
 	private String firstName;
 	
-	@NotEmpty (message=Messages.USER_LAST_NAME)
+	@NotEmpty (message=Messages.USER_LAST_NAME_REQUIRED)
 	private String lastName;
 	
-	@Pattern(regexp=Patterns.USER_TITLE, message=Messages.USER_TITLE)
+	@NotEmpty (message=Messages.USER_TITLE_REQUIRED)
+	@Pattern(regexp=Patterns.USER_TITLE, message=Messages.USER_TITLE_FORMAT)
 	private String title;
 	
-	@Pattern(regexp=Patterns.USER_GENDER, message=Messages.USER_GENDER)
+	@NotEmpty (message=Messages.USER_GENDER_REQUIRED)
+	@Pattern(regexp=Patterns.USER_GENDER, message=Messages.USER_GENDER_FORMAT)
 	private String gender;
 	
-	@Pattern(regexp=Patterns.USER_SSN, message=Messages.USER_SSN)
-	@Column(name="ssn", nullable=false, unique=true)
+	@NotEmpty (message=Messages.USER_SSN_REQUIRED)
+	@Pattern(regexp=Patterns.USER_SSN, message=Messages.USER_SSN_FORMAT)
+	@Column(nullable=false, unique=true)
 	private String ssn;
 	  
-	@NotNull (message=Messages.USER_DOB)
+	@NotNull (message=Messages.USER_DOB_REQUIRED)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern=Patterns.DATE_FORMAT)
 	@DateTimeFormat(pattern=Patterns.DATE_FORMAT)
 	private Date dob;
@@ -50,32 +53,34 @@ public class UserProfile {
 	@DateTimeFormat(pattern=Patterns.DATE_FORMAT)
 	private Date dom;
 	
-	@Pattern(regexp=Patterns.USER_EMAIL, message=Messages.USER_EMAIL)
+	@NotEmpty (message=Messages.USER_EMAIL_REQUIRED)
+	@Pattern(regexp=Patterns.USER_EMAIL, message=Messages.USER_EMAIL_FORMAT)
 	@Column(nullable=false, unique=true)
 	private String emailAddress;
 	
-	@Pattern(regexp=Patterns.USER_PHONE_REQ, message=Messages.USER_PHONE_HOME)
+	@NotEmpty (message=Messages.USER_PHONE_HOME_REQUIRED)
+	@Pattern(regexp=Patterns.USER_PHONE_REQ, message=Messages.USER_PHONE_HOME_FORMAT)
 	private String homePhone;
 	
-	@Pattern(regexp=Patterns.USER_PHONE_NOT_REQ, message=Messages.USER_PHONE_MOBILE)
+	@Pattern(regexp=Patterns.USER_PHONE_NOT_REQ, message=Messages.USER_PHONE_MOBILE_FORMAT)
 	private String mobilePhone;
 	
-	@Pattern(regexp=Patterns.USER_PHONE_NOT_REQ, message=Messages.USER_PHONE_WORK)
+	@Pattern(regexp=Patterns.USER_PHONE_NOT_REQ, message=Messages.USER_PHONE_WORK_FORMAT)
 	private String workPhone;
 	
-	@NotEmpty (message=Messages.USER_ADDRESS)
+	@NotEmpty (message=Messages.USER_ADDRESS_REQUIRED)
 	private String address;
 	
-	@NotEmpty (message=Messages.USER_LOCALITY)
+	@NotEmpty (message=Messages.USER_LOCALITY_REQUIRED)
 	private String locality;
 	
-	@NotEmpty (message=Messages.USER_REGION)
+	@NotEmpty (message=Messages.USER_REGION_REQUIRED)
 	private String region;
 	
-	@NotEmpty (message=Messages.USER_POSTAL_CODE)
+	@NotEmpty (message=Messages.USER_POSTAL_CODE_REQUIRED)
 	private String postalCode;
 	
-	@NotEmpty (message=Messages.USER_COUNTRY)
+	@NotEmpty (message=Messages.USER_COUNTRY_REQUIRED)
 	private String country;
 	
 	

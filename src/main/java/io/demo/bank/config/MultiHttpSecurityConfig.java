@@ -2,6 +2,8 @@ package io.demo.bank.config;
 
 import io.demo.bank.service.UserSecurityService;
 import io.demo.bank.util.Constants;
+import io.demo.bank.util.Patterns;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -55,10 +57,11 @@ public class MultiHttpSecurityConfig
         protected void configure(HttpSecurity http) throws Exception {
         	
         	http.csrf().disable()
-        		.antMatcher("/api/**")
+        		.cors().disable()
+        		.antMatcher(Constants.URI_API_ALL)
         		.authorizeRequests()
         			.anyRequest()
-        			.hasRole("API")
+        			.hasRole(Patterns.ROLE_API)
         			.and()
 				.httpBasic();
         	
@@ -75,7 +78,7 @@ public class MultiHttpSecurityConfig
 				.cors().disable()
 				.authorizeRequests()
 					.antMatchers(PUBLIC).permitAll()
-					.anyRequest().hasRole("USER")
+					.anyRequest().hasRole(Patterns.ROLE_USER)
 					.and()
 				.formLogin().failureUrl(Constants.URI_LOGIN_ERR).defaultSuccessUrl(Constants.URI_HOME)
 					.loginPage(Constants.URI_LOGIN).permitAll()

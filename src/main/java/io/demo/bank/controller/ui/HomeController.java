@@ -55,8 +55,8 @@ public class HomeController extends CommonController {
 	    model.addAttribute(MODEL_ATT_PATTERN_EMAIL, Patterns.USER_EMAIL);
 	    model.addAttribute(MODEL_ATT_PATTERN_PASSWORD, Patterns.USER_PASSWORD);
 	    model.addAttribute(MODEL_ATT_PATTERN_DOB, Patterns.USER_DOB);
-	    model.addAttribute(MODEL_ATT_PATTERN_SSN_MSG, Messages.USER_SSN);
-	    model.addAttribute(MODEL_ATT_PATTERN_PASSWORD_MSG, Messages.USER_PASSWORD);
+	    model.addAttribute(MODEL_ATT_PATTERN_SSN_MSG, Messages.USER_SSN_FORMAT);
+	    model.addAttribute(MODEL_ATT_PATTERN_PASSWORD_MSG, Messages.USER_PASSWORD_FORMAT);
     
 		return Constants.VIEW_SIGNUP;
 	}
@@ -105,15 +105,15 @@ public class HomeController extends CommonController {
 		    model.addAttribute(MODEL_ATT_PATTERN_EMAIL, Patterns.USER_EMAIL);
 		    model.addAttribute(MODEL_ATT_PATTERN_PASSWORD, Patterns.USER_PASSWORD);
 		    model.addAttribute(MODEL_ATT_PATTERN_DOB, Patterns.USER_DOB);
-		    model.addAttribute(MODEL_ATT_PATTERN_SSN_MSG, Messages.USER_SSN);
-		    model.addAttribute(MODEL_ATT_PATTERN_PASSWORD_MSG, Messages.USER_PASSWORD);
+		    model.addAttribute(MODEL_ATT_PATTERN_SSN_MSG, Messages.USER_SSN_FORMAT);
+		    model.addAttribute(MODEL_ATT_PATTERN_PASSWORD_MSG, Messages.USER_PASSWORD_FORMAT);
 		    
 	    	return Constants.VIEW_SIGNUP;
 	    }
 	    
 	    // Add format patterns
 	    model.addAttribute(MODEL_ATT_PATTERN_PHONE, Patterns.USER_PHONE_REQ);
-	    model.addAttribute(MODEL_ATT_PATTERN_PHONE_MSG, Messages.USER_PHONE_GENERIC);
+	    model.addAttribute(MODEL_ATT_PATTERN_PHONE_MSG, Messages.USER_PHONE_GENERIC_FORMAT);
 	    
 	    return Constants.VIEW_REGISTER;
 	}
@@ -130,8 +130,8 @@ public class HomeController extends CommonController {
 	    model.addAttribute(MODEL_ATT_PATTERN_EMAIL, Patterns.USER_EMAIL);
 	    model.addAttribute(MODEL_ATT_PATTERN_PASSWORD, Patterns.USER_PASSWORD);
 	    model.addAttribute(MODEL_ATT_PATTERN_DOB, Patterns.USER_DOB);
-	    model.addAttribute(MODEL_ATT_PATTERN_SSN_MSG, Messages.USER_SSN);
-	    model.addAttribute(MODEL_ATT_PATTERN_PASSWORD_MSG, Messages.USER_PASSWORD);
+	    model.addAttribute(MODEL_ATT_PATTERN_SSN_MSG, Messages.USER_SSN_FORMAT);
+	    model.addAttribute(MODEL_ATT_PATTERN_PASSWORD_MSG, Messages.USER_PASSWORD_FORMAT);
     
 		return Constants.VIEW_SIGNUP;
 	}
@@ -145,7 +145,7 @@ public class HomeController extends CommonController {
     
 		LOG.debug("Registering new User: " + newUser);
     
-		newUser = userService.createUser(newUser, Role.ROLE_USER);
+		userService.createUser(newUser, Role.ROLE_USER);
 		model.addAttribute(MODEL_ATT_USER, newUser);
 		model.addAttribute(MODEL_ATT_SUCCESS_MSG, Messages.USER_REGIST_SUCC);
     

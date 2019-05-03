@@ -1,22 +1,29 @@
 package io.demo.bank.service;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import io.demo.bank.model.Notification;
+import io.demo.bank.model.UserProfile;
 import io.demo.bank.model.enums.NotificationType;
 import io.demo.bank.model.security.UserRole;
+import io.demo.bank.model.security.Role;
 import io.demo.bank.model.security.User;
 import io.demo.bank.repository.RoleRepository;
 import io.demo.bank.repository.UserProfileRepository;
 import io.demo.bank.repository.UserRepository;
+import io.demo.bank.repository.UserRoleRepository;
+import io.demo.bank.util.Patterns;
 
 @Service
 @Transactional
@@ -29,9 +36,12 @@ public class UserService {
   
 	@Autowired
 	private RoleRepository roleRepository;
-  
+	
 	@Autowired
 	private UserProfileRepository userProfileRepository;
+	
+	@Autowired
+	private UserRoleRepository userRoleRepository;
 	  
 	@Autowired
 	private BCryptPasswordEncoder encoder;
@@ -42,7 +52,22 @@ public class UserService {
 	 */
 	public User findByUsername(String username) {
 	
-		return this.userRepository.findByUsername(username);
+		return userRepository.findByUsername(username);
+	}
+	
+	/*
+	 * Find the user by the specified id. Returns the User object
+	 * if found otherwise the User object will be null.
+	 */
+	public User findById(Long id) {
+	
+		Optional<User> opt = userRepository.findById(id);
+		
+		if (opt.isPresent()) {
+			return opt.get();
+		}
+		
+		return null;
 	}
 	
 	/*
@@ -77,9 +102,9 @@ public class UserService {
 	/*
 	 * Saves the User object to the data store
 	 */
-	public void save(User user) {
+	public User save(User user) {
 		
-		userRepository.save(user);
+		return userRepository.save(user);
 	}
 	
 	/*
@@ -93,7 +118,7 @@ public class UserService {
 	/*
 	 * Creates a new User account within the data store.
 	 */
-	public User createUser(User newUser, String role) {
+	public void createUser(User newUser, String role) {
 	
 		// Encode the password before storing user
 		newUser.setPassword(encoder.encode(newUser.getPassword()));
@@ -118,7 +143,47 @@ public class UserService {
 	    
 	    LOG.debug("Create User: New User Created.");
 	    
-	    return newUser;
+	}
+	
+	/*
+	 * Delete the user
+	 */
+	public void deleteUser (User user) {
+		userRepository.delete(user);
+	}
+	
+	/*
+	 * Updates an existing user profile with new profile data
+	 */
+	public User updateUserProfile(User user, UserProfile newProfile) {
+		
+		UserProfile up = user.getUserProfile();
+		
+		
+		LOG.debug("Update User Profile: " + newProfile.toString());
+		
+		// Set updated fields into actual user profile
+		up.setTitle(newProfile.getTitle());
+		up.setFirstName(newProfile.getFirstName());
+		up.setLastName(newProfile.getLastName());
+		up.setHomePhone(newProfile.getHomePhone());
+		up.setMobilePhone(newProfile.getMobilePhone());
+		up.setWorkPhone(newProfile.getWorkPhone());
+		up.setAddress(newProfile.getAddress());
+		up.setLocality(newProfile.getLocality());
+		up.setRegion(newProfile.getRegion());
+		up.setPostalCode(newProfile.getPostalCode());
+		up.setCountry(newProfile.getCountry());
+		
+		
+		// Save Profile Updates
+		user.setUserProfile(up);
+		
+		user = save(user);
+		
+		LOG.debug("Updated User Profile: " + user.getUserProfile().toString());
+	
+		return user;
 	}
 	
 	/*
@@ -142,6 +207,60 @@ public class UserService {
 		LOG.debug("Change Password: Password Changed.");
 		
 	}
+	
+	/*
+	 * Adds a new role authority to the user
+	 * 
+	 */
+	public void addRole(User user, String role) {
+		
+		// Get the user's roles
+		Set<UserRole> userRoles = user.getUserRoles();
+		
+		Role newRole = roleRepository.findByName(role);
+		userRoles.add(new UserRole(user, newRole));
+		user.setUserRoles(userRoles);
+		userRepository.save(user);
+		
+		LOG.debug("Add Role -> Added new role '" + role + "'");
+		
+	}
+	
+	
+	/*
+	 * Removes a role authority from the user
+	 * 
+	 */
+	public void removeRole(User user, String roleName) {
+		
+		LOG.debug("Remove Role -> Remove existing role '" + roleName + "'");
+		
+		// Get the user's roles
+		Set<UserRole> userRoles = user.getUserRoles();
+		
+		// First validate the user has the role
+		if (hasRole(user, roleName)) {
+			
+			// Find the UserRole object we need to remove
+			for (UserRole userRole: userRoles) {
+				if (userRole.getRole().getName().equals(roleName)) {
+					userRoles.remove(userRole);
+					userRoleRepository.delete(userRole);
+					break;
+				} // end if
+			} // end for
+
+			userRepository.save(user);
+			
+			LOG.debug("Remove Role -> Completed UserRoles iteration.");
+		}
+		else {
+			LOG.debug("Remove Role -> User does not have role '" + roleName + "' assigned. Nothing to remove.");
+		}
+		
+	}
+	
+	
 	
 	public void addNotification(User user, String content) {
 		
@@ -218,5 +337,53 @@ public class UserService {
 		
 	}
 	
+	
+	/*
+	 * Determine the Role Name based on the passed in Role
+	 */
+	public String findRoleName (String role) {
+		
+		LOG.debug("findRoleName -> Role passed in = '" + role + "'");
+		
+		String selRole = "";
+		
+		// Determine role to set for user based on optional parameter
+		switch (role) {
+		
+			case Patterns.ROLE_API:
+				selRole = Role.ROLE_API;
+				break;
+			case Patterns.ROLE_ADMIN:
+				selRole = Role.ROLE_ADMIN;
+				break;
+			default:
+				selRole = Role.ROLE_USER;
+		}
+		
+		LOG.debug("findRoleName -> Role selected = '" + selRole + "'");
+		
+		return selRole;
+	}
+	
+	/*
+	 * Check to see if the user already has the passed in role
+	 */
+	public boolean hasRole(User user, String roleName) {
+		  
+		Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
+		
+		boolean hasRole = false;
+		
+		// check each of the current authorities
+		for (GrantedAuthority authority : authorities) {
+			hasRole = authority.getAuthority().equals(roleName);
+		     
+			if (hasRole) {
+				break;
+		    }
+		} // end for
+		
+		return hasRole;
+	}
 
 }

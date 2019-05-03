@@ -9,6 +9,7 @@ public class Patterns {
 	
 	// User
 	public static final String USER_PASSWORD		= "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}";
+	public static final String USER_ROLE			= "USER|ADMIN|API";
 													  
 	// User Profile
 	public static final String USER_TITLE			= "Mr.|Mrs.|Ms.";
@@ -18,4 +19,9 @@ public class Patterns {
 	public static final String USER_EMAIL			= "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
 	public static final String USER_PHONE_REQ		= "^[+]?([0-9]*[\\.\\s\\-\\(\\)]|[0-9]+){3,24}$";
 	public static final String USER_PHONE_NOT_REQ	= "^$|^[+]?([0-9]*[\\.\\s\\-\\(\\)]|[0-9]+){3,24}$";
+	
+	// Role
+	public static final String ROLE_USER			= "USER";
+	public static final String ROLE_ADMIN			= "ADMIN";
+	public static final String ROLE_API				= "API";
 }

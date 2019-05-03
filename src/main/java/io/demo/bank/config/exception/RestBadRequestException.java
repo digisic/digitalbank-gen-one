@@ -1,28 +1,20 @@
 package io.demo.bank.config.exception;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
+@ResponseStatus(HttpStatus.BAD_REQUEST)
 public class RestBadRequestException extends RuntimeException {  
 
 
 	private static final long serialVersionUID = 9064945270708398079L;
 
-	private String msg;
-
-	
-	public RestBadRequestException (String msg) {
-		this.msg = msg;
+	public RestBadRequestException () {
+		super();
 	}
 	
-	/**
-	 * @return the msg
-	 */
-	public String getMsg() {
-		return msg;
+	public RestBadRequestException (String message) {
+		super(message);
 	}
-	/**
-	 * @param msg the msg to set
-	 */
-	public void setMsg(String msg) {
-		this.msg = msg;
-	}
+	
 }

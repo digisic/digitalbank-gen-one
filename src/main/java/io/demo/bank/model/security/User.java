@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +31,6 @@ import io.demo.bank.model.Notification;
 import io.demo.bank.model.UserProfile;
 import io.demo.bank.util.Messages;
 import io.demo.bank.util.Patterns;
-
 
 @Entity
 public class User implements UserDetails {
@@ -48,8 +48,9 @@ public class User implements UserDetails {
 	@JsonProperty (access = Access.READ_ONLY)
     private String username;
     
-    @JsonProperty(access = Access.WRITE_ONLY)
-    @Pattern(regexp=Patterns.USER_PASSWORD, message=Messages.USER_PASSWORD)
+	@NotEmpty(message=Messages.USER_PASSWORD_REQUIRED)
+    @JsonProperty(access = Access.WRITE_ONLY, required = true)
+    @Pattern(regexp=Patterns.USER_PASSWORD, message=Messages.USER_PASSWORD_FORMAT)
     private String password;
 
     private boolean enabled = true;
@@ -270,7 +271,7 @@ public class User implements UserDetails {
 	    user += "\nEnabled:\t\t" 				+ this.isEnabled();
 	    user += "\nNon Locked:\t\t" 			+ this.isAccountNonLocked();
 	    user += "\nNon Expired:\t\t" 			+ this.isAccountNonExpired();
-	    user += "\nCredentials Non Expired:\t" 	+ this.isCredentialsNonExpired();
+	    user += "\nCredentials Non Expired:" 	+ this.isCredentialsNonExpired();
 	    user += "\n" 							+ this.getUserProfile();
 
 	    user += "\n*******************************************\n";

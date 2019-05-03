@@ -107,6 +107,8 @@ public class DefaultData implements CommandLineRunner, Ordered {
 			
 			user.setUserProfile(userProfile);
 			userService.createUser(user, Role.ROLE_API);
+			userService.addRole(user, Role.ROLE_ADMIN);
+		
 		}
 		
 		// Load Account Types if they do not exist
