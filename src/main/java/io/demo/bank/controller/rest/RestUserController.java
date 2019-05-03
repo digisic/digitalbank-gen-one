@@ -277,7 +277,62 @@ public class RestUserController extends RestCommonController{
 	}
 	
 	
+	/*
+	 * ADMIN Role
+	 * Enable or Disable a User
+	 */
+	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
+	@PutMapping(Constants.URI_API_USR_ENABLE)
+	public ResponseEntity<?> SetUserEnabled(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
+	         								@RequestParam(required=true) boolean enabled) {
+
+		userService.enableUser(getUser(id), enabled);
+		return ResponseEntity.noContent().build();
+	}
 	
+	/*
+	 * ADMIN Role
+	 * Lock or Unlock a User
+	 */
+	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
+	@PutMapping(Constants.URI_API_USR_UNLOCK)
+	public ResponseEntity<?> SetUserUnlocked(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
+	         								@RequestParam(required=true) boolean unlock) {
+
+		userService.unlockUser(getUser(id), unlock);
+		return ResponseEntity.noContent().build();
+	}
+	
+	/*
+	 * ADMIN Role
+	 * Expire or Unexpire a User
+	 */
+	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
+	@PutMapping(Constants.URI_API_USR_UNEXPIRE)
+	public ResponseEntity<?> SetUserUnexpired(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
+	         								 @RequestParam(required=true) boolean unexpire) {
+
+		userService.unexpireUser(getUser(id), unexpire);
+		return ResponseEntity.noContent().build();
+	}
+	
+	/*
+	 * ADMIN Role
+	 * Expire or Unexpire Password
+	 */
+	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
+	@PutMapping(Constants.URI_API_USR_PASS_UNEXPIRE)
+	public ResponseEntity<?> SetPasswordUnexpired(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
+	         								      @RequestParam(required=true) boolean unexpire) {
+
+		userService.unexpirePassword(getUser(id), unexpire);
+		return ResponseEntity.noContent().build();
+	}
+	
+	/*
+	 * Helper method to move the User Profile partial object into 
+	 * a User Profile object
+	 */
 	private UserProfile convertBodytoProfile (UserProfileBody body) {
 		
 		UserProfile profile = new UserProfile();

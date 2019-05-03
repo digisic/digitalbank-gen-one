@@ -67,12 +67,17 @@ public class Constants {
 	public static final String URI_API_USR_ROLE_CURR	= "/api/v1/user/role";
 	public static final String URI_API_USR_SET_PASS		= "/api/v1/user/{id}/password";
 	public static final String URI_API_USR_CHG_PASS		= "/api/v1/user/password";
+	public static final String URI_API_USR_ENABLE		= "/api/v1/user/{id}/enable";
+	public static final String URI_API_USR_UNEXPIRE		= "/api/v1/user/{id}/unexpire";
+	public static final String URI_API_USR_UNLOCK		= "/api/v1/user/{id}/unlock";
+	public static final String URI_API_USR_PASS_UNEXPIRE= "/api/v1/user/{id}/password/unexpire";
 	public static final String URI_API_USR_ACCT			= "/api/v1/user/{id}/account";
 	public static final String URI_API_USR_ACCT_CURR	= "/api/v1/user/account";
 	public static final String URI_API_USR_ACCT_CHK		= "/api/v1/user/{id}/account/checking";
 	public static final String URI_API_USR_ACCT_CHK_CURR= "/api/v1/user/account/checking";
 	public static final String URI_API_USR_ACCT_SAV		= "/api/v1/user/{id}/account/savings";
 	public static final String URI_API_USR_ACCT_SAV_CURR= "/api/v1/user/account/savings";
+	
 	
 	// Path Variables
 	public static final String PATH_VARIABLE_ID		= "id";

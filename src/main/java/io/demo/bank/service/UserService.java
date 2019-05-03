@@ -385,5 +385,37 @@ public class UserService {
 		
 		return hasRole;
 	}
+	
+	/*
+	 * Enable or Disable User
+	 */
+	public void enableUser (User user, boolean enabled) {
+		user.setEnabled(enabled);
+		userRepository.save(user);
+	}
+	
+	/*
+	 * Lock or Unlock User
+	 */
+	public void unlockUser (User user, boolean unlock) {
+		user.setAccountNonLocked(unlock);
+		userRepository.save(user);
+	}
+	
+	/*
+	 * Expire or Unexpire User
+	 */
+	public void unexpireUser (User user, boolean unexpire) {
+		user.setAccountNonExpired(unexpire);
+		userRepository.save(user);
+	}
+	
+	/*
+	 * Expire or Unexpire Password
+	 */
+	public void unexpirePassword (User user, boolean unexpire) {
+		user.setCredentialsNonExpired(unexpire);
+		userRepository.save(user);
+	}
 
 }
