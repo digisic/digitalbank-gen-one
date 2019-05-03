@@ -52,7 +52,7 @@
 		                        		<div class="row form-group">
 		                        			<div class="col col-sm-4">
 					                            <label class="form-control-label"><strong>Deposit Amount</strong></label>
-					                            <input type="text" class="form-control" th:field="${transaction.amount}" required pattern="^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$">
+					                            <input type="text" class="form-control" th:field="${transaction.amount}" required th:pattern="${patternTransactionAmount}">
 					                        	<small class="form-text text-muted">ex. 25.00</small>
 					                        </div>
 		                        		</div>		

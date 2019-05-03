@@ -1,6 +1,7 @@
 package io.demo.bank.config;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,19 +11,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
-
 import io.demo.bank.model.AccountStanding;
 import io.demo.bank.model.AccountType;
 import io.demo.bank.model.OwnershipType;
 import io.demo.bank.model.TransactionState;
 import io.demo.bank.model.TransactionType;
+import io.demo.bank.model.UserProfile;
 import io.demo.bank.model.security.Role;
+import io.demo.bank.model.security.User;
 import io.demo.bank.repository.AccountStandingRepository;
 import io.demo.bank.repository.AccountTypeRepository;
 import io.demo.bank.repository.OwnershipTypeRepository;
 import io.demo.bank.repository.RoleRepository;
 import io.demo.bank.repository.TransactionStateRepository;
 import io.demo.bank.repository.TransactionTypeRepository;
+import io.demo.bank.service.UserService;
 
 @Component
 public class DefaultData implements CommandLineRunner, Ordered {
@@ -47,9 +50,12 @@ public class DefaultData implements CommandLineRunner, Ordered {
 	@Autowired
 	private TransactionStateRepository transactionStateRepository;
 	
+	@Autowired
+	private UserService userService;
+	
 	@Override
 	public int getOrder() {
-		return 1;
+		return 0;
 	}
 
 	@Override
@@ -59,18 +65,50 @@ public class DefaultData implements CommandLineRunner, Ordered {
 		LOG.info("***** Checking Default Data *****");
 		
 		// Load Roles if they do not exist
-		if (roleRepository.findByName("ROLE_USER") == null) {
+		if (roleRepository.findByName(Role.ROLE_USER) == null) {
 			
 			LOG.info("** Loading Roles...");
 			
 			List<Role> roles = new ArrayList<Role>();
 			
-			roles.add(new Role("ROLE_USER"));
-			roles.add(new Role("ROLE_ADMIN"));
-			roles.add(new Role("ROLE_API"));
+			roles.add(new Role(Role.ROLE_USER));
+			roles.add(new Role(Role.ROLE_ADMIN));
+			roles.add(new Role(Role.ROLE_API));
 			
 			roleRepository.saveAll(roles);
 			
+		}
+		
+		// Create a Default API User
+		// If the default user data does not exist, then create it.
+		if (!userService.checkEmailAdressExists("api@demo.io") && !userService.checkSsnExists("111-11-1111")) {
+			
+			LOG.info("** Loading Default API User...");
+			
+			User user = new User("api@demo.io", "Demo123!");
+			UserProfile userProfile = new UserProfile();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
+			
+			userProfile.setEmailAddress("api@demo.io");
+			userProfile.setFirstName("API");
+			userProfile.setLastName("User");
+			userProfile.setTitle("Mr.");
+			userProfile.setGender("M");
+			userProfile.setDob(dateFormat.parse("1985-02-15"));
+			userProfile.setSsn("111-11-1111");
+			userProfile.setAddress("123 Digital Lane");
+			userProfile.setCountry("United States");
+			userProfile.setLocality("Internet City");
+			userProfile.setPostalCode("94302");
+			userProfile.setRegion("CA");
+			userProfile.setHomePhone("123-456-7890");
+			userProfile.setMobilePhone("123-456-7890");
+			userProfile.setWorkPhone("123-456-7890");
+			
+			user.setUserProfile(userProfile);
+			userService.createUser(user, Role.ROLE_API);
+			userService.addRole(user, Role.ROLE_ADMIN);
+		
 		}
 		
 		// Load Account Types if they do not exist
