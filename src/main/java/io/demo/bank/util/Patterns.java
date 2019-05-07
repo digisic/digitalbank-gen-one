@@ -1,5 +1,7 @@
 package io.demo.bank.util;
 
+import io.demo.bank.model.TransactionType;
+
 public class Patterns {
 	
 	// Common
@@ -24,4 +26,38 @@ public class Patterns {
 	public static final String ROLE_USER			= "USER";
 	public static final String ROLE_ADMIN			= "ADMIN";
 	public static final String ROLE_API				= "API";
+	
+	// Account
+	public static final String ACCT_OWN_TYPE_CODE	= Constants.ACCT_OWN_IND_CODE + "|" 
+													+ Constants.ACCT_OWN_JNT_CODE;
+	
+	public static final String ACCT_TYPE_CODE		= Constants.ACCT_CHK_STD_CODE + "|" 
+													+ Constants.ACCT_CHK_INT_CODE + "|"
+													+ Constants.ACCT_SAV_STD_CODE + "|" 
+													+ Constants.ACCT_SAV_MMA_CODE;
+	
+	public static final String ACCT_TRAN_TYPE_CODE 	= Constants.ACCT_TRAN_TYPE_ATM_CODE + "|"
+													+ Constants.ACCT_TRAN_TYPE_CHARGE_CODE + "|"
+													+ Constants.ACCT_TRAN_TYPE_CHECK_CODE + "|"
+													+ Constants.ACCT_TRAN_TYPE_CHECK_FEE_CODE + "|"
+													+ Constants.ACCT_TRAN_TYPE_DEBIT_CODE + "|"
+													+ Constants.ACCT_TRAN_TYPE_DEPOSIT_CODE + "|"
+													+ Constants.ACCT_TRAN_TYPE_DIRECT_DEP_CODE + "|"
+													+ Constants.ACCT_TRAN_TYPE_DIV_CREDIT_CODE + "|"
+													+ Constants.ACCT_TRAN_TYPE_EFT_CODE + "|"
+													+ Constants.ACCT_TRAN_TYPE_FEE_CODE + "|"
+													+ Constants.ACCT_TRAN_TYPE_INT_INCOME_CODE + "|"
+													+ Constants.ACCT_TRAN_TYPE_LATE_FEE_CODE + "|"
+													+ Constants.ACCT_TRAN_TYPE_OVERDRAFT_CODE + "|"
+													+ Constants.ACCT_TRAN_TYPE_OVERDRAFT_FEE_CODE + "|"
+													+ Constants.ACCT_TRAN_TYPE_PAYMENT_CODE + "|"
+													+ Constants.ACCT_TRAN_TYPE_POS_CODE + "|"
+													+ Constants.ACCT_TRAN_TYPE_REFUND_CODE + "|"
+													+ Constants.ACCT_TRAN_TYPE_WITHDRAWL_CODE + "|"
+													+ Constants.ACCT_TRAN_TYPE_XFER_CODE + "|"
+													+ Constants.ACCT_TRAN_TYPE_XFER_FEE_CODE;
+	public static final String ACCT_TRAN_ACTION		= TransactionType.CAT_CREDIT + "|"
+													+ TransactionType.CAT_DEBIT;
+													
+			
 }

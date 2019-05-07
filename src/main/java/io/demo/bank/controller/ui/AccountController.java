@@ -72,7 +72,7 @@ public class AccountController extends CommonController {
 			
 			// Create Account
 			newAccount.setOwner(user);
-			newAccount = accountService.createNewAccount(newAccount);
+			accountService.createNewAccount(newAccount);
 			
 			// Add notification to user
 			userService.addNotification(user, "New "+newAccount.getAccountType().getName()+" account named "+newAccount.getName()+" created");
@@ -345,7 +345,14 @@ public class AccountController extends CommonController {
 			return Constants.VIEW_DEPOSIT;
 		}
 		
-		accountService.makeDeposit(account, accountTransaction);
+		// Set Transaction Description
+		accountTransaction.setDescription("Online Deposit");
+		
+		// Set Transaction Type
+		accountTransaction.setTransactionType(accountService.getTransactionTypeByCode(Constants.ACCT_TRAN_TYPE_DEPOSIT_CODE));
+		
+		// Save Transaction
+		accountService.creditTransaction(account, accountTransaction);
 		
 		// if this is a checking account
 		if (accountService.isSavingsAccount(account)) {
@@ -427,8 +434,6 @@ public class AccountController extends CommonController {
 				
 				bError = true;
 			}
-			
-			
 		}
 		
 		if (bError) {
@@ -447,7 +452,14 @@ public class AccountController extends CommonController {
 			
 		}
 		
-		accountService.makeWithdraw(account, accountTransaction);
+		// Set Transaction Description
+		accountTransaction.setDescription("Online Withdrawl");
+		
+		// Set Transaction Type
+		accountTransaction.setTransactionType(accountService.getTransactionTypeByCode(Constants.ACCT_TRAN_TYPE_WITHDRAWL_CODE));
+		
+		// SaveTransaction
+		accountService.debitTransaction(account, accountTransaction);
 		
 		// if this is a checking account
 		if (accountService.isSavingsAccount(account)) {

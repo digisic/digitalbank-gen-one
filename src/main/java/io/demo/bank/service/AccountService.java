@@ -12,9 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import io.demo.bank.model.Account;
+import io.demo.bank.model.AccountStanding;
 import io.demo.bank.model.AccountTransaction;
 import io.demo.bank.model.AccountType;
 import io.demo.bank.model.OwnershipType;
+import io.demo.bank.model.TransactionState;
+import io.demo.bank.model.TransactionType;
 import io.demo.bank.model.security.User;
 import io.demo.bank.repository.AccountRepository;
 import io.demo.bank.repository.AccountStandingRepository;
@@ -51,25 +54,11 @@ public class AccountService {
 	
 	@Autowired 
 	private AccountTransactionRepository accountTransactionRepository;
-			
 	
-	public List<Account> getCheckingAccounts (User user) {
-		
-		List<Account> checkingAccounts = accountRepository.findByOwnerAndAccountType_Category(user, Constants.ACCT_CHK_CAT);
-		checkingAccounts.addAll(accountRepository.findByCoownerAndAccountType_Category(user, Constants.ACCT_CHK_CAT));
-		
-		return checkingAccounts;
-	}
 	
-	public List<Account> getSavingsAccounts (User user) {
-				
-		List<Account> savingsAccounts = accountRepository.findByOwnerAndAccountType_Category(user, Constants.ACCT_SAV_CAT);
-		savingsAccounts.addAll(accountRepository.findByCoownerAndAccountType_Category(user, Constants.ACCT_SAV_CAT));
-						
-		return savingsAccounts;
-		
-	}
-	
+	/*
+	 * Create a new account
+	 */
 	public Account createNewAccount (Account newAccount) {
 		
 		Long lastAccountNumber = accountRepository.findMaxAccountNumber();
@@ -91,8 +80,8 @@ public class AccountService {
 		accountTransaction.setRunningBalance(newAccount.getOpeningBalance());
 		accountTransaction.setDescription("Initial Deposit - Open Account");
 		accountTransaction.setTransactionDate(new Date());
-		accountTransaction.setTransactionState(transactionStateRepository.findByCode(Constants.ACCT_TRNST_COMP_CODE));
-		accountTransaction.setTTransactionype(transactionTypeRepository.findByCode(Constants.ACCT_TRNTY_DEP_CODE));
+		accountTransaction.setTransactionState(transactionStateRepository.findByCode(Constants.ACCT_TRAN_ST_COMP_CODE));
+		accountTransaction.setTransactionType(transactionTypeRepository.findByCode(Constants.ACCT_TRAN_TYPE_DEPOSIT_CODE));
 		accountTransaction.setAccount(newAccount);
 		
 		atl.add(accountTransaction);
@@ -107,100 +96,84 @@ public class AccountService {
 		
 	}
 	
-	public void makeDeposit(Account account, AccountTransaction accountTransaction) {
+	/*
+	 * Delete an Account
+	 */
+	public void deleteAccount (Account account) {
+		accountRepository.delete(account);
+	}
+	
+	/*
+	 * Add a new transaction that will apply a credit to the account.
+	 * 
+	 * The Account passed in is expected to be a full Account object. With that said,
+	 * the account object is fetched to make sure.
+	 * 
+	 * The AccountTransation is expect to be a partial object. However,
+	 * 		the AccountTransaction should have the following values already defined 
+	 * 		within the object.
+	 * 
+	 * 		- Amount of transaction
+	 * 		- Transaction Type
+	 * 		- Transaction Description
+	 */
+	public void creditTransaction(Account account, AccountTransaction accountTransaction) {
 		
-		LOG.debug("Deposit to Account:");
+		LOG.debug("Credit Transaction to Account:");
 		
-		Optional<Account> act = accountRepository.findById(account.getId());
-		
-		if (act.isPresent()) {
-			account = act.get();
-		} else {
-			LOG.debug("Deposit to Account: Account with id, " + account.getId() + ", not found.");
-		}
+		account = this.getAccountById(account.getId());
 		
 		List<AccountTransaction> atl = account.getAcountTransactionList();
 		
-		LOG.debug("Deposit to Account: Current Number of Transactions: ->" + atl.size());
+		LOG.debug("Credit Transaction to Account: Current Number of Transactions: ->" + atl.size());
 		
 		BigDecimal balance = account.getCurrentBalance();
 		
-		LOG.debug("Deposit to Account: Current Balance: ->" + balance);
+		LOG.debug("Credit Transaction to Account: Current Balance: ->" + balance);
 		
 		balance = balance.add(accountTransaction.getAmount());
 		
-		LOG.debug("Deposit to Account: Updated Balance: ->" + balance);
+		LOG.debug("Credit Transaction to Account: Updated Balance: ->" + balance);
 		
 		account.setCurrentBalance(balance);
-		
 		
 		
 		long transactionNumber = accountTransactionRepository.findMaxTransactionNumber();
 		accountTransaction.setTransactionNumber(++transactionNumber);
 		accountTransaction.setRunningBalance(balance);
-		accountTransaction.setDescription("Online Deposit");
 		accountTransaction.setTransactionDate(new Date());
-		accountTransaction.setTransactionState(transactionStateRepository.findByCode(Constants.ACCT_TRNST_COMP_CODE));
-		accountTransaction.setTTransactionype(transactionTypeRepository.findByCode(Constants.ACCT_TRNTY_DEP_CODE));
+		accountTransaction.setTransactionState(transactionStateRepository.findByCode(Constants.ACCT_TRAN_ST_COMP_CODE));
 		accountTransaction.setAccount(account);
 		atl.add(accountTransaction);
 		
-		LOG.debug("Deposit to Account: New Number of Transactions: ->" + atl.size());
+		LOG.debug("Credit Transaction to Account: New Number of Transactions: ->" + atl.size());
 		
 		account.setAcountTransactionList(atl);
 		
 		// Update Account
 		accountRepository.save(account);
 		
-		
-		
-		LOG.debug("Deposit to Account: Account Updated.");
+		LOG.debug("Credit Transaction to Account: Account Updated.");
 		
 	}
 	
-	private void overdraftCharge (Account account) {
+	/*
+	 * Add a new transaction that will apply a debit to the account.
+	 * 
+	 * The Account passed in is expected to be a full Account object. With that said
+	 * the account object is fetched to make sure.
+	 * 
+	 * The AccountTransation is expect to be a partial object. However,
+	 * 		the AccountTransaction should have the following values already defined 
+	 * 		within the object.
+	 * 
+	 * 		- Amount of transaction
+	 * 		- Transaction Type
+	 * 		- Transaction Description
+	 */
+	public void debitTransaction(Account account, AccountTransaction accountTransaction) {
 		
-		LOG.debug("Overdraft Charge: Charge fee for overdraft.");
-		
-		// Add seconds to current date/time to differentiate transactions on sort
-		int seconds = 15;
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(new Date());
-		calendar.add(Calendar.SECOND, seconds);
-		List<AccountTransaction> transList = account.getAcountTransactionList();
-		
-		AccountTransaction overTrans = new AccountTransaction();
-		BigDecimal overFee = account.getAccountType().getOverdraftFee();
-		
-		// Convert amount to a negative number since it is a withdraw
-		BigDecimal negOne = new BigDecimal(-1);
-		overFee = overFee.multiply(negOne);
-		
-		BigDecimal currentBalance = account.getCurrentBalance();
-		BigDecimal updatedBalance = currentBalance.add(overFee);
-		account.setCurrentBalance(updatedBalance);
-		
-		long transactionNumber = accountTransactionRepository.findMaxTransactionNumber();
-		overTrans.setTransactionNumber(++transactionNumber);
-		overTrans.setRunningBalance(updatedBalance);
-		overTrans.setAmount(overFee);
-		overTrans.setDescription("Overdraft Fee");
-		overTrans.setTransactionDate(calendar.getTime());
-		overTrans.setTransactionState(transactionStateRepository.findByCode(Constants.ACCT_TRNST_COMP_CODE));
-		overTrans.setTransactionType(transactionTypeRepository.findByCode(Constants.ACCT_TRNTY_OVER_FEE_CODE));
-		overTrans.setAccount(account);
-		transList.add(overTrans);
-		
-		account.setAcountTransactionList(transList);
-		
-		// Update Account
-		accountRepository.save(account);
-
-	}
-	
-	public void makeWithdraw(Account account, AccountTransaction accountTransaction) {
-		
-		LOG.debug("Withdraw from Account:");
+		LOG.debug("Debit Transaction from Account:");
 		
 		account = this.getAccountById(account.getId());
 		
@@ -225,17 +198,15 @@ public class AccountService {
 		accountTransaction.setTransactionNumber(++transactionNumber);
 		accountTransaction.setRunningBalance(balance);
 		accountTransaction.setAmount(amount);
-		accountTransaction.setDescription("Online Withdraw");
 		accountTransaction.setTransactionDate(new Date());
-		accountTransaction.setTransactionState(transactionStateRepository.findByCode(Constants.ACCT_TRNST_COMP_CODE));
-		accountTransaction.setTTransactionype(transactionTypeRepository.findByCode(Constants.ACCT_TRNTY_WITH_CODE));
+		accountTransaction.setTransactionState(transactionStateRepository.findByCode(Constants.ACCT_TRAN_ST_COMP_CODE));
 		accountTransaction.setAccount(account);
 		atl.add(accountTransaction);
 		
 		account.setAcountTransactionList(atl);
 		
 		// Update Account
-		account = accountRepository.save(account);
+		accountRepository.save(account);
 		
 		
 		
@@ -246,10 +217,17 @@ public class AccountService {
 		}
 	
 		
-		LOG.debug("Withdraw from Account: Account Updated.");
+		LOG.debug("Debit Transaction from Account: Account Updated.");
 		
 	}
 	
+	/*
+	 * Transfer amount between two accounts
+	 * 
+	 * Accounts should be full objects. With that said, the objects are fetched to make sure.
+	 * 
+	 * AccountTransaction can be a partial object but must contain the transaction amount.
+	 */
 	public void transfer(Account fromAccount, Account toAccount, AccountTransaction accountTransaction) {
 		
 		LOG.debug("Transfer Between Accounts:");
@@ -284,8 +262,8 @@ public class AccountService {
 		fromAt.setAmount(fromAmount);
 		fromAt.setDescription("Transfer to Account (" + toAccount.getAccountNumber() + ")");
 		fromAt.setTransactionDate(new Date());
-		fromAt.setTransactionState(transactionStateRepository.findByCode(Constants.ACCT_TRNST_COMP_CODE));
-		fromAt.setTTransactionype(transactionTypeRepository.findByCode(Constants.ACCT_TRNTY_XFER_CODE));
+		fromAt.setTransactionState(transactionStateRepository.findByCode(Constants.ACCT_TRAN_ST_COMP_CODE));
+		fromAt.setTransactionType(transactionTypeRepository.findByCode(Constants.ACCT_TRAN_TYPE_XFER_CODE));
 		fromAt.setAccount(fromAccount);
 		fromAtl.add(fromAt);
 		
@@ -297,8 +275,8 @@ public class AccountService {
 		toAt.setAmount(toAmount);
 		toAt.setDescription("Transfer from Account (" + fromAccount.getAccountNumber() + ")");
 		toAt.setTransactionDate(new Date());
-		toAt.setTransactionState(transactionStateRepository.findByCode(Constants.ACCT_TRNST_COMP_CODE));
-		toAt.setTTransactionype(transactionTypeRepository.findByCode(Constants.ACCT_TRNTY_XFER_CODE));
+		toAt.setTransactionState(transactionStateRepository.findByCode(Constants.ACCT_TRAN_ST_COMP_CODE));
+		toAt.setTransactionType(transactionTypeRepository.findByCode(Constants.ACCT_TRAN_TYPE_XFER_CODE));
 		toAt.setAccount(toAccount);
 		toAtl.add(toAt);
 		
@@ -311,6 +289,9 @@ public class AccountService {
 		LOG.debug("Transfer Between Accounts: Accounts Updated.");
 	}
 	
+	/*
+	 * Get Account object by Id
+	 */
 	public Account getAccountById(Long id) {
 		Optional<Account> act = accountRepository.findById(id);
 		
@@ -321,32 +302,102 @@ public class AccountService {
 		}
 	}
 	
+	/*
+	 * Save Account
+	 */
+	public Account save (Account account) {
+		return accountRepository.save(account);
+	}
+	
+	/*
+	 * Get Account Type by Account Type Code
+	 */
 	public AccountType getAccoutTypeByCode (String code) {
 		return accountTypeRepository.findByCode(code);
 	}
 	
+	/*
+	 * Helper method to determine Account Type by Category of Checking
+	 */
 	public boolean isCheckingAccount (Account account) {
 
 		return account.getAccountType().getCategory().equals(Constants.ACCT_CHK_CAT);
 		
 	}
 	
+	/*
+	 * Helper method to determine Account Type by Category of Savings
+	 */
 	public boolean isSavingsAccount (Account account) {
 		
 		return account.getAccountType().getCategory().equals(Constants.ACCT_SAV_CAT);
 		
 	}
 	
-	public OwnershipType getOwnershipTypeIndividual(String code) {
+	/*
+	 * Get all accounts assigned to the user
+	 */
+	public List<Account> getAllAccounts (User user) {
+		
+		List<Account> allAccounts = accountRepository.findByOwner(user);
+		allAccounts.addAll(accountRepository.findByCoowner(user));
+		
+		return allAccounts;
+	}
+	
+	/*
+	 * Get all checking accounts assigned to the user
+	 */
+	public List<Account> getCheckingAccounts (User user) {
+		
+		List<Account> checkingAccounts = accountRepository.findByOwnerAndAccountType_Category(user, Constants.ACCT_CHK_CAT);
+		checkingAccounts.addAll(accountRepository.findByCoownerAndAccountType_Category(user, Constants.ACCT_CHK_CAT));
+		
+		return checkingAccounts;
+	}
+	
+	/*
+	 * Get all savings accounts assigned to the user
+	 */
+	public List<Account> getSavingsAccounts (User user) {
+				
+		List<Account> savingsAccounts = accountRepository.findByOwnerAndAccountType_Category(user, Constants.ACCT_SAV_CAT);
+		savingsAccounts.addAll(accountRepository.findByCoownerAndAccountType_Category(user, Constants.ACCT_SAV_CAT));
+						
+		return savingsAccounts;
+		
+	}
+	
+	public List<Account> getAllAccounts () {
+		return accountRepository.findAll();
+	}
+	
+	public List<Account> getCheckingAccounts () {
+		return accountRepository.findByAccountType_Category(Constants.ACCT_CHK_CAT);
+	}
+	
+	public List<Account> getSavingsAccounts () {
+		return accountRepository.findByAccountType_Category(Constants.ACCT_SAV_CAT);
+	}
+	
+	public OwnershipType getOwnershipTypeIndividual() {
 		return ownershipTypeRepository.findByCode(Constants.ACCT_OWN_IND_CODE);
 	}
 	
-	public OwnershipType getOwnershipTypeJoint(String code) {
+	public OwnershipType getOwnershipTypeJoint() {
 		return ownershipTypeRepository.findByCode(Constants.ACCT_OWN_JNT_CODE);
+	}
+	
+	public OwnershipType getOwnershipTypeByCode(String code) {
+		return ownershipTypeRepository.findByCode(code);
 	}
 	
 	public List<OwnershipType> getOwnershipTypes () {
 		return ownershipTypeRepository.findAll();
+	}
+	
+	public List<AccountType> getAccountTypes(){
+		return accountTypeRepository.findAll();
 	}
 	
 	public List<AccountType> getCheckingAccountTypes(){
@@ -355,6 +406,85 @@ public class AccountService {
 	
 	public List<AccountType> getSavingsAccountTypes(){
 		return accountTypeRepository.findByCategory(Constants.ACCT_SAV_CAT);
+	}
+	
+	public List<AccountStanding> getAccountStanding(){
+		return accountStandingRepository.findAll();
+	}
+	
+	public List<TransactionState> getTransactionState(){
+		return transactionStateRepository.findAll();
+	}
+	
+	public List<TransactionType> getTransactionType(){
+		return transactionTypeRepository.findAll();
+	}
+	
+	public TransactionType getTransactionTypeByCode (String code) {
+		return transactionTypeRepository.findByCode(code);
+	}
+	
+	public AccountTransaction getLatestAccountTransaction (Account account) {
+		return accountTransactionRepository.findTopByAccountOrderByTransactionDateDesc(account);
+	}
+	
+	public List<AccountTransaction> getLastTwoAccountTransactions (Account account) {
+		return accountTransactionRepository.findTop2ByAccountOrderByTransactionDateDesc(account);
+	}
+	
+	public AccountTransaction getAccountTransactionById(Long id) {
+		
+		Optional<AccountTransaction> transaction = accountTransactionRepository.findById(id);
+		
+		if (transaction.isPresent()) {
+			return transaction.get();
+		}else {
+			return null;
+		}
+
+	}
+	
+	/*
+	 * Creates an Overdraft transaction to apply an overdraft fee
+	 */
+	private void overdraftCharge (Account account) {
+		
+		LOG.debug("Overdraft Charge: Charge fee for overdraft.");
+		
+		// Add seconds to current date/time to differentiate transactions on sort
+		int seconds = 15;
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		calendar.add(Calendar.SECOND, seconds);
+		List<AccountTransaction> transList = account.getAcountTransactionList();
+		
+		AccountTransaction overTrans = new AccountTransaction();
+		BigDecimal overFee = account.getAccountType().getOverdraftFee();
+		
+		// Convert amount to a negative number since it is a debit
+		BigDecimal negOne = new BigDecimal(-1);
+		overFee = overFee.multiply(negOne);
+		
+		BigDecimal currentBalance = account.getCurrentBalance();
+		BigDecimal updatedBalance = currentBalance.add(overFee);
+		account.setCurrentBalance(updatedBalance);
+		
+		long transactionNumber = accountTransactionRepository.findMaxTransactionNumber();
+		overTrans.setTransactionNumber(++transactionNumber);
+		overTrans.setRunningBalance(updatedBalance);
+		overTrans.setAmount(overFee);
+		overTrans.setDescription("Overdraft Fee");
+		overTrans.setTransactionDate(calendar.getTime());
+		overTrans.setTransactionState(transactionStateRepository.findByCode(Constants.ACCT_TRAN_ST_COMP_CODE));
+		overTrans.setTransactionType(transactionTypeRepository.findByCode(Constants.ACCT_TRAN_TYPE_OVERDRAFT_FEE_CODE));
+		overTrans.setAccount(account);
+		transList.add(overTrans);
+		
+		account.setAcountTransactionList(transList);
+		
+		// Update Account
+		accountRepository.save(account);
+
 	}
 
 }

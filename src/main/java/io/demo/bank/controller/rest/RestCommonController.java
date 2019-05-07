@@ -21,7 +21,7 @@ public class RestCommonController {
 	/*
 	 * Find the user by Id
 	 */
-	public User getUser(Long id) {
+	public User getUserById(Long id) {
 		
 		if (id < 0) {
 			throw new RestBadRequestException (Messages.INVALID_OBJECT_ID);
@@ -44,6 +44,13 @@ public class RestCommonController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
 		return userService.findByUsername(auth.getName());
+	}
+	
+	/*
+	 * Checks the current role of the user
+	 */
+	public boolean hasRole(User user, String roleName) {
+		return userService.hasRole(user, roleName);
 	}
 
 }

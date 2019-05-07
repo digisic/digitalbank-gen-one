@@ -81,7 +81,7 @@ public class DefaultData implements CommandLineRunner, Ordered {
 		
 		// Create a Default API User
 		// If the default user data does not exist, then create it.
-		if (!userService.checkEmailAdressExists("api@demo.io") && !userService.checkSsnExists("111-11-1111")) {
+		if (!userService.checkEmailAdressExists("admin@demo.io") && !userService.checkSsnExists("111-11-1111")) {
 			
 			LOG.info("** Loading Default API User...");
 			
@@ -89,7 +89,7 @@ public class DefaultData implements CommandLineRunner, Ordered {
 			UserProfile userProfile = new UserProfile();
 			SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
 			
-			userProfile.setEmailAddress("api@demo.io");
+			userProfile.setEmailAddress("admin@demo.io");
 			userProfile.setFirstName("API");
 			userProfile.setLastName("User");
 			userProfile.setTitle("Mr.");
@@ -174,26 +174,26 @@ public class DefaultData implements CommandLineRunner, Ordered {
 			
 			List<TransactionType> transactionTypes = new ArrayList<TransactionType>();
 			
-			transactionTypes.add(new TransactionType("ATM", "ATM"));
-			transactionTypes.add(new TransactionType("DBT", "Debit"));
-			transactionTypes.add(new TransactionType("CRG", "Charge"));
-			transactionTypes.add(new TransactionType("CHK", "Check"));
-			transactionTypes.add(new TransactionType("DPT", "Deposit"));
-			transactionTypes.add(new TransactionType("POS", "Point of Sale"));
-			transactionTypes.add(new TransactionType("TRN", "Transfer"));
-			transactionTypes.add(new TransactionType("WTH", "Withdrawl"));
-			transactionTypes.add(new TransactionType("INT", "Interest Income"));
-			transactionTypes.add(new TransactionType("DIV", "Dividend Credit"));
-			transactionTypes.add(new TransactionType("PMT", "Payment"));
-			transactionTypes.add(new TransactionType("OVD", "Overdraft"));
-			transactionTypes.add(new TransactionType("FEE", "Fee"));
-			transactionTypes.add(new TransactionType("LTF", "Late Fee"));
-			transactionTypes.add(new TransactionType("OVF", "Overdraft Fee"));
-			transactionTypes.add(new TransactionType("COF", "Check Order Fee"));
-			transactionTypes.add(new TransactionType("TNF", "Transfer Fee"));
-			transactionTypes.add(new TransactionType("DDP", "Direct Deposit"));
-			transactionTypes.add(new TransactionType("EFT", "Electronic Funds Transfer"));
-			transactionTypes.add(new TransactionType("RFD", "Refund"));
+			transactionTypes.add(new TransactionType("ATM", "ATM", TransactionType.CAT_EITHER));
+			transactionTypes.add(new TransactionType("DBT", "Debit", TransactionType.CAT_DEBIT));
+			transactionTypes.add(new TransactionType("CRG", "Charge", TransactionType.CAT_DEBIT));
+			transactionTypes.add(new TransactionType("CHK", "Check", TransactionType.CAT_DEBIT));
+			transactionTypes.add(new TransactionType("DPT", "Deposit", TransactionType.CAT_CREDIT));
+			transactionTypes.add(new TransactionType("POS", "Point of Sale", TransactionType.CAT_DEBIT));
+			transactionTypes.add(new TransactionType("TRN", "Transfer", TransactionType.CAT_EITHER));
+			transactionTypes.add(new TransactionType("WTH", "Withdrawl", TransactionType.CAT_DEBIT));
+			transactionTypes.add(new TransactionType("INT", "Interest Income", TransactionType.CAT_CREDIT));
+			transactionTypes.add(new TransactionType("DIV", "Dividend Credit", TransactionType.CAT_CREDIT));
+			transactionTypes.add(new TransactionType("PMT", "Payment", TransactionType.CAT_DEBIT));
+			transactionTypes.add(new TransactionType("OVD", "Overdraft", TransactionType.CAT_EITHER));
+			transactionTypes.add(new TransactionType("FEE", "Fee", TransactionType.CAT_DEBIT));
+			transactionTypes.add(new TransactionType("LTF", "Late Fee", TransactionType.CAT_DEBIT));
+			transactionTypes.add(new TransactionType("OVF", "Overdraft Fee", TransactionType.CAT_DEBIT));
+			transactionTypes.add(new TransactionType("COF", "Check Order Fee", TransactionType.CAT_DEBIT));
+			transactionTypes.add(new TransactionType("TNF", "Transfer Fee", TransactionType.CAT_DEBIT));
+			transactionTypes.add(new TransactionType("DDP", "Direct Deposit", TransactionType.CAT_CREDIT));
+			transactionTypes.add(new TransactionType("EFT", "Electronic Funds Transfer", TransactionType.CAT_EITHER));
+			transactionTypes.add(new TransactionType("RFD", "Refund", TransactionType.CAT_CREDIT));
 			
 			transactionTypeRepository.saveAll(transactionTypes);
 		}

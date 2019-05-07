@@ -1,5 +1,7 @@
 package io.demo.bank.util;
 
+import io.demo.bank.model.TransactionType;
+
 public class Messages {
 	
 	// Common
@@ -23,14 +25,14 @@ public class Messages {
 	
 	// User Profile
 	public static final String USER_EMAIL_EXISTS 		= "An account is already registered with the "
-														  + "email address provided. Login with the existing "
-														  + "account or provide another email address.";
+														+ "email address provided. Login with the existing "
+														+ "account or provide another email address.";
 	public static final String USER_EMAIL_FORMAT		= "Email Address must be a valid email format.";
 	public static final String USER_EMAIL_REQUIRED		= "Email Address is required.";
 	public static final String USER_SSN_EXISTS 			= "An account is already registered with the "
-														  + "Social Security Number provided. Login with "
-														  + "the existing account or provide another "
-														  + "social security number.";
+														+ "Social Security Number provided. Login with "
+														+ "the existing account or provide another "
+														+ "social security number.";
 	public static final String USER_SSN_FORMAT 			= "Social Security Number must be in a valid format. i.e. ###-##-####";
 	public static final String USER_SSN_REQUIRED		= "Social Security is required.";
 	public static final String USER_REGIST_SUCC			= "Registration Successful. Please Login.";
@@ -52,5 +54,52 @@ public class Messages {
 	public static final String USER_POSTAL_CODE_REQUIRED= "Postal Code is required.";
 	public static final String USER_COUNTRY_REQUIRED	= "Country is required.";
 	public static final String USER_PROFILE_UPDATED		= "Profile Updated Successfully.";
+	
+	// Account
+	public static final String ACCT_NAME_REQ			= "Account Name is required.";
+	public static final String ACCT_TYPE_REQ			= "Account Type Code is required.";
+	public static final String ACCT_TYPE_FORMAT			= "Account Type Code must either be '" 
+														+ Constants.ACCT_CHK_STD_CODE + "' or '" 
+														+ Constants.ACCT_CHK_INT_CODE + "' for checking or '"
+														+ Constants.ACCT_SAV_STD_CODE + "' or '"
+														+ Constants.ACCT_SAV_MMA_CODE + "' for savings.";
+	public static final String ACCT_OWN_TYPE_REQ		= "Ownership Type Code is required.";
+	public static final String ACCT_OWN_TYPE_FORMAT		= "Ownership Type Code must either be '" 
+														+ Constants.ACCT_OWN_IND_CODE + "' or '" 
+														+ Constants.ACCT_OWN_JNT_CODE + "'.";
+	public static final String ACCT_OPEN_DEPOSIT_REQ	= "Opening Deposit is required.";
+	public static final String ACCT_TRAN_AMT_POSITIVE	= "Transaction amount must be a positive number.";
+	public static final String ACCT_TRAN_DESC_REQ		= "Transaction Descrption is required.";
+	public static final String ACCT_TRAN_TYPE_CODE_REQ	= "Transaction Type Code is required.";
+	public static final String ACCT_TRAN_AMT_REQ		= "Transaction Amount is required.";
+	public static final String ACCT_TRAN_TYPE_FORMAT	= "Transaction Type must be one of "
+														+ Constants.ACCT_TRAN_TYPE_ATM_CODE + ", "
+														+ Constants.ACCT_TRAN_TYPE_CHARGE_CODE + ", "
+														+ Constants.ACCT_TRAN_TYPE_CHECK_CODE + ", "
+														+ Constants.ACCT_TRAN_TYPE_CHECK_FEE_CODE + ", "
+														+ Constants.ACCT_TRAN_TYPE_DEBIT_CODE + ", "
+														+ Constants.ACCT_TRAN_TYPE_DEPOSIT_CODE + ", "
+														+ Constants.ACCT_TRAN_TYPE_DIRECT_DEP_CODE + ", "
+														+ Constants.ACCT_TRAN_TYPE_DIV_CREDIT_CODE + ", "
+														+ Constants.ACCT_TRAN_TYPE_EFT_CODE + ", "
+														+ Constants.ACCT_TRAN_TYPE_FEE_CODE + ", "
+														+ Constants.ACCT_TRAN_TYPE_INT_INCOME_CODE + ", "
+														+ Constants.ACCT_TRAN_TYPE_LATE_FEE_CODE + ", "
+														+ Constants.ACCT_TRAN_TYPE_OVERDRAFT_CODE + ", "
+														+ Constants.ACCT_TRAN_TYPE_OVERDRAFT_FEE_CODE + ", "
+														+ Constants.ACCT_TRAN_TYPE_PAYMENT_CODE + ", "
+														+ Constants.ACCT_TRAN_TYPE_POS_CODE + ", "
+														+ Constants.ACCT_TRAN_TYPE_REFUND_CODE + ", "
+														+ Constants.ACCT_TRAN_TYPE_WITHDRAWL_CODE + ", "
+														+ Constants.ACCT_TRAN_TYPE_XFER_CODE + ", "
+														+ Constants.ACCT_TRAN_TYPE_XFER_FEE_CODE;
+	
+	public static final String ACCT_TRAN_ACTION 		= "Transaction Action must either be '" 
+														+ TransactionType.CAT_CREDIT + "' or '"
+														+ TransactionType.CAT_DEBIT + "' and is required when the "
+														+ "Transaction Type Category is '" 
+														+ TransactionType.CAT_EITHER + "'";
+	
+	public static final String ACCT_XFER_TO_ACCT_REQ	= "Transfer To Account is required.";
 	
 }

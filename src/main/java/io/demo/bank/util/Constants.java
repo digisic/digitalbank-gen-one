@@ -67,9 +67,9 @@ public class Constants {
 	public static final String URI_API_USR_ROLE_CURR	= "/api/v1/user/role";
 	public static final String URI_API_USR_SET_PASS		= "/api/v1/user/{id}/password";
 	public static final String URI_API_USR_CHG_PASS		= "/api/v1/user/password";
-	public static final String URI_API_USR_ENABLE		= "/api/v1/user/{id}/enable";
-	public static final String URI_API_USR_UNEXPIRE		= "/api/v1/user/{id}/unexpire";
-	public static final String URI_API_USR_UNLOCK		= "/api/v1/user/{id}/unlock";
+	public static final String URI_API_USR_ENABLE		= "/api/v1/user/{id}/state/enable";
+	public static final String URI_API_USR_UNEXPIRE		= "/api/v1/user/{id}/state/unexpire";
+	public static final String URI_API_USR_UNLOCK		= "/api/v1/user/{id}/state/unlock";
 	public static final String URI_API_USR_PASS_UNEXPIRE= "/api/v1/user/{id}/password/unexpire";
 	public static final String URI_API_USR_ACCT			= "/api/v1/user/{id}/account";
 	public static final String URI_API_USR_ACCT_CURR	= "/api/v1/user/account";
@@ -77,6 +77,22 @@ public class Constants {
 	public static final String URI_API_USR_ACCT_CHK_CURR= "/api/v1/user/account/checking";
 	public static final String URI_API_USR_ACCT_SAV		= "/api/v1/user/{id}/account/savings";
 	public static final String URI_API_USR_ACCT_SAV_CURR= "/api/v1/user/account/savings";
+	public static final String URI_API_ACCT_ALL			= "/api/v1/account";
+	public static final String URI_API_ACCT				= "/api/v1/account/{id}";
+	public static final String URI_API_ACCT_CHK_ALL		= "/api/v1/account/checking";
+	public static final String URI_API_ACCT_SAV_ALL		= "/api/v1/account/savings";
+	public static final String URI_API_ACCT_TRAN		= "/api/v1/account/{id}/transaction";
+	public static final String URI_API_ACCT_OWNER		= "/api/v1/account/{id}/owner";
+	public static final String URI_API_ACCT_COOWNER		= "/api/v1/account/{id}/coowner";
+	public static final String URI_API_ACCT_XFER		= "/api/v1/account/{id}/transfer";
+	public static final String URI_API_DATA_ACCT_TYP	= "/api/v1/data/account/type";
+	public static final String URI_API_DATA_ACCT_TYP_CHK= "/api/v1/data/account/type/checking";
+	public static final String URI_API_DATA_ACCT_TYP_SAV= "/api/v1/data/account/type/savings";
+	public static final String URI_API_DATA_ACCT_STAND	= "/api/v1/data/account/standing";
+	public static final String URI_API_DATA_ACCT_OWN_TYP= "/api/v1/data/account/ownership/type";
+	public static final String URI_API_DATA_ACCT_TRAN_ST= "/api/v1/data/account/transaction/state";
+	public static final String URI_API_DATA_ACCT_TRAN_TY= "/api/v1/data/account/transaction/type";
+
 	
 	
 	// Path Variables
@@ -115,15 +131,31 @@ public class Constants {
 
 	
 	// Account Standing Codes
-	public static final String ACCT_STND_OPEN_CODE	= "A1";
+	public static final String ACCT_STND_OPEN_CODE					= "A1";
 	
 	// Transaction State Codes
-	public static final String ACCT_TRNST_COMP_CODE	= "COM";
+	public static final String ACCT_TRAN_ST_COMP_CODE				= "COM";
 	
 	// Transaction Type Codes
-	public static final String ACCT_TRNTY_DEP_CODE		= "DPT";
-	public static final String ACCT_TRNTY_WITH_CODE		= "WTH";
-	public static final String ACCT_TRNTY_XFER_CODE		= "TRN";
-	public static final String ACCT_TRNTY_OVER_FEE_CODE	= "OVF";
+	public static final String ACCT_TRAN_TYPE_ATM_CODE				= "ATM";
+	public static final String ACCT_TRAN_TYPE_DEBIT_CODE			= "DBT";
+	public static final String ACCT_TRAN_TYPE_CHARGE_CODE			= "CRG";
+	public static final String ACCT_TRAN_TYPE_CHECK_CODE			= "CHK";
+	public static final String ACCT_TRAN_TYPE_DEPOSIT_CODE			= "DPT";
+	public static final String ACCT_TRAN_TYPE_POS_CODE				= "POS";
+	public static final String ACCT_TRAN_TYPE_XFER_CODE				= "TRN";
+	public static final String ACCT_TRAN_TYPE_WITHDRAWL_CODE		= "WTH";
+	public static final String ACCT_TRAN_TYPE_INT_INCOME_CODE		= "INT";
+	public static final String ACCT_TRAN_TYPE_DIV_CREDIT_CODE		= "DIV";
+	public static final String ACCT_TRAN_TYPE_PAYMENT_CODE			= "PMT";
+	public static final String ACCT_TRAN_TYPE_OVERDRAFT_CODE		= "OVD";
+	public static final String ACCT_TRAN_TYPE_FEE_CODE				= "FEE";
+	public static final String ACCT_TRAN_TYPE_LATE_FEE_CODE			= "LTF";
+	public static final String ACCT_TRAN_TYPE_OVERDRAFT_FEE_CODE	= "OVF";
+	public static final String ACCT_TRAN_TYPE_CHECK_FEE_CODE		= "COF";
+	public static final String ACCT_TRAN_TYPE_XFER_FEE_CODE			= "TNF";
+	public static final String ACCT_TRAN_TYPE_DIRECT_DEP_CODE		= "DDP";
+	public static final String ACCT_TRAN_TYPE_EFT_CODE				= "EFT";
+	public static final String ACCT_TRAN_TYPE_REFUND_CODE			= "RFD";
   
 }

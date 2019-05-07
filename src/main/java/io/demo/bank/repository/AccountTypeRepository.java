@@ -12,5 +12,6 @@ public interface AccountTypeRepository extends CrudRepository<AccountType, Long>
 	AccountType findByCode(String code);
 	
 	List<AccountType> findByCategory(String category);
+	List<AccountType> findAll();
 
 }

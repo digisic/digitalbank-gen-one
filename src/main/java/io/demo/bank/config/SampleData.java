@@ -60,6 +60,7 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			user.setUserProfile(userProfile);
 			userService.createUser(user, Role.ROLE_USER);
+			userService.addRole(user, Role.ROLE_API);
 			
 			LOG.info("** Username: jsmith@demo.io");
 			LOG.info("** Password: Demo123!");
@@ -86,6 +87,7 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			user.setUserProfile(userProfile);
 			userService.createUser(user, Role.ROLE_USER);
+			userService.addRole(user, Role.ROLE_API);
 			
 			
 			// Create a user that is not enabled for testing Login
@@ -111,6 +113,7 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			user.setUserProfile(userProfile);
 			userService.createUser(user, Role.ROLE_USER);
+			userService.addRole(user, Role.ROLE_API);
 			
 			// Create a user that is expired for testing Login
 			user = new User("expired@demo.io", "Demo123!");
@@ -135,6 +138,7 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			user.setUserProfile(userProfile);
 			userService.createUser(user, Role.ROLE_USER);
+			userService.addRole(user, Role.ROLE_API);
 			
 			// Create a user that is locked for testing Login
 			user = new User("locked@demo.io", "Demo123!");
@@ -159,6 +163,7 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			user.setUserProfile(userProfile);
 			userService.createUser(user, Role.ROLE_USER);
+			userService.addRole(user, Role.ROLE_API);
 			
 			// Create a user that has expired password for testing Login
 			user = new User("expiredPassword@demo.io", "Demo123!");
@@ -183,6 +188,7 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			user.setUserProfile(userProfile);
 			userService.createUser(user, Role.ROLE_USER);
+			userService.addRole(user, Role.ROLE_API);
 			
 		}
 		

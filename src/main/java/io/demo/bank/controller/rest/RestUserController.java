@@ -1,12 +1,15 @@
 package io.demo.bank.controller.rest;
 
 import java.net.URI;
+import java.util.Date;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.demo.bank.config.exception.RestNotAcceptableException;
 import io.demo.bank.model.UserProfile;
 import io.demo.bank.model.security.User;
@@ -43,8 +47,8 @@ public class RestUserController extends RestCommonController{
 	 * Get All Users
 	 */
 	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
-	@GetMapping(Constants.URI_API_USR_ALL)
-	public ResponseEntity<?> GetAllUsers(){
+	@GetMapping(Constants.URI_API_USR_ALL)											
+	public ResponseEntity<?> getAllUsers(){
 		return ResponseEntity.ok(userService.findUserList());
 	}
 	
@@ -53,7 +57,7 @@ public class RestUserController extends RestCommonController{
 	 * Get Current User
 	 */
 	@GetMapping(Constants.URI_API_USR)
-	public ResponseEntity<?> GetMyUser(){		
+	public ResponseEntity<?> getUser(){		
 		return ResponseEntity.ok(getAuthenticatedUser());
 	}
 	
@@ -63,35 +67,37 @@ public class RestUserController extends RestCommonController{
 	 */
 	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
 	@PostMapping(Constants.URI_API_USR)
-	public ResponseEntity<?> CreateNewUser(@RequestParam(defaultValue=Patterns.ROLE_USER)
+	public ResponseEntity<?> createNewUser(@RequestParam(defaultValue=Patterns.ROLE_USER)
 										   @Pattern (regexp=Patterns.USER_ROLE, 
 										             message=Messages.USER_ROLE_FORMAT) String role, 
-										  @RequestBody @Valid User newUser) {	
+										  @RequestBody @Valid NewUser newUser) {	
 		
 		LOG.debug("REST Create User -> Check email for uniqueness.");
 		
 		// Make sure email is not already registered with another account
-		if (userService.checkEmailAdressExists(newUser.getUserProfile().getEmailAddress())) {
+		if (userService.checkEmailAdressExists(newUser.getAddress())) {
 			throw new RestNotAcceptableException (Messages.USER_EMAIL_EXISTS);
 		}
 		
 		LOG.debug("REST Create User -> Check SSN for uniqueness.");
 		
 		// Make sure SSN is not already registered with another account
-		if(userService.checkSsnExists(newUser.getUserProfile().getSsn())) {
+		if(userService.checkSsnExists(newUser.getSsn())) {
 			throw new RestNotAcceptableException (Messages.USER_SSN_EXISTS);
 		}
 		
-		LOG.debug("REST Create User -> Create user with username = '" + newUser.getUserProfile().getEmailAddress() + "'");
-		userService.createUser(newUser, userService.findRoleName(role));
+		User user = this.getUserFromNewUser(newUser);
+		
+		LOG.debug("REST Create User -> Create user with username = '" + user.getUserProfile().getEmailAddress() + "'");
+		userService.createUser(user, userService.findRoleName(role));
 		
 		// build location header for newly created user
 		URI location = ServletUriComponentsBuilder.fromCurrentServletMapping()
 												  .path(Constants.URI_API_USR + "/{id}").build()
-												  .expand(newUser.getId())
+												  .expand(user.getId())
 												  .toUri();
 		
-		return ResponseEntity.created(location).body(newUser);
+		return ResponseEntity.created(location).body(user);
 	}
 	
 	/*
@@ -100,8 +106,8 @@ public class RestUserController extends RestCommonController{
 	 */
 	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
 	@GetMapping(Constants.URI_API_USR_ID)
-	public ResponseEntity<?> GetUser(@PathVariable(Constants.PATH_VARIABLE_ID) Long id) {
-		return ResponseEntity.ok(getUser(id));
+	public ResponseEntity<?> getUser(@PathVariable(Constants.PATH_VARIABLE_ID) Long id) {
+		return ResponseEntity.ok(getUserById(id));
 	}
 	
 	/*
@@ -110,9 +116,9 @@ public class RestUserController extends RestCommonController{
 	 */
 	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
 	@DeleteMapping(Constants.URI_API_USR_ID)
-	public ResponseEntity<?> DeleteUser(@PathVariable(Constants.PATH_VARIABLE_ID) Long id) {
+	public ResponseEntity<?> deleteUser(@PathVariable(Constants.PATH_VARIABLE_ID) Long id) {
 		
-		User user = getUser(id);
+		User user = getUserById(id);
 		
 		// Prevent the user from deleting their own account
 		if (getAuthenticatedUser().getId() == user.getId()) {
@@ -129,8 +135,8 @@ public class RestUserController extends RestCommonController{
 	 */
 	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
 	@GetMapping(Constants.URI_API_USR_PROF)
-	public ResponseEntity<?> GetUserProfile(@PathVariable(Constants.PATH_VARIABLE_ID) Long id) {
-		return ResponseEntity.ok(getUser(id).getUserProfile());
+	public ResponseEntity<?> getUserProfile(@PathVariable(Constants.PATH_VARIABLE_ID) Long id) {
+		return ResponseEntity.ok(getUserById(id).getUserProfile());
 	}
 	
 	/*
@@ -138,7 +144,7 @@ public class RestUserController extends RestCommonController{
 	 * Get Current User's Profile
 	 */
 	@GetMapping(Constants.URI_API_USR_PROF_CURR)
-	public ResponseEntity<?> GetMyProfile() {		
+	public ResponseEntity<?> getUserProfile() {		
 		return ResponseEntity.ok(getAuthenticatedUser().getUserProfile());
 	}
 	
@@ -147,10 +153,13 @@ public class RestUserController extends RestCommonController{
 	 * Update a User's Profile
 	 */
 	@PutMapping(Constants.URI_API_USR_PROF)
-	public ResponseEntity<?> UpdateUserProfile(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
-										       @RequestBody @Valid UserProfileBody profile) {
+	public ResponseEntity<?> updateUserProfile(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
+										       @RequestBody @Valid UpdateUser profile) {
+		User user = getUserById(id);
 		
-		return ResponseEntity.ok(userService.updateUserProfile(getUser(id), convertBodytoProfile(profile)));
+		userService.updateUserProfile(user, getProfileFromUpdateUser(profile));
+		
+		return ResponseEntity.ok(user.getUserProfile());
 	}
 	
 	/*
@@ -158,8 +167,13 @@ public class RestUserController extends RestCommonController{
 	 * Update Current User's Profile
 	 */
 	@PutMapping(Constants.URI_API_USR_PROF_CURR)
-	public ResponseEntity<?> UpdateMyProfile(@RequestBody @Valid UserProfileBody profile) {
-		return ResponseEntity.ok(userService.updateUserProfile(getAuthenticatedUser(), convertBodytoProfile(profile)));
+	public ResponseEntity<?> updateUserProfile(@RequestBody @Valid UpdateUser profile) {
+		
+		User user = getAuthenticatedUser();
+		
+		userService.updateUserProfile(user, getProfileFromUpdateUser(profile));
+		
+		return ResponseEntity.ok(user.getUserProfile());
 	}
 	
 	/*
@@ -168,8 +182,8 @@ public class RestUserController extends RestCommonController{
 	 */
 	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
 	@GetMapping(Constants.URI_API_USR_ROLE)
-	public ResponseEntity<?> GetUserAuthority(@PathVariable(Constants.PATH_VARIABLE_ID) Long id) {
-		return ResponseEntity.ok(getUser(id).getAuthorities());
+	public ResponseEntity<?> getAuthority(@PathVariable(Constants.PATH_VARIABLE_ID) Long id) {
+		return ResponseEntity.ok(getUserById(id).getAuthorities());
 	}
 	
 	/*
@@ -177,7 +191,7 @@ public class RestUserController extends RestCommonController{
 	 * Get Current User's Authorities
 	 */
 	@GetMapping(Constants.URI_API_USR_ROLE_CURR)
-	public ResponseEntity<?> GetMyAuthority() {
+	public ResponseEntity<?> getAuthority() {
 		return ResponseEntity.ok(getAuthenticatedUser().getAuthorities());
 	}
 	
@@ -187,11 +201,11 @@ public class RestUserController extends RestCommonController{
 	 */
 	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
 	@PutMapping(Constants.URI_API_USR_ROLE)
-	public ResponseEntity<?> AddUserAuthority(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
-										      @RequestParam(required= true)
-										      @Pattern (regexp=Patterns.USER_ROLE,
-										  			    message=Messages.USER_ROLE_FORMAT) String role) {
-		User user = getUser(id);
+	public ResponseEntity<?> addAuthority(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
+										  @RequestParam(required= true)
+										  @Pattern (regexp=Patterns.USER_ROLE,
+										  			message=Messages.USER_ROLE_FORMAT) String role) {
+		User user = getUserById(id);
 		String selRole = userService.findRoleName(role);
 		
 		// Check to see if the user already has the role requested
@@ -211,11 +225,11 @@ public class RestUserController extends RestCommonController{
 	 */
 	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
 	@DeleteMapping(Constants.URI_API_USR_ROLE)
-	public ResponseEntity<?> RemoveUserAuthority(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
-										         @RequestParam(required= true)
-										         @Pattern (regexp=Patterns.USER_ROLE,
-										  			       message=Messages.USER_ROLE_FORMAT) String role) {
-		User user = getUser(id);
+	public ResponseEntity<?> removeAuthority(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
+										     @RequestParam(required= true)
+										     @Pattern (regexp=Patterns.USER_ROLE,
+										  			   message=Messages.USER_ROLE_FORMAT) String role) {
+		User user = getUserById(id);
 		String selRole = userService.findRoleName(role);
 		
 		// Check to see if the user even has the role to be deleted
@@ -239,7 +253,7 @@ public class RestUserController extends RestCommonController{
 	 * Change Current User's Password
 	 */
 	@PutMapping(Constants.URI_API_USR_CHG_PASS)
-	public ResponseEntity<?> ChangeMyPassword(@RequestBody @Valid ChangePasswordBody changePassword) {
+	public ResponseEntity<?> changePassword(@RequestBody @Valid ChangePassword changePassword) {
 		
 		User authUser = getAuthenticatedUser();
 		
@@ -267,12 +281,12 @@ public class RestUserController extends RestCommonController{
 	 */
 	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
 	@PutMapping(Constants.URI_API_USR_SET_PASS)
-	public ResponseEntity<?> SetUserPassword(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
-									         @RequestParam(required= true)
-			  							     @Pattern(regexp=Patterns.USER_PASSWORD, 
-			  							              message=Messages.USER_PASSWORD_FORMAT) String newPassword) {
+	public ResponseEntity<?> setPassword(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
+									     @RequestParam(required= true)
+			  							 @Pattern(regexp=Patterns.USER_PASSWORD, 
+			  							          message=Messages.USER_PASSWORD_FORMAT) String newPassword) {
 		
-		userService.changePassword(getUser(id), newPassword);	
+		userService.changePassword(getUserById(id), newPassword);	
 		return ResponseEntity.noContent().build();
 	}
 	
@@ -283,10 +297,10 @@ public class RestUserController extends RestCommonController{
 	 */
 	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
 	@PutMapping(Constants.URI_API_USR_ENABLE)
-	public ResponseEntity<?> SetUserEnabled(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
+	public ResponseEntity<?> setUserEnabled(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
 	         								@RequestParam(required=true) boolean enabled) {
 
-		userService.enableUser(getUser(id), enabled);
+		userService.enableUser(getUserById(id), enabled);
 		return ResponseEntity.noContent().build();
 	}
 	
@@ -296,10 +310,10 @@ public class RestUserController extends RestCommonController{
 	 */
 	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
 	@PutMapping(Constants.URI_API_USR_UNLOCK)
-	public ResponseEntity<?> SetUserUnlocked(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
+	public ResponseEntity<?> setUserUnlocked(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
 	         								@RequestParam(required=true) boolean unlock) {
 
-		userService.unlockUser(getUser(id), unlock);
+		userService.unlockUser(getUserById(id), unlock);
 		return ResponseEntity.noContent().build();
 	}
 	
@@ -309,10 +323,10 @@ public class RestUserController extends RestCommonController{
 	 */
 	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
 	@PutMapping(Constants.URI_API_USR_UNEXPIRE)
-	public ResponseEntity<?> SetUserUnexpired(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
+	public ResponseEntity<?> setUserUnexpired(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
 	         								 @RequestParam(required=true) boolean unexpire) {
 
-		userService.unexpireUser(getUser(id), unexpire);
+		userService.unexpireUser(getUserById(id), unexpire);
 		return ResponseEntity.noContent().build();
 	}
 	
@@ -322,35 +336,91 @@ public class RestUserController extends RestCommonController{
 	 */
 	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
 	@PutMapping(Constants.URI_API_USR_PASS_UNEXPIRE)
-	public ResponseEntity<?> SetPasswordUnexpired(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
+	public ResponseEntity<?> setPasswordUnexpired(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
 	         								      @RequestParam(required=true) boolean unexpire) {
 
-		userService.unexpirePassword(getUser(id), unexpire);
+		userService.unexpirePassword(getUserById(id), unexpire);
 		return ResponseEntity.noContent().build();
 	}
 	
+	
+	/*
+	 * Helper method to move NewUser into a User
+	 */
+	private User getUserFromNewUser (NewUser newUser) {
+		
+		User user = new User(newUser.getEmailAddress(), newUser.getPassword());
+		UserProfile userProfile = getProfileFromUpdateUser ((UpdateUser) newUser);
+		
+		userProfile.setDob(newUser.getDob());
+		userProfile.setSsn(newUser.getSsn());
+		userProfile.setEmailAddress(newUser.getEmailAddress());
+		
+		user.setUserProfile(userProfile);
+		
+		return user;
+	}
 	/*
 	 * Helper method to move the User Profile partial object into 
 	 * a User Profile object
 	 */
-	private UserProfile convertBodytoProfile (UserProfileBody body) {
+	private UserProfile getProfileFromUpdateUser (UpdateUser uup) {
 		
 		UserProfile profile = new UserProfile();
 		
-		profile.setFirstName(body.getFirstName());
-		profile.setLastName(body.getLastName());
-		profile.setTitle(body.getTitle());
-		profile.setGender(body.getGender());
-		profile.setHomePhone(body.getHomePhone());
-		profile.setMobilePhone(body.getMobilePhone());
-		profile.setWorkPhone(body.getWorkPhone());
-		profile.setAddress(body.getAddress());
-		profile.setLocality(body.getLocality());
-		profile.setRegion(body.getRegion());
-		profile.setPostalCode(body.getPostalCode());
-		profile.setCountry(body.getCountry());
+		profile.setFirstName(uup.getFirstName());
+		profile.setLastName(uup.getLastName());
+		profile.setTitle(uup.getTitle());
+		profile.setGender(uup.getGender());
+		profile.setHomePhone(uup.getHomePhone());
+		profile.setMobilePhone(uup.getMobilePhone());
+		profile.setWorkPhone(uup.getWorkPhone());
+		profile.setAddress(uup.getAddress());
+		profile.setLocality(uup.getLocality());
+		profile.setRegion(uup.getRegion());
+		profile.setPostalCode(uup.getPostalCode());
+		profile.setCountry(uup.getCountry());
 		
 		return profile;
+	}
+	
+	/*
+	 * 
+	 */
+	private static class NewUser extends UpdateUser {
+		
+		@NotEmpty (message=Messages.USER_EMAIL_REQUIRED)
+		@Pattern(regexp=Patterns.USER_EMAIL, message=Messages.USER_EMAIL_FORMAT)
+		private String emailAddress;
+		
+		@NotEmpty (message=Messages.USER_SSN_REQUIRED)
+		@Pattern(regexp=Patterns.USER_SSN, message=Messages.USER_SSN_FORMAT)
+		private String ssn;
+		
+		@NotEmpty(message=Messages.USER_PASSWORD_REQUIRED)
+	    @Pattern(regexp=Patterns.USER_PASSWORD, message=Messages.USER_PASSWORD_FORMAT)
+		private String password;
+		
+		@NotNull (message=Messages.USER_DOB_REQUIRED)
+		@JsonFormat(shape = JsonFormat.Shape.STRING, pattern=Patterns.DATE_FORMAT)
+		@DateTimeFormat(pattern=Patterns.DATE_FORMAT)
+		private Date dob;
+
+		public Date getDob() {
+			return dob;
+		}
+
+		public String getPassword() {
+			return password;
+		}
+			
+		public String getEmailAddress() {
+			return emailAddress;
+		}
+
+		public String getSsn() {
+			return ssn;
+		}	
 	}
 	
 	/*
@@ -358,7 +428,7 @@ public class RestUserController extends RestCommonController{
 	 * This allows us to only focus validation on required
 	 * fields that we are permitting update
 	 */
-	private static class UserProfileBody {
+	private static class UpdateUser {
 		
 		@NotEmpty (message=Messages.USER_FIRST_NAME_REQUIRED)
 		private String firstName;
@@ -452,7 +522,7 @@ public class RestUserController extends RestCommonController{
 	/*
 	 * Custom Request Body for Change Password
 	 */
-	private static class ChangePasswordBody {
+	private static class ChangePassword {
 		
 		@NotEmpty(message=Messages.USER_PASS_CUR_REQUIRED)
 		private String currentPasword;
