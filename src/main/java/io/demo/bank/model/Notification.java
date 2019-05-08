@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.demo.bank.model.enums.NotificationType;
-import io.demo.bank.model.security.User;
+import io.demo.bank.model.security.Users;
 
 @Entity
 public class Notification {
@@ -33,12 +33,12 @@ public class Notification {
 	
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    private User users;
+    private Users users;
 	
-	public User getUsers() {
+	public Users getUsers() {
 		return users;
 	}
-	public void setUsers(User users) {
+	public void setUsers(Users users) {
 		this.users = users;
 	}
 	

@@ -18,7 +18,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.demo.bank.model.AccountType;
-import io.demo.bank.model.security.User;
+import io.demo.bank.model.security.Users;
 
 @Entity
 public class Account {
@@ -61,11 +61,11 @@ public class Account {
 	
 	@JsonIgnore
 	@ManyToOne(fetch=FetchType.EAGER)
-	private User owner;
+	private Users owner;
 	
 	@JsonIgnore
 	@ManyToOne(fetch=FetchType.EAGER)
-	private User coowner;
+	private Users coowner;
 	
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@OrderBy("transaction_date DESC")
@@ -287,28 +287,28 @@ public class Account {
 	/**
 	 * @return the owner
 	 */
-	public User getOwner() {
+	public Users getOwner() {
 		return owner;
 	}
 
 	/**
 	 * @param owner the owner to set
 	 */
-	public void setOwner(User owner) {
+	public void setOwner(Users owner) {
 		this.owner = owner;
 	}
 
 	/**
 	 * @return the coowner
 	 */
-	public User getCoowner() {
+	public Users getCoowner() {
 		return coowner;
 	}
 
 	/**
 	 * @param coowner the coowner to set
 	 */
-	public void setCoowner(User coowner) {
+	public void setCoowner(Users coowner) {
 		this.coowner = coowner;
 	}
 

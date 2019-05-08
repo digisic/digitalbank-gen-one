@@ -23,7 +23,7 @@ public class MultiHttpSecurityConfig
 {
 	@Autowired
 	private UserSecurityService userSecurityService;
-
+	
 	private static final String[] PUBLIC = {
 		
 			Constants.URI_WEBJARS_RES, 
@@ -64,7 +64,6 @@ public class MultiHttpSecurityConfig
         			.hasRole(Patterns.ROLE_API)
         			.and()
 				.httpBasic();
-        	
         }
     }
 	

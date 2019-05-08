@@ -18,7 +18,7 @@ import io.demo.bank.model.TransactionState;
 import io.demo.bank.model.TransactionType;
 import io.demo.bank.model.UserProfile;
 import io.demo.bank.model.security.Role;
-import io.demo.bank.model.security.User;
+import io.demo.bank.model.security.Users;
 import io.demo.bank.repository.AccountStandingRepository;
 import io.demo.bank.repository.AccountTypeRepository;
 import io.demo.bank.repository.OwnershipTypeRepository;
@@ -85,7 +85,7 @@ public class DefaultData implements CommandLineRunner, Ordered {
 			
 			LOG.info("** Loading Default API User...");
 			
-			User user = new User("api@demo.io", "Demo123!");
+			Users user = new Users("api@demo.io", "Demo123!");
 			UserProfile userProfile = new UserProfile();
 			SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
 			

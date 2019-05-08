@@ -33,9 +33,9 @@ import io.demo.bank.util.Messages;
 import io.demo.bank.util.Patterns;
 
 @Entity
-public class User implements UserDetails {
+public class Users implements UserDetails {
 	
-	private static final Logger LOG = LoggerFactory.getLogger(User.class);
+	private static final Logger LOG = LoggerFactory.getLogger(Users.class);
 	
 	private static final long serialVersionUID = -1173435728882792083L;
 
@@ -95,9 +95,9 @@ public class User implements UserDetails {
 		this.notifications = notifications;
 	}
 
-	public User () {}
+	public Users () {}
     
-    public User (String username, String password) {
+    public Users (String username, String password) {
     	this.username = username;
     	this.password = password;
     }

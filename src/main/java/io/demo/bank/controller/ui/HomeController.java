@@ -2,7 +2,7 @@ package io.demo.bank.controller.ui;
 
 import io.demo.bank.model.UserProfile;
 import io.demo.bank.model.security.Role;
-import io.demo.bank.model.security.User;
+import io.demo.bank.model.security.Users;
 import io.demo.bank.service.UserService;
 import io.demo.bank.util.Constants;
 import io.demo.bank.util.Messages;
@@ -39,7 +39,7 @@ public class HomeController extends CommonController {
 	@GetMapping(Constants.URI_LOGIN)
 	public String login(Model model) {
 		
-		model.addAttribute(MODEL_ATT_USER, new User());
+		model.addAttribute(MODEL_ATT_USER, new Users());
     
 		return Constants.VIEW_LOGIN;
 	}
@@ -47,7 +47,7 @@ public class HomeController extends CommonController {
 	@GetMapping(Constants.URI_SIGNUP)
 	public String signup(Model model) {
 		
-		model.addAttribute(MODEL_ATT_USER, new User());
+		model.addAttribute(MODEL_ATT_USER, new Users());
 		model.addAttribute(MODEL_ATT_USER_PROFILE, new UserProfile());
 		
 		// Add format patterns
@@ -63,7 +63,7 @@ public class HomeController extends CommonController {
   
 	@PostMapping(Constants.URI_SIGNUP)
 	public String signup(Model model,
-						 @ModelAttribute(MODEL_ATT_USER) User newUser, 
+						 @ModelAttribute(MODEL_ATT_USER) Users newUser, 
 						 @ModelAttribute(MODEL_ATT_USER_PROFILE) UserProfile newProfile) {
 		
 		boolean bError = false;
@@ -122,7 +122,7 @@ public class HomeController extends CommonController {
 	public String register(Model model) {
     
 		// Since this a a registration process, add user object and send them to signup
-		model.addAttribute(MODEL_ATT_USER, new User());
+		model.addAttribute(MODEL_ATT_USER, new Users());
 		model.addAttribute(MODEL_ATT_USER_PROFILE, new UserProfile());
 		
 		// Add format patterns
@@ -138,7 +138,7 @@ public class HomeController extends CommonController {
   
 	@PostMapping(Constants.URI_REGISTER)
 	public String register(Model model,
-						   @ModelAttribute(MODEL_ATT_USER) User newUser, 
+						   @ModelAttribute(MODEL_ATT_USER) Users newUser, 
 						   @ModelAttribute(MODEL_ATT_USER_PROFILE) UserProfile newProfile) {
 		
 		newUser.setUserProfile(newProfile);

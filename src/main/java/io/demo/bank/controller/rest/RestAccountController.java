@@ -30,7 +30,7 @@ import io.demo.bank.model.AccountType;
 import io.demo.bank.model.OwnershipType;
 import io.demo.bank.model.TransactionType;
 import io.demo.bank.model.security.Role;
-import io.demo.bank.model.security.User;
+import io.demo.bank.model.security.Users;
 import io.demo.bank.service.AccountService;
 import io.demo.bank.util.Constants;
 import io.demo.bank.util.Messages;
@@ -65,7 +65,7 @@ public class RestAccountController extends RestCommonController {
 	@GetMapping(Constants.URI_API_ACCT)
 	public ResponseEntity<?> getAccount(@PathVariable(Constants.PATH_VARIABLE_ID) Long id) {	
 		
-		User authUser = getAuthenticatedUser();
+		Users authUser = getAuthenticatedUser();
 		Account account = getAccountById(id);
 		
 		// If this is not an ADMIN user, then make sure the account belongs to the user
@@ -278,7 +278,7 @@ public class RestAccountController extends RestCommonController {
 	@GetMapping(Constants.URI_API_ACCT_TRAN)
 	public ResponseEntity<?> getAccountTransactions(@PathVariable(Constants.PATH_VARIABLE_ID) Long id) {		
 		
-		User authUser = getAuthenticatedUser();
+		Users authUser = getAuthenticatedUser();
 		Account account = getAccountById(id);
 		
 		// If this is not an ADMIN user, then make sure the account belongs to the user
@@ -302,7 +302,7 @@ public class RestAccountController extends RestCommonController {
 		 									@Pattern(regexp=Patterns.ACCT_TRAN_ACTION, 
 		 											 message=Messages.ACCT_TRAN_ACTION) String action) {		
 		
-		User authUser = getAuthenticatedUser();
+		Users authUser = getAuthenticatedUser();
 		Account account = getAccountById(id);
 		
 		// If this is not an ADMIN user, then make sure the account belongs to the user
@@ -390,7 +390,7 @@ public class RestAccountController extends RestCommonController {
 	public ResponseEntity<?> transferFunds(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
 										   @RequestBody @Valid TransferFunds transfer){
 		
-		User authUser = getAuthenticatedUser();
+		Users authUser = getAuthenticatedUser();
 		Account fromAccount = getAccountById(id);
 		Account toAccount = getAccountById(transfer.getToAccountId());
 		AccountTransaction transaction = new AccountTransaction();

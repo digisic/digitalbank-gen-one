@@ -9,7 +9,7 @@ import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
 import io.demo.bank.model.UserProfile;
 import io.demo.bank.model.security.Role;
-import io.demo.bank.model.security.User;
+import io.demo.bank.model.security.Users;
 import io.demo.bank.service.UserService;
 
 
@@ -38,7 +38,7 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			LOG.info("** Loading Sample User...");
 			
-			User user = new User("jsmith@demo.io", "Demo123!");
+			Users user = new Users("jsmith@demo.io", "Demo123!");
 			UserProfile userProfile = new UserProfile();
 			SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
 			
@@ -66,7 +66,7 @@ public class SampleData implements CommandLineRunner, Ordered {
 			LOG.info("** Password: Demo123!");
 			
 			// Create a user for testing supporting Change Password
-			user = new User("nsmith@demo.io", "Demo123!");
+			user = new Users("nsmith@demo.io", "Demo123!");
 			userProfile = new UserProfile();
 			
 			userProfile.setEmailAddress("nsmith@demo.io");
@@ -91,7 +91,7 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			
 			// Create a user that is not enabled for testing Login
-			user = new User("disabled@demo.io", "Demo123!");
+			user = new Users("disabled@demo.io", "Demo123!");
 			user.setEnabled(false);
 			userProfile = new UserProfile();
 			
@@ -116,7 +116,7 @@ public class SampleData implements CommandLineRunner, Ordered {
 			userService.addRole(user, Role.ROLE_API);
 			
 			// Create a user that is expired for testing Login
-			user = new User("expired@demo.io", "Demo123!");
+			user = new Users("expired@demo.io", "Demo123!");
 			user.setAccountNonExpired(false);
 			userProfile = new UserProfile();
 			
@@ -141,7 +141,7 @@ public class SampleData implements CommandLineRunner, Ordered {
 			userService.addRole(user, Role.ROLE_API);
 			
 			// Create a user that is locked for testing Login
-			user = new User("locked@demo.io", "Demo123!");
+			user = new Users("locked@demo.io", "Demo123!");
 			user.setAccountNonLocked(false);
 			userProfile = new UserProfile();
 			
@@ -166,7 +166,7 @@ public class SampleData implements CommandLineRunner, Ordered {
 			userService.addRole(user, Role.ROLE_API);
 			
 			// Create a user that has expired password for testing Login
-			user = new User("expiredPassword@demo.io", "Demo123!");
+			user = new Users("expiredPassword@demo.io", "Demo123!");
 			user.setAccountNonExpired(false);
 			userProfile = new UserProfile();
 			

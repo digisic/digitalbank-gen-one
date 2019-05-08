@@ -25,7 +25,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.demo.bank.config.exception.RestNotAcceptableException;
 import io.demo.bank.model.UserProfile;
-import io.demo.bank.model.security.User;
+import io.demo.bank.model.security.Users;
 import io.demo.bank.service.UserService;
 import io.demo.bank.util.Constants;
 import io.demo.bank.util.Messages;
@@ -86,7 +86,7 @@ public class RestUserController extends RestCommonController{
 			throw new RestNotAcceptableException (Messages.USER_SSN_EXISTS);
 		}
 		
-		User user = this.getUserFromNewUser(newUser);
+		Users user = this.getUserFromNewUser(newUser);
 		
 		LOG.debug("REST Create User -> Create user with username = '" + user.getUserProfile().getEmailAddress() + "'");
 		userService.createUser(user, userService.findRoleName(role));
@@ -118,7 +118,7 @@ public class RestUserController extends RestCommonController{
 	@DeleteMapping(Constants.URI_API_USR_ID)
 	public ResponseEntity<?> deleteUser(@PathVariable(Constants.PATH_VARIABLE_ID) Long id) {
 		
-		User user = getUserById(id);
+		Users user = getUserById(id);
 		
 		// Prevent the user from deleting their own account
 		if (getAuthenticatedUser().getId() == user.getId()) {
@@ -155,7 +155,7 @@ public class RestUserController extends RestCommonController{
 	@PutMapping(Constants.URI_API_USR_PROF)
 	public ResponseEntity<?> updateUserProfile(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
 										       @RequestBody @Valid UpdateUser profile) {
-		User user = getUserById(id);
+		Users user = getUserById(id);
 		
 		userService.updateUserProfile(user, getProfileFromUpdateUser(profile));
 		
@@ -169,7 +169,7 @@ public class RestUserController extends RestCommonController{
 	@PutMapping(Constants.URI_API_USR_PROF_CURR)
 	public ResponseEntity<?> updateUserProfile(@RequestBody @Valid UpdateUser profile) {
 		
-		User user = getAuthenticatedUser();
+		Users user = getAuthenticatedUser();
 		
 		userService.updateUserProfile(user, getProfileFromUpdateUser(profile));
 		
@@ -205,7 +205,7 @@ public class RestUserController extends RestCommonController{
 										  @RequestParam(required= true)
 										  @Pattern (regexp=Patterns.USER_ROLE,
 										  			message=Messages.USER_ROLE_FORMAT) String role) {
-		User user = getUserById(id);
+		Users user = getUserById(id);
 		String selRole = userService.findRoleName(role);
 		
 		// Check to see if the user already has the role requested
@@ -229,7 +229,7 @@ public class RestUserController extends RestCommonController{
 										     @RequestParam(required= true)
 										     @Pattern (regexp=Patterns.USER_ROLE,
 										  			   message=Messages.USER_ROLE_FORMAT) String role) {
-		User user = getUserById(id);
+		Users user = getUserById(id);
 		String selRole = userService.findRoleName(role);
 		
 		// Check to see if the user even has the role to be deleted
@@ -255,7 +255,7 @@ public class RestUserController extends RestCommonController{
 	@PutMapping(Constants.URI_API_USR_CHG_PASS)
 	public ResponseEntity<?> changePassword(@RequestBody @Valid ChangePassword changePassword) {
 		
-		User authUser = getAuthenticatedUser();
+		Users authUser = getAuthenticatedUser();
 		
 		// Check to see if the user provided the correct password
 		if (userService.passwordMatches(authUser, changePassword.getCurrentPasword())) {
@@ -347,9 +347,9 @@ public class RestUserController extends RestCommonController{
 	/*
 	 * Helper method to move NewUser into a User
 	 */
-	private User getUserFromNewUser (NewUser newUser) {
+	private Users getUserFromNewUser (NewUser newUser) {
 		
-		User user = new User(newUser.getEmailAddress(), newUser.getPassword());
+		Users user = new Users(newUser.getEmailAddress(), newUser.getPassword());
 		UserProfile userProfile = getProfileFromUpdateUser ((UpdateUser) newUser);
 		
 		userProfile.setDob(newUser.getDob());

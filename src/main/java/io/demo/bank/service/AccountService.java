@@ -18,7 +18,7 @@ import io.demo.bank.model.AccountType;
 import io.demo.bank.model.OwnershipType;
 import io.demo.bank.model.TransactionState;
 import io.demo.bank.model.TransactionType;
-import io.demo.bank.model.security.User;
+import io.demo.bank.model.security.Users;
 import io.demo.bank.repository.AccountRepository;
 import io.demo.bank.repository.AccountStandingRepository;
 import io.demo.bank.repository.AccountTransactionRepository;
@@ -337,7 +337,7 @@ public class AccountService {
 	/*
 	 * Get all accounts assigned to the user
 	 */
-	public List<Account> getAllAccounts (User user) {
+	public List<Account> getAllAccounts (Users user) {
 		
 		List<Account> allAccounts = accountRepository.findByOwner(user);
 		allAccounts.addAll(accountRepository.findByCoowner(user));
@@ -348,7 +348,7 @@ public class AccountService {
 	/*
 	 * Get all checking accounts assigned to the user
 	 */
-	public List<Account> getCheckingAccounts (User user) {
+	public List<Account> getCheckingAccounts (Users user) {
 		
 		List<Account> checkingAccounts = accountRepository.findByOwnerAndAccountType_Category(user, Constants.ACCT_CHK_CAT);
 		checkingAccounts.addAll(accountRepository.findByCoownerAndAccountType_Category(user, Constants.ACCT_CHK_CAT));
@@ -359,7 +359,7 @@ public class AccountService {
 	/*
 	 * Get all savings accounts assigned to the user
 	 */
-	public List<Account> getSavingsAccounts (User user) {
+	public List<Account> getSavingsAccounts (Users user) {
 				
 		List<Account> savingsAccounts = accountRepository.findByOwnerAndAccountType_Category(user, Constants.ACCT_SAV_CAT);
 		savingsAccounts.addAll(accountRepository.findByCoownerAndAccountType_Category(user, Constants.ACCT_SAV_CAT));
