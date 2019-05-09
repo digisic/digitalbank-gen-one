@@ -6,11 +6,13 @@ import java.util.Collections;
 import java.util.List;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import io.demo.bank.util.Constants;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.AuthorizationScope;
-import springfox.documentation.service.BasicAuth;
 import springfox.documentation.service.Contact;
 import springfox.documentation.service.SecurityReference;
 import springfox.documentation.service.SecurityScheme;
@@ -23,16 +25,19 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 	
+	private static String JWT_TOKEN_REF	= "Bearer %token";
+	private static String API_REGEX_PATH = "/api.*";
+	
 	@Bean
     public Docket api() { 
 		
 		List<SecurityScheme> schemeList = new ArrayList<>();
-		schemeList.add(new BasicAuth("basicAuth"));
+		schemeList.add(new ApiKey(JWT_TOKEN_REF, Constants.API_AUTH_HEADER, "Header"));
 		
         return new Docket(DocumentationType.SWAGGER_2)  
           .select()                                  
           .apis(RequestHandlerSelectors.basePackage("io.demo.bank.controller.rest"))              
-          .paths(PathSelectors.regex("/api.*"))
+          .paths(PathSelectors.regex(API_REGEX_PATH))
           .build()
           .apiInfo(apiInfo())
           .securitySchemes(schemeList)
@@ -56,8 +61,8 @@ public class SwaggerConfig {
 	private SecurityContext securityContext() {		
 	    return SecurityContext.builder()
 	      .securityReferences(
-	        Arrays.asList(new SecurityReference("basicAuth", new AuthorizationScope[0])))
-	      .forPaths(PathSelectors.regex("/api.*"))
+	        Arrays.asList(new SecurityReference(JWT_TOKEN_REF, new AuthorizationScope[0])))
+	      .forPaths(PathSelectors.regex(API_REGEX_PATH))
 	      .build();
 	}
 	

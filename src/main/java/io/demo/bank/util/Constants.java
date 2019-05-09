@@ -6,6 +6,11 @@ public class Constants {
 	public static final String COO_REMEBER_ME 		= "remeber-me";
 	public static final String COO_JSESSION_ID		= "JSESSIONID";
 	
+	// API
+	public static final String API_SECRET			= "Zq4t7w!z%C&F)J@NcRfUjXn2r5u8x/A?";
+	public static final String API_AUTH_HEADER		= "Authorization";
+	public static final String API_TOKEN_BEGIN		= "Bearer ";
+	
 	// Has Role
 	public static final String HAS_ROLE_USER		= "hasRole('" + Patterns.ROLE_USER + "')";
 	public static final String HAS_ROLE_ADMIN		= "hasRole('" + Patterns.ROLE_ADMIN + "')";
@@ -58,6 +63,7 @@ public class Constants {
 	public static final String URI_WITHDRAW				= "/withdraw";
 	public static final String URI_XFER_BETWEEN			= "/xfer-between";
 	public static final String URI_API_ALL				= "/api/**";
+	public static final String URI_API_AUTH				= "/api/v1/auth";
 	public static final String URI_API_USR_ALL			= "/api/v1/users";
 	public static final String URI_API_USR				= "/api/v1/user";
 	public static final String URI_API_USR_ID			= "/api/v1/user/{id}";

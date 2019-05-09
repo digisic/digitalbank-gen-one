@@ -1,5 +1,6 @@
 package io.demo.bank.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
@@ -9,10 +10,15 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import io.demo.bank.config.exception.RestInvalidArguementException;
 import io.demo.bank.model.Notification;
 import io.demo.bank.model.UserProfile;
 import io.demo.bank.model.enums.NotificationType;
@@ -23,6 +29,8 @@ import io.demo.bank.repository.RoleRepository;
 import io.demo.bank.repository.UserProfileRepository;
 import io.demo.bank.repository.UserRepository;
 import io.demo.bank.repository.UserRoleRepository;
+import io.demo.bank.security.JwtTokenProvider;
+import io.demo.bank.util.Messages;
 import io.demo.bank.util.Patterns;
 
 @Service
@@ -42,9 +50,42 @@ public class UserService {
 	
 	@Autowired
 	private UserRoleRepository userRoleRepository;
+	
+	@Autowired
+	private AuthenticationManager authenticationManager;
+	
+	@Autowired
+	private JwtTokenProvider jwtTokenProvider;
 	  
 	@Autowired
 	private BCryptPasswordEncoder encoder;
+	
+	
+	/*
+	 * Rest API Authentication service
+	 */
+	public String authenticateUser (String username, String password) {
+		
+		try {
+			
+			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+			
+			Users user = userRepository.findByUsername(username);
+			
+			Set<UserRole> ur = user.getUserRoles();
+			List<Role> roles = new ArrayList<Role>();
+			
+			for (UserRole r: ur) {
+				roles.add(r.getRole());
+			}
+			
+		    return jwtTokenProvider.createToken(username, roles);
+		
+		} catch (AuthenticationException e) {
+		      
+			throw new RestInvalidArguementException(Messages.API_INVALID_CRED);
+		}
+	}
 	
 	/*
 	 * Find the user by the specified username. Returns the User object

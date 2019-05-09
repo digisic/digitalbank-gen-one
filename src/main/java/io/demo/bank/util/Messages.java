@@ -9,6 +9,11 @@ public class Messages {
 	public static final String OBJECT_NOT_FOUND			= "Object Not Found. Unable to locate object with id ";
 	public static final String ACCESS_FORBIDDEN			= "You must have an '" + Patterns.ROLE_ADMIN + "' role to access data outside the scope of the current authenticated user."; 
 	
+	// API Authentication
+	public static final String API_INVALID_TOKEN		= "Expired or Invalid Json Web Token";
+	public static final String API_INVALID_CRED			= "Invalid Credentials, Authentication Failed";
+	
+	
 	// User
 	public static final String USER_PASSWORD_FORMAT		= "Password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters";
 	public static final String USER_PASSWORD_REQUIRED	= "Password is required.";

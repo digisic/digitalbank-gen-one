@@ -14,10 +14,10 @@ import io.demo.bank.util.Constants;
 
 @Validated
 @RestController
-public class RestAccountDataController extends RestCommonController {
+public class RestStaticDataController extends RestCommonController {
 
 	@SuppressWarnings("unused")
-	private static final Logger LOG = LoggerFactory.getLogger(RestAccountDataController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(RestStaticDataController.class);
 	
 	@Autowired
 	AccountService accountService;

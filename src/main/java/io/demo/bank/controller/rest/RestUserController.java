@@ -46,6 +46,7 @@ public class RestUserController extends RestCommonController{
 	 * ADMIN Role
 	 * Get All Users
 	 */
+	
 	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
 	@GetMapping(Constants.URI_API_USR_ALL)											
 	public ResponseEntity<?> getAllUsers(){

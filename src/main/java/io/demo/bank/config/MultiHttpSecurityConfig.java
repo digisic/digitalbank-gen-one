@@ -1,26 +1,30 @@
 package io.demo.bank.config;
 
+import io.demo.bank.security.JwtTokenFilterConfigurer;
+import io.demo.bank.security.JwtTokenProvider;
 import io.demo.bank.service.UserSecurityService;
 import io.demo.bank.util.Constants;
 import io.demo.bank.util.Patterns;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity(debug=false)
 @EnableGlobalMethodSecurity(prePostEnabled=true)
-public class MultiHttpSecurityConfig 
-{
+public class MultiHttpSecurityConfig {
+
 	@Autowired
 	private UserSecurityService userSecurityService;
 	
@@ -50,20 +54,36 @@ public class MultiHttpSecurityConfig
 	public BCryptPasswordEncoder encoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+		
 	@Configuration
     @Order(1)                                                        
     public static class ApiWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
+		
+		@Autowired
+		private JwtTokenProvider jwtTokenProvider;
+		
+		@Bean
+		@Override
+		public AuthenticationManager authenticationManagerBean() throws Exception {
+	       return super.authenticationManagerBean();
+		}
+		
+		
         protected void configure(HttpSecurity http) throws Exception {
         	
         	http.csrf().disable()
-        		.cors().disable()
+        		.exceptionHandling().accessDeniedPage(Constants.URI_API_AUTH)
+        		.and()
+        		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        		.and()
         		.antMatcher(Constants.URI_API_ALL)
         		.authorizeRequests()
+        			.antMatchers(HttpMethod.POST, Constants.URI_API_AUTH).permitAll()
         			.anyRequest()
         			.hasRole(Patterns.ROLE_API)
         			.and()
-				.httpBasic();
+        			.apply(new JwtTokenFilterConfigurer(jwtTokenProvider));
+   
         }
     }
 	

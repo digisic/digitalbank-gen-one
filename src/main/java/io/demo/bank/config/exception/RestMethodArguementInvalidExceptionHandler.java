@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 
 @RestControllerAdvice(basePackages = "io.demo.bank.controller.rest")
-public class RestInvalidArguementExceptionHandler {
+public class RestMethodArguementInvalidExceptionHandler {
 
 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
