@@ -18,7 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import io.demo.bank.config.exception.RestInvalidArguementException;
+import io.demo.bank.exception.RestInvalidArguementException;
 import io.demo.bank.model.Notification;
 import io.demo.bank.model.UserProfile;
 import io.demo.bank.model.enums.NotificationType;

@@ -14,7 +14,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import io.demo.bank.config.exception.RestInvalidArguementException;
+import io.demo.bank.exception.RestInvalidArguementException;
 import io.demo.bank.model.security.Role;
 import io.demo.bank.service.UserSecurityService;
 import io.demo.bank.util.Constants;

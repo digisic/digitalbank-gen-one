@@ -1,4 +1,4 @@
-package io.demo.bank.controller.ui;
+package io.demo.bank.controller.web;
 
 import io.demo.bank.model.UserProfile;
 import io.demo.bank.model.security.Role;
@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
-public class HomeController extends CommonController {
+public class WebHomeController extends WebCommonController {
 	
-	private static final Logger LOG = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(WebHomeController.class);
 	
 	
 	@Autowired

@@ -1,4 +1,4 @@
-package io.demo.bank.config.exception;
+package io.demo.bank.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

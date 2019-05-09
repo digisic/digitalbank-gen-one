@@ -1,4 +1,4 @@
-package io.demo.bank.controller.ui;
+package io.demo.bank.controller.web;
 
 import java.security.Principal;
 import java.time.ZoneId;
@@ -16,9 +16,9 @@ import io.demo.bank.service.UserService;
 import io.demo.bank.util.Constants;
 
 @Controller
-abstract class CommonController {
+abstract class WebCommonController {
 
-	private static final Logger LOG = LoggerFactory.getLogger(CommonController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(WebCommonController.class);
 	
 	@Autowired
 	private BuildProperties buildProperties;

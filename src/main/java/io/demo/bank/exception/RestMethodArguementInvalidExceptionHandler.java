@@ -1,4 +1,4 @@
-package io.demo.bank.config.exception;
+package io.demo.bank.exception;
 
 import java.util.List;
 import java.util.stream.Collectors;

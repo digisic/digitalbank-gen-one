@@ -13,19 +13,19 @@ info:
     name: License of API
     url: API License URL
 tags:
-  - name: rest-account-controller
-    description: Rest Account Controller
-  - name: rest-account-data-controller
-    description: Rest Account Data Controller
-  - name: rest-authentication-controller
-    description: Rest Authentication Controller
-  - name: rest-user-controller
-    description: Rest User Controller
+  - name: account-controller
+    description: Account Controller
+  - name: authentication-controller
+    description: Authentication Controller
+  - name: static-data-controller
+    description: Static Data Controller
+  - name: user-controller
+    description: User Controller
 paths:
   /api/v1/account:
     get:
       tags:
-        - rest-account-controller
+        - account-controller
       summary: getAllAccounts
       operationId: getAllAccountsUsingGET
       responses:
@@ -47,7 +47,7 @@ paths:
   /api/v1/account/checking:
     get:
       tags:
-        - rest-account-controller
+        - account-controller
       summary: getAllCheckingAccounts
       operationId: getAllCheckingAccountsUsingGET
       responses:
@@ -69,7 +69,7 @@ paths:
   /api/v1/account/savings:
     get:
       tags:
-        - rest-account-controller
+        - account-controller
       summary: getAllSavingsAccounts
       operationId: getAllSavingsAccountsUsingGET
       responses:
@@ -91,7 +91,7 @@ paths:
   "/api/v1/account/{id}":
     get:
       tags:
-        - rest-account-controller
+        - account-controller
       summary: getAccount
       operationId: getAccountUsingGET
       parameters:
@@ -120,7 +120,7 @@ paths:
       deprecated: false
     delete:
       tags:
-        - rest-account-controller
+        - account-controller
       summary: deleteAccount
       operationId: deleteAccountUsingDELETE
       parameters:
@@ -150,7 +150,7 @@ paths:
   "/api/v1/account/{id}/coowner":
     get:
       tags:
-        - rest-account-controller
+        - account-controller
       summary: getCoOwner
       operationId: getCoOwnerUsingGET
       parameters:
@@ -179,7 +179,7 @@ paths:
       deprecated: false
     put:
       tags:
-        - rest-account-controller
+        - account-controller
       summary: setCoOwner
       operationId: setCoOwnerUsingPUT
       parameters:
@@ -218,7 +218,7 @@ paths:
   "/api/v1/account/{id}/owner":
     get:
       tags:
-        - rest-account-controller
+        - account-controller
       summary: getOwner
       operationId: getOwnerUsingGET
       parameters:
@@ -248,7 +248,7 @@ paths:
   "/api/v1/account/{id}/transaction":
     get:
       tags:
-        - rest-account-controller
+        - account-controller
       summary: getAccountTransactions
       operationId: getAccountTransactionsUsingGET
       parameters:
@@ -277,7 +277,7 @@ paths:
       deprecated: false
     post:
       tags:
-        - rest-account-controller
+        - account-controller
       summary: newTransaction
       operationId: newTransactionUsingPOST
       parameters:
@@ -322,7 +322,7 @@ paths:
   "/api/v1/account/{id}/transfer":
     post:
       tags:
-        - rest-account-controller
+        - account-controller
       summary: transferFunds
       operationId: transferFundsUsingPOST
       parameters:
@@ -361,7 +361,7 @@ paths:
   /api/v1/auth:
     post:
       tags:
-        - rest-authentication-controller
+        - authentication-controller
       summary: authenticateUser
       operationId: authenticateUserUsingPOST
       parameters:
@@ -398,7 +398,7 @@ paths:
   /api/v1/data/account/ownership/type:
     get:
       tags:
-        - rest-account-data-controller
+        - static-data-controller
       summary: getAccountOwndershipTypes
       operationId: getAccountOwndershipTypesUsingGET
       responses:
@@ -420,7 +420,7 @@ paths:
   /api/v1/data/account/standing:
     get:
       tags:
-        - rest-account-data-controller
+        - static-data-controller
       summary: getAccountStandings
       operationId: getAccountStandingsUsingGET
       responses:
@@ -442,7 +442,7 @@ paths:
   /api/v1/data/account/transaction/state:
     get:
       tags:
-        - rest-account-data-controller
+        - static-data-controller
       summary: getAccountTransactionStates
       operationId: getAccountTransactionStatesUsingGET
       responses:
@@ -464,7 +464,7 @@ paths:
   /api/v1/data/account/transaction/type:
     get:
       tags:
-        - rest-account-data-controller
+        - static-data-controller
       summary: getAccountTransactionTypes
       operationId: getAccountTransactionTypesUsingGET
       responses:
@@ -486,7 +486,7 @@ paths:
   /api/v1/data/account/type:
     get:
       tags:
-        - rest-account-data-controller
+        - static-data-controller
       summary: getAccountTypes
       operationId: getAccountTypesUsingGET
       responses:
@@ -508,7 +508,7 @@ paths:
   /api/v1/data/account/type/checking:
     get:
       tags:
-        - rest-account-data-controller
+        - static-data-controller
       summary: getCheckingAccountTypes
       operationId: getCheckingAccountTypesUsingGET
       responses:
@@ -530,7 +530,7 @@ paths:
   /api/v1/data/account/type/savings:
     get:
       tags:
-        - rest-account-data-controller
+        - static-data-controller
       summary: getSavingsAccountTypes
       operationId: getSavingsAccountTypesUsingGET
       responses:
@@ -552,7 +552,7 @@ paths:
   /api/v1/user:
     get:
       tags:
-        - rest-user-controller
+        - user-controller
       summary: getUser
       operationId: getUserUsingGET_1
       responses:
@@ -573,7 +573,7 @@ paths:
       deprecated: false
     post:
       tags:
-        - rest-user-controller
+        - user-controller
       summary: createNewUser
       operationId: createNewUserUsingPOST
       parameters:
@@ -612,7 +612,7 @@ paths:
   /api/v1/user/account:
     get:
       tags:
-        - rest-account-controller
+        - account-controller
       summary: getAccounts
       operationId: getAccountsUsingGET
       responses:
@@ -633,7 +633,7 @@ paths:
       deprecated: false
     post:
       tags:
-        - rest-account-controller
+        - account-controller
       summary: createAccount
       operationId: createAccountUsingPOST
       requestBody:
@@ -659,7 +659,7 @@ paths:
   /api/v1/user/account/checking:
     get:
       tags:
-        - rest-account-controller
+        - account-controller
       summary: getCheckingAccounts
       operationId: getCheckingAccountsUsingGET
       responses:
@@ -681,7 +681,7 @@ paths:
   /api/v1/user/account/savings:
     get:
       tags:
-        - rest-account-controller
+        - account-controller
       summary: getSavingsAccounts
       operationId: getSavingsAccountsUsingGET
       responses:
@@ -703,7 +703,7 @@ paths:
   /api/v1/user/password:
     put:
       tags:
-        - rest-user-controller
+        - user-controller
       summary: changePassword
       operationId: changePasswordUsingPUT
       requestBody:
@@ -734,7 +734,7 @@ paths:
   /api/v1/user/profile:
     get:
       tags:
-        - rest-user-controller
+        - user-controller
       summary: getUserProfile
       operationId: getUserProfileUsingGET
       responses:
@@ -755,7 +755,7 @@ paths:
       deprecated: false
     put:
       tags:
-        - rest-user-controller
+        - user-controller
       summary: updateUserProfile
       operationId: updateUserProfileUsingPUT
       requestBody:
@@ -781,7 +781,7 @@ paths:
   /api/v1/user/role:
     get:
       tags:
-        - rest-user-controller
+        - user-controller
       summary: getAuthority
       operationId: getAuthorityUsingGET
       responses:
@@ -803,7 +803,7 @@ paths:
   "/api/v1/user/{id}":
     get:
       tags:
-        - rest-user-controller
+        - user-controller
       summary: getUser
       operationId: getUserUsingGET
       parameters:
@@ -832,7 +832,7 @@ paths:
       deprecated: false
     delete:
       tags:
-        - rest-user-controller
+        - user-controller
       summary: deleteUser
       operationId: deleteUserUsingDELETE
       parameters:
@@ -862,7 +862,7 @@ paths:
   "/api/v1/user/{id}/account":
     get:
       tags:
-        - rest-account-controller
+        - account-controller
       summary: getAccounts
       operationId: getAccountsUsingGET_1
       parameters:
@@ -891,7 +891,7 @@ paths:
       deprecated: false
     post:
       tags:
-        - rest-account-controller
+        - account-controller
       summary: createAccount
       operationId: createAccountUsingPOST_1
       parameters:
@@ -925,7 +925,7 @@ paths:
   "/api/v1/user/{id}/account/checking":
     get:
       tags:
-        - rest-account-controller
+        - account-controller
       summary: getCheckingAccounts
       operationId: getCheckingAccountsUsingGET_1
       parameters:
@@ -955,7 +955,7 @@ paths:
   "/api/v1/user/{id}/account/savings":
     get:
       tags:
-        - rest-account-controller
+        - account-controller
       summary: getSavingsAccounts
       operationId: getSavingsAccountsUsingGET_1
       parameters:
@@ -985,7 +985,7 @@ paths:
   "/api/v1/user/{id}/password":
     put:
       tags:
-        - rest-user-controller
+        - user-controller
       summary: setPassword
       operationId: setPasswordUsingPUT
       parameters:
@@ -1023,7 +1023,7 @@ paths:
   "/api/v1/user/{id}/password/unexpire":
     put:
       tags:
-        - rest-user-controller
+        - user-controller
       summary: setPasswordUnexpired
       operationId: setPasswordUnexpiredUsingPUT
       parameters:
@@ -1061,7 +1061,7 @@ paths:
   "/api/v1/user/{id}/profile":
     get:
       tags:
-        - rest-user-controller
+        - user-controller
       summary: getUserProfile
       operationId: getUserProfileUsingGET_1
       parameters:
@@ -1090,7 +1090,7 @@ paths:
       deprecated: false
     put:
       tags:
-        - rest-user-controller
+        - user-controller
       summary: updateUserProfile
       operationId: updateUserProfileUsingPUT_1
       parameters:
@@ -1124,7 +1124,7 @@ paths:
   "/api/v1/user/{id}/role":
     get:
       tags:
-        - rest-user-controller
+        - user-controller
       summary: getAuthority
       operationId: getAuthorityUsingGET_1
       parameters:
@@ -1153,7 +1153,7 @@ paths:
       deprecated: false
     put:
       tags:
-        - rest-user-controller
+        - user-controller
       summary: addAuthority
       operationId: addAuthorityUsingPUT
       parameters:
@@ -1190,7 +1190,7 @@ paths:
       deprecated: false
     delete:
       tags:
-        - rest-user-controller
+        - user-controller
       summary: removeAuthority
       operationId: removeAuthorityUsingDELETE
       parameters:
@@ -1226,7 +1226,7 @@ paths:
   "/api/v1/user/{id}/state/enable":
     put:
       tags:
-        - rest-user-controller
+        - user-controller
       summary: setUserEnabled
       operationId: setUserEnabledUsingPUT
       parameters:
@@ -1264,7 +1264,7 @@ paths:
   "/api/v1/user/{id}/state/unexpire":
     put:
       tags:
-        - rest-user-controller
+        - user-controller
       summary: setUserUnexpired
       operationId: setUserUnexpiredUsingPUT
       parameters:
@@ -1302,7 +1302,7 @@ paths:
   "/api/v1/user/{id}/state/unlock":
     put:
       tags:
-        - rest-user-controller
+        - user-controller
       summary: setUserUnlocked
       operationId: setUserUnlockedUsingPUT
       parameters:
@@ -1340,7 +1340,7 @@ paths:
   /api/v1/users:
     get:
       tags:
-        - rest-user-controller
+        - user-controller
       summary: getAllUsers
       operationId: getAllUsersUsingGET
       responses:

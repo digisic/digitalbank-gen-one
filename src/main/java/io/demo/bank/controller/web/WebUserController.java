@@ -1,4 +1,4 @@
-package io.demo.bank.controller.ui;
+package io.demo.bank.controller.web;
 
 import java.security.Principal;
 import org.slf4j.Logger;
@@ -19,10 +19,10 @@ import io.demo.bank.util.Patterns;
 
 @Controller
 @RequestMapping(Constants.URI_USER)
-public class UserController extends CommonController {
+public class WebUserController extends WebCommonController {
 	
 	// Class Logger
-	private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(WebUserController.class);
 		  
 	@Autowired
 	private UserService userService;

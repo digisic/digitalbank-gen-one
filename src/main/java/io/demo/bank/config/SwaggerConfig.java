@@ -36,7 +36,7 @@ public class SwaggerConfig {
 		
         return new Docket(DocumentationType.SWAGGER_2)  
           .select()                                  
-          .apis(RequestHandlerSelectors.basePackage("io.demo.bank.controller.rest"))              
+          .apis(RequestHandlerSelectors.basePackage("io.demo.bank.controller"))              
           .paths(PathSelectors.regex(API_REGEX_PATH))
           .build()
           .apiInfo(apiInfo())

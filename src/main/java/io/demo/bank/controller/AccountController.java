@@ -1,4 +1,4 @@
-package io.demo.bank.controller.rest;
+package io.demo.bank.controller;
 
 import java.math.BigDecimal;
 import javax.validation.Valid;
@@ -20,10 +20,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import io.demo.bank.config.exception.RestBadRequestException;
-import io.demo.bank.config.exception.RestForbiddenException;
-import io.demo.bank.config.exception.RestNotAcceptableException;
-import io.demo.bank.config.exception.RestObjectNotFoundException;
+
+import io.demo.bank.exception.RestBadRequestException;
+import io.demo.bank.exception.RestForbiddenException;
+import io.demo.bank.exception.RestNotAcceptableException;
+import io.demo.bank.exception.RestObjectNotFoundException;
 import io.demo.bank.model.Account;
 import io.demo.bank.model.AccountTransaction;
 import io.demo.bank.model.AccountType;
@@ -39,10 +40,10 @@ import io.demo.bank.util.Patterns;
 
 @Validated
 @RestController
-public class RestAccountController extends RestCommonController {
+public class AccountController extends CommonController {
 
 
-	private static final Logger LOG = LoggerFactory.getLogger(RestAccountController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(AccountController.class);
 	
 	@Autowired
 	AccountService accountService;

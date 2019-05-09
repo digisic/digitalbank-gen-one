@@ -1,4 +1,4 @@
-package io.demo.bank.controller.ui;
+package io.demo.bank.controller.web;
 
 import java.math.BigDecimal;
 import java.security.Principal;
@@ -23,9 +23,9 @@ import io.demo.bank.util.Patterns;
 
 @Controller
 @RequestMapping(Constants.URI_ACCOUNT)
-public class AccountController extends CommonController {
+public class WebAccountController extends WebCommonController {
 	
-	private static final Logger LOG = LoggerFactory.getLogger(AccountController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(WebAccountController.class);
 	
 	@Autowired
 	private AccountService accountService;

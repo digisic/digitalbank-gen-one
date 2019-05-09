@@ -1,4 +1,4 @@
-package io.demo.bank.controller.rest;
+package io.demo.bank.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,9 +14,9 @@ import io.demo.bank.util.Constants;
 
 @Validated
 @RestController
-public class RestAuthenticationController extends RestCommonController{
+public class AuthenticationController extends CommonController{
 	
-	private static final Logger LOG = LoggerFactory.getLogger(RestAuthenticationController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(AuthenticationController.class);
 	
 	@Autowired
 	UserService userService;

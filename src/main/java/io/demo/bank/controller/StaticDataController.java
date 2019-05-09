@@ -1,4 +1,4 @@
-package io.demo.bank.controller.rest;
+package io.demo.bank.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,10 +14,10 @@ import io.demo.bank.util.Constants;
 
 @Validated
 @RestController
-public class RestStaticDataController extends RestCommonController {
+public class StaticDataController extends CommonController {
 
 	@SuppressWarnings("unused")
-	private static final Logger LOG = LoggerFactory.getLogger(RestStaticDataController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(StaticDataController.class);
 	
 	@Autowired
 	AccountService accountService;

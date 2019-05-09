@@ -19,27 +19,27 @@
     "basePath": "/",
     "tags": [
         {
-            "name": "rest-account-controller",
-            "description": "Rest Account Controller"
+            "name": "account-controller",
+            "description": "Account Controller"
         },
         {
-            "name": "rest-account-data-controller",
-            "description": "Rest Account Data Controller"
+            "name": "authentication-controller",
+            "description": "Authentication Controller"
         },
         {
-            "name": "rest-authentication-controller",
-            "description": "Rest Authentication Controller"
+            "name": "static-data-controller",
+            "description": "Static Data Controller"
         },
         {
-            "name": "rest-user-controller",
-            "description": "Rest User Controller"
+            "name": "user-controller",
+            "description": "User Controller"
         }
     ],
     "paths": {
         "/api/v1/account": {
             "get": {
                 "tags": [
-                    "rest-account-controller"
+                    "account-controller"
                 ],
                 "summary": "getAllAccounts",
                 "operationId": "getAllAccountsUsingGET",
@@ -74,7 +74,7 @@
         "/api/v1/account/checking": {
             "get": {
                 "tags": [
-                    "rest-account-controller"
+                    "account-controller"
                 ],
                 "summary": "getAllCheckingAccounts",
                 "operationId": "getAllCheckingAccountsUsingGET",
@@ -109,7 +109,7 @@
         "/api/v1/account/savings": {
             "get": {
                 "tags": [
-                    "rest-account-controller"
+                    "account-controller"
                 ],
                 "summary": "getAllSavingsAccounts",
                 "operationId": "getAllSavingsAccountsUsingGET",
@@ -144,7 +144,7 @@
         "/api/v1/account/{id}": {
             "get": {
                 "tags": [
-                    "rest-account-controller"
+                    "account-controller"
                 ],
                 "summary": "getAccount",
                 "operationId": "getAccountUsingGET",
@@ -187,7 +187,7 @@
             },
             "delete": {
                 "tags": [
-                    "rest-account-controller"
+                    "account-controller"
                 ],
                 "summary": "deleteAccount",
                 "operationId": "deleteAccountUsingDELETE",
@@ -232,7 +232,7 @@
         "/api/v1/account/{id}/coowner": {
             "get": {
                 "tags": [
-                    "rest-account-controller"
+                    "account-controller"
                 ],
                 "summary": "getCoOwner",
                 "operationId": "getCoOwnerUsingGET",
@@ -275,7 +275,7 @@
             },
             "put": {
                 "tags": [
-                    "rest-account-controller"
+                    "account-controller"
                 ],
                 "summary": "setCoOwner",
                 "operationId": "setCoOwnerUsingPUT",
@@ -334,7 +334,7 @@
         "/api/v1/account/{id}/owner": {
             "get": {
                 "tags": [
-                    "rest-account-controller"
+                    "account-controller"
                 ],
                 "summary": "getOwner",
                 "operationId": "getOwnerUsingGET",
@@ -379,7 +379,7 @@
         "/api/v1/account/{id}/transaction": {
             "get": {
                 "tags": [
-                    "rest-account-controller"
+                    "account-controller"
                 ],
                 "summary": "getAccountTransactions",
                 "operationId": "getAccountTransactionsUsingGET",
@@ -422,7 +422,7 @@
             },
             "post": {
                 "tags": [
-                    "rest-account-controller"
+                    "account-controller"
                 ],
                 "summary": "newTransaction",
                 "operationId": "newTransactionUsingPOST",
@@ -489,7 +489,7 @@
         "/api/v1/account/{id}/transfer": {
             "post": {
                 "tags": [
-                    "rest-account-controller"
+                    "account-controller"
                 ],
                 "summary": "transferFunds",
                 "operationId": "transferFundsUsingPOST",
@@ -549,7 +549,7 @@
         "/api/v1/auth": {
             "post": {
                 "tags": [
-                    "rest-authentication-controller"
+                    "authentication-controller"
                 ],
                 "summary": "authenticateUser",
                 "operationId": "authenticateUserUsingPOST",
@@ -606,7 +606,7 @@
         "/api/v1/data/account/ownership/type": {
             "get": {
                 "tags": [
-                    "rest-account-data-controller"
+                    "static-data-controller"
                 ],
                 "summary": "getAccountOwndershipTypes",
                 "operationId": "getAccountOwndershipTypesUsingGET",
@@ -641,7 +641,7 @@
         "/api/v1/data/account/standing": {
             "get": {
                 "tags": [
-                    "rest-account-data-controller"
+                    "static-data-controller"
                 ],
                 "summary": "getAccountStandings",
                 "operationId": "getAccountStandingsUsingGET",
@@ -676,7 +676,7 @@
         "/api/v1/data/account/transaction/state": {
             "get": {
                 "tags": [
-                    "rest-account-data-controller"
+                    "static-data-controller"
                 ],
                 "summary": "getAccountTransactionStates",
                 "operationId": "getAccountTransactionStatesUsingGET",
@@ -711,7 +711,7 @@
         "/api/v1/data/account/transaction/type": {
             "get": {
                 "tags": [
-                    "rest-account-data-controller"
+                    "static-data-controller"
                 ],
                 "summary": "getAccountTransactionTypes",
                 "operationId": "getAccountTransactionTypesUsingGET",
@@ -746,7 +746,7 @@
         "/api/v1/data/account/type": {
             "get": {
                 "tags": [
-                    "rest-account-data-controller"
+                    "static-data-controller"
                 ],
                 "summary": "getAccountTypes",
                 "operationId": "getAccountTypesUsingGET",
@@ -781,7 +781,7 @@
         "/api/v1/data/account/type/checking": {
             "get": {
                 "tags": [
-                    "rest-account-data-controller"
+                    "static-data-controller"
                 ],
                 "summary": "getCheckingAccountTypes",
                 "operationId": "getCheckingAccountTypesUsingGET",
@@ -816,7 +816,7 @@
         "/api/v1/data/account/type/savings": {
             "get": {
                 "tags": [
-                    "rest-account-data-controller"
+                    "static-data-controller"
                 ],
                 "summary": "getSavingsAccountTypes",
                 "operationId": "getSavingsAccountTypesUsingGET",
@@ -851,7 +851,7 @@
         "/api/v1/user": {
             "get": {
                 "tags": [
-                    "rest-user-controller"
+                    "user-controller"
                 ],
                 "summary": "getUser",
                 "operationId": "getUserUsingGET_1",
@@ -884,7 +884,7 @@
             },
             "post": {
                 "tags": [
-                    "rest-user-controller"
+                    "user-controller"
                 ],
                 "summary": "createNewUser",
                 "operationId": "createNewUserUsingPOST",
@@ -944,7 +944,7 @@
         "/api/v1/user/account": {
             "get": {
                 "tags": [
-                    "rest-account-controller"
+                    "account-controller"
                 ],
                 "summary": "getAccounts",
                 "operationId": "getAccountsUsingGET",
@@ -977,7 +977,7 @@
             },
             "post": {
                 "tags": [
-                    "rest-account-controller"
+                    "account-controller"
                 ],
                 "summary": "createAccount",
                 "operationId": "createAccountUsingPOST",
@@ -1029,7 +1029,7 @@
         "/api/v1/user/account/checking": {
             "get": {
                 "tags": [
-                    "rest-account-controller"
+                    "account-controller"
                 ],
                 "summary": "getCheckingAccounts",
                 "operationId": "getCheckingAccountsUsingGET",
@@ -1064,7 +1064,7 @@
         "/api/v1/user/account/savings": {
             "get": {
                 "tags": [
-                    "rest-account-controller"
+                    "account-controller"
                 ],
                 "summary": "getSavingsAccounts",
                 "operationId": "getSavingsAccountsUsingGET",
@@ -1099,7 +1099,7 @@
         "/api/v1/user/password": {
             "put": {
                 "tags": [
-                    "rest-user-controller"
+                    "user-controller"
                 ],
                 "summary": "changePassword",
                 "operationId": "changePasswordUsingPUT",
@@ -1151,7 +1151,7 @@
         "/api/v1/user/profile": {
             "get": {
                 "tags": [
-                    "rest-user-controller"
+                    "user-controller"
                 ],
                 "summary": "getUserProfile",
                 "operationId": "getUserProfileUsingGET",
@@ -1184,7 +1184,7 @@
             },
             "put": {
                 "tags": [
-                    "rest-user-controller"
+                    "user-controller"
                 ],
                 "summary": "updateUserProfile",
                 "operationId": "updateUserProfileUsingPUT",
@@ -1236,7 +1236,7 @@
         "/api/v1/user/role": {
             "get": {
                 "tags": [
-                    "rest-user-controller"
+                    "user-controller"
                 ],
                 "summary": "getAuthority",
                 "operationId": "getAuthorityUsingGET",
@@ -1271,7 +1271,7 @@
         "/api/v1/user/{id}": {
             "get": {
                 "tags": [
-                    "rest-user-controller"
+                    "user-controller"
                 ],
                 "summary": "getUser",
                 "operationId": "getUserUsingGET",
@@ -1314,7 +1314,7 @@
             },
             "delete": {
                 "tags": [
-                    "rest-user-controller"
+                    "user-controller"
                 ],
                 "summary": "deleteUser",
                 "operationId": "deleteUserUsingDELETE",
@@ -1359,7 +1359,7 @@
         "/api/v1/user/{id}/account": {
             "get": {
                 "tags": [
-                    "rest-account-controller"
+                    "account-controller"
                 ],
                 "summary": "getAccounts",
                 "operationId": "getAccountsUsingGET_1",
@@ -1402,7 +1402,7 @@
             },
             "post": {
                 "tags": [
-                    "rest-account-controller"
+                    "account-controller"
                 ],
                 "summary": "createAccount",
                 "operationId": "createAccountUsingPOST_1",
@@ -1462,7 +1462,7 @@
         "/api/v1/user/{id}/account/checking": {
             "get": {
                 "tags": [
-                    "rest-account-controller"
+                    "account-controller"
                 ],
                 "summary": "getCheckingAccounts",
                 "operationId": "getCheckingAccountsUsingGET_1",
@@ -1507,7 +1507,7 @@
         "/api/v1/user/{id}/account/savings": {
             "get": {
                 "tags": [
-                    "rest-account-controller"
+                    "account-controller"
                 ],
                 "summary": "getSavingsAccounts",
                 "operationId": "getSavingsAccountsUsingGET_1",
@@ -1552,7 +1552,7 @@
         "/api/v1/user/{id}/password": {
             "put": {
                 "tags": [
-                    "rest-user-controller"
+                    "user-controller"
                 ],
                 "summary": "setPassword",
                 "operationId": "setPasswordUsingPUT",
@@ -1610,7 +1610,7 @@
         "/api/v1/user/{id}/password/unexpire": {
             "put": {
                 "tags": [
-                    "rest-user-controller"
+                    "user-controller"
                 ],
                 "summary": "setPasswordUnexpired",
                 "operationId": "setPasswordUnexpiredUsingPUT",
@@ -1668,7 +1668,7 @@
         "/api/v1/user/{id}/profile": {
             "get": {
                 "tags": [
-                    "rest-user-controller"
+                    "user-controller"
                 ],
                 "summary": "getUserProfile",
                 "operationId": "getUserProfileUsingGET_1",
@@ -1711,7 +1711,7 @@
             },
             "put": {
                 "tags": [
-                    "rest-user-controller"
+                    "user-controller"
                 ],
                 "summary": "updateUserProfile",
                 "operationId": "updateUserProfileUsingPUT_1",
@@ -1771,7 +1771,7 @@
         "/api/v1/user/{id}/role": {
             "get": {
                 "tags": [
-                    "rest-user-controller"
+                    "user-controller"
                 ],
                 "summary": "getAuthority",
                 "operationId": "getAuthorityUsingGET_1",
@@ -1814,7 +1814,7 @@
             },
             "put": {
                 "tags": [
-                    "rest-user-controller"
+                    "user-controller"
                 ],
                 "summary": "addAuthority",
                 "operationId": "addAuthorityUsingPUT",
@@ -1870,7 +1870,7 @@
             },
             "delete": {
                 "tags": [
-                    "rest-user-controller"
+                    "user-controller"
                 ],
                 "summary": "removeAuthority",
                 "operationId": "removeAuthorityUsingDELETE",
@@ -1922,7 +1922,7 @@
         "/api/v1/user/{id}/state/enable": {
             "put": {
                 "tags": [
-                    "rest-user-controller"
+                    "user-controller"
                 ],
                 "summary": "setUserEnabled",
                 "operationId": "setUserEnabledUsingPUT",
@@ -1980,7 +1980,7 @@
         "/api/v1/user/{id}/state/unexpire": {
             "put": {
                 "tags": [
-                    "rest-user-controller"
+                    "user-controller"
                 ],
                 "summary": "setUserUnexpired",
                 "operationId": "setUserUnexpiredUsingPUT",
@@ -2038,7 +2038,7 @@
         "/api/v1/user/{id}/state/unlock": {
             "put": {
                 "tags": [
-                    "rest-user-controller"
+                    "user-controller"
                 ],
                 "summary": "setUserUnlocked",
                 "operationId": "setUserUnlockedUsingPUT",
@@ -2096,7 +2096,7 @@
         "/api/v1/users": {
             "get": {
                 "tags": [
-                    "rest-user-controller"
+                    "user-controller"
                 ],
                 "summary": "getAllUsers",
                 "operationId": "getAllUsersUsingGET",

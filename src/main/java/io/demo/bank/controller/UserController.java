@@ -1,4 +1,4 @@
-package io.demo.bank.controller.rest;
+package io.demo.bank.controller;
 
 import java.net.URI;
 import java.util.Date;
@@ -23,7 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import io.demo.bank.config.exception.RestNotAcceptableException;
+
+import io.demo.bank.exception.RestNotAcceptableException;
 import io.demo.bank.model.UserProfile;
 import io.demo.bank.model.security.Users;
 import io.demo.bank.service.UserService;
@@ -34,9 +35,9 @@ import io.demo.bank.util.Patterns;
 
 @Validated
 @RestController
-public class RestUserController extends RestCommonController{
+public class UserController extends CommonController{
 	
-	private static final Logger LOG = LoggerFactory.getLogger(RestUserController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
 	UserService userService;

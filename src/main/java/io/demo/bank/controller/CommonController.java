@@ -1,18 +1,18 @@
-package io.demo.bank.controller.rest;
+package io.demo.bank.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.demo.bank.config.exception.RestBadRequestException;
-import io.demo.bank.config.exception.RestObjectNotFoundException;
+import io.demo.bank.exception.RestBadRequestException;
+import io.demo.bank.exception.RestObjectNotFoundException;
 import io.demo.bank.model.security.Users;
 import io.demo.bank.service.UserService;
 import io.demo.bank.util.Messages;
 
 @RestController
-public class RestCommonController {
+public class CommonController {
 	
 	@Autowired
 	UserService userService;

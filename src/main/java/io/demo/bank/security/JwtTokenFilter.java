@@ -9,7 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
-import io.demo.bank.config.exception.RestInvalidArguementException;
+
+import io.demo.bank.exception.RestInvalidArguementException;
 
 public class JwtTokenFilter extends OncePerRequestFilter {
 
