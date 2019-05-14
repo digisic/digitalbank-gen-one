@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * response.
  */
 
-@RestControllerAdvice(basePackages = "io.demo.bank.controller.rest")
+@RestControllerAdvice(basePackages = "io.demo.bank.controller")
 public class RestMethodArguementInvalidExceptionHandler {
 
 

@@ -107,4 +107,15 @@ public class Messages {
 	
 	public static final String ACCT_XFER_TO_ACCT_REQ	= "Transfer To Account is required.";
 	
+	// Promotions
+	public static final String PROMO_ACCT_TYPE_REQ		= "Account Type is required";
+	public static final String PROMO_ACCT_TYPE_FORMAT	= "Account Type must either be '"
+														+ Constants.PROMO_ACCT_TYPE_BLUE + "', '"
+														+ Constants.PROMO_ACCT_TYPE_GOLD + "', or '"
+														+ Constants.PROMO_ACCT_TYPE_PLATINUM + "'";
+	public static final String PROMO_AGE_FORMAT			= "Age must be a positive number";
+	public static final String PROMO_RATING_FORMAT		= "Rating must be a positive number";
+	public static final String PROMO_YEARS_FORMAT		= "Years must be a positive number";
+	public static final String PROMO_BALANCE_REQ		= "Balance is required";
+	
 }

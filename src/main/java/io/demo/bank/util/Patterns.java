@@ -58,6 +58,11 @@ public class Patterns {
 													+ Constants.ACCT_TRAN_TYPE_XFER_FEE_CODE;
 	public static final String ACCT_TRAN_ACTION		= TransactionType.CAT_CREDIT + "|"
 													+ TransactionType.CAT_DEBIT;
+	
+	// Promotions
+	public static final String PROMO_ACCT_TYPE		= Constants.PROMO_ACCT_TYPE_BLUE + "|"
+													+ Constants.PROMO_ACCT_TYPE_GOLD + "|"
+													+ Constants.PROMO_ACCT_TYPE_PLATINUM;
 													
 			
 }
