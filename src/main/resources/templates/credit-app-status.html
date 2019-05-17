@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"> 
+
+<head th:replace="common/sections :: header-css"/>
+
+<body>
+
+
+	<!-- Left Panel -->
+	<aside th:replace="common/menus :: left-panel"></aside>
+
+    <!-- Right Panel -->
+	<div id="right-panel" class="right-panel">
+	
+		<header th:replace="common/menus :: rp-header"/>
+		
+		<div th:replace="common/menus :: rp-breadcrumbs"/>
+    
+    	<!-- Page Content Begin -->
+    
+	    	<div class="content mt-3">
+	            <div class="animated fadeIn">
+	                
+	               <form th:action="@{/credit/credit-app-status}" method="post">
+	               
+	            	<div class="row">
+
+
+                    	<div class="col-md-4" >
+	                        <div th:class="${creditAppDeclined} ? 'card bg-flat-color-4 text-light':'card bg-flat-color-1 text-light'">
+	                        	
+	                        
+		                            <div class="card-body">
+		                            	
+		                      
+		                     
+		                                <div class="h4 m-0"> Credit Application Status</div>
+		                                <br><br>
+		                                <div class="text-light" th:text="'Date Recieved: ' + ${creditAppDate}"></div>
+		                                <div class="text-light" th:text="'Current Status: ' + ${creditAppStatuValue}"></div>
+		                                
+		                                <div><br></div>
+		                                <div class="h4 m-0"></div>
+		                            </div>
+	                    
+	                        </div> <!-- End Card -->
+	                    </div><!-- End Column 6-->
+                    
+                   </div> <!-- End Row -->
+	                            
+                  </form>
+                	
+	           </div><!-- .animated -->
+	       </div><!-- .content -->
+	        
+	    <!-- Page Content End -->
+	    
+	</div> <!-- End right panel -->
+    
+	<!-- Footer -->
+	<div th:replace="common/sections :: footer-scripts"></div>
+
+</body>
+</html>

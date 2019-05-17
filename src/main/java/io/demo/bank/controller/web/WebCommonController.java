@@ -12,6 +12,7 @@ import org.springframework.boot.info.BuildProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import io.demo.bank.model.security.Users;
+import io.demo.bank.service.CreditService;
 import io.demo.bank.service.UserService;
 import io.demo.bank.util.Constants;
 
@@ -25,6 +26,9 @@ abstract class WebCommonController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private CreditService creditService;
 	
 	// private model attribute constants
 	private static final String MODEL_ATT_FIRST_NAME 			= "firstName";
@@ -71,9 +75,19 @@ abstract class WebCommonController {
 	public static final String MODEL_ATT_PATTERN_PASSWORD_MSG	= "patternPasswordMSG";
 	public static final String MODEL_ATT_PATTERN_SSN_MSG		= "patternSSNMSG";
 	public static final String MODEL_ATT_PATTERN_PHONE_MSG		= "patternPhoneMSG";
-
-
 	
+	// model attribute constants -. Digital Credit
+	public static final String MODEL_CREDIT_ENABLED				= "creditEnabled";
+	public static final String MODEL_CREDIT_NEW_APP				= "creditNewApp";
+	public static final String MODEL_CREDIT_APP_STATUS			= "creditAppStatus";
+	public static final String MODEL_CREDIT_ACCOUNT				= "creditAccount";
+	public static final String MODEL_CREDIT_APP					= "creditApp";
+	public static final String MODEL_CREDIT_APP_DATE			= "creditAppDate";
+	public static final String MODEL_CREDIT_APP_STATUS_VALUE	= "creditAppStatuValue";
+
+	/*
+	 * Sets display defaults for Authenticated user
+	 */
 	public void setDisplayDefaults (Principal principal, Model model) {
 		
 		LOG.debug("Begin setting display defaults.");
@@ -98,12 +112,39 @@ abstract class WebCommonController {
 		DateTimeFormatter dtFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
 														 .withLocale(Locale.US)
 														 .withZone(ZoneId.systemDefault());
-		
 		// Add Application Version for About
 		model.addAttribute(MODEL_ATT_APP_NAME, buildProperties.getName());
 		model.addAttribute(MODEL_ATT_APP_VERSION, buildProperties.getVersion());
 		model.addAttribute(MODEL_ATT_APP_BUILD_DATE, dtFormatter.format(buildProperties.getTime()));
 		
+		// Check to see if we should enable the Credit Menu
+		if (creditService.isCreditServiceEnabled() && creditService.checkCreditConnection()) {
+			
+			LOG.debug("Credit Service is Enabled");
+			
+			// Determine what menu option to show
+			model.addAttribute(MODEL_CREDIT_ENABLED, true);
+			
+			// Do we have a credit account?
+			if (creditService.userHasLinkedCreditAccount(user)) {
+				model.addAttribute(MODEL_CREDIT_ACCOUNT, true);
+				LOG.debug("Show Credit Account");
+			}
+			// do we have an existing application
+			else if (creditService.userHasApplication(user)) {
+				// show application status
+				model.addAttribute(MODEL_CREDIT_APP_STATUS, true);
+				
+				LOG.debug("Show Appplication Status Menu");
+			} else {
+				// show New Application
+				model.addAttribute(MODEL_CREDIT_NEW_APP, true);
+				
+				LOG.debug("Show New Appplication Menu");
+			}
+		}
+		
 		LOG.debug("End setting display defaults.");
-	}
+	}	
+	
 }

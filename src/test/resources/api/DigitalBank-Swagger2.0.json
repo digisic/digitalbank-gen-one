@@ -27,6 +27,10 @@
             "description": "Authentication Controller"
         },
         {
+            "name": "promotion-controller",
+            "description": "Promotion Controller"
+        },
+        {
             "name": "static-data-controller",
             "description": "Static Data Controller"
         },
@@ -829,6 +833,58 @@
                         "schema": {
                             "type": "object"
                         }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/promotions": {
+            "post": {
+                "tags": [
+                    "promotion-controller"
+                ],
+                "summary": "determinePromotions",
+                "operationId": "determinePromotionsUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "candidate",
+                        "description": "candidate",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PromotionCandidate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -2236,6 +2292,30 @@
                 }
             },
             "title": "NewUser"
+        },
+        "PromotionCandidate": {
+            "type": "object",
+            "properties": {
+                "accountType": {
+                    "type": "string"
+                },
+                "age": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "balance": {
+                    "type": "number"
+                },
+                "rating": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "years": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "title": "PromotionCandidate"
         },
         "TransferFunds": {
             "type": "object",

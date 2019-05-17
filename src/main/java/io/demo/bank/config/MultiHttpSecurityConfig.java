@@ -47,7 +47,7 @@ public class MultiHttpSecurityConfig {
 	    	Constants.URI_SWAGGER_V2,
 	    	Constants.URI_SWAGGER_RES,
 	    	Constants.URI_SWAGGER_CONF,
-	    	Constants.URI_SWAGGER_DOC
+	    	Constants.URI_MANAGER_RES
 	};
   
 	@Bean

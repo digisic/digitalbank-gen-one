@@ -28,7 +28,9 @@ public class WebHomeController extends WebCommonController {
 	@Autowired
 	private UserService userService;
 	
-  
+	/*
+	 * Root of application. Redirects to home.
+	 */
 	@GetMapping(Constants.URI_ROOT)
 	public String root() {
 		
@@ -36,6 +38,9 @@ public class WebHomeController extends WebCommonController {
 		return Constants.DIR_REDIRECT + Constants.URI_HOME;
 	}
   
+	/*
+	 * Login Page
+	 */
 	@GetMapping(Constants.URI_LOGIN)
 	public String login(Model model) {
 		
@@ -43,7 +48,10 @@ public class WebHomeController extends WebCommonController {
     
 		return Constants.VIEW_LOGIN;
 	}
-  
+	
+	/*
+	 * Registration Page
+	 */
 	@GetMapping(Constants.URI_SIGNUP)
 	public String signup(Model model) {
 		
@@ -61,6 +69,9 @@ public class WebHomeController extends WebCommonController {
 		return Constants.VIEW_SIGNUP;
 	}
   
+	/*
+	 * Registration Page
+	 */
 	@PostMapping(Constants.URI_SIGNUP)
 	public String signup(Model model,
 						 @ModelAttribute(MODEL_ATT_USER) Users newUser, 

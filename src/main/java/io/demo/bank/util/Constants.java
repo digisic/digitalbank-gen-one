@@ -38,7 +38,8 @@ public class Constants {
 	public static final String URI_SWAGGER_V2		= "/v2/api-docs";
 	public static final String URI_SWAGGER_RES		= "/swagger-resources/**";
 	public static final String URI_SWAGGER_CONF		= "/configuration/**";
-	public static final String URI_SWAGGER_DOC		= "/swagger-ui.html";
+	public static final String URI_MANAGER_RES		= "/manager/**";
+
 	
 	// Public URIs
 	public static final String URI_ROOT 			= "/";
@@ -48,6 +49,9 @@ public class Constants {
 	public static final String URI_SIGNUP 			= "/signup";
 	public static final String URI_LOGOUT 			= "/logout";
 	public static final String URI_LOGOUT_SUCC 		= "/login?logout";
+	public static final String URI_MANAGER			= "/manager";
+	public static final String URI_PROMOTIONS		= "/promotions";
+	
 	
 	// Authenticated URIs
 	public static final String URI_HOME 				= "/home";
@@ -62,6 +66,11 @@ public class Constants {
 	public static final String URI_DEPOSIT				= "/deposit";
 	public static final String URI_WITHDRAW				= "/withdraw";
 	public static final String URI_XFER_BETWEEN			= "/xfer-between";
+	public static final String URI_CREDIT				= "/credit";
+	public static final String URI_CREDIT_APP			= "/credit-app";
+	public static final String URI_CREDIT_APP_STATUS	= "/credit-app-status";
+	
+	// API Authenticated URIs
 	public static final String URI_API_ALL				= "/api/**";
 	public static final String URI_API_AUTH				= "/api/v1/auth";
 	public static final String URI_API_USR_ALL			= "/api/v1/users";
@@ -98,6 +107,8 @@ public class Constants {
 	public static final String URI_API_DATA_ACCT_OWN_TYP= "/api/v1/data/account/ownership/type";
 	public static final String URI_API_DATA_ACCT_TRAN_ST= "/api/v1/data/account/transaction/state";
 	public static final String URI_API_DATA_ACCT_TRAN_TY= "/api/v1/data/account/transaction/type";
+	public static final String URI_API_PROMO			= "/api/v1/promotions";
+	
 
 	
 	
@@ -119,6 +130,9 @@ public class Constants {
 	public static final String VIEW_DEPOSIT 		= "deposit";
 	public static final String VIEW_WITHDRAW 		= "withdraw";
 	public static final String VIEW_XFER_BETWEEN 	= "xfer-between";
+	public static final String VIEW_CREDIT_APP 		= "credit-app";
+	public static final String VIEW_CREDIT_APP_ST 	= "credit-app-status";
+	public static final String VIEW_PROMOTIONS		= "promotions";
 	
 	// Account Type Codes
 	public static final String ACCT_CHK_STD_CODE	= "SCK";
@@ -163,5 +177,27 @@ public class Constants {
 	public static final String ACCT_TRAN_TYPE_DIRECT_DEP_CODE		= "DDP";
 	public static final String ACCT_TRAN_TYPE_EFT_CODE				= "EFT";
 	public static final String ACCT_TRAN_TYPE_REFUND_CODE			= "RFD";
-  
+	
+	// Promotions
+	public static final String PROMO_ACCT_TYPE_BLUE 				= "Blue";
+	public static final String PROMO_ACCT_TYPE_GOLD 				= "Gold";
+	public static final String PROMO_ACCT_TYPE_PLATINUM				= "Platinum";
+	public static final String PROMO_MILLENNIAL_MADNESS				= "Millennial Madness";
+	public static final String PROMO_GOLDEN_OLDIES					= "Golden Oldies";
+	public static final String PROMO_LOYALTY_BONUS					= "Loyalty Bonus";
+	public static final String PROMO_VALUED_CUSTOMER				= "Valued Customer";
+	public static final String PROMO_NO_PROMOTIONS					= "No Promotions!";
+	
+	
+	// Application Properties
+	public static final String APP_CREDIT_ENABLED					= "io.demo.credit.enabled";
+	public static final String APP_CREDIT_PROTOCOL					= "io.demo.credit.protocol";
+	public static final String APP_CREDIT_HOST						= "io.demo.credit.host";
+	public static final String APP_CREDIT_PORT						= "io.demo.credit.port";
+	public static final String APP_CREDIT_USER						= "io.demo.credit.username";
+	public static final String APP_CREDIT_PASSWORD					= "io.demo.credit.password";
+	
+	// Credit API URIs
+	public static final String APP_CREDIT_URI_API_BASE				= "/api/v1";	
+	public static final String APP_CREDIT_URI_API_AUTH				= "/auth";	
 }
