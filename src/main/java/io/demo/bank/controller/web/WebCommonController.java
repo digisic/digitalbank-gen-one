@@ -15,6 +15,7 @@ import io.demo.bank.model.security.Users;
 import io.demo.bank.service.CreditService;
 import io.demo.bank.service.UserService;
 import io.demo.bank.util.Constants;
+import io.demo.bank.util.Patterns;
 
 @Controller
 abstract class WebCommonController {
@@ -76,7 +77,7 @@ abstract class WebCommonController {
 	public static final String MODEL_ATT_PATTERN_SSN_MSG		= "patternSSNMSG";
 	public static final String MODEL_ATT_PATTERN_PHONE_MSG		= "patternPhoneMSG";
 	
-	// model attribute constants -. Digital Credit
+	// model attribute constants -> Digital Credit
 	public static final String MODEL_CREDIT_ENABLED				= "creditEnabled";
 	public static final String MODEL_CREDIT_NEW_APP				= "creditNewApp";
 	public static final String MODEL_CREDIT_APP_STATUS			= "creditAppStatus";
@@ -84,6 +85,11 @@ abstract class WebCommonController {
 	public static final String MODEL_CREDIT_APP					= "creditApp";
 	public static final String MODEL_CREDIT_APP_DATE			= "creditAppDate";
 	public static final String MODEL_CREDIT_APP_STATUS_VALUE	= "creditAppStatuValue";
+	
+	// model attribute constants -> Search
+	public static final String MODEL_SEARCH_ZIPCODE				= "zipcode";
+	public static final String MODEL_ATT_PATTERN_ZIPCODE		= "patternZip";
+	public static final String MODEL_ATT_ATM_LIST				= "atmList";
 
 	/*
 	 * Sets display defaults for Authenticated user
@@ -116,6 +122,9 @@ abstract class WebCommonController {
 		model.addAttribute(MODEL_ATT_APP_NAME, buildProperties.getName());
 		model.addAttribute(MODEL_ATT_APP_VERSION, buildProperties.getVersion());
 		model.addAttribute(MODEL_ATT_APP_BUILD_DATE, dtFormatter.format(buildProperties.getTime()));
+		
+		// Add ATM Location Service
+		model.addAttribute(MODEL_ATT_PATTERN_ZIPCODE, Patterns.US_ZIPCODE);
 		
 		// Check to see if we should enable the Credit Menu
 		if (creditService.isCreditServiceEnabled() && creditService.checkCreditConnection()) {

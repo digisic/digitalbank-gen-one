@@ -118,4 +118,6 @@ public class Messages {
 	public static final String PROMO_YEARS_FORMAT		= "Years must be a positive number";
 	public static final String PROMO_BALANCE_REQ		= "Balance is required";
 	
+	public static final String ATM_SEARCH_EMPTY			= "Unfortunatley, no ATM locations were found for the Zip Code provided.";
+	
 }

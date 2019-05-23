@@ -22,6 +22,9 @@ public class Patterns {
 	public static final String USER_PHONE_REQ		= "^[+]?([0-9]*[\\.\\s\\-\\(\\)]|[0-9]+){3,24}$";
 	public static final String USER_PHONE_NOT_REQ	= "^$|^[+]?([0-9]*[\\.\\s\\-\\(\\)]|[0-9]+){3,24}$";
 	
+	// ATM Search
+	public static final String US_ZIPCODE			= "^[0-9]{5}(?:-[0-9]{4})?$";
+	
 	// Role
 	public static final String ROLE_USER			= "USER";
 	public static final String ROLE_ADMIN			= "ADMIN";

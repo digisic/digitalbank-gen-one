@@ -69,6 +69,8 @@ public class Constants {
 	public static final String URI_CREDIT				= "/credit";
 	public static final String URI_CREDIT_APP			= "/credit-app";
 	public static final String URI_CREDIT_APP_STATUS	= "/credit-app-status";
+	public static final String URI_SEARCH				= "/search";
+	public static final String URI_SEARCH_ATM			= "/atm";
 	
 	// API Authenticated URIs
 	public static final String URI_API_ALL				= "/api/**";
@@ -133,6 +135,7 @@ public class Constants {
 	public static final String VIEW_CREDIT_APP 		= "credit-app";
 	public static final String VIEW_CREDIT_APP_ST 	= "credit-app-status";
 	public static final String VIEW_PROMOTIONS		= "promotions";
+	public static final String VIEW_SEARCH			= "search";
 	
 	// Account Type Codes
 	public static final String ACCT_CHK_STD_CODE	= "SCK";
@@ -196,8 +199,15 @@ public class Constants {
 	public static final String APP_CREDIT_PORT						= "io.demo.credit.port";
 	public static final String APP_CREDIT_USER						= "io.demo.credit.username";
 	public static final String APP_CREDIT_PASSWORD					= "io.demo.credit.password";
+	public static final String APP_ATM_PROTOCOL						= "io.demo.bank.atm.protocol";
+	public static final String APP_ATM_HOST							= "io.demo.bank.atm.host";
+	public static final String APP_ATM_PORT							= "io.demo.bank.atm.port";
 	
 	// Credit API URIs
 	public static final String APP_CREDIT_URI_API_BASE				= "/api/v1";	
 	public static final String APP_CREDIT_URI_API_AUTH				= "/auth";	
+	
+	// ATM Location Service API URI
+	public static final String APP_ATM_URI_API_BASE					= "/v3.1/nodes/atms";
+	
 }
