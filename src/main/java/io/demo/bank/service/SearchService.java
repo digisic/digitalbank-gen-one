@@ -1,5 +1,6 @@
 package io.demo.bank.service;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class SearchService {
 	@Autowired
 	private Environment environment;
 	
-	public List<AtmLocation> searchATMLocations (String zipcode) {
+	public List<AtmLocation> searchATMLocations (String zipcode) throws Exception {
 		
 		if (SearchService.apiBaseUrl == null) {
 			getConnectionProperties();
@@ -115,14 +116,20 @@ public class SearchService {
 			LOG.debug(ex.getMessage());
 			LOG.debug(ex.getResponseBodyAsString());
 			
+			throw ex;
+			
 		}
 		catch (ResourceAccessException ex) {
 			LOG.error("ATM Location Service: Unable to reach ATM Location Service endpoint");
 			LOG.error(ex.getMessage());
 			
-		} catch (Exception ex) {
+			throw ex;
+			
+		} catch (IOException ex) {
 			LOG.error("ATM Location Service: Unable to read response");
 			LOG.error(ex.getMessage());
+			
+			throw ex;
 		}
 		
 		return results;

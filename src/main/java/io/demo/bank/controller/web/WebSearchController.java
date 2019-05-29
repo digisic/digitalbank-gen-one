@@ -29,13 +29,19 @@ public class WebSearchController extends WebCommonController {
 		// Set Display Defaults
 		setDisplayDefaults(principal, model);
 		
-		List<AtmLocation> locations = searchService.searchATMLocations(zipcode);
-		
-		if (locations.isEmpty()) {
-			model.addAttribute(MODEL_ATT_SUCCESS_MSG, Messages.ATM_SEARCH_EMPTY);
+		try {
+			
+			List<AtmLocation> locations = searchService.searchATMLocations(zipcode);
+			
+			if (locations.isEmpty()) {
+				model.addAttribute(MODEL_ATT_SUCCESS_MSG, Messages.ATM_SEARCH_EMPTY);
+			}
+			
+			model.addAttribute(MODEL_ATT_ATM_LIST, locations);
 		}
-		
-		model.addAttribute(MODEL_ATT_ATM_LIST, locations);
+		catch (Exception ex) {
+			model.addAttribute(MODEL_ATT_ERROR_MSG, Messages.ATM_SEARCH_UNAVAILABLE);
+		}
 		
 		return Constants.VIEW_SEARCH;
 	}
