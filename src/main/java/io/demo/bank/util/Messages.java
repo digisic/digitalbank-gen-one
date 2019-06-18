@@ -119,6 +119,7 @@ public class Messages {
 	public static final String PROMO_BALANCE_REQ		= "Balance is required";
 	
 	// ATM Location Search
+	public static final String ATM_SEARCH_FORMAT		= "Zip Code must follow proper postal code format";
 	public static final String ATM_SEARCH_EMPTY			= "Unfortunatley, no ATM locations were found for the Zip Code provided.";
 	public static final String ATM_SEARCH_UNAVAILABLE	= "The ATM Location Search service is temporarily unavailable. We applogize for "
 														+ "any inconvenience this may cause. Please try again at a later time.";

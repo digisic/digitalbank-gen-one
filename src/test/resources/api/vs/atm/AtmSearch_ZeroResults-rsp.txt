@@ -1,0 +1,15 @@
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+Status: 200 OK
+Connection: keep-alive
+
+{
+    "atms": [],
+    "atms_count": 0,
+    "error_code": "0",
+    "http_code": "200",
+    "limit": 20,
+    "page": 1,
+    "page_count": 0,
+    "success": true
+}
