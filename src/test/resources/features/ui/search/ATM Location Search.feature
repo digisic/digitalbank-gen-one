@@ -1,6 +1,6 @@
 @ui @search
 Feature: ATM Location Search (UI)
-  As a logged in user
+  As an authenitcated user
   I want to search for local ATM locations
   so I can find a convenient ATM near me
 
