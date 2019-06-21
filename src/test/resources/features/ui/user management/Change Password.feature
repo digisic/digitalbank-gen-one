@@ -1,5 +1,5 @@
-@ui, @user, @security, @password
-Feature: Change Password
+@ui @user @security @password
+Feature: Change Password (UI)
   As a logged in user
   I want to change my password
   so that my accounts remain secure

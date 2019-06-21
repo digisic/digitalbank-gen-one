@@ -1,6 +1,6 @@
-package io.demo.bank.test.steps;
+package io.demo.bank.test.ui.steps;
 
-import io.demo.bank.test.pageobject.HomePage;
+import io.demo.bank.test.ui.pom.HomePage;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
 

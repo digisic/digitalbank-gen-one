@@ -1,8 +1,8 @@
-package io.demo.bank.test.definition;
+package io.demo.bank.test.ui;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
-import io.demo.bank.test.steps.ChangePasswordSteps;
+import io.demo.bank.test.ui.steps.ChangePasswordSteps;
 import net.thucydides.core.annotations.Steps;
 
 public class ChangePasswordTests {

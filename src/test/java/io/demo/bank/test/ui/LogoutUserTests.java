@@ -1,7 +1,7 @@
-package io.demo.bank.test.definition;
+package io.demo.bank.test.ui;
 
 import cucumber.api.java.en.And;
-import io.demo.bank.test.steps.LogoutSteps;
+import io.demo.bank.test.ui.steps.LogoutSteps;
 import net.thucydides.core.annotations.Steps;
 
 

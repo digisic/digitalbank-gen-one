@@ -1,5 +1,5 @@
-@ui, @user, @security, @register
-Feature: Register New User
+@ui @user @security @register
+Feature: Register New User (UI)
   As a new customer
   I want to register as a new user
   so I can login to Digital Bank to manage my accounts.

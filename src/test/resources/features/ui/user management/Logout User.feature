@@ -1,5 +1,5 @@
-@ui, @user, @security, @logout
-Feature: Logout User
+@ui @user @security @logout
+Feature: Logout User (UI)
   As a user logged into the application
   I want to logout
   so that my accounts remain secure

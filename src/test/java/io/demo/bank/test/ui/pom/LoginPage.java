@@ -1,4 +1,4 @@
-package io.demo.bank.test.pageobject;
+package io.demo.bank.test.ui.pom;
 
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;

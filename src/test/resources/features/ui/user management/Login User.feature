@@ -1,5 +1,5 @@
-@ui, @user, @security, @login
-Feature: Login User
+@ui @user @security @login
+Feature: Login User (UI)
   As a registered user
   I want to authenticate into the application
   so I can manage my accounts

@@ -1,8 +1,8 @@
-package io.demo.bank.test.steps;
+package io.demo.bank.test.ui.steps;
 
 import static org.junit.Assert.assertTrue;
 
-import io.demo.bank.test.pageobject.SearchLocationPage;
+import io.demo.bank.test.ui.pom.SearchLocationPage;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
 
