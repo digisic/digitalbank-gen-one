@@ -9,7 +9,7 @@ Feature: ATM Location Search (UI)
 Scenario: ATM Location Search with Invalid Zip Code
   Given Josh is logged into the application
   When Josh navigates to the Search page
-  And he or she enters '23455677' into the Zip Code field
+  And he or she enters '1717643491' into the Zip Code field
   Then Josh verifies he or she is presented with a validation error message
 
 @negative

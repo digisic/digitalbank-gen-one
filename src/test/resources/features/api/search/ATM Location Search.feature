@@ -8,7 +8,7 @@ Feature: ATM Location Search (API)
 @negative
 Scenario: ATM Location Search with Invalid Zip Code
   Given Josh is authenticated into the API
-  When Josh populates the Search request with zipcode equal to '23455677'
+  When Josh populates the Search request with zipcode equal to '1717643491'
   And he or she submits the Search request
   Then Josh verifies the return code is '500'
   And he or she verifies he or she is presented with a validation error message
