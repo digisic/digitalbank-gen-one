@@ -6,7 +6,7 @@ import cucumber.api.java.en.When;
 import io.demo.bank.test.ui.steps.SearchLocationSteps;
 import net.thucydides.core.annotations.Steps;
 
-public class SearchLocationsTests {
+public class LocationSearchTests {
 	
 	@Steps
 	private SearchLocationSteps	searchLocationSteps;

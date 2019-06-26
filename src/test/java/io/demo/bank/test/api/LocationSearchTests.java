@@ -8,7 +8,7 @@ import io.demo.bank.test.api.steps.AtmLocationSearchSteps;
 import io.demo.bank.test.api.steps.UserAuthentication;
 import net.thucydides.core.annotations.Steps;
 
-public class AtmLocationSearchTests {
+public class LocationSearchTests {
 	
 	@Steps
 	UserAuthentication userAuthentication;
