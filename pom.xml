@@ -23,7 +23,8 @@
 		<repository>
 			<id>bintray-ca-sv</id>
 			<name>bintray-ca</name>
-			<url>http://ca.bintray.com/sv</url>
+ 			<url>http://ca.bintray.com/sv</url>
+<!--			<url>file:C:\Users\puzke01\Documents\GitHub\Digital-Bank\CodeSVUpdate</url>   -->
 		</repository>
 	</repositories>
 	
@@ -213,6 +214,7 @@
     	<dependency>
 			<groupId>com.ca.codesv</groupId>
 			<artifactId>codesv-dist-jar</artifactId>
+<!--			<artifactId>codesv-dist-all-0.0.0-SNAPSHOT</artifactId>  -->
 			<version>1.3.0</version>
 		</dependency>
 	</dependencies>    	
