@@ -1,4 +1,6 @@
-package io.demo.bank.test.steps;
+package io.demo.bank.test.ui.steps;
+
+
 import static com.ca.codesv.protocols.http.fluent.HttpFluentInterface.*;
 
 import java.io.*;
