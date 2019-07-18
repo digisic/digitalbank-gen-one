@@ -45,7 +45,7 @@
 					                            <label class=" form-control-label"><strong>From Account</strong></label>
 				                            	<select class="form-control" id="fromAccount" name="fromAccount" required>
 				                            		<option class="text-light"value="">---------- Select Account -----------</option>
-				                              		<option th:each="acct : ${accountList}" th:selected="${acct.id == fromAccount}" th:text="|${acct.name}  -  (${acct.AccountType.name})  -  ($${acct.currentBalance})|" th:value="${acct.id}"></option>
+				                              		<option th:each="acct : ${accountList}" th:selected="${acct.id == fromAccount}" th:text="|${acct.name}  -  (${acct.AccountType.name})|" th:value="${acct.id}"></option>
 				            					</select>
 					                        </div>
 					                   	</div>
@@ -54,7 +54,7 @@
 					                            <label class=" form-control-label"><strong>To Account</strong></label>
 				                            	<select class="form-control" id="toAccount" name="toAccount" required>
 				                            		<option class="text-light"value="">---------- Select Account -----------</option>
-				                              		<option th:each="acct : ${accountList}" th:selected="${acct.id == toAccount}" th:text="|${acct.name}  -  (${acct.AccountType.name})  -  ($${acct.currentBalance})|" th:value="${acct.id}"></option>
+				                              		<option th:each="acct : ${accountList}" th:selected="${acct.id == toAccount}" th:text="|${acct.name}  -  (${acct.AccountType.name})|" th:value="${acct.id}"></option>
 				            					</select>
 					                        </div>
 					                   	</div>
