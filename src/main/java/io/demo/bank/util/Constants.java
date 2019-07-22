@@ -66,7 +66,7 @@ public class Constants {
 	public static final String URI_DEPOSIT				= "/deposit";
 	public static final String URI_WITHDRAW				= "/withdraw";
 	public static final String URI_XFER_BETWEEN			= "/xfer-between";
-	public static final String URI_XFER_BETWEENBANKS	= "/xfer-betweenbanks";
+	public static final String URI_XFER_VALIDATE		= "/xfer-validate";
 	public static final String URI_CREDIT				= "/credit";
 	public static final String URI_CREDIT_APP			= "/credit-app";
 	public static final String URI_CREDIT_APP_STATUS	= "/credit-app-status";
@@ -134,7 +134,7 @@ public class Constants {
 	public static final String VIEW_DEPOSIT 		= "deposit";
 	public static final String VIEW_WITHDRAW 		= "withdraw";
 	public static final String VIEW_XFER_BETWEEN 	= "xfer-between";
-	public static final String VIEW_XFER_BETWEENBANKS = "xfer-betweenbanks";
+	public static final String VIEW_XFER_VALIDATE 	= "xfer-validate";
 	public static final String VIEW_CREDIT_APP 		= "credit-app";
 	public static final String VIEW_CREDIT_APP_ST 	= "credit-app-status";
 	public static final String VIEW_PROMOTIONS		= "promotions";
@@ -205,6 +205,9 @@ public class Constants {
 	public static final String APP_ATM_PROTOCOL						= "io.demo.bank.atm.protocol";
 	public static final String APP_ATM_HOST							= "io.demo.bank.atm.host";
 	public static final String APP_ATM_PORT							= "io.demo.bank.atm.port";
+	public static final String APP_VISA_PROTOCOL					= "io.demo.bank.visa.protocol";
+	public static final String APP_VISA_HOST						= "io.demo.bank.visa.host";
+	public static final String APP_VISA_PORT						= "io.demo.bank.visa.port";
 	
 	// Credit API URIs
 	public static final String APP_CREDIT_URI_API_BASE				= "/api/v1";	

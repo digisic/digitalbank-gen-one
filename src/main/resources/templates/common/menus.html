@@ -41,7 +41,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Transactions</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-sign-in"></i><a th:href="@{/account/deposit}">Deposit</a></li>
-                            <li><i class="menu-icon fa fa-sign-out"></i><a th:href="@{/account/withdraw}">Withdraw</a></li>
+                            <li><i class="menu-icon fa fa-sign-out"></i><a th:href="@{/account/withdraw}">Bank Transfer</a></li>
                         </ul>
                     </li>
              <!--         <li class="menu-item-has-children dropdown">
@@ -65,7 +65,15 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-random"></i>Transfer</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-chain"></i><a th:href="@{/account/xfer-between}">Between Accounts</a></li>
-                            <li><i class="menu-icon fa fa-chain"></i><a th:href="@{/account/xfer-betweenbanks}">Between Banks</a></li>
+                        </ul>
+                    </li>
+                    
+                    <h3 class="menu-title">External/Transfers</h3><!-- /.menu-title -->
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-random"></i>Validate Account</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-chain"></i><a th:href="@{/account/xfer-validate}">External Account</a></li>
                         </ul>
                     </li>
             <!--         <li>
