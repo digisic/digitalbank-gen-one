@@ -14,17 +14,17 @@ public class ChangePasswordTests {
 	
 	@And ("^he or she enters '(.*)' into the change password Current Password field$")
 	public void enterCurrentPassword (String password) {
-		changePassword.enterCurrentPassword(password);;
+		changePassword.enterCurrentPassword(password);
 	}
 	
 	@And ("^he or she enters '(.*)' into the change password New Password field$")
 	public void enterNewPassword (String password) {
-		changePassword.enterNewPassword(password);;
+		changePassword.enterNewPassword(password);
 	}
 	
 	@And ("^he or she enters '(.*)' into the change password Confirm Password field$")
 	public void enterConfirmPassword (String password) {
-		changePassword.enterConfirmPassword(password);;
+		changePassword.enterConfirmPassword(password);
 	}
 	
 	@And("^he or she submits the Update Password request$")
@@ -36,17 +36,17 @@ public class ChangePasswordTests {
 	
 	@Then("^(.*) verifies he or she is presented with a Error Message indicating Confirm Passsword does not match New Password$")
 	public void presentedErrorMessageConfirmPasswordDoesNotMatch (String persona){
-		changePassword.confirmPasswordErrorRequired();;
+		changePassword.confirmPasswordErrorRequired();
 	}
 	
 	@Then("^(.*) verifies he or she is presented with a Error Message indicating New Password does not meet format requirements$")
 	public void presentedErrorMessageNewPasswordFailsRequirements (String persona){
-		changePassword.newPasswordErrorRequired();;
+		changePassword.newPasswordErrorRequired();
 	}
 	
 	@Then("^(.*) verifies he or she is presented with a Error Message indicating New Password is the same as the Current Password$")
 	public void presentedErrorMessageNewPasswordSameAsCurrent (String persona){
-		changePassword.newPasswordErrorRequired();;
+		changePassword.newPasswordErrorRequired();
 	}
 	
 	@Then("^(.*) verifies he or she is presented with a Error Message indicating Current Password is not correct$")

@@ -29,9 +29,7 @@ public class LoginPage extends PageObject{
 	@FindBy(className="alert-success")
 	private WebElementFacade successMessage;
 	
-
 	private static String rememberMeCookie = "remember-me";
-	
 	
 	public void enterUsername (String username) {
 		userField.type(username);

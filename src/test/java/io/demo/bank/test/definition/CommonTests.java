@@ -12,6 +12,7 @@ public class CommonTests {
 	// User Profile Menu Options
 	private final static String UserProfileLogout = "Logout";
 	private final static String UserProfileChangePassword = "Change Password";
+	private final static String MenuCreateNewSavingsAccount = "New Savings";
 	
 	@Steps
 	private LoginSteps login;
@@ -71,6 +72,11 @@ public class CommonTests {
 				break;
 			case UserProfileChangePassword:
 				menu.clickChangePasswordMenuOption();
+				break;
+			case MenuCreateNewSavingsAccount:
+				menu.clickSavingsMenuOption();
+				menu.clickNewSavingsMenuOption();
+				break;
 			default:
 				// Do not assume a menu option
 				break;
