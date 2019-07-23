@@ -27,14 +27,10 @@ public class MenuNavigationSteps extends ScenarioSteps{
 	public void clickChangePasswordMenuOption () {
 		homePage.clickChangePasswordMenuOption();
 	}
-
-	@Step ("Click Savings menu option")
-	public void clickSavingsMenuOption () {
-		homePage.clickSavingsMenuOption();
-	}
 	
 	@Step ("Click New Savings menu option")
 	public void clickNewSavingsMenuOption () {
 		homePage.clickNewSavingsMenuOption();
 	}
+
 }

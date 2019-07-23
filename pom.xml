@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>Digital Bank</name>
-	<description>Sample Spring Boot Project</description>
+	<description>Digital Online Banking Sample Application</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -53,6 +53,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+    		<groupId>io.jsonwebtoken</groupId>
+    		<artifactId>jjwt</artifactId>
+    		<version>0.9.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -128,6 +133,12 @@
         </dependency>
         <dependency>
             <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-rest-assured</artifactId>
+            <version>${serenity.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-reports</artifactId>
             <version>${serenity.version}</version>
             <scope>test</scope>
@@ -156,37 +167,37 @@
 		<dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>${selenium.version}</version>
+            <version>${selenium.version}</version><!--$NO-MVN-MAN-VER$-->
             <scope>test</scope>
         </dependency>
 		<dependency>
 	       	<groupId>org.seleniumhq.selenium</groupId>
 	       	<artifactId>selenium-remote-driver</artifactId>
-	       	<version>${selenium.version}</version>
+	       	<version>${selenium.version}</version><!--$NO-MVN-MAN-VER$-->
 	       	<scope>test</scope>
     	</dependency>
     	<dependency>
         	<groupId>org.seleniumhq.selenium</groupId>
         	<artifactId>selenium-firefox-driver</artifactId>
-        	<version>${selenium.version}</version>
+        	<version>${selenium.version}</version><!--$NO-MVN-MAN-VER$-->
         	<scope>test</scope>
     	</dependency>
     	<dependency>
         	<groupId>org.seleniumhq.selenium</groupId>
         	<artifactId>selenium-chrome-driver</artifactId>
-        	<version>${selenium.version}</version>
+        	<version>${selenium.version}</version><!--$NO-MVN-MAN-VER$-->
         	<scope>test</scope>
     	</dependency>
     	<dependency>
         	<groupId>org.seleniumhq.selenium</groupId>
         	<artifactId>selenium-support</artifactId>
-        	<version>${selenium.version}</version>
+        	<version>${selenium.version}</version><!--$NO-MVN-MAN-VER$-->
         	<scope>test</scope>
     	</dependency>
     	<dependency>
         	<groupId>org.seleniumhq.selenium</groupId>
         	<artifactId>selenium-api</artifactId>
-        	<version>${selenium.version}</version>
+        	<version>${selenium.version}</version><!--$NO-MVN-MAN-VER$-->
         	<scope>test</scope>
     	</dependency>  
     	
@@ -219,20 +230,35 @@
 							<goal>build-info</goal>
 						</goals>
 					</execution>
+					<execution>
+			          <id>pre-integration-test</id>
+			          <goals>
+			            <goal>start</goal>
+			          </goals>
+			        </execution>
+			        <execution>
+			          <id>post-integration-test</id>
+			          <goals>
+			            <goal>stop</goal>
+			          </goals>
+			        </execution>
 				</executions>
 			</plugin>    
 			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.1</version>
+                <version>3.0.0-M3</version><!--$NO-MVN-MAN-VER$-->
                 <configuration>
                     <skip>true</skip>
+                    <forkCount>0</forkCount>
+                    <threadCount>1</threadCount>
+                    <argLine></argLine>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
+                <version>3.8.0</version><!--$NO-MVN-MAN-VER$-->
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -240,7 +266,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.22.1</version>
+                <version>3.0.0-M3</version><!--$NO-MVN-MAN-VER$-->
                 <configuration>
                     <includes>
                         <include>**/*Test*.java</include>
@@ -280,6 +306,4 @@
             </plugin> 
 		</plugins>
 	</build>
-
-
 </project>
