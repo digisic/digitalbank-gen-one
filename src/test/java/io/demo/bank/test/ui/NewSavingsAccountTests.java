@@ -1,12 +1,12 @@
-package io.demo.bank.test.definition;
+package io.demo.bank.test.ui;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import io.demo.bank.test.steps.LoginSteps;
-import io.demo.bank.test.steps.MenuNavigationSteps;
-import io.demo.bank.test.steps.NewSavingsAccountSteps;
+import io.demo.bank.test.ui.steps.LoginSteps;
+import io.demo.bank.test.ui.steps.MenuNavigationSteps;
+import io.demo.bank.test.ui.steps.NewSavingsAccountSteps;
 import net.thucydides.core.annotations.Steps;
 
 
