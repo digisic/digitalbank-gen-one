@@ -31,7 +31,7 @@ public class NewSavingsAccountTests {
 
 	@And("^they attempt to open a new Savings Account$")
 	public void openSavingsAccount() throws Throwable {
-		menu.clickSavingsMenuOption();
+		menu.clickSavingsMenu();
 		menu.clickNewSavingsMenuOption();
 	}
 
