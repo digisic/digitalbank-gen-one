@@ -17,9 +17,12 @@ public class HomePage extends PageObject {
 	@FindBy(linkText="Change Password")
 	private WebElementFacade changePasswordMenuOption;
 	
+	@FindBy(id="savings-main")
+	private WebElementFacade savingsMainButton;
+	
 	@FindBy(id="new-savings")
 	private WebElementFacade newSavingsButton;
-
+	
 	private static String homePageURI = "/home";
 	
 	public void clickUserProfileMenu() {
@@ -37,7 +40,11 @@ public class HomePage extends PageObject {
 	public boolean atHomePage() {
 		return getDriver().getCurrentUrl().contains(homePageURI);
 	}
-  
+
+	public void clickSavingsMenuOption() {
+		savingsMainButton.click();
+	}
+
 	public void clickNewSavingsMenuOption() {
 		newSavingsButton.click();
 	}
