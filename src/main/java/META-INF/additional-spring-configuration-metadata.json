@@ -1,0 +1,52 @@
+{"properties": [
+  {
+    "name": "io.demo.credit.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.credit.enabled'"
+  },
+  {
+    "name": "io.demo.credit.protocol",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.credit.protocol'"
+  },
+  {
+    "name": "io.demo.credit.host",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.credit.host'"
+  },
+  {
+    "name": "io.demo.credit.port",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.credit.port'"
+  },
+  {
+    "name": "io.demo.credit.username",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.credit.username'"
+  },
+  {
+    "name": "io.demo.credit.password",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.credit.password'"
+  },
+  {
+    "name": "io.demo.bank.atm.protocol",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.bank.atm.protocol'"
+  },
+  {
+    "name": "io.demo.bank.atm.host",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.bank.atm.host'"
+  },
+  {
+    "name": "io.demo.bank.atm.port",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.bank.atm.port'"
+  },
+  {
+    "name": "io.demo.bank.atm.protocol",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.bank.atm.protocol'"
+  }
+]}

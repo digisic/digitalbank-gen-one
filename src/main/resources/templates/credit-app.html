@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"> 
+
+<head th:replace="common/sections :: header-css"/>
+
+<body>
+
+
+	<!-- Left Panel -->
+	<aside th:replace="common/menus :: left-panel"></aside>
+
+    <!-- Right Panel -->
+	<div id="right-panel" class="right-panel">
+	
+		<header th:replace="common/menus :: rp-header"/>
+		
+		<div th:replace="common/menus :: rp-breadcrumbs"/>
+    
+    	<!-- Page Content Begin -->
+    
+	    	<div class="content mt-3">
+	            <div class="animated fadeIn">
+	                
+	               <form th:action="@{/credit/credit-app}" method="post">
+	               
+	            	<div class="row">
+                  		<div class="col-lg-12">
+                    		<div class="card">
+                        		<div class="card-header bg-flat-color-1">
+                            		<strong class="text-white card-title">Credit Card Summary</strong>
+                        		</div>
+                        		
+                        		<div class="card-body">
+                          		<!-- Credit Card -->
+                         			<hr>
+	                      			
+	                      			<div  class="row form-group"> <!-- row 1 -->
+	                              		<div class="col-sm-2 col-xs-4">
+	                              			<label class="form-control-label"><strong>PURCHASE APR</strong></label>
+	                              		</div>
+	                              		<div class="col-sm-4 col-xs-8">
+	                              			<p class="mt3"> 0% intro APR for 15 months; 16.24% - 26.24% variable APR after that </p>
+	                              		</div>
+	                              		<div class="col-sm-2 col-xs-4">
+	                              			<label class="form-control-label"><strong>ANNUAL FEE</strong></label>
+	                              		</div>
+	                              		<div class="col-sm-4 col-xs-8">
+	                              			<p class="mt3"> $0 </p>
+	                              		</div>
+	                      			</div> <!-- End row 1 -->
+	                      			
+	                      			<div  class="row form-group"> <!-- row 2 -->
+	                              		<div class="col-sm-2 col-xs-4">
+	                              			<label class="form-control-label"><strong>TRANSFER INFO</strong></label>
+	                              		</div>
+	                              		<div class="col-sm-4 col-xs-8">
+	                              			<p class="mt3"> 0% intro APR for 15 months; 16.24% - 26.24% variable APR after that; 3% fee on the amounts transferred within the first 15 months </p>
+	                              		</div>
+	                              		<div class="col-sm-2 col-xs-4">
+	                              			<label class="form-control-label"><strong>BONUS OFFER</strong></label>
+	                              		</div>
+	                              		<div class="col-sm-4 col-xs-8">
+	                              			<p class="mt3"> Earn a one-time $150 cash bonus once you spend $500 on purchases within 3 months from account opening </p>
+	                              		</div>
+	                      			</div> <!-- end row 2 -->
+	                      		
+	                      			<div  class="row form-group"> <!-- row 3 -->
+	                              		<div class="col-sm-2 col-xs-4">
+	                              			<label class="form-control-label"><strong>REWARDS INFO</strong></label>
+	                              		</div>
+	                              		<div class="col-sm-4 col-xs-8">
+	                              			<p class="mt3"> Earn unlimited 1.5% cash back on every purchase, every day </p>
+	                              		</div>
+	                              		<div class="col-sm-2 col-xs-4">
+	                              			<label class="form-control-label"><strong>CREDIT LEVEL</strong></label>
+	                              		</div>
+	                              		<div class="col-sm-4 col-xs-8">
+	                              			<p class="mt3"> Excellent </p>
+	                              		</div>
+	                      			</div> <!-- end row 3 -->
+	                      			<hr>
+	                     		</div> <!-- End card Body -->
+                    		</div> <!-- .card -->
+						</div><!--/.col-->
+					</div> <!-- End Row -->
+                    
+                    <div class="row">
+                  		<div class="col-lg-12">
+                    		<div class="card">
+                        		<div class="card-header bg-flat-color-1">
+                            		<strong class="text-white card-title">Personal Information</strong>
+                        		</div>
+                        		<div class="card-body">
+                          		<!-- Credit Card -->
+                         			<hr>           		
+			                        
+			                        <div class="row form-group">
+			                        	<div class="col col-sm-4">
+				                            <label for="title" class=" form-control-label"><strong>Title</strong></label>
+				                              <select name="title" id="title" class="form-control" th:field="${creditApp.title}" disabled>
+				                                <option value="">Please select</option>
+				                                <option value="Mr.">Mr.</option>
+				                                <option value="Ms.">Ms.</option>
+				                                <option value="Mrs.">Mrs.</option>
+				                              </select>
+					                    </div>
+					                    <input type="hidden" id="title" name="title" th:field="${creditApp.title}">
+					              
+						            	<div class="col col-sm-4">
+						                	<label class="form-control-label"><strong>First Name</strong></label>
+				                            <input type="text" class="form-control" id="firstName" th:field="${creditApp.firstName}" readonly>
+				                        	
+				                        </div>
+				                        <div class="col col-sm-4">
+				                            <label class="form-control-label"><strong>Last Name</strong></label>
+				                            <input type="text" class="form-control" id="lastName" th:field="${creditApp.lastName}" readonly>
+				                        	
+				                        </div>
+		                   			</div> 
+		                   			
+		                   			<div class="row form-group">
+						            	<div class="col col-sm-4">
+						                	<label class="form-control-label"><strong>Date of Birth</strong></label>
+				                            <input type="text" class="form-control" id="firstName" th:field="${creditApp.dob}" readonly>
+				                        	
+				                        </div>
+				                        <div class="col col-sm-4">
+				                            <label class="form-control-label"><strong>Social Security Number</strong></label>
+				                            <input type="text" class="form-control" id="lastName" th:field="${creditApp.ssn}" readonly>
+				                        	
+				                        </div>
+		                   			</div> 
+		                   			<div>
+			                        	<label for="gender" class="form-control-label"><strong>Gender</strong></label>
+			                       </div>
+			                        <div class="form-check-inline form-check">
+			                        	<label for="gender" class="form-check-label">
+			                             	<input type="radio" id="gender" th:field="${creditApp.gender}" name="gender" value="M" class="form-check-input" disabled>M &nbsp;&nbsp;&nbsp;
+			                             </label>
+			                             <label for="gender" class="form-check-label">
+			                             	<input type="radio" id="gender" th:field="${creditApp.gender}" name="gender" value="F" class="form-check-input" disabled>F &nbsp;&nbsp;&nbsp;
+			                            </label>
+			                        </div>
+			                        <input type="hidden" id="gender" name="gender" th:field="${creditApp.gender}">
+			                       
+		                   			<hr>
+		                   			     
+		                          </div> <!-- End card Body -->
+                    		</div> <!-- .card -->
+						</div><!--/.col-->
+					</div> <!-- End Row -->   
+					
+					<div class="row">
+                  		<div class="col-lg-12">
+                    		<div class="card">
+                        		<div class="card-header bg-flat-color-1">
+                            		<strong class="text-white card-title">Contact Information</strong>
+                        		</div>
+                        		<div class="card-body">
+                          		<!-- Credit Card -->
+                         			<hr>
+					                   	<div class="row form-group">
+					                       	<div class="col col-sm-4">
+					                            <label><strong>Home Phone</strong></label>
+					                            <input type="text" class="form-control" id="homePhone" th:field="${creditApp.homePhone}" readonly>
+					                    
+					                        </div>
+					                        <div class="col col-sm-4">
+					                            <label><strong>Mobile Phone</strong></label>
+					                            <input type="text" class="form-control" id="mobilePhone" th:field="${creditApp.mobilePhone}" readonly>
+					                        	
+					                        </div>
+					                        <div class="col col-sm-4">
+					                            <label><strong>Work Phone</strong></label>
+					                            <input type="text" class="form-control" id="workPhone" th:field="${creditApp.workPhone}" readonly>
+					                        
+					                        </div>
+					                 	</div>
+				                  		<hr>
+						                <div class="row form-group">
+						                  		<div class="col col-sm-4">
+						                            <label><strong>Address</strong></label>
+						                            <input type="text" class="form-control" id="address" th:field="${creditApp.address}" readonly>
+						                        
+						                        </div>
+						                </div>
+						                <div class="row form-group">
+						                	<div class="col col-sm-4">
+						                    	<label><strong>Locality</strong></label>
+						                        <input type="text" class="form-control" id="locality" th:field="${creditApp.locality}" readonly>
+						                    
+						                  	</div>
+						                    <div class="col col-sm-4">
+						                        <label><strong>Region</strong></label>
+						                        <input type="text" class="form-control" id="region" th:field="${creditApp.region}" readonly>
+						                  
+						                    </div>
+						                    <div class="col col-sm-4">
+						                        <label><strong>Postal Code</strong></label>
+						                        <input type="text" class="form-control" id="postalCode" th:field="${creditApp.postalCode}" readonly>
+						                   
+						                    </div>
+						               	</div>
+				                 		<div class="row form-group">
+				                        	<div class="col col-sm-4">
+				                            	<label><strong>Country</strong></label>
+				                            	<input type="text" class="form-control" id="country" th:field="${creditApp.country}" readonly>
+				                        	
+				                        	</div>
+				                		</div>
+				                		<hr>
+				                		<div class="row form-group">
+				                        	<div class="col col-sm-4">
+				                            	<label><strong>Email Address</strong></label>
+				                            	<input type="text" class="form-control" id="emailAddress" th:field="${creditApp.emailAddress}" readonly>
+				                        	
+				                        	</div>
+				                		</div>
+										<hr>
+		                          	</div> <!-- End card Body -->
+                    			</div> <!-- .card -->
+							</div><!--/.col-->
+						</div> <!-- End Row -->   	
+		         
+		         		<div class="row">
+                  		<div class="col-lg-12">
+                    		<div class="card">
+                        		<div class="card-header bg-flat-color-1">
+                            		<strong class="text-white card-title">Financial Information</strong>
+                        		</div>
+                        		<div class="card-body">
+                          		<!-- Credit Card -->
+                         			<hr>
+                         			
+                         			<div class="row form-group">
+	    								<div class="col col-sm-12">
+				                            <label for="employmentStatus" class=" form-control-label"><strong>Employment Status</strong></label>
+				                              <select name="employmentStatus" id="employmentStatus" th:field="${creditApp.employmentStatus}" class="form-control"  required>
+				                                <option value="">Please select</option>
+				                                <option value="Employed">Employed</option>
+				                                <option value="Self-Employed">Self-Employed</option>
+				                                <option value="Retired">Retired</option>
+				                                <option value="Student">Student</option>
+				                                <option value="Unemployed">Unemployed</option>
+				                              </select>
+				                        </div>
+					                </div>
+					                <div class="row form-group">
+						            	<div class="col col-sm-4">
+						                	<label class="form-control-label"><strong>Total Annual Income</strong></label>
+				                            <input type="text" class="form-control" id="annualIncome" th:field="${creditApp.annualIncome}" placeholder="$" required>
+				                        	
+				                        </div>
+				                        <div class="col col-sm-4">
+				                            <label class="form-control-label"><strong>Monthly Rent/Mortgage</strong></label>
+				                            <input type="text" class="form-control" id="monthlyMortgage" th:field="${creditApp.monthlyMortgage}" placeholder="$" required>
+				                        	
+				                        </div>
+		                   			</div>
+		                   			<div class="row form-group">
+						            	<div class="col col-sm-4">
+						                	<label for="bankStatus" class=" form-control-label"><strong>Do You Have Bank Accounts?</strong></label>
+				                              <select name="bankStatus" id="bankStatus" class="form-control" th:field="${creditApp.bankStatus}" required>
+				                                <option value="">Please select</option>
+				                                <option value="Checking and Savings">Checking and Savings</option>
+				                                <option value="Checking Only">Checking Only</option>
+				                                <option value="Savings Only">Savings Only</option>
+				                                <option value="Neither">Neither</option>
+				                              </select>
+				                        	
+				                        </div>
+				                        <div class="col col-sm-4">
+				                            <label class="form-control-label"><strong>Credit Card Spend Per Month (Optional)</strong></label>
+				                            <input type="text" class="form-control" id="monthlySpend" th:field="${creditApp.monthlySpend}" placeholder="$" >
+				                        	
+				                        </div>
+		                   			</div>
+		                   			
+		                   			<br><br>
+		                   			
+		                   			<div>
+                        				<label for="cashAdvance" class="form-control-label">If Offered, Would You Be Interested In Blank Checks To Use For Cash Advances? (Optional)</label>
+                       				</div>
+		                   			<div class="form-check-inline form-check">
+                        				<label for="cashAdvance" class="form-check-label">
+                             				<input type="radio" id="cashAdvance" name="cashAdvance" th:field="${creditApp.cashAdvance}" value="Yes" class="form-check-input" >Yes &nbsp;&nbsp;&nbsp;
+                             			</label>
+                            	 		<label for="cashAdvance" class="form-check-label">
+                             				<input type="radio" id="cashAdvance" name="cashAdvance" th:field="${creditApp.cashAdvance}" value="No" class="form-check-input" >No &nbsp;&nbsp;&nbsp;
+                            			</label>
+                        			</div>
+	                        		
+                        			<br><br>
+                        			
+                        			<div>
+                        				<label for="transferBalance" class="form-control-label">If Approved, Do You Plan To Transfer Any Balances From Other Non-Digital Credit Credit Cards? (Optional)</label>
+                       				</div>
+                        			<div class="form-check-inline form-check">
+                        				<label for="balanceTransfer" class="form-check-label">
+                             				<input type="radio" id="balanceTransfer" name="balanceTransfer" th:field="${creditApp.balanceTransfer}" value="Yes" class="form-check-input" >Yes &nbsp;&nbsp;&nbsp;
+                             			</label>
+                            	 		<label for="transferBalance" class="form-check-label">
+                             				<input type="radio" id="balanceTransfer" name="balanceTransfer" th:field="${creditApp.balanceTransfer}" value="No" class="form-check-input" >No &nbsp;&nbsp;&nbsp;
+                            			</label>
+                        			</div>
+                        		
+	             					<hr>
+	             					
+	             					
+	             					
+	             					
+		                        </div> <!-- End card Body -->
+                    		</div> <!-- .card -->
+						</div><!--/.col-->
+					</div> <!-- End Row --> 
+					
+					<div class="row">
+                  		<div class="col-lg-12">
+                    		<div class="card">
+                        		<div class="card-header bg-flat-color-1">
+                            		<strong class="text-white card-title">Additional Information</strong>
+                        		</div>
+                        		<div class="card-body">
+                          		<!-- Credit Card -->
+                         			<hr>
+                         			
+                         			<p>We need your agreement to receive by electronic means only communications regarding your application, including notice of our decision on your application and important account opening information regarding rates, fees and other costs related to the credit card for which you are applying. Please review the terms of our Electronic Communications Disclosure.</p>
+
+									
+									<div class="row form-group">
+						            	<div class="col col-sm-12">
+											<div class="checkbox">
+                            					<label>
+                                					<input type="checkbox" name="agreeTerms" id="agreeTerms" th:field="${creditApp.agreeTerms}" required>&nbsp;&nbsp;&nbsp; I have reviewed and agree to the terms of the Electronic Communications Disclosure. I confirm that I have an active email address and the ability to access, view and print PDF files.
+                            					</label>
+                        					</div>
+										</div>
+									</div>
+									<br>
+                         			
+                         			
+                         			<p>Before you submit your application, please read through these Important Disclosures, which contain additional information about eligibility, rates, fees, and other costs, as applicable.</p>
+                         			<hr>
+                         			
+                         			<button type="submit" class="btn btn-success btn-lg btn-block">Apply</button>
+                         			
+	             				</div> <!-- End card Body -->
+                    		</div> <!-- .card -->
+						</div><!--/.col-->
+					</div> <!-- End Row --> 
+	                            
+                    </form>
+                	
+	            </div><!-- .animated -->
+	        </div><!-- .content -->
+	        
+	    <!-- Page Content End -->
+	    
+	</div> <!-- End right panel -->
+    
+	<!-- Footer -->
+	<div th:replace="common/sections :: footer-scripts"></div>
+
+</body>
+</html>

@@ -59,9 +59,11 @@ public class Account {
 	@DateTimeFormat(pattern="yyyy-MM-dd'T'hh:mm")
 	private Date paymentDue;
 	
+	@JsonIgnore
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Users owner;
 	
+	@JsonIgnore
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Users coowner;
 	

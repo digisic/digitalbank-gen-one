@@ -1,0 +1,536 @@
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+Status: 200 OK
+Connection: keep-alive
+
+{
+    "atms": [
+        {
+            "atmLocation": {
+                "address": {
+                    "city": "ISLANDIA",
+                    "country": "USA",
+                    "postalCode": "11749",
+                    "state": "NY",
+                    "street": "1700 VETERANS HIGHWAY"
+                },
+                "coordinates": {
+                    "latitude": 40.805604,
+                    "longitude": -73.181343
+                },
+                "id": "848936",
+                "isAvailable24Hours": true,
+                "isDepositAvailable": false,
+                "isHandicappedAccessible": false,
+                "isOffPremise": true,
+                "isSeasonal": false,
+                "languageType": null,
+                "locationDescription": "1700 VETERANS HIGHWAY,ISLANDIA,NY,11749,USA",
+                "logoName": "711",
+                "name": "7ELEVEN-FCTI"
+            },
+            "distance": 0.5843634867457268
+        },
+        {
+            "atmLocation": {
+                "address": {
+                    "city": "HAUPPAUGE",
+                    "country": "USA",
+                    "postalCode": "11788",
+                    "state": "NY",
+                    "street": "2140 MOTOR PKWY"
+                },
+                "coordinates": {
+                    "latitude": 40.817,
+                    "longitude": -73.155
+                },
+                "id": "848959",
+                "isAvailable24Hours": true,
+                "isDepositAvailable": false,
+                "isHandicappedAccessible": false,
+                "isOffPremise": true,
+                "isSeasonal": false,
+                "languageType": null,
+                "locationDescription": "2140 MOTOR PKWY,HAUPPAUGE,NY,11788,USA",
+                "logoName": "711",
+                "name": "7ELEVEN-FCTI"
+            },
+            "distance": 1.118353542220967
+        },
+        {
+            "atmLocation": {
+                "address": {
+                    "city": "CENTRAL ISLIP",
+                    "country": "USA",
+                    "postalCode": "11722",
+                    "state": "NY",
+                    "street": "166 E SUFFOLK"
+                },
+                "coordinates": {
+                    "latitude": 40.793717,
+                    "longitude": -73.189651
+                },
+                "id": "845761",
+                "isAvailable24Hours": true,
+                "isDepositAvailable": false,
+                "isHandicappedAccessible": false,
+                "isOffPremise": true,
+                "isSeasonal": false,
+                "languageType": null,
+                "locationDescription": "166 E SUFFOLK,CENTRAL ISLIP,NY,11722,USA",
+                "logoName": "711",
+                "name": "7ELEVEN-FCTI"
+            },
+            "distance": 1.3106583501963718
+        },
+        {
+            "atmLocation": {
+                "address": {
+                    "city": "HAUPPAUGE",
+                    "country": "USA",
+                    "postalCode": "11788",
+                    "state": "NY",
+                    "street": "722 TOWNLINE RD"
+                },
+                "coordinates": {
+                    "latitude": 40.82629,
+                    "longitude": -73.187876
+                },
+                "id": "852406",
+                "isAvailable24Hours": true,
+                "isDepositAvailable": false,
+                "isHandicappedAccessible": false,
+                "isOffPremise": true,
+                "isSeasonal": false,
+                "languageType": null,
+                "locationDescription": "722 TOWNLINE RD,HAUPPAUGE,NY,11788,USA",
+                "logoName": "711",
+                "name": "7ELEVEN-FCTI"
+            },
+            "distance": 1.7032309200927087
+        },
+        {
+            "atmLocation": {
+                "address": {
+                    "city": "RONKONKOMA",
+                    "country": "USA",
+                    "postalCode": "11779",
+                    "state": "NY",
+                    "street": "450 PECONIC STREET"
+                },
+                "coordinates": {
+                    "latitude": 40.79743,
+                    "longitude": -73.13874
+                },
+                "id": "848957",
+                "isAvailable24Hours": true,
+                "isDepositAvailable": false,
+                "isHandicappedAccessible": false,
+                "isOffPremise": true,
+                "isSeasonal": false,
+                "languageType": null,
+                "locationDescription": "450 PECONIC STREET,RONKONKOMA,NY,11779,USA",
+                "logoName": "711",
+                "name": "7ELEVEN-FCTI"
+            },
+            "distance": 1.7412023319022842
+        },
+        {
+            "atmLocation": {
+                "address": {
+                    "city": "CENTRAL ISLIP",
+                    "country": "USA",
+                    "postalCode": "11722",
+                    "state": "NY",
+                    "street": "1074 MOTOR PWKY"
+                },
+                "coordinates": {
+                    "latitude": 40.802981,
+                    "longitude": -73.212284
+                },
+                "id": "850929",
+                "isAvailable24Hours": true,
+                "isDepositAvailable": false,
+                "isHandicappedAccessible": false,
+                "isOffPremise": true,
+                "isSeasonal": false,
+                "languageType": null,
+                "locationDescription": "1074 MOTOR PWKY,CENTRAL ISLIP,NY,11722,USA",
+                "logoName": "711",
+                "name": "7ELEVEN-FCTI"
+            },
+            "distance": 2.2119762388691044
+        },
+        {
+            "atmLocation": {
+                "address": {
+                    "city": "HAUPPAUGE",
+                    "country": "USA",
+                    "postalCode": "11788",
+                    "state": "NY",
+                    "street": "845 WHEELER RD"
+                },
+                "coordinates": {
+                    "latitude": 40.82331,
+                    "longitude": -73.20556
+                },
+                "id": "477806",
+                "isAvailable24Hours": true,
+                "isDepositAvailable": false,
+                "isHandicappedAccessible": true,
+                "isOffPremise": false,
+                "isSeasonal": false,
+                "languageType": null,
+                "locationDescription": "845 WHEELER RD,HAUPPAUGE,NY,11788,USA",
+                "logoName": "PAS",
+                "name": "STERLING NATIONAL BANK"
+            },
+            "distance": 2.2195407095462123
+        },
+        {
+            "atmLocation": {
+                "address": {
+                    "city": "CENTRAL ISLIP",
+                    "country": "USA",
+                    "postalCode": "11722",
+                    "state": "NY",
+                    "street": "121 CARLETON AVENUE"
+                },
+                "coordinates": {
+                    "latitude": 40.78314,
+                    "longitude": -73.2007
+                },
+                "id": "849912",
+                "isAvailable24Hours": true,
+                "isDepositAvailable": false,
+                "isHandicappedAccessible": false,
+                "isOffPremise": true,
+                "isSeasonal": false,
+                "languageType": null,
+                "locationDescription": "121 CARLETON AVENUE,CENTRAL ISLIP,NY,11722,USA",
+                "logoName": "711",
+                "name": "7ELEVEN-FCTI"
+            },
+            "distance": 2.2300571860743132
+        },
+        {
+            "atmLocation": {
+                "address": {
+                    "city": "NESCONSET",
+                    "country": "USA",
+                    "postalCode": "11787",
+                    "state": "NV",
+                    "street": "250 SMITHTOWN BLVD"
+                },
+                "coordinates": {
+                    "latitude": 40.83264,
+                    "longitude": -73.14619
+                },
+                "id": "788088",
+                "isAvailable24Hours": true,
+                "isDepositAvailable": false,
+                "isHandicappedAccessible": false,
+                "isOffPremise": true,
+                "isSeasonal": false,
+                "languageType": null,
+                "locationDescription": "250 SMITHTOWN BLVD,NESCONSET,NV,11787,USA",
+                "logoName": "PAS",
+                "name": "7ELEVEN-FCTI"
+            },
+            "distance": 2.2514165023408106
+        },
+        {
+            "atmLocation": {
+                "address": {
+                    "city": "SMITHTOWN",
+                    "country": "USA",
+                    "postalCode": "11787",
+                    "state": "NY",
+                    "street": "602 SMITHTOWN BY PASS"
+                },
+                "coordinates": {
+                    "latitude": 40.836093,
+                    "longitude": -73.185956
+                },
+                "id": "497704",
+                "isAvailable24Hours": true,
+                "isDepositAvailable": false,
+                "isHandicappedAccessible": false,
+                "isOffPremise": true,
+                "isSeasonal": false,
+                "languageType": null,
+                "locationDescription": "602 SMITHTOWN BY PASS,SMITHTOWN,NY,11787,USA",
+                "logoName": "711",
+                "name": "7ELEVEN-FCTI"
+            },
+            "distance": 2.263406739723154
+        },
+        {
+            "atmLocation": {
+                "address": {
+                    "city": "NESCONSET",
+                    "country": "USA",
+                    "postalCode": "11767",
+                    "state": "NY",
+                    "street": "235 SMITHTOWN BLVD"
+                },
+                "coordinates": {
+                    "latitude": 40.83389,
+                    "longitude": -73.14806
+                },
+                "id": "847843",
+                "isAvailable24Hours": true,
+                "isDepositAvailable": false,
+                "isHandicappedAccessible": false,
+                "isOffPremise": true,
+                "isSeasonal": false,
+                "languageType": null,
+                "locationDescription": "235 SMITHTOWN BLVD,NESCONSET,NY,11767,USA",
+                "logoName": "711",
+                "name": "7ELEVEN-FCTI"
+            },
+            "distance": 2.272258570378458
+        },
+        {
+            "atmLocation": {
+                "address": {
+                    "city": "SMITHTOWN",
+                    "country": "USA",
+                    "postalCode": "11787",
+                    "state": "NY",
+                    "street": "81 SHEPPARD LN"
+                },
+                "coordinates": {
+                    "latitude": 40.839448,
+                    "longitude": -73.165853
+                },
+                "id": "848820",
+                "isAvailable24Hours": true,
+                "isDepositAvailable": false,
+                "isHandicappedAccessible": false,
+                "isOffPremise": true,
+                "isSeasonal": false,
+                "languageType": null,
+                "locationDescription": "81 SHEPPARD LN,SMITHTOWN,NY,11787,USA",
+                "logoName": "711",
+                "name": "7ELEVEN-FCTI"
+            },
+            "distance": 2.350439752178838
+        },
+        {
+            "atmLocation": {
+                "address": {
+                    "city": "RONKONKOMA",
+                    "country": "USA",
+                    "postalCode": "11779",
+                    "state": "NY",
+                    "street": "876 JOHNSON AVENUE"
+                },
+                "coordinates": {
+                    "latitude": 40.807163,
+                    "longitude": -73.124822
+                },
+                "id": "846533",
+                "isAvailable24Hours": true,
+                "isDepositAvailable": false,
+                "isHandicappedAccessible": false,
+                "isOffPremise": true,
+                "isSeasonal": false,
+                "languageType": null,
+                "locationDescription": "876 JOHNSON AVENUE,RONKONKOMA,NY,11779,USA",
+                "logoName": "711",
+                "name": "7ELEVEN-FCTI"
+            },
+            "distance": 2.377284508477156
+        },
+        {
+            "atmLocation": {
+                "address": {
+                    "city": "CENTRAL ISLIP",
+                    "country": "USA",
+                    "postalCode": "11722",
+                    "state": "NY",
+                    "street": "70-82 WEST SUFFOLK AV"
+                },
+                "coordinates": {
+                    "latitude": 40.78829,
+                    "longitude": -73.21186
+                },
+                "id": "846326",
+                "isAvailable24Hours": true,
+                "isDepositAvailable": false,
+                "isHandicappedAccessible": false,
+                "isOffPremise": true,
+                "isSeasonal": false,
+                "languageType": null,
+                "locationDescription": "70-82 WEST SUFFOLK AV,CENTRAL ISLIP,NY,11722,USA",
+                "logoName": "711",
+                "name": "7ELEVEN-FCTI"
+            },
+            "distance": 2.4901771151741765
+        },
+        {
+            "atmLocation": {
+                "address": {
+                    "city": "NESCONSET",
+                    "country": "USA",
+                    "postalCode": "11767",
+                    "state": "NY",
+                    "street": "512 GIBBS POND RD"
+                },
+                "coordinates": {
+                    "latitude": 40.832349,
+                    "longitude": -73.134911
+                },
+                "id": "852009",
+                "isAvailable24Hours": true,
+                "isDepositAvailable": false,
+                "isHandicappedAccessible": false,
+                "isOffPremise": true,
+                "isSeasonal": false,
+                "languageType": null,
+                "locationDescription": "512 GIBBS POND RD,NESCONSET,NY,11767,USA",
+                "logoName": "711",
+                "name": "7ELEVEN-FCTI"
+            },
+            "distance": 2.6126016715872304
+        },
+        {
+            "atmLocation": {
+                "address": {
+                    "city": "LAKE RONKONKOMA",
+                    "country": "USA",
+                    "postalCode": "11779",
+                    "state": "NY",
+                    "street": "383 SMITHTOWN BLVD"
+                },
+                "coordinates": {
+                    "latitude": 40.832233,
+                    "longitude": -73.130061
+                },
+                "id": "850068",
+                "isAvailable24Hours": true,
+                "isDepositAvailable": false,
+                "isHandicappedAccessible": false,
+                "isOffPremise": true,
+                "isSeasonal": false,
+                "languageType": null,
+                "locationDescription": "383 SMITHTOWN BLVD,LAKE RONKONKOMA,NY,11779,USA",
+                "logoName": "711",
+                "name": "7ELEVEN-FCTI"
+            },
+            "distance": 2.7924994110482033
+        },
+        {
+            "atmLocation": {
+                "address": {
+                    "city": "ISLIP TERRACE",
+                    "country": "USA",
+                    "postalCode": "11752",
+                    "state": "NY",
+                    "street": "56 LOWELL AVE"
+                },
+                "coordinates": {
+                    "latitude": 40.764826,
+                    "longitude": -73.174026
+                },
+                "id": "850129",
+                "isAvailable24Hours": true,
+                "isDepositAvailable": false,
+                "isHandicappedAccessible": false,
+                "isOffPremise": true,
+                "isSeasonal": false,
+                "languageType": null,
+                "locationDescription": "56 LOWELL AVE,ISLIP TERRACE,NY,11752,USA",
+                "logoName": "711",
+                "name": "7ELEVEN-FCTI"
+            },
+            "distance": 2.8293364577558555
+        },
+        {
+            "atmLocation": {
+                "address": {
+                    "city": "SMITHTOWN",
+                    "country": "USA",
+                    "postalCode": "11787",
+                    "state": "NY",
+                    "street": "710 ROUTE 347"
+                },
+                "coordinates": {
+                    "latitude": 40.848034,
+                    "longitude": -73.170686
+                },
+                "id": "851233",
+                "isAvailable24Hours": true,
+                "isDepositAvailable": false,
+                "isHandicappedAccessible": false,
+                "isOffPremise": true,
+                "isSeasonal": false,
+                "languageType": null,
+                "locationDescription": "710 ROUTE 347,SMITHTOWN,NY,11787,USA",
+                "logoName": "711",
+                "name": "7ELEVEN-FCTI"
+            },
+            "distance": 2.9335097865965385
+        },
+        {
+            "atmLocation": {
+                "address": {
+                    "city": "CENTRAL ISLIP",
+                    "country": "USA",
+                    "postalCode": "11722",
+                    "state": "NY",
+                    "street": "193 CALEBS PATH"
+                },
+                "coordinates": {
+                    "latitude": 40.79951,
+                    "longitude": -73.22774
+                },
+                "id": "845410",
+                "isAvailable24Hours": true,
+                "isDepositAvailable": false,
+                "isHandicappedAccessible": false,
+                "isOffPremise": true,
+                "isSeasonal": false,
+                "languageType": null,
+                "locationDescription": "193 CALEBS PATH,CENTRAL ISLIP,NY,11722,USA",
+                "logoName": "711",
+                "name": "7ELEVEN-FCTI"
+            },
+            "distance": 3.0432759870303734
+        },
+        {
+            "atmLocation": {
+                "address": {
+                    "city": "HAUPPAUGE",
+                    "country": "USA",
+                    "postalCode": "11788",
+                    "state": "NY",
+                    "street": "1684 EXPRESSWAY DR. S"
+                },
+                "coordinates": {
+                    "latitude": 40.80612,
+                    "longitude": -73.23294
+                },
+                "id": "850578",
+                "isAvailable24Hours": true,
+                "isDepositAvailable": false,
+                "isHandicappedAccessible": false,
+                "isOffPremise": true,
+                "isSeasonal": false,
+                "languageType": null,
+                "locationDescription": "1684 EXPRESSWAY DR. S,HAUPPAUGE,NY,11788,USA",
+                "logoName": "711",
+                "name": "7ELEVEN-FCTI"
+            },
+            "distance": 3.2860137066050887
+        }
+    ],
+    "atms_count": 50,
+    "error_code": "0",
+    "http_code": "200",
+    "limit": 20,
+    "page": 1,
+    "page_count": 3,
+    "success": true
+}

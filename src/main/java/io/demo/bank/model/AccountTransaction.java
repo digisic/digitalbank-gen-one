@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -35,6 +36,7 @@ public class AccountTransaction {
 	@DateTimeFormat(pattern="yyyy-MM-dd'T'hh:mm")
 	private Date transactionDate;
 	
+	@JsonIgnore
 	@ManyToOne
     @JoinColumn(name = "account_id")
     private Account account;
@@ -121,11 +123,11 @@ public class AccountTransaction {
 	public TransactionType getTransactionType() {
 		return transactionType;
 	}
-
+	
 	/**
-	 * @param type the type to set
+	 * @param transactionType the transactionType to set
 	 */
-	public void setTTransactionype(TransactionType transactionType) {
+	public void setTransactionType(TransactionType transactionType) {
 		this.transactionType = transactionType;
 	}
 
@@ -171,11 +173,6 @@ public class AccountTransaction {
 		this.transactionNumber = transactionNumber;
 	}
 
-	/**
-	 * @param transactionType the transactionType to set
-	 */
-	public void setTransactionType(TransactionType transactionType) {
-		this.transactionType = transactionType;
-	}
+	
 	
 }

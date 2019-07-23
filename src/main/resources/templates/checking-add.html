@@ -71,7 +71,7 @@
 		                        		<div class="row form-group">
 		                        			<div class="col col-sm-4">
 					                            <label class="form-control-label"><strong>Initial Deposit Amount</strong></label>
-					                            <input type="text" class="form-control" id="openingBalance" th:field="${account.openingBalance}" required pattern="^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$">
+					                            <input type="text" class="form-control" id="openingBalance" th:field="${account.openingBalance}" required th:pattern="${patternTransactionAmount}">
 					                        	<small class="form-text text-muted" id="minDeposit">ex. Minimum opening deposit is $25.00</small>
 					                        </div>
 		                        		</div>		

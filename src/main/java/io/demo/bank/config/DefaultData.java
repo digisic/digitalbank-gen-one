@@ -1,6 +1,7 @@
 package io.demo.bank.config;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,19 +11,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
-
 import io.demo.bank.model.AccountStanding;
 import io.demo.bank.model.AccountType;
 import io.demo.bank.model.OwnershipType;
 import io.demo.bank.model.TransactionState;
 import io.demo.bank.model.TransactionType;
+import io.demo.bank.model.UserProfile;
 import io.demo.bank.model.security.Role;
+import io.demo.bank.model.security.Users;
 import io.demo.bank.repository.AccountStandingRepository;
 import io.demo.bank.repository.AccountTypeRepository;
 import io.demo.bank.repository.OwnershipTypeRepository;
 import io.demo.bank.repository.RoleRepository;
 import io.demo.bank.repository.TransactionStateRepository;
 import io.demo.bank.repository.TransactionTypeRepository;
+import io.demo.bank.service.UserService;
 
 @Component
 public class DefaultData implements CommandLineRunner, Ordered {
@@ -47,9 +50,12 @@ public class DefaultData implements CommandLineRunner, Ordered {
 	@Autowired
 	private TransactionStateRepository transactionStateRepository;
 	
+	@Autowired
+	private UserService userService;
+	
 	@Override
 	public int getOrder() {
-		return 1;
+		return 0;
 	}
 
 	@Override
@@ -59,18 +65,50 @@ public class DefaultData implements CommandLineRunner, Ordered {
 		LOG.info("***** Checking Default Data *****");
 		
 		// Load Roles if they do not exist
-		if (roleRepository.findByName("ROLE_USER") == null) {
+		if (roleRepository.findByName(Role.ROLE_USER) == null) {
 			
 			LOG.info("** Loading Roles...");
 			
 			List<Role> roles = new ArrayList<Role>();
 			
-			roles.add(new Role("ROLE_USER"));
-			roles.add(new Role("ROLE_ADMIN"));
-			roles.add(new Role("ROLE_API"));
+			roles.add(new Role(Role.ROLE_USER));
+			roles.add(new Role(Role.ROLE_ADMIN));
+			roles.add(new Role(Role.ROLE_API));
 			
 			roleRepository.saveAll(roles);
 			
+		}
+		
+		// Create a Default API User
+		// If the default user data does not exist, then create it.
+		if (!userService.checkEmailAdressExists("admin@demo.io") && !userService.checkSsnExists("111-11-1111")) {
+			
+			LOG.info("** Loading Default API User...");
+			
+			Users user = new Users("api@demo.io", "Demo123!");
+			UserProfile userProfile = new UserProfile();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
+			
+			userProfile.setEmailAddress("admin@demo.io");
+			userProfile.setFirstName("API");
+			userProfile.setLastName("User");
+			userProfile.setTitle("Mr.");
+			userProfile.setGender("M");
+			userProfile.setDob(dateFormat.parse("1985-02-15"));
+			userProfile.setSsn("111-11-1111");
+			userProfile.setAddress("123 Digital Lane");
+			userProfile.setCountry("United States");
+			userProfile.setLocality("Internet City");
+			userProfile.setPostalCode("94302");
+			userProfile.setRegion("CA");
+			userProfile.setHomePhone("123-456-7890");
+			userProfile.setMobilePhone("123-456-7890");
+			userProfile.setWorkPhone("123-456-7890");
+			
+			user.setUserProfile(userProfile);
+			userService.createUser(user, Role.ROLE_API);
+			userService.addRole(user, Role.ROLE_ADMIN);
+		
 		}
 		
 		// Load Account Types if they do not exist
@@ -136,26 +174,26 @@ public class DefaultData implements CommandLineRunner, Ordered {
 			
 			List<TransactionType> transactionTypes = new ArrayList<TransactionType>();
 			
-			transactionTypes.add(new TransactionType("ATM", "ATM"));
-			transactionTypes.add(new TransactionType("DBT", "Debit"));
-			transactionTypes.add(new TransactionType("CRG", "Charge"));
-			transactionTypes.add(new TransactionType("CHK", "Check"));
-			transactionTypes.add(new TransactionType("DPT", "Deposit"));
-			transactionTypes.add(new TransactionType("POS", "Point of Sale"));
-			transactionTypes.add(new TransactionType("TRN", "Transfer"));
-			transactionTypes.add(new TransactionType("WTH", "Withdrawl"));
-			transactionTypes.add(new TransactionType("INT", "Interest Income"));
-			transactionTypes.add(new TransactionType("DIV", "Dividend Credit"));
-			transactionTypes.add(new TransactionType("PMT", "Payment"));
-			transactionTypes.add(new TransactionType("OVD", "Overdraft"));
-			transactionTypes.add(new TransactionType("FEE", "Fee"));
-			transactionTypes.add(new TransactionType("LTF", "Late Fee"));
-			transactionTypes.add(new TransactionType("OVF", "Overdraft Fee"));
-			transactionTypes.add(new TransactionType("COF", "Check Order Fee"));
-			transactionTypes.add(new TransactionType("TNF", "Transfer Fee"));
-			transactionTypes.add(new TransactionType("DDP", "Direct Deposit"));
-			transactionTypes.add(new TransactionType("EFT", "Electronic Funds Transfer"));
-			transactionTypes.add(new TransactionType("RFD", "Refund"));
+			transactionTypes.add(new TransactionType("ATM", "ATM", TransactionType.CAT_EITHER));
+			transactionTypes.add(new TransactionType("DBT", "Debit", TransactionType.CAT_DEBIT));
+			transactionTypes.add(new TransactionType("CRG", "Charge", TransactionType.CAT_DEBIT));
+			transactionTypes.add(new TransactionType("CHK", "Check", TransactionType.CAT_DEBIT));
+			transactionTypes.add(new TransactionType("DPT", "Deposit", TransactionType.CAT_CREDIT));
+			transactionTypes.add(new TransactionType("POS", "Point of Sale", TransactionType.CAT_DEBIT));
+			transactionTypes.add(new TransactionType("TRN", "Transfer", TransactionType.CAT_EITHER));
+			transactionTypes.add(new TransactionType("WTH", "Withdrawl", TransactionType.CAT_DEBIT));
+			transactionTypes.add(new TransactionType("INT", "Interest Income", TransactionType.CAT_CREDIT));
+			transactionTypes.add(new TransactionType("DIV", "Dividend Credit", TransactionType.CAT_CREDIT));
+			transactionTypes.add(new TransactionType("PMT", "Payment", TransactionType.CAT_DEBIT));
+			transactionTypes.add(new TransactionType("OVD", "Overdraft", TransactionType.CAT_EITHER));
+			transactionTypes.add(new TransactionType("FEE", "Fee", TransactionType.CAT_DEBIT));
+			transactionTypes.add(new TransactionType("LTF", "Late Fee", TransactionType.CAT_DEBIT));
+			transactionTypes.add(new TransactionType("OVF", "Overdraft Fee", TransactionType.CAT_DEBIT));
+			transactionTypes.add(new TransactionType("COF", "Check Order Fee", TransactionType.CAT_DEBIT));
+			transactionTypes.add(new TransactionType("TNF", "Transfer Fee", TransactionType.CAT_DEBIT));
+			transactionTypes.add(new TransactionType("DDP", "Direct Deposit", TransactionType.CAT_CREDIT));
+			transactionTypes.add(new TransactionType("EFT", "Electronic Funds Transfer", TransactionType.CAT_EITHER));
+			transactionTypes.add(new TransactionType("RFD", "Refund", TransactionType.CAT_CREDIT));
 			
 			transactionTypeRepository.saveAll(transactionTypes);
 		}

@@ -1,100 +1,56 @@
 package io.demo.bank.controller;
 
-import java.security.Principal;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-import java.util.Locale;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.info.BuildProperties;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.RestController;
+
+import io.demo.bank.exception.RestBadRequestException;
+import io.demo.bank.exception.RestObjectNotFoundException;
 import io.demo.bank.model.security.Users;
 import io.demo.bank.service.UserService;
-import io.demo.bank.util.Constants;
+import io.demo.bank.util.Messages;
 
-@Controller
-abstract class CommonController {
-
-	private static final Logger LOG = LoggerFactory.getLogger(CommonController.class);
+@RestController
+public class CommonController {
 	
 	@Autowired
-	private BuildProperties buildProperties;
+	UserService userService;
 	
-	@Autowired
-	private UserService userService;
 	
-	// private model attribute constants
-	private static final String MODEL_ATT_FIRST_NAME 			= "firstName";
-	private static final String MODEL_ATT_NOTIFICATIONS 		= "notifications";
-//	private static final String MODEL_ATT_MESSAGES 				= "messages";
-	private static final String MODEL_ATT_AVATAR				= "avatar";
-	private static final String MODEL_ATT_APP_VERSION			= "appVersion";
-	private static final String MODEL_ATT_APP_NAME				= "appName";
-	private static final String MODEL_ATT_APP_BUILD_DATE		= "appBuildDate";
-	private static final String MODEL_VAL_AVATAR_MALE			= "/images/admin.jpg";
-	private static final String MODEL_VAL_AVATAR_FEMALE			= "/images/avatar/5.jpg";
-	
-	// public model attribute constants -> Common
-	public static final String MODEL_ATT_ERROR_MSG				= "errorMsg";
-	public static final String MODEL_ATT_SUCCESS_MSG			= "successMsg";
-	
-	// public model attribute constants -> Accounts
-	public static final String MODEL_ATT_ACCOUNT 				= "account";
-	public static final String MODEL_ATT_TO_ACCOUNT 			= "toAccount";
-	public static final String MODEL_ATT_FROM_ACCOUNT 			= "fromAccount";
-	public static final String MODEL_ATT_ACCT_TYPE_LIST 		= "accountTypeList";
-	public static final String MODEL_ATT_OWN_TYPE_LIST 			= "ownershipTypeList";
-	public static final String MODEL_ATT_ACCT_LIST				= "accountList";
-	public static final String MODEL_ATT_ACCT_TRANS_LIST		= "transactionList";
-	public static final String MODEL_ATT_ACCT_TRANS				= "transaction";
-	public static final String MODEL_ATT_ACCT_SEL_ID			= "selectId";
-	public static final String MODEL_ATT_ACCT_SEL_SWITCH		= "selectSwitch";
-	public static final String MODEL_ATT_ACCT_NONE				= "noAccounts";
-	
-	// model attribute constants -> Users
-	public static final String MODEL_ATT_USER 					= "user";
-	public static final String MODEL_ATT_USER_PROFILE 			= "userProfile";
-	public static final String MODEL_ATT_NEW_PASS 				= "newPassword";
-	public static final String MODEL_ATT_CUR_PASS 				= "currentPassword";
-
-
-	
-	public void setDisplayDefaults (Principal principal, Model model) {
+	/*
+	 * Find the user by Id
+	 */
+	public Users getUserById(Long id) {
 		
-		LOG.debug("Begin setting display defaults.");
+		if (id < 0) {
+			throw new RestBadRequestException (Messages.INVALID_OBJECT_ID);
+		}
+	
+		Users user = userService.findById(id);
 		
-		// Get the user that has been authenticated
-		Users user = userService.findByUsername(principal.getName());
-		
-		// Add name for Welcome header
-		model.addAttribute(MODEL_ATT_FIRST_NAME, user.getUserProfile().getFirstName());
-		
-		// Add user's notifications for header
-		model.addAttribute(MODEL_ATT_NOTIFICATIONS, user.getNotifications());
-				
-		// Add user's messages for header
-//		model.addAttribute(MODEL_ATT_MESSAGES, user.getMessages());
-		
-		// Choose male or female avatar
-		if (user.getUserProfile().getGender().equals(Constants.GENDER_MALE)) {
-			model.addAttribute(MODEL_ATT_AVATAR, MODEL_VAL_AVATAR_MALE);
-		}else {
-			model.addAttribute(MODEL_ATT_AVATAR, MODEL_VAL_AVATAR_FEMALE);
+		if (user == null) {
+			throw new RestObjectNotFoundException (Messages.OBJECT_NOT_FOUND + id);
 		}
 		
-		// Get build date in a proper display format
-		DateTimeFormatter dtFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
-														 .withLocale(Locale.US)
-														 .withZone(ZoneId.systemDefault());
-		
-		// Add Application Version for About
-		model.addAttribute(MODEL_ATT_APP_NAME, buildProperties.getName());
-		model.addAttribute(MODEL_ATT_APP_VERSION, buildProperties.getVersion());
-		model.addAttribute(MODEL_ATT_APP_BUILD_DATE, dtFormatter.format(buildProperties.getTime()));
-		
-		LOG.debug("End setting display defaults.");
+		return user;
 	}
+	
+	/*
+	 * Gets current authenticated user
+	 */
+	public Users getAuthenticatedUser () {
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+		return userService.findByUsername(auth.getName());
+	}
+	
+	/*
+	 * Checks the current role of the user
+	 */
+	public boolean hasRole(Users user, String roleName) {
+		return userService.hasRole(user, roleName);
+	}
+
 }

@@ -1,543 +1,530 @@
 package io.demo.bank.controller;
 
 import java.math.BigDecimal;
-import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import io.demo.bank.exception.RestBadRequestException;
+import io.demo.bank.exception.RestForbiddenException;
+import io.demo.bank.exception.RestNotAcceptableException;
+import io.demo.bank.exception.RestObjectNotFoundException;
 import io.demo.bank.model.Account;
 import io.demo.bank.model.AccountTransaction;
+import io.demo.bank.model.AccountType;
+import io.demo.bank.model.OwnershipType;
+import io.demo.bank.model.TransactionType;
+import io.demo.bank.model.security.Role;
 import io.demo.bank.model.security.Users;
 import io.demo.bank.service.AccountService;
-import io.demo.bank.service.UserService;
 import io.demo.bank.util.Constants;
+import io.demo.bank.util.Messages;
+import io.demo.bank.util.Patterns;
 
-@Controller
-@RequestMapping(Constants.URI_ACCOUNT)
+
+@Validated
+@RestController
 public class AccountController extends CommonController {
-	
+
+
 	private static final Logger LOG = LoggerFactory.getLogger(AccountController.class);
 	
 	@Autowired
-	private AccountService accountService;
+	AccountService accountService;
 	
-	@Autowired
-	private UserService userService;
 	
-		
-	@GetMapping(Constants.URI_CHK_ADD)
-	public String checkingAdd(Principal principal, Model model) {
-		
-		// Set Display Defaults
-		setDisplayDefaults(principal, model);
-		
-		model.addAttribute(MODEL_ATT_ACCOUNT, new Account());	
-		model.addAttribute(MODEL_ATT_ACCT_TYPE_LIST, accountService.getCheckingAccountTypes());
-		model.addAttribute(MODEL_ATT_OWN_TYPE_LIST, accountService.getOwnershipTypes());
-    
-		return Constants.VIEW_CHK_ADD;
+	/*
+	 * ADMIN Role
+	 * Get All Accounts
+	 */
+	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
+	@GetMapping(Constants.URI_API_ACCT_ALL)
+	public ResponseEntity<?> getAllAccounts() {		
+		return ResponseEntity.ok(accountService.getAllAccounts());
 	}
 	
-	
-	@PostMapping(Constants.URI_CHK_ADD)
-	public String checkingAdd(Principal principal, Model model,
-							  @ModelAttribute(MODEL_ATT_ACCOUNT) Account newAccount) {
+	/*
+	 * API Role
+	 * Get All Accounts
+	 */
+	@GetMapping(Constants.URI_API_ACCT)
+	public ResponseEntity<?> getAccount(@PathVariable(Constants.PATH_VARIABLE_ID) Long id) {	
 		
-		// Set Display Defaults
-		setDisplayDefaults(principal, model);
+		Users authUser = getAuthenticatedUser();
+		Account account = getAccountById(id);
 		
-		Users user = userService.findByUsername(principal.getName());
-		
-		LOG.debug("New Checking: Account Name -> " + newAccount.getName());
-		LOG.debug("New Checking: Initial Deposit -> " + newAccount.getOpeningBalance());
-		LOG.debug("New Checking: Account Type -> " + newAccount.getAccountType().getId());
-		LOG.debug("New Checking: Owner Type -> " + newAccount.getOwnershipType().getId());
-	
-		// Check if minimum deposit has been met
-		if (newAccount.getOpeningBalance().compareTo(newAccount.getAccountType().getMinDeposit()) >= 0) {
-			
-			LOG.debug("Add New Checking: Create Account");
-			
-			// Create Account
-			newAccount.setOwner(user);
-			newAccount = accountService.createNewAccount(newAccount);
-			
-			// Add notification to user
-			userService.addNotification(user, "New "+newAccount.getAccountType().getName()+" account named "+newAccount.getName()+" created");
-		}
-		else {
-			
-			LOG.debug("New Checking: Error meeting minimum deposit requirement.");
-			
-			// Return Error Message
-			model.addAttribute(MODEL_ATT_ERROR_MSG, "The initial deposit ($" 
-													 + newAccount.getOpeningBalance() 
-													 + ") entered does not meet the minimum amount ($" 
-													 + newAccount.getAccountType().getMinDeposit() 
-													 + ") required. Please enter a valid deposit amount.");
-			// Send back data
-			model.addAttribute(MODEL_ATT_ACCT_TYPE_LIST, accountService.getCheckingAccountTypes());
-			model.addAttribute(MODEL_ATT_OWN_TYPE_LIST, accountService.getOwnershipTypes());
-			model.addAttribute(MODEL_ATT_ACCOUNT, newAccount);
-			
-			return Constants.VIEW_CHK_ADD;
+		// If this is not an ADMIN user, then make sure the account belongs to the user
+		if (!hasRole(authUser, Role.ROLE_ADMIN)) {
+			if (!(account.getOwner().getId() == authUser.getId() || account.getCoowner().getId() == authUser.getId())) {
+				throw new RestForbiddenException(Messages.ACCESS_FORBIDDEN);
+			}
 		}
 		
-		return Constants.DIR_REDIRECT + Constants.VIEW_CHK_VIEW + "?" + MODEL_ATT_ACCT_SEL_SWITCH + "=" + newAccount.getId();
+		return ResponseEntity.ok(account);
 	}
 	
-	
-	
-	@GetMapping(Constants.URI_SAV_ADD)
-	public String savingsAdd (Principal principal, Model model) {
-		
-		// Set Display Defaults
-		this.setDisplayDefaults(principal, model);
-		
-		model.addAttribute(MODEL_ATT_ACCOUNT, new Account());
-		model.addAttribute(MODEL_ATT_ACCT_TYPE_LIST, accountService.getSavingsAccountTypes());
-		model.addAttribute(MODEL_ATT_OWN_TYPE_LIST, accountService.getOwnershipTypes());
-    
-		return Constants.VIEW_SAV_ADD;
+	/*
+	 * ADMIN Role
+	 * Get Account Owner
+	 */
+	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
+	@GetMapping(Constants.URI_API_ACCT_OWNER)
+	public ResponseEntity<?> getOwner(@PathVariable(Constants.PATH_VARIABLE_ID) Long id) {			
+		return ResponseEntity.ok(getAccountById(id).getOwner());
 	}
 	
-	
-	@PostMapping(Constants.URI_SAV_ADD)
-	public String savingsAdd (Principal principal, Model model,
-							  @ModelAttribute(MODEL_ATT_ACCOUNT) Account newAccount) {
-		
-		// Set Display Defaults
-		setDisplayDefaults(principal, model);
-				
-		Users user = userService.findByUsername(principal.getName());
-		
-		LOG.debug("Add New Savings: Account Name -> " + newAccount.getName());
-		LOG.debug("Add New Savings: Initial Deposit -> " + newAccount.getOpeningBalance());
-		LOG.debug("Add New Savings: Account Type -> " + newAccount.getAccountType().getId());
-		LOG.debug("Add New Savings: Owner Type -> " + newAccount.getOwnershipType().getId());
-	
-		// Check if minimum deposit has been met
-		if (newAccount.getOpeningBalance().compareTo(newAccount.getAccountType().getMinDeposit()) >= 0) {
-			
-			LOG.debug("New Savings: Create Account");
-			
-			// Create Account
-			newAccount.setOwner(user);
-			
-			newAccount = accountService.createNewAccount(newAccount);
-		}
-		else {
-			
-			LOG.debug("Savings: Error meeting minimum deposit requirement.");
-			
-			// Return Error 
-			model.addAttribute(MODEL_ATT_ERROR_MSG, "The initial deposit ($" 
-													 + newAccount.getOpeningBalance() 
-													 + ") entered does not meet the minimum amount ($" 
-													 + newAccount.getAccountType().getMinDeposit() 
-													 + ") required. Please enter a valid deposit amount.");
-			
-			model.addAttribute(MODEL_ATT_OWN_TYPE_LIST, accountService.getOwnershipTypes());
-			model.addAttribute(MODEL_ATT_ACCT_TYPE_LIST, accountService.getSavingsAccountTypes());
-			model.addAttribute(MODEL_ATT_ACCOUNT, newAccount);
-			
-			return Constants.VIEW_SAV_ADD;
-		}
-		
-		return Constants.DIR_REDIRECT + Constants.VIEW_SAV_VIEW + "?" + MODEL_ATT_ACCT_SEL_SWITCH + "=" + newAccount.getId();
+	/*
+	 * ADMIN Role
+	 * Get Account Co-owner
+	 */
+	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
+	@GetMapping(Constants.URI_API_ACCT_COOWNER)
+	public ResponseEntity<?> getCoOwner(@PathVariable(Constants.PATH_VARIABLE_ID) Long id) {			
+		return ResponseEntity.ok(getAccountById(id).getCoowner());
 	}
 	
-	
-	
-	@GetMapping(Constants.URI_CHK_VIEW)
-	public String checkingView (Principal principal, Model model,
-							   @ModelAttribute(MODEL_ATT_ACCT_SEL_SWITCH) ArrayList<String> selectSwitch) {
+	/*
+	 * ADMIN Role
+	 * Set Account Co-owner
+	 */
+	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
+	@PutMapping(Constants.URI_API_ACCT_COOWNER)
+	public ResponseEntity<?> setCoOwner(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
+										@RequestParam(required=true) Long userId) {	
 		
-		// Set Display Defaults
-		setDisplayDefaults(principal, model);
-				
-		Users user = userService.findByUsername(principal.getName());
+		Account account = getAccountById(id);
 		
-		LOG.debug("SELECTED: ->" + selectSwitch.size());
-		long selectId = 0;
+		account.setCoowner(getUserById(userId));
 		
-		List<Account> accountList = accountService.getCheckingAccounts(user);
-		model.addAttribute(MODEL_ATT_ACCT_LIST, accountList);
-		
-		LOG.debug("Account List:");
-		for (int i = 0; i < accountList.size(); i++) {
-			LOG.debug("Accounts: -> " + accountList.get(0).getName());
-		}
-		
-		if (accountList.size() > 0) {
-			
-			List<AccountTransaction> transactionList  = accountList.get(0).getAcountTransactionList();
-			selectId = accountList.get(0).getId();
-			
-			if (selectSwitch.size() > 0) {
-				
-				selectId = new Long(selectSwitch.get(0));
-				
-				LOG.debug("SELECTED ID: -> " + selectId);
-				
-				for (int i = 0; i < accountList.size(); i++) {
-					
-					LOG.debug("LOOKING AT ID: -> " + accountList.get(i).getId());
-					
-					if (accountList.get(i).getId() == selectId) {
-						
-						LOG.debug("GETTING TRANSACTIONS FOR ID: -> " + accountList.get(i).getId());
-						
-						transactionList = accountList.get(i).getAcountTransactionList();
-					}
-				} // end for
-			} // end if a selected switch
-
-			model.addAttribute(MODEL_ATT_ACCT_TRANS_LIST, transactionList);
-		} // end if account list
-		else {
-			model.addAttribute(MODEL_ATT_ACCT_NONE, true);
-		}
-		
-		model.addAttribute(MODEL_ATT_ACCT_SEL_ID, selectId);
-		model.addAttribute(MODEL_ATT_ACCT_SEL_SWITCH, new ArrayList<String>());
-	
-		return Constants.VIEW_CHK_VIEW;
+		return ResponseEntity.ok(accountService.save(account));
 	}
 	
-	
-	@GetMapping(Constants.URI_SAV_VIEW)
-	public String savingsView (Principal principal, Model model,
-							   @ModelAttribute(MODEL_ATT_ACCT_SEL_SWITCH) ArrayList<String> selectSwitch) {
+	/*
+	 * ADMIN Role
+	 * Delete Account
+	 */
+	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
+	@DeleteMapping(Constants.URI_API_ACCT)
+	public ResponseEntity<?> deleteAccount(@PathVariable(Constants.PATH_VARIABLE_ID) Long id) {	
 		
-		// Set Display Defaults
-		setDisplayDefaults(principal, model);
-				
-		Users user = userService.findByUsername(principal.getName());
+		accountService.deleteAccount(getAccountById(id));
 		
-		LOG.debug("SELECTED: ->" + selectSwitch.size());
-		long selectId = 0;
-		
-		List<Account> accountList = accountService.getSavingsAccounts(user);
-		model.addAttribute(MODEL_ATT_ACCT_LIST, accountList);
-		
-		LOG.debug("Account List:");
-		for (int i = 0; i < accountList.size(); i++) {
-			LOG.debug("Accounts: -> " + accountList.get(0).getName());
-		}
-		
-		if (accountList.size() > 0) {
-			
-			List<AccountTransaction> transactionList  = accountList.get(0).getAcountTransactionList();
-			selectId = accountList.get(0).getId();
-			
-			if (selectSwitch.size() > 0) {
-				
-				selectId = new Long(selectSwitch.get(0));
-				
-				LOG.debug("SELECTED ID: -> " + selectId);
-				
-				for (int i = 0; i < accountList.size(); i++) {
-					
-					LOG.debug("LOOKING AT ID: -> " + accountList.get(i).getId());
-					
-					if (accountList.get(i).getId() == selectId) {
-						
-						LOG.debug("GETTING TRANSACTIONS FOR ID: -> " + accountList.get(i).getId());
-						
-						transactionList = accountList.get(i).getAcountTransactionList();
-					}
-				} // end for
-			} // end if a selected switch
-
-			model.addAttribute(MODEL_ATT_ACCT_TRANS_LIST, transactionList);
-		} // end if account list
-		else {
-			model.addAttribute(MODEL_ATT_ACCT_NONE, true);
-		}
-		
-		model.addAttribute(MODEL_ATT_ACCT_SEL_ID, selectId);
-		model.addAttribute(MODEL_ATT_ACCT_SEL_SWITCH, new ArrayList<String>());
-		
-		return Constants.VIEW_SAV_VIEW;
+		return ResponseEntity.noContent().build();
 	}
 	
-	
-	@GetMapping(Constants.URI_DEPOSIT)
-	public String deposit (Principal principal, Model model) {
-		
-		// Set Display Defaults
-		setDisplayDefaults(principal, model);
-				
-		Users user = userService.findByUsername(principal.getName());
-
-		// Get all accounts
-		List<Account> accountList = accountService.getCheckingAccounts(user);
-		accountList.addAll(accountService.getSavingsAccounts(user));
-		model.addAttribute(MODEL_ATT_ACCT_LIST, accountList);
-		model.addAttribute(MODEL_ATT_ACCOUNT, new Account());
-		
-		AccountTransaction accountTransaction = new AccountTransaction();
-		model.addAttribute(MODEL_ATT_ACCT_TRANS, accountTransaction);
-		
-		return Constants.VIEW_DEPOSIT;
-		
+	/*
+	 * ADMIN Role
+	 * Get All Checking Accounts
+	 */
+	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
+	@GetMapping(Constants.URI_API_ACCT_CHK_ALL)
+	public ResponseEntity<?> getAllCheckingAccounts() {		
+		return ResponseEntity.ok(accountService.getCheckingAccounts());
 	}
 	
-	@PostMapping(Constants.URI_DEPOSIT)
-	public String deposit (Principal principal, Model model,
-			                @ModelAttribute(MODEL_ATT_ACCOUNT) Account account,
-			                @ModelAttribute(MODEL_ATT_ACCT_TRANS) AccountTransaction accountTransaction) {
-		
-		// Set Display Defaults
-		setDisplayDefaults(principal, model);
-				
-		LOG.debug("Deposit: Account ID: -> " + account.getId());
-		LOG.debug("Deposit: Amount: -> " + accountTransaction.getAmount());
-		
-		// get full object from partial object
-		account = accountService.getAccountById(account.getId());
-		
-		Users user = userService.findByUsername(principal.getName());
-		
-		// Check amount is greater than zero
-		if (accountTransaction.getAmount().signum() != 1) {
-			
-			// Return error
-			model.addAttribute(MODEL_ATT_ERROR_MSG, "The deposit amount ($" 
-													 + accountTransaction.getAmount()
-													 + ") must be greater than $0.00");
-			
-			// Get all accounts
-			List<Account> accountList = accountService.getCheckingAccounts(user);
-			accountList.addAll(accountService.getSavingsAccounts(user));
-			model.addAttribute(MODEL_ATT_ACCT_LIST, accountList);
-			model.addAttribute(MODEL_ATT_ACCOUNT, account);
-			model.addAttribute(MODEL_ATT_ACCT_TRANS, accountTransaction);
-			
-			return Constants.VIEW_DEPOSIT;
-		}
-		
-		accountService.makeDeposit(account, accountTransaction);
-		
-		// if this is a checking account
-		if (accountService.isSavingsAccount(account)) {
-			
-			// return the savings view - ensure the account for the deposit is in focus
-			return Constants.DIR_REDIRECT + Constants.VIEW_SAV_VIEW + "?" + MODEL_ATT_ACCT_SEL_SWITCH + "=" + account.getId();
-			
-		}
-		
-		// Return to the checking view - ensure the account for the deposit is in focus
-		return Constants.DIR_REDIRECT + Constants.VIEW_CHK_VIEW + "?" + MODEL_ATT_ACCT_SEL_SWITCH + "=" + account.getId();
+	/*
+	 * ADMIN Role
+	 * Get All Checking Accounts
+	 */
+	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
+	@GetMapping(Constants.URI_API_ACCT_SAV_ALL)
+	public ResponseEntity<?> getAllSavingsAccounts() {		
+		return ResponseEntity.ok(accountService.getSavingsAccounts());
 	}
 	
-	@GetMapping(Constants.URI_WITHDRAW)
-	public String withdraw (Principal principal, Model model) {
-		
-		// Set Display Defaults
-		setDisplayDefaults(principal, model);
-				
-		Users user = userService.findByUsername(principal.getName());
-
-		// Get all accounts
-		List<Account> accountList = accountService.getCheckingAccounts(user);
-		accountList.addAll(accountService.getSavingsAccounts(user));
-		model.addAttribute(MODEL_ATT_ACCT_LIST, accountList);
-		model.addAttribute(MODEL_ATT_ACCOUNT, new Account());
-		
-		AccountTransaction accountTransaction = new AccountTransaction();
-		model.addAttribute(MODEL_ATT_ACCT_TRANS, accountTransaction);
-		
-		return Constants.VIEW_WITHDRAW;
-		
+	/*
+	 * ADMIN Role
+	 * Get User's Accounts
+	 */
+	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
+	@GetMapping(Constants.URI_API_USR_ACCT)
+	public ResponseEntity<?> getAccounts(@PathVariable(Constants.PATH_VARIABLE_ID) Long id) {		
+		return ResponseEntity.ok(accountService.getAllAccounts(getUserById(id)));
 	}
 	
-	@PostMapping(Constants.URI_WITHDRAW)
-	public String withdraw (Principal principal, Model model,
-							@ModelAttribute(MODEL_ATT_ACCOUNT) Account account,
-							@ModelAttribute(MODEL_ATT_ACCT_TRANS) AccountTransaction accountTransaction) {
+	/*
+	 * API Role
+	 * Get Current User's Accounts
+	 */
+	@GetMapping(Constants.URI_API_USR_ACCT_CURR)
+	public ResponseEntity<?> getAccounts() {	
+		return ResponseEntity.ok(accountService.getAllAccounts(getAuthenticatedUser()));
+	}
+	
+	/*
+	 * ADMIN Role
+	 * Get User's Checking Accounts
+	 */
+	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
+	@GetMapping(Constants.URI_API_USR_ACCT_CHK)
+	public ResponseEntity<?> getCheckingAccounts(@PathVariable(Constants.PATH_VARIABLE_ID) Long id) {		
+		return ResponseEntity.ok(accountService.getCheckingAccounts(getUserById(id)));
+	}
+	
+	/*
+	 * API Role
+	 * Get Current User's Checking Accounts
+	 */
+	@GetMapping(Constants.URI_API_USR_ACCT_CHK_CURR)
+	public ResponseEntity<?> getCheckingAccounts() {		
+		return ResponseEntity.ok(accountService.getCheckingAccounts(getAuthenticatedUser()));
+	}
+	
+	/*
+	 * ADMIN Role
+	 * Get User's Savings Accounts
+	 */
+	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
+	@GetMapping(Constants.URI_API_USR_ACCT_SAV)
+	public ResponseEntity<?> getSavingsAccounts(@PathVariable(Constants.PATH_VARIABLE_ID) Long id) {		
+		return ResponseEntity.ok(accountService.getSavingsAccounts(getUserById(id)));
+	}
+	
+	/*
+	 * API Role
+	 * Get Current User's Savings Accounts
+	 */
+	@GetMapping(Constants.URI_API_USR_ACCT_SAV_CURR)
+	public ResponseEntity<?> getSavingsAccounts() {		
+		return ResponseEntity.ok(accountService.getSavingsAccounts(getAuthenticatedUser()));
+	}
+	
+	/*
+	 * API Role
+	 * Add New Account
+	 */
+	@PostMapping(Constants.URI_API_USR_ACCT_CURR)
+	public ResponseEntity<?> createAccount(@RequestBody @Valid NewAccount account) {		
 		
-		// Set Display Defaults
-		setDisplayDefaults(principal, model);
-				
-		LOG.debug("Withdraw: Account ID: -> " + account.getId());
-		LOG.debug("Withdraw: Amount: -> " + accountTransaction.getAmount());
-		
-		// get full object from partial object
-		account = accountService.getAccountById(account.getId());
-		
-		boolean bError = false;
-		
-		Users user = userService.findByUsername(principal.getName());
-		
-		// Check amount is greater than zero
-		if (accountTransaction.getAmount().signum() != 1) {
+		Account newAccount = new Account();
+		AccountType at = accountService.getAccoutTypeByCode(account.getAccountTypeCode());
+	
+		// if we meet the minimum balance requirement, then open account
+		if (account.getOpeningDeposit().compareTo(at.getMinDeposit()) >= 0) {
 			
-			// Return error
-			model.addAttribute(MODEL_ATT_ERROR_MSG, "The withdraw amount ($" 
-													 + accountTransaction.getAmount()
-													 + ") must be greater than $0.00");
+			OwnershipType ot = accountService.getOwnershipTypeByCode(account.getOwnerTypeCode());
 			
-			bError = true;
+			newAccount.setName(account.getAccountName());
+			newAccount.setOpeningBalance(account.getOpeningDeposit());
+			newAccount.setAccountType(at);
+			newAccount.setOwnershipType(ot);
+			newAccount.setOwner(getAuthenticatedUser());
+			accountService.createNewAccount(newAccount);
 			
 		} else {
+			throw new RestNotAcceptableException("The initial deposit ($" 
+					 + account.getOpeningDeposit() 
+					 + ") entered does not meet the minimum amount ($" 
+					 + at.getMinDeposit() 
+					 + ") required. Please enter a valid deposit amount.");
+		}
+		
+		return ResponseEntity.ok(newAccount);
+	}
+	
+	/*
+	 * ADMIN Role
+	 * Add New Account
+	 */
+	@PostMapping(Constants.URI_API_USR_ACCT)
+	public ResponseEntity<?> createAccount(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
+										   @RequestBody @Valid NewAccount account) {		
+		
+		Account newAccount = new Account();
+		AccountType at = accountService.getAccoutTypeByCode(account.getAccountTypeCode());
+	
+		// if we meet the minimum balance requirement, then open account
+		if (account.getOpeningDeposit().compareTo(at.getMinDeposit()) >= 0) {
+			
+			OwnershipType ot = accountService.getOwnershipTypeByCode(account.getOwnerTypeCode());
+			
+			newAccount.setName(account.getAccountName());
+			newAccount.setOpeningBalance(account.getOpeningDeposit());
+			newAccount.setAccountType(at);
+			newAccount.setOwnershipType(ot);
+			newAccount.setOwner(getUserById(id));
+			accountService.createNewAccount(newAccount);
+			
+		} else {
+			throw new RestNotAcceptableException("The initial deposit ($" 
+					 + account.getOpeningDeposit() 
+					 + ") entered does not meet the minimum amount ($" 
+					 + at.getMinDeposit() 
+					 + ") required. Please enter a valid deposit amount.");
+		}
+		
+		return ResponseEntity.ok(newAccount);
+	}
+	
+	/*
+	 * API Role
+	 * Get Current User's Savings Accounts
+	 */
+	@GetMapping(Constants.URI_API_ACCT_TRAN)
+	public ResponseEntity<?> getAccountTransactions(@PathVariable(Constants.PATH_VARIABLE_ID) Long id) {		
+		
+		Users authUser = getAuthenticatedUser();
+		Account account = getAccountById(id);
+		
+		// If this is not an ADMIN user, then make sure the account belongs to the user
+		if (!hasRole(authUser, Role.ROLE_ADMIN)) {
+			if (!(account.getOwner().getId() == authUser.getId() || account.getCoowner().getId() == authUser.getId())) {
+				throw new RestForbiddenException(Messages.ACCESS_FORBIDDEN);
+			}
+		}
+		
+		return ResponseEntity.ok(account.getAcountTransactionList());
+	}
+	
+	/*
+	 * API Role
+	 * Get Current User's Savings Accounts
+	 */
+	@PostMapping(Constants.URI_API_ACCT_TRAN)
+	public ResponseEntity<?> newTransaction(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
+											@RequestBody @Valid NewTransaction newTransaction,
+											@RequestParam(required=false)
+		 									@Pattern(regexp=Patterns.ACCT_TRAN_ACTION, 
+		 											 message=Messages.ACCT_TRAN_ACTION) String action) {		
+		
+		Users authUser = getAuthenticatedUser();
+		Account account = getAccountById(id);
+		
+		// If this is not an ADMIN user, then make sure the account belongs to the user
+		if (!hasRole(authUser, Role.ROLE_ADMIN)) {
+			if (!(account.getOwner().getId() == authUser.getId() || account.getCoowner().getId() == authUser.getId())) {
+				throw new RestForbiddenException(Messages.ACCESS_FORBIDDEN);
+			}
+		}
+		
+		AccountTransaction transaction = new AccountTransaction();
+		TransactionType transactionType = accountService.getTransactionTypeByCode(newTransaction.getTransactionTypeCode());
+		
+		transaction.setAmount(newTransaction.getAmount());
+		transaction.setDescription(newTransaction.getDescription());
+		transaction.setTransactionType(transactionType);
+		
+		// Assume the request is for Debit
+		boolean bDebit = true;
+		
+		LOG.debug("REST New Transaction: Transaction Type Code is '" + newTransaction.getTransactionTypeCode() + "'");
+
+		// Determine whether the request is for a CREDIT or DEBIT Transaction
+		if (transactionType.getCategory().equals(TransactionType.CAT_EITHER)) {
+
+			LOG.debug("REST New Transaction: Transaction Type Category is EITHER");
+			LOG.debug("REST New Transaction: Transaction Action is -> '" + action + "'");
+			
+			
+			// If transaction type category is EITHER, then action must be provided
+			if (action != null) {
+				if (action.equals(TransactionType.CAT_CREDIT)) {
+					bDebit = false;
+					
+					LOG.debug("REST New Transaction: Transaction Action will be CREDIT");
+				}
+			}
+			else {
+				LOG.debug("REST New Transaction: Transaction Action not specified.");
+				throw new RestNotAcceptableException (Messages.ACCT_TRAN_ACTION);
+			}			
+		} else if (transactionType.getCategory().equals(TransactionType.CAT_CREDIT)) {
+			
+			bDebit = false;
+			LOG.debug("REST New Transaction: Transaction Type Category is CREDIT");
+			LOG.debug("REST New Transaction: Transaction Action will be CREDIT");
+		}
+		
+		// if it is a DEBIT Transaction
+		if (bDebit) {
 			
 			// check that amount is not greater than available
 			BigDecimal maxAvailable = account.getCurrentBalance().add(account.getAccountType().getOverdraftLimit());
 			
-			if (accountTransaction.getAmount().compareTo(maxAvailable) == 1) {
-				
-				// Return error
-				model.addAttribute(MODEL_ATT_ERROR_MSG, "The withdraw amount ($" 
-														 + accountTransaction.getAmount()
-														 + ") is greater than the available balance ($"
-														 + account.getCurrentBalance() + ") and overdraft limit ($"
-														 + account.getAccountType().getOverdraftLimit() + ").");
-				
-				bError = true;
+			if (transaction.getAmount().compareTo(maxAvailable) == 1) {
+				throw new RestNotAcceptableException ("The withdraw amount ($" 
+						 							  + transaction.getAmount()
+						 							  + ") is greater than the available balance ($"
+						 							  + account.getCurrentBalance() + ") and overdraft limit ($"
+						 							  + account.getAccountType().getOverdraftLimit() + ").");
 			}
 			
+			// Add new Debit Transaction
+			accountService.debitTransaction(account, transaction);
 			
+			LOG.debug("REST New Transaction: Add new DEBIT Transaction");
+		} 
+		else {
+			
+			// Add new Credit Transaction
+			accountService.creditTransaction(account, transaction);
+			
+			LOG.debug("REST New Transaction: Add new CREDIT Transaction");
 		}
 		
-		if (bError) {
-			
-			// Get all accounts
-			List<Account> accountList = accountService.getCheckingAccounts(user);
-			accountList.addAll(accountService.getSavingsAccounts(user));
-			model.addAttribute(MODEL_ATT_ACCT_LIST, accountList);
-			model.addAttribute(MODEL_ATT_ACCOUNT, account);
-			model.addAttribute(MODEL_ATT_ACCT_TRANS, accountTransaction);
-			
-			return Constants.VIEW_WITHDRAW;
-			
-		}
-		
-		accountService.makeWithdraw(account, accountTransaction);
-		
-		// if this is a checking account
-		if (accountService.isSavingsAccount(account)) {
-			
-			// return the savings view - ensure the account for the deposit is in focus
-			return Constants.DIR_REDIRECT + Constants.VIEW_SAV_VIEW + "?" + MODEL_ATT_ACCT_SEL_SWITCH + "=" + account.getId();
-			
-		}
-		
-		// Return to the checking view - ensure the account for the deposit is in focus
-		return Constants.DIR_REDIRECT + Constants.VIEW_CHK_VIEW + "?" + MODEL_ATT_ACCT_SEL_SWITCH + "=" + account.getId();
-		
+		// Return the last 2 transactions. This is done in case there is an overdraft fee. This allows the user
+		// to see the transaction and the fee from the transaction if it occurs.
+		return ResponseEntity.ok(accountService.getLastTwoAccountTransactions(account));
 	}
 	
-	@GetMapping(Constants.URI_XFER_BETWEEN)
-	public String transfer (Principal principal, Model model) {
+	/*
+	 * API Role
+	 * Transfer Funds to Another Account
+	 */
+	@PostMapping(Constants.URI_API_ACCT_XFER)
+	public ResponseEntity<?> transferFunds(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
+										   @RequestBody @Valid TransferFunds transfer){
 		
-		// Set Display Defaults
-		setDisplayDefaults(principal, model);
-				
-		Users user = userService.findByUsername(principal.getName());
-
-		// Get all accounts
-		List<Account> accountList = accountService.getCheckingAccounts(user);
-		accountList.addAll(accountService.getSavingsAccounts(user));
-		model.addAttribute(MODEL_ATT_ACCT_LIST, accountList);
-		model.addAttribute(MODEL_ATT_FROM_ACCOUNT, new Long(0));
-		model.addAttribute(MODEL_ATT_TO_ACCOUNT, new Long(0));
-
+		Users authUser = getAuthenticatedUser();
+		Account fromAccount = getAccountById(id);
+		Account toAccount = getAccountById(transfer.getToAccountId());
+		AccountTransaction transaction = new AccountTransaction();
+		transaction.setAmount(transfer.getAmount());
 		
-		AccountTransaction accountTransaction = new AccountTransaction();
-		model.addAttribute(MODEL_ATT_ACCT_TRANS, accountTransaction);
-		
-		return Constants.VIEW_XFER_BETWEEN;
-		
-	}
-	
-	@PostMapping(Constants.URI_XFER_BETWEEN)
-	public String transfer (Principal principal, Model model,
-							@ModelAttribute(MODEL_ATT_FROM_ACCOUNT) Long fromAccount,
-							@ModelAttribute(MODEL_ATT_TO_ACCOUNT) Long toAccount,
-							@ModelAttribute(MODEL_ATT_ACCT_TRANS) AccountTransaction accountTransaction) {
-		
-		// Set Display Defaults
-		setDisplayDefaults(principal, model);
-		
-		LOG.debug("Transfer: From Account ID: -> " + fromAccount);
-		LOG.debug("Transfer: To Account ID: -> " + toAccount);
-		LOG.debug("Transfer: Amount: -> " + accountTransaction.getAmount());
-		
-		boolean bError = false;
-		
-		Account fromAcct = accountService.getAccountById(fromAccount);
-		Account toAcct = accountService.getAccountById(toAccount);
-		
-		Users user = userService.findByUsername(principal.getName());
-		
-		if (fromAcct.getId() != toAcct.getId()) {
-			
-			// if balance is not less than transfer amount
-			if (fromAcct.getCurrentBalance().compareTo(accountTransaction.getAmount()) != -1){
-				
-				// Check amount is greater than zero
-				if (accountTransaction.getAmount().signum() != 1) {
-					
-					bError = true;
-					model.addAttribute(MODEL_ATT_ERROR_MSG, "The transfer amount ($" 
-						 									 + accountTransaction.getAmount()
-						 									 + ") must be greater than $0.00");
-				}else {
-				
-					// Execute Transfer
-					accountService.transfer(fromAcct, toAcct, accountTransaction);
-				}
-			} else {
-				
-				bError = true;
-				model.addAttribute(MODEL_ATT_ERROR_MSG, "The amount ($" + accountTransaction.getAmount() 
-														 + ") requested for transfer is more than the available balance ($" 
-														 + fromAcct.getCurrentBalance() + ").");
+		// If this is not an ADMIN user, then make sure the account belongs to the user
+		if (!hasRole(authUser, Role.ROLE_ADMIN)) {
+			if (!(fromAccount.getOwner().getId() == authUser.getId() || fromAccount.getCoowner().getId() == authUser.getId())) {
+				throw new RestForbiddenException(Messages.ACCESS_FORBIDDEN);
 			}
-		}else {
-			
-			// Error from and to account cannot be the same
-			bError = true;
-			model.addAttribute(MODEL_ATT_ERROR_MSG, "Can not trasnsfer from and to the same account.");
-
 		}
 		
-		if (bError) {
-			
-			// Get all accounts
-			List<Account> accountList = accountService.getCheckingAccounts(user);
-			accountList.addAll(accountService.getSavingsAccounts(user));
-			model.addAttribute(MODEL_ATT_ACCT_LIST, accountList);
-			model.addAttribute(MODEL_ATT_FROM_ACCOUNT, fromAccount);
-			model.addAttribute(MODEL_ATT_TO_ACCOUNT, toAccount);
-			model.addAttribute(MODEL_ATT_ACCT_TRANS, accountTransaction);
-			
-			return Constants.VIEW_XFER_BETWEEN;
-		}
+		accountService.transfer(fromAccount, toAccount, transaction);
 		
-		
-		// if this is a checking account
-		if (accountService.isSavingsAccount(toAcct)) {
-			
-			// return the savings view - ensure the account for the deposit is in focus
-			return Constants.DIR_REDIRECT + Constants.VIEW_SAV_VIEW + "?" + MODEL_ATT_ACCT_SEL_SWITCH + "=" + toAcct.getId();
-			
-		}
-		
-		// Return to the checking view - ensure the account for the deposit is in focus
-		return Constants.DIR_REDIRECT + Constants.VIEW_CHK_VIEW + "?" + MODEL_ATT_ACCT_SEL_SWITCH + "=" + toAcct.getId();
-		
+		return ResponseEntity.ok(accountService.getLastTwoAccountTransactions(fromAccount));
 	}
 	
+	/*
+	 * Find the Account by Id
+	 */
+	private Account getAccountById(Long id) {
+		
+		if (id < 0) {
+			throw new RestBadRequestException (Messages.INVALID_OBJECT_ID);
+		}
+	
+		Account account = accountService.getAccountById(id);
+		
+		if (account == null) {
+			throw new RestObjectNotFoundException (Messages.OBJECT_NOT_FOUND + id);
+		}
+		
+		return account;
+	}
+	
+	
+	/*
+	 * New Account
+	 */
+	private static class NewAccount {
+		@NotEmpty (message=Messages.ACCT_NAME_REQ)
+		private String accountName;
+		
+		public String getAccountName() {
+			return accountName;
+		}
 
+		public BigDecimal getOpeningDeposit() {
+			return openingDeposit;
+		}
+
+		public String getAccountTypeCode() {
+			return accountTypeCode;
+		}
+
+		public String getOwnerTypeCode() {
+			return ownerTypeCode;
+		}
+
+		@NotNull (message=Messages.ACCT_OPEN_DEPOSIT_REQ)
+		@Positive (message=Messages.ACCT_TRAN_AMT_POSITIVE)
+		private BigDecimal openingDeposit;
+		
+		@NotEmpty (message=Messages.ACCT_TYPE_REQ)
+		@Pattern(regexp=Patterns.ACCT_TYPE_CODE, message=Messages.ACCT_TYPE_FORMAT)
+		private String accountTypeCode;
+		
+		@NotEmpty (message=Messages.ACCT_OWN_TYPE_REQ)
+		@Pattern(regexp=Patterns.ACCT_OWN_TYPE_CODE, message=Messages.ACCT_OWN_TYPE_FORMAT)
+		private String ownerTypeCode;
+	}
+	
+	/*
+	 * New Transaction
+	 */
+	private static class NewTransaction {
+		
+		@Positive (message=Messages.ACCT_TRAN_AMT_POSITIVE)
+		private BigDecimal amount;
+		
+		@NotEmpty (message=Messages.ACCT_TRAN_TYPE_CODE_REQ)
+		@Pattern(regexp=Patterns.ACCT_TRAN_TYPE_CODE, message=Messages.ACCT_TRAN_TYPE_FORMAT)
+		private String transactionTypeCode;
+		
+		@NotEmpty (message=Messages.ACCT_TRAN_DESC_REQ)
+		private String description;
+
+		/**
+		 * @return the amount
+		 */
+		public BigDecimal getAmount() {
+			return amount;
+		}
+
+		/**
+		 * @return the transactionTypeCode
+		 */
+		public String getTransactionTypeCode() {
+			return transactionTypeCode;
+		}
+
+		/**
+		 * @return the description
+		 */
+		public String getDescription() {
+			return description;
+		}
+	}
+	
+	/*
+	 * Transfer Funds
+	 */
+	private static class TransferFunds {
+		
+		@NotNull (message="To Account is required")
+		private Long toAccountId;
+		
+		@Positive (message=Messages.ACCT_TRAN_AMT_POSITIVE)
+		private BigDecimal amount;
+
+		/**
+		 * @return the toAccountId
+		 */
+		public Long getToAccountId() {
+			return toAccountId;
+		}
+
+		/**
+		 * @return the amount
+		 */
+		public BigDecimal getAmount() {
+			return amount;
+		}
+		
+	}
 }

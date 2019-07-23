@@ -16,14 +16,20 @@ public class TransactionType {
 	
 	private String code;
 	private String name;
+	private String category;
+	
+	public static final String CAT_DEBIT 	= "DEBIT";
+	public static final String CAT_CREDIT 	= "CREDIT";
+	public static final String CAT_EITHER 	= "EITHER";
 	
 	// default constructor
 	public TransactionType () {}
 	
-	public TransactionType (String code, String name) {
+	public TransactionType (String code, String name, String category) {
 		
 		this.code = code;
 		this.name = name;
+		this.category = category;
 	}
 	/**
 	 * @return the id
@@ -61,5 +67,19 @@ public class TransactionType {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+	/**
+	 * @return the category
+	 */
+	public String getCategory() {
+		return category;
+	}
+
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 }

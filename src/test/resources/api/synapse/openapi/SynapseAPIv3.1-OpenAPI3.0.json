@@ -1,0 +1,5475 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "core.public v3.1 /w auto ENV updates",
+    "description": "TODO: Add Description",
+    "contact": {},
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://example.com/v3.1",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/users/{user_id}/nodes/{node_id}/statements": {
+      "get": {
+        "tags": [
+          "Statements"
+        ],
+        "summary": "Statements by Nodes",
+        "description": "",
+        "operationId": "StatementsByNodes",
+        "parameters": [
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users/{user_id}/statements": {
+      "get": {
+        "tags": [
+          "Statements"
+        ],
+        "summary": "Statements by Users",
+        "description": "",
+        "operationId": "StatementsByUsers",
+        "parameters": [
+          {
+            "name": "X-SP-GATEWAY",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{client_id}}|{{client_secret}}"
+            }
+          },
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users/{user_id}/nodes": {
+      "get": {
+        "tags": [
+          "Nodes"
+        ],
+        "summary": "Nodes",
+        "description": "",
+        "operationId": "Nodes",
+        "parameters": [
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Nodes"
+        ],
+        "summary": "ACH Login",
+        "description": "ACH Login",
+        "operationId": "AchLogin",
+        "parameters": [
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ACHLoginRequest"
+              },
+              "example": {
+                "type": "ACH-US",
+                "info": {
+                  "bank_id": "synapse_good",
+                  "bank_pw": "test1234",
+                  "bank_name": "fake"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users/{user_id}/nodes/{node_id}": {
+      "get": {
+        "tags": [
+          "Nodes"
+        ],
+        "summary": "Node",
+        "description": "",
+        "operationId": "Node",
+        "parameters": [
+          {
+            "name": "full_dehydrate",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "no"
+            }
+          },
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "Nodes"
+        ],
+        "summary": "Verify Micro Deposits",
+        "description": "",
+        "operationId": "VerifyMicroDeposits",
+        "parameters": [
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyMicroDepositsRequest"
+              },
+              "example": {
+                "micro": [
+                  0.1,
+                  0.1
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Nodes"
+        ],
+        "summary": "Node",
+        "description": "",
+        "operationId": "Node1",
+        "parameters": [
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/nodes/types": {
+      "get": {
+        "tags": [
+          "Nodes"
+        ],
+        "summary": "Node Types",
+        "description": "",
+        "operationId": "NodeTypes",
+        "parameters": [
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/nodes/atms": {
+      "get": {
+        "tags": [
+          "Nodes"
+        ],
+        "summary": "Nearest ATM",
+        "operationId": "NearestAtm",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 20
+            }
+          },
+          {
+            "name": "zip",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 94114
+            }
+          },
+          {
+            "name": "radius",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 5
+            }
+          },
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/nodes/crypto-market-watch": {
+      "get": {
+        "tags": [
+          "Nodes"
+        ],
+        "summary": "Crypto Market",
+        "operationId": "CryptoMarket",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 5
+            }
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "BTC"
+            }
+          },
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users/{user_id}/nodes/{node_id}/crypto-quotes": {
+      "get": {
+        "tags": [
+          "Nodes"
+        ],
+        "summary": "Crypto Quotes",
+        "operationId": "CryptoQuotes",
+        "parameters": [
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users/{user_id}/nodes/{node_id}/dummy-tran": {
+      "get": {
+        "tags": [
+          "Nodes"
+        ],
+        "summary": "Dummy Transactions",
+        "operationId": "DummyTransactions",
+        "parameters": [
+          {
+            "name": "is_credit",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "NO"
+            }
+          },
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Dummy Transaction",
+        "description": "",
+        "operationId": "DummyTransaction",
+        "parameters": [
+          {
+            "name": "is_credit",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "NO"
+            }
+          },
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "example": {}
+              },
+              "example": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users/{user_id}/nodes/{card_node_id}": {
+      "patch": {
+        "tags": [
+          "Nodes"
+        ],
+        "summary": "Card Limits",
+        "operationId": "CardLimits",
+        "parameters": [
+          {
+            "name": "ship",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "YES"
+            }
+          },
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "card_node_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CardLimitsRequest"
+              },
+              "example": {
+                "fee_node_id": "{{deposit_node_id}}",
+                "expedite": false,
+                "info": {
+                  "card_style_id": "79"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/oauth/{user_id}": {
+      "post": {
+        "tags": [
+          "Oauth"
+        ],
+        "summary": "OAuth via refresh token",
+        "description": "",
+        "operationId": "OauthViaRefreshToken",
+        "parameters": [
+          {
+            "name": "X-SP-GATEWAY",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{client_id}}|{{client_secret}}"
+            }
+          },
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OAuthviarefreshtokenRequest"
+              },
+              "example": {
+                "refresh_token": "{{refresh_token}}",
+                "scope": [
+                  "USER|PATCH",
+                  "USER|GET",
+                  "NODES|POST",
+                  "NODES|GET",
+                  "NODE|GET",
+                  "NODE|PATCH",
+                  "NODE|DELETE",
+                  "TRANS|POST",
+                  "TRANS|GET",
+                  "TRAN|GET",
+                  "TRAN|PATCH",
+                  "TRAN|DELETE",
+                  "SUBNETS|GET",
+                  "SUBNETS|POST",
+                  "SUBNET|GET",
+                  "SUBNET|PATCH",
+                  "STATEMENTS|GET",
+                  "STATEMENT|GET"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/oauth/{user_id}/login": {
+      "post": {
+        "tags": [
+          "Oauth"
+        ],
+        "summary": "OAuth via login",
+        "description": "",
+        "operationId": "OauthViaLogin",
+        "parameters": [
+          {
+            "name": "X-SP-GATEWAY",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{client_id}}|{{client_secret}}"
+            }
+          },
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OAuthvialoginRequest"
+              },
+              "example": {
+                "email": "sankaet@synapsepay.com",
+                "password": "test1234"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/subscriptions": {
+      "get": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "summary": "Subscriptions",
+        "description": "",
+        "operationId": "Subscriptions",
+        "parameters": [
+          {
+            "name": "X-SP-GATEWAY",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{client_id}}|{{client_secret}}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "summary": "Create",
+        "description": "",
+        "operationId": "Create",
+        "parameters": [
+          {
+            "name": "X-SP-GATEWAY",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{client_id}}|{{client_secret}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRequest"
+              },
+              "example": {
+                "scope": [
+                  "USERS|POST",
+                  "USER|PATCH",
+                  "NODES|POST",
+                  "NODE|PATCH",
+                  "TRANS|POST",
+                  "TRAN|PATCH"
+                ],
+                "url": "https://requestb.in/zvgnd0zv"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/subscriptions/{subscription_id}": {
+      "get": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "summary": "Subscription",
+        "description": "",
+        "operationId": "Subscription",
+        "parameters": [
+          {
+            "name": "X-SP-GATEWAY",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{client_id}}|{{client_secret}}"
+            }
+          },
+          {
+            "name": "subscription_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "summary": "Scope",
+        "description": "",
+        "operationId": "Scope",
+        "parameters": [
+          {
+            "name": "X-SP-GATEWAY",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{client_id}}|{{client_secret}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "subscription_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScopeRequest"
+              },
+              "example": {
+                "is_active": true,
+                "scope": [
+                  "USERS|POST",
+                  "NODES|POST",
+                  "TRANS|POST"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users/{user_id}/trans": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Transactions",
+        "description": "",
+        "operationId": "Transactions",
+        "parameters": [
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users/{user_id}/nodes/{node_id}/trans": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Node Transactions",
+        "description": "",
+        "operationId": "NodeTransactions",
+        "parameters": [
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Transaction",
+        "description": "",
+        "operationId": "Transaction",
+        "parameters": [
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionRequest"
+              },
+              "example": {
+                "to": {
+                  "type": "ACH-US",
+                  "id": "{{deposit_node_id}}"
+                },
+                "amount": {
+                  "amount": 100.1,
+                  "currency": "USD"
+                },
+                "extra": {
+                  "ip": "{{ip}}",
+                  "note": "Test transaction"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users/{user_id}/nodes/{deposit_node_id}/trans": {
+      "post": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "RDC",
+        "description": "",
+        "operationId": "RDC",
+        "parameters": [
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deposit_node_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RDCREQUEST"
+              },
+              "example": {
+                "from": {
+                  "type": "RDC",
+                  "meta": {
+                    "check_front": "data:image/gif;base64,SUQs==",
+                    "check_back": "data:image/gif;base64,SUQs=="
+                  }
+                },
+                "to": {
+                  "type": "DEPOSIT-US",
+                  "id": "{{deposit_node_id}}"
+                },
+                "amount": {
+                  "amount": 100.1,
+                  "currency": "USD"
+                },
+                "extra": {
+                  "ip": "127.0.0.1",
+                  "note": "Test transaction"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users/{user_id}/nodes/{node_id}/trans/{transaction_id}": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Node Transaction",
+        "description": "",
+        "operationId": "NodeTransaction",
+        "parameters": [
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "transaction_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Comment on Transaction",
+        "description": "",
+        "operationId": "CommentOnTransaction",
+        "parameters": [
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "transaction_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentonTransactionRequest"
+              },
+              "example": {
+                "comment": "add comment!"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Transaction",
+        "description": "",
+        "operationId": "Transaction1",
+        "parameters": [
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "transaction_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users/{user_id}/nodes/{node_id}/subnets": {
+      "get": {
+        "tags": [
+          "Subnets"
+        ],
+        "summary": "Subnets",
+        "description": "",
+        "operationId": "Subnets",
+        "parameters": [
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Subnets"
+        ],
+        "summary": "Subnet",
+        "description": "",
+        "operationId": "Subnet1",
+        "parameters": [
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubnetRequest"
+              },
+              "example": {
+                "nickname": "Test AC/RT"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users/{user_id}/nodes/{node_id}/subnets/{subnet_id}": {
+      "get": {
+        "tags": [
+          "Subnets"
+        ],
+        "summary": "Subnet",
+        "description": "",
+        "operationId": "Subnet",
+        "parameters": [
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "subnet_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "Subnets"
+        ],
+        "summary": "Status",
+        "description": "",
+        "operationId": "Status",
+        "parameters": [
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "node_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "subnet_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StatusRequest"
+              },
+              "example": {
+                "allowed": "LOCKED"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Users",
+        "description": "",
+        "operationId": "Users",
+        "parameters": [
+          {
+            "name": "X-SP-GATEWAY",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{client_id}}|{{client_secret}}"
+            }
+          },
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "User",
+        "description": "",
+        "operationId": "User1",
+        "parameters": [
+          {
+            "name": "X-SP-GATEWAY",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{client_id}}|{{client_secret}}"
+            }
+          },
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRequest"
+              },
+              "example": {
+                "logins": [
+                  {
+                    "email": "test@synapsepay.com"
+                  }
+                ],
+                "phone_numbers": [
+                  "901.111.1111",
+                  "test@synapsepay.com"
+                ],
+                "legal_names": [
+                  ""
+                ],
+                "documents": [
+                  {
+                    "email": "test@test.com",
+                    "phone_number": "901.111.1111",
+                    "ip": "::1",
+                    "name": "",
+                    "alias": "",
+                    "entity_type": "M",
+                    "entity_scope": "Arts & Entertainment",
+                    "day": 2,
+                    "month": 5,
+                    "year": 1989,
+                    "address_street": "1 Market St.",
+                    "address_city": "SF",
+                    "address_subdivision": "CA",
+                    "address_postal_code": "94105",
+                    "address_country_code": "US",
+                    "virtual_docs": [
+                      {
+                        "document_value": "2222",
+                        "document_type": "SSN"
+                      }
+                    ],
+                    "physical_docs": [
+                      {
+                        "document_value": "data:image/gif;base64,SUQs==",
+                        "document_type": "GOVT_ID"
+                      }
+                    ],
+                    "social_docs": [
+                      {
+                        "document_value": "https://www.facebook.com/valid",
+                        "document_type": "FACEBOOK"
+                      }
+                    ]
+                  }
+                ],
+                "extra": {
+                  "supp_id": "122eddfgbeafrfvbbb",
+                  "cip_tag": 1,
+                  "is_business": false
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "User",
+        "description": "",
+        "operationId": "User",
+        "parameters": [
+          {
+            "name": "full_dehydrate",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "no"
+            }
+          },
+          {
+            "name": "X-SP-GATEWAY",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{client_id}}|{{client_secret}}"
+            }
+          },
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Base Document",
+        "description": "",
+        "operationId": "BaseDocument",
+        "parameters": [
+          {
+            "name": "X-SP-GATEWAY",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{client_id}}|{{client_secret}}"
+            }
+          },
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BaseDocumentRequest"
+              },
+              "example": {
+                "update": {
+                  "login": {
+                    "email": "test2@synapsepay.com"
+                  },
+                  "remove_login": {
+                    "email": "test@synapsepay.com"
+                  },
+                  "phone_number": "9019411111",
+                  "remove_phone_number": "9019411111",
+                  "legal_name": "Some new name",
+                  "remove_legal_name": "Test User",
+                  "is_hidden": false
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users/document-types": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Document Types",
+        "description": "",
+        "operationId": "DocumentTypes",
+        "parameters": [
+          {
+            "name": "X-SP-GATEWAY",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{client_id}}|{{client_secret}}"
+            }
+          },
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "|{{fp}}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users/entity-types": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Entity Types",
+        "description": "",
+        "operationId": "EntityTypes",
+        "parameters": [
+          {
+            "name": "X-SP-GATEWAY",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{client_id}}|{{client_secret}}"
+            }
+          },
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "|{{fp}}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users/entity-scopes": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Entity Scopes",
+        "description": "",
+        "operationId": "EntityScopes",
+        "parameters": [
+          {
+            "name": "X-SP-GATEWAY",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{client_id}}|{{client_secret}}"
+            }
+          },
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "|{{fp}}"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/client": {
+      "get": {
+        "tags": [
+          "Client"
+        ],
+        "summary": "Issue Public Key",
+        "description": "",
+        "operationId": "IssuePublicKey",
+        "parameters": [
+          {
+            "name": "issue_public_key",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "YES"
+            }
+          },
+          {
+            "name": "scope",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "OAUTH|POST,USERS|POST,USERS|GET,USER|GET,USER|PATCH,SUBSCRIPTIONS|GET,SUBSCRIPTIONS|POST,SUBSCRIPTION|GET,SUBSCRIPTION|PATCH,CLIENT|REPORTS,CLIENT|CONTROLS"
+            }
+          },
+          {
+            "name": "X-SP-GATEWAY",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{client_id}}|{{client_secret}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/nodes/crypto-quotes": {
+      "get": {
+        "tags": [
+          "Client"
+        ],
+        "summary": "Client Crypto Quotes",
+        "description": "",
+        "operationId": "ClientCryptoQuotes",
+        "parameters": [
+          {
+            "name": "X-SP-USER-IP",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{ip}}"
+            }
+          },
+          {
+            "name": "X-SP-USER",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{oauth_key}}|{{fp}}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ACHLoginRequest": {
+        "title": "ACHLoginRequest",
+        "required": [
+          "type",
+          "info"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "info": {
+            "$ref": "#/components/schemas/Info"
+          }
+        },
+        "example": {
+          "type": "ACH-US",
+          "info": {
+            "bank_id": "synapse_good",
+            "bank_pw": "test1234",
+            "bank_name": "fake"
+          }
+        }
+      },
+      "Info": {
+        "title": "Info",
+        "required": [
+          "bank_id",
+          "bank_pw",
+          "bank_name"
+        ],
+        "type": "object",
+        "properties": {
+          "bank_id": {
+            "type": "string"
+          },
+          "bank_pw": {
+            "type": "string"
+          },
+          "bank_name": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "bank_id": "synapse_good",
+          "bank_pw": "test1234",
+          "bank_name": "fake"
+        }
+      },
+      "ACHLoginMFARequest": {
+        "title": "ACHLoginMFARequest",
+        "required": [
+          "access_token",
+          "mfa_answer"
+        ],
+        "type": "object",
+        "properties": {
+          "access_token": {
+            "type": "string"
+          },
+          "mfa_answer": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "access_token": "{{mfa_access_token}}",
+          "mfa_answer": "test_answer"
+        }
+      },
+      "ACHAC/RTREQUEST": {
+        "title": "ACHAC/RTREQUEST",
+        "required": [
+          "type",
+          "info"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "info": {
+            "$ref": "#/components/schemas/Info1"
+          }
+        },
+        "example": {
+          "type": "ACH-US",
+          "info": {
+            "nickname": "Fake Account",
+            "account_num": "12322134",
+            "routing_num": "051000017",
+            "type": "PERSONAL",
+            "class": "CHECKING"
+          }
+        }
+      },
+      "Info1": {
+        "title": "Info1",
+        "required": [
+          "nickname",
+          "account_num",
+          "routing_num",
+          "type",
+          "class"
+        ],
+        "type": "object",
+        "properties": {
+          "nickname": {
+            "type": "string"
+          },
+          "account_num": {
+            "type": "string"
+          },
+          "routing_num": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "class": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "nickname": "Fake Account",
+          "account_num": "12322134",
+          "routing_num": "051000017",
+          "type": "PERSONAL",
+          "class": "CHECKING"
+        }
+      },
+      "INTERCHANGE-US-REQUEST": {
+        "title": "INTERCHANGE-US-REQUEST",
+        "required": [
+          "type",
+          "info"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "info": {
+            "$ref": "#/components/schemas/Info2"
+          }
+        },
+        "example": {
+          "type": "INTERCHANGE-US",
+          "info": {
+            "nickname": "My Debit Card",
+            "card_number": "Zoo8g2vBUjt7TwmEpRW8f6eQT3AOEEYePw2LkoxD+mO9lOT5OemHlGwgamgLGUbrmWu3DPwnEr2IqDy5YMFVgvQWP3w9nLOFzFFSW43auDgsVAqZScoRf8nI+6/B9KvOEV4XI8JeyXT+O+y3p3RtbiXGmYQNJ56Hy3hs2E5O+yn+3fpLfJQpVvNc38V+aE21VEsJuXFFNtS/8r4jJ6Dx/etTEaE/rtcEUEbwLLHFHjPiOWaHWZPuhXFLtyYrR9zG8FWSJVFwNTG/mEpv2O7We1iCB+9WoEKqdHyGwjjBcVgkUlU5huJIXv9xj53RGNvmHkDFTqgrlHpKkb0E/Ot0Zg==",
+            "exp_date": "ctA4Zj1CP0WCiMefPYsyewVbIHNilfwA09X9NSCyWxft4WGwFZmZkhsBJh51QL751/iFkUHbd09ZpDYjS86PqyNPZ5LkBueGHDIghLwWyzH1l99RiIs8urOW9c4g3L1USD+kzzRAqG1DBkW47FAX6AhPSi3YgQd94ery1H+asaqDrP79ayzoJ+nRXeEqe83FIgNUk/J5+EcAz3JYnoBmp1sfz7a4zHkvk0eKCxQWLETdqvONyCZyXdC/4CkaCxJ/87VsN3i4+ToULtSluRv8xr1NpRhzipKiEKTYW1nvNDAaJQezTVP/+GxmTmQfnfpVNDpJbXjNrOTej1HgMFpg4w==",
+            "document_id": "2a4a5957a3a62aaac1a0dd0edcae96ea2cdee688ec6337b20745eed8869e3ac8"
+          }
+        }
+      },
+      "Info2": {
+        "title": "Info2",
+        "required": [
+          "nickname",
+          "card_number",
+          "exp_date",
+          "document_id"
+        ],
+        "type": "object",
+        "properties": {
+          "nickname": {
+            "type": "string"
+          },
+          "card_number": {
+            "type": "string"
+          },
+          "exp_date": {
+            "type": "string"
+          },
+          "document_id": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "nickname": "My Debit Card",
+          "card_number": "Zoo8g2vBUjt7TwmEpRW8f6eQT3AOEEYePw2LkoxD+mO9lOT5OemHlGwgamgLGUbrmWu3DPwnEr2IqDy5YMFVgvQWP3w9nLOFzFFSW43auDgsVAqZScoRf8nI+6/B9KvOEV4XI8JeyXT+O+y3p3RtbiXGmYQNJ56Hy3hs2E5O+yn+3fpLfJQpVvNc38V+aE21VEsJuXFFNtS/8r4jJ6Dx/etTEaE/rtcEUEbwLLHFHjPiOWaHWZPuhXFLtyYrR9zG8FWSJVFwNTG/mEpv2O7We1iCB+9WoEKqdHyGwjjBcVgkUlU5huJIXv9xj53RGNvmHkDFTqgrlHpKkb0E/Ot0Zg==",
+          "exp_date": "ctA4Zj1CP0WCiMefPYsyewVbIHNilfwA09X9NSCyWxft4WGwFZmZkhsBJh51QL751/iFkUHbd09ZpDYjS86PqyNPZ5LkBueGHDIghLwWyzH1l99RiIs8urOW9c4g3L1USD+kzzRAqG1DBkW47FAX6AhPSi3YgQd94ery1H+asaqDrP79ayzoJ+nRXeEqe83FIgNUk/J5+EcAz3JYnoBmp1sfz7a4zHkvk0eKCxQWLETdqvONyCZyXdC/4CkaCxJ/87VsN3i4+ToULtSluRv8xr1NpRhzipKiEKTYW1nvNDAaJQezTVP/+GxmTmQfnfpVNDpJbXjNrOTej1HgMFpg4w==",
+          "document_id": "2a4a5957a3a62aaac1a0dd0edcae96ea2cdee688ec6337b20745eed8869e3ac8"
+        }
+      },
+      "CARD-US-REQUEST": {
+        "title": "CARD-US-REQUEST",
+        "required": [
+          "type",
+          "info"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "info": {
+            "$ref": "#/components/schemas/Info3"
+          }
+        },
+        "example": {
+          "type": "CARD-US",
+          "info": {
+            "nickname": "My Debit Card",
+            "document_id": "fda60784d6375bc44edafaaeae149626c4c13dcb92e85a2a7a00eec2cdfd2b6f"
+          }
+        }
+      },
+      "Info3": {
+        "title": "Info3",
+        "required": [
+          "nickname",
+          "document_id"
+        ],
+        "type": "object",
+        "properties": {
+          "nickname": {
+            "type": "string"
+          },
+          "document_id": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "nickname": "My Debit Card",
+          "document_id": "fda60784d6375bc44edafaaeae149626c4c13dcb92e85a2a7a00eec2cdfd2b6f"
+        }
+      },
+      "CUSTODY-US-REQUEST": {
+        "title": "CUSTODY-US-REQUEST",
+        "required": [
+          "type",
+          "info"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "info": {
+            "$ref": "#/components/schemas/Info4"
+          }
+        },
+        "example": {
+          "type": "CUSTODY-US",
+          "info": {
+            "nickname": "Custody Account"
+          }
+        }
+      },
+      "Info4": {
+        "title": "Info4",
+        "required": [
+          "nickname"
+        ],
+        "type": "object",
+        "properties": {
+          "nickname": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "nickname": "Custody Account"
+        }
+      },
+      "DEPOSIT-US-REQUEST": {
+        "title": "DEPOSIT-US-REQUEST",
+        "required": [
+          "type",
+          "info"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "info": {
+            "$ref": "#/components/schemas/Info4"
+          }
+        },
+        "example": {
+          "type": "DEPOSIT-US",
+          "info": {
+            "nickname": "Goliath National Bank Checking"
+          }
+        }
+      },
+      "SUBNET-US-REQUEST": {
+        "title": "SUBNET-US-REQUEST",
+        "required": [
+          "type",
+          "info"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "info": {
+            "$ref": "#/components/schemas/Info4"
+          }
+        },
+        "example": {
+          "type": "DEPOSIT-US",
+          "info": {
+            "nickname": "Goliath National Bank Checking"
+          }
+        }
+      },
+      "RESERVE-US-REQUEST": {
+        "title": "RESERVE-US-REQUEST",
+        "required": [
+          "type",
+          "info"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "info": {
+            "$ref": "#/components/schemas/Info4"
+          }
+        },
+        "example": {
+          "type": "RESERVE-US",
+          "info": {
+            "nickname": "Goliath National Bank Reserve"
+          }
+        }
+      },
+      "CHECK-US-REQUEST": {
+        "title": "CHECK-US-REQUEST",
+        "required": [
+          "type",
+          "info"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "info": {
+            "$ref": "#/components/schemas/Info8"
+          }
+        },
+        "example": {
+          "type": "CHECK-US",
+          "info": {
+            "nickname": "My Checking",
+            "payee_name": "Some Name",
+            "payee_address": {
+              "address_street": "1 Market St",
+              "address_city": "San Francisco",
+              "address_subdivision": "CA",
+              "address_country_code": "US",
+              "address_postal_code": "94105"
+            }
+          }
+        }
+      },
+      "Info8": {
+        "title": "Info8",
+        "required": [
+          "nickname",
+          "payee_name",
+          "payee_address"
+        ],
+        "type": "object",
+        "properties": {
+          "nickname": {
+            "type": "string"
+          },
+          "payee_name": {
+            "type": "string"
+          },
+          "payee_address": {
+            "$ref": "#/components/schemas/PayeeAddress"
+          }
+        },
+        "example": {
+          "nickname": "My Checking",
+          "payee_name": "Some Name",
+          "payee_address": {
+            "address_street": "1 Market St",
+            "address_city": "San Francisco",
+            "address_subdivision": "CA",
+            "address_country_code": "US",
+            "address_postal_code": "94105"
+          }
+        }
+      },
+      "PayeeAddress": {
+        "title": "PayeeAddress",
+        "required": [
+          "address_street",
+          "address_city",
+          "address_subdivision",
+          "address_country_code",
+          "address_postal_code"
+        ],
+        "type": "object",
+        "properties": {
+          "address_street": {
+            "type": "string"
+          },
+          "address_city": {
+            "type": "string"
+          },
+          "address_subdivision": {
+            "type": "string"
+          },
+          "address_country_code": {
+            "type": "string"
+          },
+          "address_postal_code": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "address_street": "1 Market St",
+          "address_city": "San Francisco",
+          "address_subdivision": "CA",
+          "address_country_code": "US",
+          "address_postal_code": "94105"
+        }
+      },
+      "WIRE-US-REQUEST": {
+        "title": "WIRE-US-REQUEST",
+        "required": [
+          "type",
+          "info"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "info": {
+            "$ref": "#/components/schemas/Info9"
+          }
+        },
+        "example": {
+          "type": "WIRE-US",
+          "info": {
+            "nickname": "Some Account",
+            "account_num": "1235674342",
+            "routing_num": "026009593",
+            "correspondent_info": {
+              "routing_num": "026009593",
+              "bank_name": "Bank of America",
+              "address": "452 Fifth Ave, NY"
+            }
+          }
+        }
+      },
+      "Info9": {
+        "title": "Info9",
+        "required": [
+          "nickname",
+          "account_num",
+          "routing_num",
+          "correspondent_info"
+        ],
+        "type": "object",
+        "properties": {
+          "nickname": {
+            "type": "string"
+          },
+          "account_num": {
+            "type": "string"
+          },
+          "routing_num": {
+            "type": "string"
+          },
+          "correspondent_info": {
+            "$ref": "#/components/schemas/CorrespondentInfo"
+          }
+        },
+        "example": {
+          "nickname": "Some Account",
+          "account_num": "1235674342",
+          "routing_num": "026009593",
+          "correspondent_info": {
+            "routing_num": "026009593",
+            "bank_name": "Bank of America",
+            "address": "452 Fifth Ave, NY"
+          }
+        }
+      },
+      "CorrespondentInfo": {
+        "title": "CorrespondentInfo",
+        "required": [
+          "routing_num",
+          "bank_name",
+          "address"
+        ],
+        "type": "object",
+        "properties": {
+          "routing_num": {
+            "type": "string"
+          },
+          "bank_name": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "routing_num": "026009593",
+          "bank_name": "Bank of America",
+          "address": "452 Fifth Ave, NY"
+        }
+      },
+      "WIRE-INT-REQUEST": {
+        "title": "WIRE-INT-REQUEST",
+        "required": [
+          "type",
+          "info"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "info": {
+            "$ref": "#/components/schemas/Info10"
+          }
+        },
+        "example": {
+          "type": "WIRE-INT",
+          "info": {
+            "nickname": "Some Account",
+            "account_num": "123567443",
+            "swift": "TSIGFR22",
+            "correspondent_info": {
+              "routing_num": "026009593",
+              "bank_name": "Bank of America",
+              "address": "452 Fifth Ave, NY"
+            }
+          }
+        }
+      },
+      "Info10": {
+        "title": "Info10",
+        "required": [
+          "nickname",
+          "account_num",
+          "swift",
+          "correspondent_info"
+        ],
+        "type": "object",
+        "properties": {
+          "nickname": {
+            "type": "string"
+          },
+          "account_num": {
+            "type": "string"
+          },
+          "swift": {
+            "type": "string"
+          },
+          "correspondent_info": {
+            "$ref": "#/components/schemas/CorrespondentInfo"
+          }
+        },
+        "example": {
+          "nickname": "Some Account",
+          "account_num": "123567443",
+          "swift": "TSIGFR22",
+          "correspondent_info": {
+            "routing_num": "026009593",
+            "bank_name": "Bank of America",
+            "address": "452 Fifth Ave, NY"
+          }
+        }
+      },
+      "IOUREQUEST": {
+        "title": "IOUREQUEST",
+        "required": [
+          "type",
+          "info"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "info": {
+            "$ref": "#/components/schemas/Info11"
+          }
+        },
+        "example": {
+          "type": "IOU",
+          "info": {
+            "nickname": "GBP Node",
+            "balance": {
+              "currency": "GBP"
+            }
+          }
+        }
+      },
+      "Info11": {
+        "title": "Info11",
+        "required": [
+          "nickname",
+          "balance"
+        ],
+        "type": "object",
+        "properties": {
+          "nickname": {
+            "type": "string"
+          },
+          "balance": {
+            "$ref": "#/components/schemas/Balance"
+          }
+        },
+        "example": {
+          "nickname": "GBP Node",
+          "balance": {
+            "currency": "GBP"
+          }
+        }
+      },
+      "Balance": {
+        "title": "Balance",
+        "required": [
+          "currency"
+        ],
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "currency": "GBP"
+        }
+      },
+      "CRYPTO-US-REQUEST": {
+        "title": "CRYPTO-US-REQUEST",
+        "required": [
+          "type",
+          "info"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "info": {
+            "$ref": "#/components/schemas/Info4"
+          }
+        },
+        "example": {
+          "type": "CRYPTO-US",
+          "info": {
+            "nickname": "My CRYPTO Wallet"
+          }
+        }
+      },
+      "VerifyMicroDepositsRequest": {
+        "title": "VerifyMicroDepositsRequest",
+        "required": [
+          "micro"
+        ],
+        "type": "object",
+        "properties": {
+          "micro": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "micro": [
+            0.1,
+            0.1
+          ]
+        }
+      },
+      "NicknameRequest": {
+        "title": "NicknameRequest",
+        "required": [
+          "nickname",
+          "supp_id"
+        ],
+        "type": "object",
+        "properties": {
+          "nickname": {
+            "type": "string"
+          },
+          "supp_id": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "nickname": "New Nickname",
+          "supp_id": "new_supp_id_1234"
+        }
+      },
+      "PreferencesRequest": {
+        "title": "PreferencesRequest",
+        "required": [
+          "preferences"
+        ],
+        "type": "object",
+        "properties": {
+          "preferences": {
+            "$ref": "#/components/schemas/Preferences"
+          }
+        },
+        "example": {
+          "preferences": {
+            "allow_foreign_transactions": true,
+            "atm_withdrawal_limit": 5000,
+            "atm_deposit_limit": 1000,
+            "max_pin_attempts": 3,
+            "pos_withdrawal_limit": 1000,
+            "security_alerts": true
+          }
+        }
+      },
+      "Preferences": {
+        "title": "Preferences",
+        "required": [
+          "allow_foreign_transactions",
+          "atm_withdrawal_limit",
+          "atm_deposit_limit",
+          "max_pin_attempts",
+          "pos_withdrawal_limit",
+          "security_alerts"
+        ],
+        "type": "object",
+        "properties": {
+          "allow_foreign_transactions": {
+            "type": "boolean"
+          },
+          "atm_withdrawal_limit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "atm_deposit_limit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "max_pin_attempts": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pos_withdrawal_limit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "security_alerts": {
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "allow_foreign_transactions": true,
+          "atm_withdrawal_limit": 5000,
+          "atm_deposit_limit": 1000,
+          "max_pin_attempts": 3,
+          "pos_withdrawal_limit": 1000,
+          "security_alerts": true
+        }
+      },
+      "CardLimitsRequest": {
+        "title": "CardLimitsRequest",
+        "required": [
+          "fee_node_id",
+          "expedite",
+          "info"
+        ],
+        "type": "object",
+        "properties": {
+          "fee_node_id": {
+            "type": "string"
+          },
+          "expedite": {
+            "type": "boolean"
+          },
+          "info": {
+            "$ref": "#/components/schemas/Info13"
+          }
+        },
+        "example": {
+          "fee_node_id": "{{deposit_node_id}}",
+          "expedite": false,
+          "info": {
+            "card_style_id": "79"
+          }
+        }
+      },
+      "Info13": {
+        "title": "Info13",
+        "required": [
+          "card_style_id"
+        ],
+        "type": "object",
+        "properties": {
+          "card_style_id": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "card_style_id": "79"
+        }
+      },
+      "OAuthviarefreshtokenRequest": {
+        "title": "OAuthviarefreshtokenRequest",
+        "required": [
+          "refresh_token",
+          "scope"
+        ],
+        "type": "object",
+        "properties": {
+          "refresh_token": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "refresh_token": "{{refresh_token}}",
+          "scope": [
+            "USER|PATCH",
+            "USER|GET",
+            "NODES|POST",
+            "NODES|GET",
+            "NODE|GET",
+            "NODE|PATCH",
+            "NODE|DELETE",
+            "TRANS|POST",
+            "TRANS|GET",
+            "TRAN|GET",
+            "TRAN|PATCH",
+            "TRAN|DELETE",
+            "SUBNETS|GET",
+            "SUBNETS|POST",
+            "SUBNET|GET",
+            "SUBNET|PATCH",
+            "STATEMENTS|GET",
+            "STATEMENT|GET"
+          ]
+        }
+      },
+      "OAuthvialoginRequest": {
+        "title": "OAuthvialoginRequest",
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "email": "sankaet@synapsepay.com",
+          "password": "test1234"
+        }
+      },
+      "CreateRequest": {
+        "title": "CreateRequest",
+        "required": [
+          "scope",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "scope": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "scope": [
+            "USERS|POST",
+            "USER|PATCH",
+            "NODES|POST",
+            "NODE|PATCH",
+            "TRANS|POST",
+            "TRAN|PATCH"
+          ],
+          "url": "https://requestb.in/zvgnd0zv"
+        }
+      },
+      "ScopeRequest": {
+        "title": "ScopeRequest",
+        "required": [
+          "is_active",
+          "scope"
+        ],
+        "type": "object",
+        "properties": {
+          "is_active": {
+            "type": "boolean"
+          },
+          "scope": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "is_active": true,
+          "scope": [
+            "USERS|POST",
+            "NODES|POST",
+            "TRANS|POST"
+          ]
+        }
+      },
+      "TransactionRequest": {
+        "title": "TransactionRequest",
+        "required": [
+          "to",
+          "amount",
+          "extra"
+        ],
+        "type": "object",
+        "properties": {
+          "to": {
+            "$ref": "#/components/schemas/To"
+          },
+          "amount": {
+            "$ref": "#/components/schemas/Amount"
+          },
+          "extra": {
+            "$ref": "#/components/schemas/Extra"
+          }
+        },
+        "example": {
+          "to": {
+            "type": "ACH-US",
+            "id": "{{deposit_node_id}}"
+          },
+          "amount": {
+            "amount": 100.1,
+            "currency": "USD"
+          },
+          "extra": {
+            "ip": "{{ip}}",
+            "note": "Test transaction"
+          }
+        }
+      },
+      "To": {
+        "title": "To",
+        "required": [
+          "type",
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "type": "ACH-US",
+          "id": "{{deposit_node_id}}"
+        }
+      },
+      "Amount": {
+        "title": "Amount",
+        "required": [
+          "amount",
+          "currency"
+        ],
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number"
+          },
+          "currency": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "amount": 100.1,
+          "currency": "USD"
+        }
+      },
+      "Extra": {
+        "title": "Extra",
+        "required": [
+          "ip",
+          "note"
+        ],
+        "type": "object",
+        "properties": {
+          "ip": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "ip": "{{ip}}",
+          "note": "Test transaction"
+        }
+      },
+      "FundNodeRequest": {
+        "title": "FundNodeRequest",
+        "required": [
+          "to",
+          "amount",
+          "extra"
+        ],
+        "type": "object",
+        "properties": {
+          "to": {
+            "$ref": "#/components/schemas/To"
+          },
+          "amount": {
+            "$ref": "#/components/schemas/Amount"
+          },
+          "extra": {
+            "$ref": "#/components/schemas/Extra"
+          }
+        },
+        "example": {
+          "to": {
+            "type": "ACH-US",
+            "id": "{{deposit_node_id}}"
+          },
+          "amount": {
+            "amount": 100.1,
+            "currency": "USD"
+          },
+          "extra": {
+            "ip": "{{ip}}",
+            "note": "Test transaction"
+          }
+        }
+      },
+      "RDCREQUEST": {
+        "title": "RDCREQUEST",
+        "required": [
+          "from",
+          "to",
+          "amount",
+          "extra"
+        ],
+        "type": "object",
+        "properties": {
+          "from": {
+            "$ref": "#/components/schemas/From"
+          },
+          "to": {
+            "$ref": "#/components/schemas/To"
+          },
+          "amount": {
+            "$ref": "#/components/schemas/Amount"
+          },
+          "extra": {
+            "$ref": "#/components/schemas/Extra"
+          }
+        },
+        "example": {
+          "from": {
+            "type": "RDC",
+            "meta": {
+              "check_front": "data:image/gif;base64,SUQs==",
+              "check_back": "data:image/gif;base64,SUQs=="
+            }
+          },
+          "to": {
+            "type": "DEPOSIT-US",
+            "id": "{{deposit_node_id}}"
+          },
+          "amount": {
+            "amount": 100.1,
+            "currency": "USD"
+          },
+          "extra": {
+            "ip": "127.0.0.1",
+            "note": "Test transaction"
+          }
+        }
+      },
+      "From": {
+        "title": "From",
+        "required": [
+          "type",
+          "meta"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "example": {
+          "type": "RDC",
+          "meta": {
+            "check_front": "data:image/gif;base64,SUQs==",
+            "check_back": "data:image/gif;base64,SUQs=="
+          }
+        }
+      },
+      "Meta": {
+        "title": "Meta",
+        "required": [
+          "check_front",
+          "check_back"
+        ],
+        "type": "object",
+        "properties": {
+          "check_front": {
+            "type": "string"
+          },
+          "check_back": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "check_front": "data:image/gif;base64,SUQs==",
+          "check_back": "data:image/gif;base64,SUQs=="
+        }
+      },
+      "CommentonTransactionRequest": {
+        "title": "CommentonTransactionRequest",
+        "required": [
+          "comment"
+        ],
+        "type": "object",
+        "properties": {
+          "comment": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "comment": "add comment!"
+        }
+      },
+      "SubnetRequest": {
+        "title": "SubnetRequest",
+        "required": [
+          "nickname"
+        ],
+        "type": "object",
+        "properties": {
+          "nickname": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "nickname": "Test AC/RT"
+        }
+      },
+      "StatusRequest": {
+        "title": "StatusRequest",
+        "required": [
+          "allowed"
+        ],
+        "type": "object",
+        "properties": {
+          "allowed": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "allowed": "LOCKED"
+        }
+      },
+      "UserRequest": {
+        "title": "UserRequest",
+        "required": [
+          "logins",
+          "phone_numbers",
+          "legal_names",
+          "documents",
+          "extra"
+        ],
+        "type": "object",
+        "properties": {
+          "logins": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Login"
+            },
+            "description": ""
+          },
+          "phone_numbers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "legal_names": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "documents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Document"
+            },
+            "description": ""
+          },
+          "extra": {
+            "$ref": "#/components/schemas/Extra3"
+          }
+        },
+        "example": {
+          "logins": [
+            {
+              "email": "test@synapsepay.com"
+            }
+          ],
+          "phone_numbers": [
+            "901.111.1111",
+            "test@synapsepay.com"
+          ],
+          "legal_names": [
+            ""
+          ],
+          "documents": [
+            {
+              "email": "test@test.com",
+              "phone_number": "901.111.1111",
+              "ip": "::1",
+              "name": "",
+              "alias": "",
+              "entity_type": "M",
+              "entity_scope": "Arts & Entertainment",
+              "day": 2,
+              "month": 5,
+              "year": 1989,
+              "address_street": "1 Market St.",
+              "address_city": "SF",
+              "address_subdivision": "CA",
+              "address_postal_code": "94105",
+              "address_country_code": "US",
+              "virtual_docs": [
+                {
+                  "document_value": "2222",
+                  "document_type": "SSN"
+                }
+              ],
+              "physical_docs": [
+                {
+                  "document_value": "data:image/gif;base64,SUQs==",
+                  "document_type": "GOVT_ID"
+                }
+              ],
+              "social_docs": [
+                {
+                  "document_value": "https://www.facebook.com/valid",
+                  "document_type": "FACEBOOK"
+                }
+              ]
+            }
+          ],
+          "extra": {
+            "supp_id": "122eddfgbeafrfvbbb",
+            "cip_tag": 1,
+            "is_business": false
+          }
+        }
+      },
+      "Login": {
+        "title": "Login",
+        "required": [
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "email": "test@synapsepay.com"
+        }
+      },
+      "Document": {
+        "title": "Document",
+        "required": [
+          "email",
+          "phone_number",
+          "ip",
+          "name",
+          "alias",
+          "entity_type",
+          "entity_scope",
+          "day",
+          "month",
+          "year",
+          "address_street",
+          "address_city",
+          "address_subdivision",
+          "address_postal_code",
+          "address_country_code",
+          "virtual_docs",
+          "physical_docs",
+          "social_docs"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "phone_number": {
+            "type": "string"
+          },
+          "ip": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "alias": {
+            "type": "string"
+          },
+          "entity_type": {
+            "type": "string"
+          },
+          "entity_scope": {
+            "type": "string"
+          },
+          "day": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "month": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "year": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "address_street": {
+            "type": "string"
+          },
+          "address_city": {
+            "type": "string"
+          },
+          "address_subdivision": {
+            "type": "string"
+          },
+          "address_postal_code": {
+            "type": "string"
+          },
+          "address_country_code": {
+            "type": "string"
+          },
+          "virtual_docs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VirtualDoc"
+            },
+            "description": ""
+          },
+          "physical_docs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PhysicalDoc"
+            },
+            "description": ""
+          },
+          "social_docs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SocialDoc"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "email": "test@test.com",
+          "phone_number": "901.111.1111",
+          "ip": "::1",
+          "name": "",
+          "alias": "",
+          "entity_type": "M",
+          "entity_scope": "Arts & Entertainment",
+          "day": 2,
+          "month": 5,
+          "year": 1989,
+          "address_street": "1 Market St.",
+          "address_city": "SF",
+          "address_subdivision": "CA",
+          "address_postal_code": "94105",
+          "address_country_code": "US",
+          "virtual_docs": [
+            {
+              "document_value": "2222",
+              "document_type": "SSN"
+            }
+          ],
+          "physical_docs": [
+            {
+              "document_value": "data:image/gif;base64,SUQs==",
+              "document_type": "GOVT_ID"
+            }
+          ],
+          "social_docs": [
+            {
+              "document_value": "https://www.facebook.com/valid",
+              "document_type": "FACEBOOK"
+            }
+          ]
+        }
+      },
+      "VirtualDoc": {
+        "title": "VirtualDoc",
+        "required": [
+          "document_value",
+          "document_type"
+        ],
+        "type": "object",
+        "properties": {
+          "document_value": {
+            "type": "string"
+          },
+          "document_type": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "document_value": "2222",
+          "document_type": "SSN"
+        }
+      },
+      "PhysicalDoc": {
+        "title": "PhysicalDoc",
+        "required": [
+          "document_value",
+          "document_type"
+        ],
+        "type": "object",
+        "properties": {
+          "document_value": {
+            "type": "string"
+          },
+          "document_type": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "document_value": "data:image/gif;base64,SUQs==",
+          "document_type": "GOVT_ID"
+        }
+      },
+      "SocialDoc": {
+        "title": "SocialDoc",
+        "required": [
+          "document_value",
+          "document_type"
+        ],
+        "type": "object",
+        "properties": {
+          "document_value": {
+            "type": "string"
+          },
+          "document_type": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "document_value": "https://www.facebook.com/valid",
+          "document_type": "FACEBOOK"
+        }
+      },
+      "Extra3": {
+        "title": "Extra3",
+        "required": [
+          "supp_id",
+          "cip_tag",
+          "is_business"
+        ],
+        "type": "object",
+        "properties": {
+          "supp_id": {
+            "type": "string"
+          },
+          "cip_tag": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "is_business": {
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "supp_id": "122eddfgbeafrfvbbb",
+          "cip_tag": 1,
+          "is_business": false
+        }
+      },
+      "Userw/oKYCRequest": {
+        "title": "Userw/oKYCRequest",
+        "required": [
+          "logins",
+          "phone_numbers",
+          "legal_names",
+          "documents",
+          "extra"
+        ],
+        "type": "object",
+        "properties": {
+          "logins": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Login"
+            },
+            "description": ""
+          },
+          "phone_numbers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "legal_names": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "documents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Document"
+            },
+            "description": ""
+          },
+          "extra": {
+            "$ref": "#/components/schemas/Extra3"
+          }
+        },
+        "example": {
+          "logins": [
+            {
+              "email": "test@synapsepay.com"
+            }
+          ],
+          "phone_numbers": [
+            "901.111.1111",
+            "test@synapsepay.com"
+          ],
+          "legal_names": [
+            ""
+          ],
+          "documents": [
+            {
+              "email": "test@test.com",
+              "phone_number": "901.111.1111",
+              "ip": "::1",
+              "name": "",
+              "alias": "",
+              "entity_type": "M",
+              "entity_scope": "Arts & Entertainment",
+              "day": 2,
+              "month": 5,
+              "year": 1989,
+              "address_street": "1 Market St.",
+              "address_city": "SF",
+              "address_subdivision": "CA",
+              "address_postal_code": "94105",
+              "address_country_code": "US",
+              "virtual_docs": [
+                {
+                  "document_value": "2222",
+                  "document_type": "SSN"
+                }
+              ],
+              "physical_docs": [
+                {
+                  "document_value": "data:image/gif;base64,SUQs==",
+                  "document_type": "GOVT_ID"
+                }
+              ],
+              "social_docs": [
+                {
+                  "document_value": "https://www.facebook.com/valid",
+                  "document_type": "FACEBOOK"
+                }
+              ]
+            }
+          ],
+          "extra": {
+            "supp_id": "122eddfgbeafrfvbbb",
+            "cip_tag": 1,
+            "is_business": false
+          }
+        }
+      },
+      "BaseDocumentRequest": {
+        "title": "BaseDocumentRequest",
+        "required": [
+          "update"
+        ],
+        "type": "object",
+        "properties": {
+          "update": {
+            "$ref": "#/components/schemas/Update"
+          }
+        },
+        "example": {
+          "update": {
+            "login": {
+              "email": "test2@synapsepay.com"
+            },
+            "remove_login": {
+              "email": "test@synapsepay.com"
+            },
+            "phone_number": "9019411111",
+            "remove_phone_number": "9019411111",
+            "legal_name": "Some new name",
+            "remove_legal_name": "Test User",
+            "is_hidden": false
+          }
+        }
+      },
+      "Update": {
+        "title": "Update",
+        "required": [
+          "login",
+          "remove_login",
+          "phone_number",
+          "remove_phone_number",
+          "legal_name",
+          "remove_legal_name",
+          "is_hidden"
+        ],
+        "type": "object",
+        "properties": {
+          "login": {
+            "$ref": "#/components/schemas/Login"
+          },
+          "remove_login": {
+            "$ref": "#/components/schemas/RemoveLogin"
+          },
+          "phone_number": {
+            "type": "string"
+          },
+          "remove_phone_number": {
+            "type": "string"
+          },
+          "legal_name": {
+            "type": "string"
+          },
+          "remove_legal_name": {
+            "type": "string"
+          },
+          "is_hidden": {
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "login": {
+            "email": "test2@synapsepay.com"
+          },
+          "remove_login": {
+            "email": "test@synapsepay.com"
+          },
+          "phone_number": "9019411111",
+          "remove_phone_number": "9019411111",
+          "legal_name": "Some new name",
+          "remove_legal_name": "Test User",
+          "is_hidden": false
+        }
+      },
+      "RemoveLogin": {
+        "title": "RemoveLogin",
+        "required": [
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "email": "test@synapsepay.com"
+        }
+      },
+      "SubDocumentRequest": {
+        "title": "SubDocumentRequest",
+        "required": [
+          "documents"
+        ],
+        "type": "object",
+        "properties": {
+          "documents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Document2"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "documents": [
+            {
+              "id": "{{document_id}}",
+              "virtual_docs": [
+                {
+                  "id": "{{virtual_doc_id}}",
+                  "document_value": "111-11-2222",
+                  "document_type": "SSN"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "Document2": {
+        "title": "Document2",
+        "required": [
+          "id",
+          "virtual_docs"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "virtual_docs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VirtualDoc2"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "id": "{{document_id}}",
+          "virtual_docs": [
+            {
+              "id": "{{virtual_doc_id}}",
+              "document_value": "111-11-2222",
+              "document_type": "SSN"
+            }
+          ]
+        }
+      },
+      "VirtualDoc2": {
+        "title": "VirtualDoc2",
+        "required": [
+          "id",
+          "document_value",
+          "document_type"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "document_value": {
+            "type": "string"
+          },
+          "document_type": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "id": "{{virtual_doc_id}}",
+          "document_value": "111-11-2222",
+          "document_type": "SSN"
+        }
+      },
+      "AddBaseDocumentRequest": {
+        "title": "AddBaseDocumentRequest",
+        "required": [
+          "documents"
+        ],
+        "type": "object",
+        "properties": {
+          "documents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Document"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "documents": [
+            {
+              "email": "test@test.com",
+              "phone_number": "901.111.1111",
+              "ip": "::1",
+              "name": "Test User",
+              "alias": "Test",
+              "entity_type": "M",
+              "entity_scope": "Arts & Entertainment",
+              "day": 2,
+              "month": 5,
+              "year": 1989,
+              "address_street": "1 Market St.",
+              "address_city": "SF",
+              "address_subdivision": "CA",
+              "address_postal_code": "94114",
+              "address_country_code": "US",
+              "virtual_docs": [
+                {
+                  "document_value": "2222",
+                  "document_type": "SSN"
+                }
+              ],
+              "physical_docs": [
+                {
+                  "document_value": "data:image/gif;base64,SUQs==",
+                  "document_type": "GOVT_ID"
+                }
+              ],
+              "social_docs": [
+                {
+                  "document_value": "https://www.facebook.com/valid",
+                  "document_type": "FACEBOOK"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "AddSubDocumentRequest": {
+        "title": "AddSubDocumentRequest",
+        "required": [
+          "documents"
+        ],
+        "type": "object",
+        "properties": {
+          "documents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Document4"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "documents": [
+            {
+              "id": "{{document_id}}",
+              "virtual_docs": [
+                {
+                  "document_value": "2222",
+                  "document_type": "SSN"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "Document4": {
+        "title": "Document4",
+        "required": [
+          "id",
+          "virtual_docs"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "virtual_docs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VirtualDoc"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "id": "{{document_id}}",
+          "virtual_docs": [
+            {
+              "document_value": "2222",
+              "document_type": "SSN"
+            }
+          ]
+        }
+      },
+      "DeleteBaseDocumentRequest": {
+        "title": "DeleteBaseDocumentRequest",
+        "required": [
+          "documents"
+        ],
+        "type": "object",
+        "properties": {
+          "documents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Document5"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "documents": [
+            {
+              "id": "{{document_id}}",
+              "permission_scope": "DELETE_DOCUMENT"
+            }
+          ]
+        }
+      },
+      "Document5": {
+        "title": "Document5",
+        "required": [
+          "id",
+          "permission_scope"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "permission_scope": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "id": "{{document_id}}",
+          "permission_scope": "DELETE_DOCUMENT"
+        }
+      },
+      "DeleteSubDocumentRequest": {
+        "title": "DeleteSubDocumentRequest",
+        "required": [
+          "documents"
+        ],
+        "type": "object",
+        "properties": {
+          "documents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Document6"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "documents": [
+            {
+              "id": "{{document_id}}",
+              "physical_docs": [
+                {
+                  "document_type": "DELETE_DOCUMENT",
+                  "document_value": "data:image/gif;base64,SUQs==",
+                  "id": "{{physical_doc_id}}"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "Document6": {
+        "title": "Document6",
+        "required": [
+          "id",
+          "physical_docs"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "physical_docs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PhysicalDoc3"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "id": "{{document_id}}",
+          "physical_docs": [
+            {
+              "document_type": "DELETE_DOCUMENT",
+              "document_value": "data:image/gif;base64,SUQs==",
+              "id": "{{physical_doc_id}}"
+            }
+          ]
+        }
+      },
+      "PhysicalDoc3": {
+        "title": "PhysicalDoc3",
+        "required": [
+          "document_type",
+          "document_value",
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "document_type": {
+            "type": "string"
+          },
+          "document_value": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "document_type": "DELETE_DOCUMENT",
+          "document_value": "data:image/gif;base64,SUQs==",
+          "id": "{{physical_doc_id}}"
+        }
+      },
+      "DeleteUserRequest": {
+        "title": "DeleteUserRequest",
+        "required": [
+          "permission"
+        ],
+        "type": "object",
+        "properties": {
+          "permission": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "permission": "MAKE-IT-GO-AWAY"
+        }
+      },
+      "[DEPRICATED]{{host}}/v3.1/users/{{user_id}}Request": {
+        "title": "[DEPRICATED]{{host}}/v3.1/users/{{user_id}}Request",
+        "required": [
+          "doc"
+        ],
+        "type": "object",
+        "properties": {
+          "doc": {
+            "$ref": "#/components/schemas/Doc"
+          }
+        },
+        "example": {
+          "doc": {
+            "attachment": "data:image/gif;base64,R0lGODlhMAAwAPf/AKmoaJyUUoR7QqKZVXZsOnpuPNrZlHV1Q3xxPODauejkqExEJVZTObu7u1RKKqmkXL24c7uzasPDw/rymoyMjMG6iZ2ZVLKrZNbUy6KUUtPRioyESNjVuaurq5ODS/Piiunljvr3uNLS0rOiXJSUlJmWhaWgWvTpplpTLLy5baudWf7+1///6NTUkczLfY2CRWRcMvz7yJubm8rKhPfyp7OwZaSko2pqaOPdkUU/IdbOg3JlOdPSg8PBdKmaVd3ajMbEe5qQT+fOfLWsecvEdfbpk+Lfi9LMfZ6OUVlXTb2sZIF2QG1rXmleNaGdV//vm5eSUbOzsYR2Qbezon91PridXYOBes3NzfHjlrqxgmxiOZGPUYp+Rqqic4WDTXJnR0ZPHda9cjYzJevai8G9curjs8W2a5yNTpKJTBoYC62pXre0b6OPUqmVVHVza5J/SHBkN2lgM8nJyczAcm1mNe3imnt1UMW1X1ZQKqKcZjs1H9K5a9TDb2FUMcnHfb+8b+HeoZmJTZmMT8StZd3MgW5iNdnWk3JoN0ZDO9fOmrynYGtgNZOISszMxfbmnNnXje3rn/rtlsbDrJCESIBzQGJgVYh9Q9LOuox8RWFYMKGgn5aMTZmFTZiJSuzmkMO+fIh5QoZ2RCokCZaITqCRTtbYk9jVhNTEeVVbKpGNTszNiYl6RNzahaWgWNLQf9vcl/PvmI5+SOrcmuTXjZqNSZ+JT5aJS2tyNOTRgdLDd11XLoZ0RMi4Z7e1Z72wWmtkTNDQz62gUYBvP9zXnNDRjYV+VJmYjtbQp5SIR66spb67tTowCbOkX6WjjvLgg7Kvnb+6mmdiNZ6hXG1dN83Gl97DddjEe+HNdoeAYJGOaZKIc3x7cezVhO7bgpGIU5GLXYB9YYNzRPHvsoN3Q5yOS5mWWM65cDAqFHZnO5GQWNHNjWpjNMa4ZMmwZdzJesuza5SPTJuUYeHXkdjPj+Xel+bjluXkoJ+jYuzqlcTHhcbIh8jFgcjCiI6JXLWmV9TU1CH5BAEAAP8ALAAAAAAwADAAAAj/AP8JHEiwoMGDCBMqXMiwocOHECNCLOFGgsSLB4FlStMBo8eByZalafDxozZRN0p+/DJSJcYrOZK4xKhMlIyZFzWds4gzYgkxInouxMDhWKJEBrzlmMevAjRJjYQKJDrsxw8Dr17Zs6PrlSlXRCIw6/LsykwMCXAYyfqqhSogQKJp4eHCBZA1F0zAK1YCWEkMssasfVVqRg1pTh7gIdAjBRkgPSBAEEvOThSPCbB4woGDMDEA5bakcoLngGQyOujNImTNnKIzTYxdTBDJk5EfjwyUynfPywEv5VAcqLCGSJ0TdVibU9Im1ALZEDk8KQLitu5SqgAcQAXDCx47Q9TM/3J0YvWp5SrewMhh46GIE5Go3370qAUxffdugUGVg4EXPrjMIo8OR8xhxgUZYFJIf3I4VMYTkcBSHSum8KBBC6W0MMMa0qSTTgouaKDBEZClcMEDZ0hRyAJ6WNEQBhBOIKERrPDgiis8EEMMhro9QowqM0BGRi9qOBHEC1Q04UAOuvCkUAJPPCEjPjR+5UpdLvgxgx9cCplCLzUUCc8GAhSgBR4L6NIMQwpEKSMkkNTzw1cuENHDnX/k+ceXYbZiwZiWCEDAOijgAUM2DJ0g5QQ00BCCOArQ88gRROTZC59hqvGAEwGksskkAiwxqC6ZFNIPQ44s6mgMK8Qgjj2P7P9Dxh+99HKBpia00koAUGyBBiNcLFEAHTCsQ4A3DBURybKOsuDsCiEo0AIQZKxRw4kmONGKChnwisYkXFBRwDpxELBEEAxhUcS6J4SwwgrOxlCGIfusEcGJD2RrgQ8ZILHJBlysQgkBdNBBxQZ5MCTLB858gAUkIbDqKiDqfIKXGiY80IoTFmTARiCjACyFFAQcQoAlUADAUCLOdMPNGHVAAqk9gBDzCQQXKJGXCYhZEAASnHjwQqjCEECAAIxYMARD0DgjhBC4/IADPTho4IfFF1zAzAP5OjFAx2dwEgsmAoxTAAHjvBCECVkwdMk111TjzhFH6KCDHxDgZQIzI3z/zXEAAQQhiNirjINAAUh3sq8kDGGQCx9hhJHLHJSnEEGYJqgwgg8WdB74JoG8gUk4BRQwDiNBBOHECH4xRM0ee7xjxuxK4LqtD7gDDgUU38YSihQFIGCJB0gEkIEPFTh0CS/tDDKIEoqMkPkA1HtMCq+pbACuFJQEL8AkggzgRAb+XPLQJ4MoUgXfKvAbwCaCIBGIB2igsUGgwhKA+Au2BDCADypY2kOmoIQqVMEHbWDDzwSBhlh4wANciCDRCAAHAlCBC5MIQgba4ANfTCEiXRhBAtlQC0E8cAOrwAQoVgEKSgyMgodAgAD4dwZS+EARAoRIFFRAQk68wQO+CwUl/3ZBCWEUrWRwgEMBlsAFNAjiDORjx2UkUoIMAHEXuwhF6baIjh3AgQ6LoAMBECCFFzCiE0jwATtKIIKgQAQYEsCGB0iHjgKgQws72EEhFtGEJsAgDjFcAihe8IJOkMIXeWiAHNz4EDh2wA7CgMM0pqEFGEzDj5lAgS50AcgCSMESmJgEOfwRD0004AqMdAgw5NAAGfxiGn2IZSwziQIH4EEXTTiEJy3BBVoE4xsk6IAEWgcREVxBAh0gQSUcwMxmOmABDkBBJgBJxhfQghTgoIANFJlK97CyAzK4ASL0kIMcLKCc0ZymuZCBjGJsgwSaiIIEUImRVTagA5qggDjFQEzOBeBBnQighB3cQAES2ECe9PQIMK7QgCjYQAYksMINKpGEilaCCW6wQkE10YEGzLObEmnjMRuKTxlAlAQoJYFJbdBRCcgBGCA1SEAAADs="
+          }
+        }
+      },
+      "Doc": {
+        "title": "Doc",
+        "required": [
+          "attachment"
+        ],
+        "type": "object",
+        "properties": {
+          "attachment": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "attachment": "data:image/gif;base64,R0lGODlhMAAwAPf/AKmoaJyUUoR7QqKZVXZsOnpuPNrZlHV1Q3xxPODauejkqExEJVZTObu7u1RKKqmkXL24c7uzasPDw/rymoyMjMG6iZ2ZVLKrZNbUy6KUUtPRioyESNjVuaurq5ODS/Piiunljvr3uNLS0rOiXJSUlJmWhaWgWvTpplpTLLy5baudWf7+1///6NTUkczLfY2CRWRcMvz7yJubm8rKhPfyp7OwZaSko2pqaOPdkUU/IdbOg3JlOdPSg8PBdKmaVd3ajMbEe5qQT+fOfLWsecvEdfbpk+Lfi9LMfZ6OUVlXTb2sZIF2QG1rXmleNaGdV//vm5eSUbOzsYR2Qbezon91PridXYOBes3NzfHjlrqxgmxiOZGPUYp+Rqqic4WDTXJnR0ZPHda9cjYzJevai8G9curjs8W2a5yNTpKJTBoYC62pXre0b6OPUqmVVHVza5J/SHBkN2lgM8nJyczAcm1mNe3imnt1UMW1X1ZQKqKcZjs1H9K5a9TDb2FUMcnHfb+8b+HeoZmJTZmMT8StZd3MgW5iNdnWk3JoN0ZDO9fOmrynYGtgNZOISszMxfbmnNnXje3rn/rtlsbDrJCESIBzQGJgVYh9Q9LOuox8RWFYMKGgn5aMTZmFTZiJSuzmkMO+fIh5QoZ2RCokCZaITqCRTtbYk9jVhNTEeVVbKpGNTszNiYl6RNzahaWgWNLQf9vcl/PvmI5+SOrcmuTXjZqNSZ+JT5aJS2tyNOTRgdLDd11XLoZ0RMi4Z7e1Z72wWmtkTNDQz62gUYBvP9zXnNDRjYV+VJmYjtbQp5SIR66spb67tTowCbOkX6WjjvLgg7Kvnb+6mmdiNZ6hXG1dN83Gl97DddjEe+HNdoeAYJGOaZKIc3x7cezVhO7bgpGIU5GLXYB9YYNzRPHvsoN3Q5yOS5mWWM65cDAqFHZnO5GQWNHNjWpjNMa4ZMmwZdzJesuza5SPTJuUYeHXkdjPj+Xel+bjluXkoJ+jYuzqlcTHhcbIh8jFgcjCiI6JXLWmV9TU1CH5BAEAAP8ALAAAAAAwADAAAAj/AP8JHEiwoMGDCBMqXMiwocOHECNCLOFGgsSLB4FlStMBo8eByZalafDxozZRN0p+/DJSJcYrOZK4xKhMlIyZFzWds4gzYgkxInouxMDhWKJEBrzlmMevAjRJjYQKJDrsxw8Dr17Zs6PrlSlXRCIw6/LsykwMCXAYyfqqhSogQKJp4eHCBZA1F0zAK1YCWEkMssasfVVqRg1pTh7gIdAjBRkgPSBAEEvOThSPCbB4woGDMDEA5bakcoLngGQyOujNImTNnKIzTYxdTBDJk5EfjwyUynfPywEv5VAcqLCGSJ0TdVibU9Im1ALZEDk8KQLitu5SqgAcQAXDCx47Q9TM/3J0YvWp5SrewMhh46GIE5Go3370qAUxffdugUGVg4EXPrjMIo8OR8xhxgUZYFJIf3I4VMYTkcBSHSum8KBBC6W0MMMa0qSTTgouaKDBEZClcMEDZ0hRyAJ6WNEQBhBOIKERrPDgiis8EEMMhro9QowqM0BGRi9qOBHEC1Q04UAOuvCkUAJPPCEjPjR+5UpdLvgxgx9cCplCLzUUCc8GAhSgBR4L6NIMQwpEKSMkkNTzw1cuENHDnX/k+ceXYbZiwZiWCEDAOijgAUM2DJ0g5QQ00BCCOArQ88gRROTZC59hqvGAEwGksskkAiwxqC6ZFNIPQ44s6mgMK8Qgjj2P7P9Dxh+99HKBpia00koAUGyBBiNcLFEAHTCsQ4A3DBURybKOsuDsCiEo0AIQZKxRw4kmONGKChnwisYkXFBRwDpxELBEEAxhUcS6J4SwwgrOxlCGIfusEcGJD2RrgQ8ZILHJBlysQgkBdNBBxQZ5MCTLB858gAUkIbDqKiDqfIKXGiY80IoTFmTARiCjACyFFAQcQoAlUADAUCLOdMPNGHVAAqk9gBDzCQQXKJGXCYhZEAASnHjwQqjCEECAAIxYMARD0DgjhBC4/IADPTho4IfFF1zAzAP5OjFAx2dwEgsmAoxTAAHjvBCECVkwdMk111TjzhFH6KCDHxDgZQIzI3z/zXEAAQQhiNirjINAAUh3sq8kDGGQCx9hhJHLHJSnEEGYJqgwgg8WdB74JoG8gUk4BRQwDiNBBOHECH4xRM0ee7xjxuxK4LqtD7gDDgUU38YSihQFIGCJB0gEkIEPFTh0CS/tDDKIEoqMkPkA1HtMCq+pbACuFJQEL8AkggzgRAb+XPLQJ4MoUgXfKvAbwCaCIBGIB2igsUGgwhKA+Au2BDCADypY2kOmoIQqVMEHbWDDzwSBhlh4wANciCDRCAAHAlCBC5MIQgba4ANfTCEiXRhBAtlQC0E8cAOrwAQoVgEKSgyMgodAgAD4dwZS+EARAoRIFFRAQk68wQO+CwUl/3ZBCWEUrWRwgEMBlsAFNAjiDORjx2UkUoIMAHEXuwhF6baIjh3AgQ6LoAMBECCFFzCiE0jwATtKIIKgQAQYEsCGB0iHjgKgQws72EEhFtGEJsAgDjFcAihe8IJOkMIXeWiAHNz4EDh2wA7CgMM0pqEFGEzDj5lAgS50AcgCSMESmJgEOfwRD0004AqMdAgw5NAAGfxiGn2IZSwziQIH4EEXTTiEJy3BBVoE4xsk6IAEWgcREVxBAh0gQSUcwMxmOmABDkBBJgBJxhfQghTgoIANFJlK97CyAzK4ASL0kIMcLKCc0ZymuZCBjGJsgwSaiIIEUImRVTagA5qggDjFQEzOBeBBnQighB3cQAES2ECe9PQIMK7QgCjYQAYksMINKpGEilaCCW6wQkE10YEGzLObEmnjMRuKTxlAlAQoJYFJbdBRCcgBGCA1SEAAADs="
+        }
+      },
+      "[DEPRICATED]{{host}}/v3.1/users/{{user_id}}Request1": {
+        "title": "[DEPRICATED]{{host}}/v3.1/users/{{user_id}}Request1",
+        "required": [
+          "doc"
+        ],
+        "type": "object",
+        "properties": {
+          "doc": {
+            "$ref": "#/components/schemas/Doc1"
+          }
+        },
+        "example": {
+          "doc": {
+            "birth_day": 4,
+            "birth_month": 2,
+            "birth_year": 1940,
+            "name_first": "John",
+            "name_last": "doe",
+            "address_street1": "1 Infinate Loop",
+            "address_postal_code": "95014",
+            "address_country_code": "US",
+            "document_value": "2222",
+            "document_type": "SSN"
+          }
+        }
+      },
+      "Doc1": {
+        "title": "Doc1",
+        "required": [
+          "birth_day",
+          "birth_month",
+          "birth_year",
+          "name_first",
+          "name_last",
+          "address_street1",
+          "address_postal_code",
+          "address_country_code",
+          "document_value",
+          "document_type"
+        ],
+        "type": "object",
+        "properties": {
+          "birth_day": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "birth_month": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "birth_year": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name_first": {
+            "type": "string"
+          },
+          "name_last": {
+            "type": "string"
+          },
+          "address_street1": {
+            "type": "string"
+          },
+          "address_postal_code": {
+            "type": "string"
+          },
+          "address_country_code": {
+            "type": "string"
+          },
+          "document_value": {
+            "type": "string"
+          },
+          "document_type": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "birth_day": 4,
+          "birth_month": 2,
+          "birth_year": 1940,
+          "name_first": "John",
+          "name_last": "doe",
+          "address_street1": "1 Infinate Loop",
+          "address_postal_code": "95014",
+          "address_country_code": "US",
+          "document_value": "2222",
+          "document_type": "SSN"
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Statements",
+      "description": ""
+    },
+    {
+      "name": "Nodes",
+      "description": ""
+    },
+    {
+      "name": "Oauth",
+      "description": ""
+    },
+    {
+      "name": "Subscriptions",
+      "description": ""
+    },
+    {
+      "name": "Transactions",
+      "description": ""
+    },
+    {
+      "name": "Subnets",
+      "description": ""
+    },
+    {
+      "name": "Users",
+      "description": ""
+    },
+    {
+      "name": "Client",
+      "description": ""
+    }
+  ]
+}

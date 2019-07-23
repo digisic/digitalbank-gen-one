@@ -60,22 +60,22 @@
                         <br><br>
                         <div class="form-group">
                             <label class="form-control-label"><strong>Date of Birth</strong></label>
-                            <input type="text" class="form-control" id="dob" th:field="${userProfile.dob}" required pattern="\d{1,2}/\d{1,2}/\d{4}">
+                            <input type="text" class="form-control" id="dob" th:field="${userProfile.dob}" required th:pattern="${patternDOB}">
                             <small class="form-text text-muted">ex. MM/DD/YYYY</small>
                         </div>
                         <div class="form-group">
                             <label class="form-control-label"><strong>Social Security Number</strong></label>
-                            <input type="text" class="form-control" id="ssn" th:field="${userProfile.ssn}" required autocomplete="off" pattern="^\d{3}-?\d{2}-?\d{4}$" title="Expected pattern is ###-##-####">
+                            <input type="text" class="form-control" id="ssn" th:field="${userProfile.ssn}" required autocomplete="off" th:pattern="${patternSSN}" th:title="${patternSSNMSG}">
                         	<small class="form-text text-muted">ex. 123-45-6789</small>
                         </div>
                         <div class="form-group">
                             <label class="form-control-label"><strong>Email Address</strong></label>
-                            <input type="email" class="form-control" id="emailAddress" th:field="${userProfile.emailAddress}" required pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$">
+                            <input type="email" class="form-control" id="emailAddress" th:field="${userProfile.emailAddress}" required th:pattern="${patternEmail}">
                         	<small class="form-text text-muted">ex. user@gmail.com</small>
                         </div>
                         <div class="form-group">
                             <label class="form-control-label"><strong>Password</strong></label>
-                            <input type="password" class="form-control" id="password" th:field="${user.password}" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+                            <input type="password" class="form-control" id="password" th:field="${user.password}" required th:pattern="${patternPassword}" th:title="${patternPasswordMSG}">
                         </div>
                         <div class="form-group">
                             <label class="form-control-label"><strong>Confirm Password</strong></label>
