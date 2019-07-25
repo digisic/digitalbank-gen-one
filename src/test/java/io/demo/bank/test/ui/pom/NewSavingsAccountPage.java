@@ -38,20 +38,24 @@ public class NewSavingsAccountPage extends PageObject {
 	private static String newSavingsPageURI = "/account/savings-add";
 	private static String viewSavingsAccountsPageURI = "/account/savings-view";
 	
-	public void selectRegularSavingsAccountType() {
-		regularSavingsRadioSelection.click();
+	public void selectAccountType(String accountType) {
+		if (accountType.equals("None Selected")) {
+			// Do nothing
+		} else if (accountType.equals("Money Market")) {
+			moneyMarketRadioSelection.click();
+		} else if (accountType.equals("Savings")) {
+			regularSavingsRadioSelection.click();
+		}
 	}
 	
-	public void selectMoneyMarketAccountType() {
-		moneyMarketRadioSelection.click();
-	}
-	
-	public void selectIndividualOwnershipType() {
-		individualRadioSelection.click();
-	}
-	
-	public void selectJointOwnershipType() {
-		jointRadioSelection.click();
+	public void selectOwnershipType(String ownershipType) {
+		if (ownershipType.equals("None Selected")) {
+			// Do nothing
+		} else if (ownershipType.equals("Individual")) {
+			individualRadioSelection.click();
+		} else if (ownershipType.equals("Joint")) {
+			jointRadioSelection.click();
+		}
 	}
 	
 	public void enterAccountName(String accountName) {
