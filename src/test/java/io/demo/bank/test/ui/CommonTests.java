@@ -26,12 +26,12 @@ public class CommonTests {
 		// TODO determine best way to dynamically determine user 
 		// to use for testing Logout scenarios
 		
-		
 		String username;
 		String password;
 		
 		switch (persona) {
 			case "Josh":
+			case "Valid User":
 				username = "jsmith@demo.io";
 				password = "Demo123!";
 				break;

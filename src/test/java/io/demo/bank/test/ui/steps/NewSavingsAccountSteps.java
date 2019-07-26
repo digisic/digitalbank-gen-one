@@ -20,24 +20,12 @@ public class NewSavingsAccountSteps extends ScenarioSteps{
 	
 	@Step ("Select Account Type '{0}'")
 	public void selectAccountType(String accountType) {
-		if (accountType.equals("None Selected")) {
-			// Do nothing
-		} else if (accountType.equals("Money Market")) {
-			newSavingsAccountPage.selectMoneyMarketAccountType();
-		} else if (accountType.equals("Savings")) {
-			newSavingsAccountPage.selectRegularSavingsAccountType();
-		}
+		newSavingsAccountPage.selectAccountType(accountType);
 	}
 	
 	@Step ("Select Ownership Type '{0}'")
 	public void selectOwnershipType(String ownershipType) {
-		if (ownershipType.equals("None Selected")) {
-			// Do nothing
-		} else if (ownershipType.equals("Individual")) {
-			newSavingsAccountPage.selectIndividualOwnershipType();
-		} else if (ownershipType.equals("Joint")) {
-			newSavingsAccountPage.selectJointOwnershipType();
-		}
+		newSavingsAccountPage.selectOwnershipType(ownershipType);
 	}
 	
 	@Step ("Enter Account Name '{0}'")
