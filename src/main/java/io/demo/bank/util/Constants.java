@@ -67,11 +67,13 @@ public class Constants {
 	public static final String URI_WITHDRAW				= "/withdraw";
 	public static final String URI_XFER_BETWEEN			= "/xfer-between";
 	public static final String URI_XFER_VALIDATE		= "/xfer-validate";
+	public static final String URI_XFER_VISA		= "/xfer-visa";
 	public static final String URI_CREDIT				= "/credit";
 	public static final String URI_CREDIT_APP			= "/credit-app";
 	public static final String URI_CREDIT_APP_STATUS	= "/credit-app-status";
 	public static final String URI_SEARCH				= "/search";
 	public static final String URI_SEARCH_ATM			= "/atm";
+	public static final String URI_SEARCH_VISA			= "/visa";
 	
 	// API Authenticated URIs
 	public static final String URI_API_ALL				= "/api/**";
@@ -112,6 +114,7 @@ public class Constants {
 	public static final String URI_API_DATA_ACCT_TRAN_TY= "/api/v1/data/account/transaction/type";
 	public static final String URI_API_PROMO			= "/api/v1/promotions";
 	public static final String URI_API_SEARCH_ATM		= "/api/v1/search/atm";
+	public static final String URI_API_SEARCH_VISA		= "/api/v1/search/visa";
 	
 
 	
@@ -135,10 +138,12 @@ public class Constants {
 	public static final String VIEW_WITHDRAW 		= "withdraw";
 	public static final String VIEW_XFER_BETWEEN 	= "xfer-between";
 	public static final String VIEW_XFER_VALIDATE 	= "xfer-validate";
+	public static final String VIEW_XFER_VISA 	= "xfer-visa";
 	public static final String VIEW_CREDIT_APP 		= "credit-app";
 	public static final String VIEW_CREDIT_APP_ST 	= "credit-app-status";
 	public static final String VIEW_PROMOTIONS		= "promotions";
 	public static final String VIEW_SEARCH			= "search";
+	public static final String VIEW_VISASEARCH			= "visasearch";
 	
 	// Account Type Codes
 	public static final String ACCT_CHK_STD_CODE	= "SCK";
@@ -215,5 +220,10 @@ public class Constants {
 	
 	// ATM Location Service API URI
 	public static final String APP_ATM_URI_API_BASE					= "/v3.1/nodes/atms";
+	
+	// VISA Service API URI
+	public static final String APP_VISA_URI_API_BASE				= "/visadirect/fundstransfer/v1/pullfundstransactions";
+	
+	
 	
 }

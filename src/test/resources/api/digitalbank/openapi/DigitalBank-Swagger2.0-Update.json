@@ -1,0 +1,2377 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Digial Bank API provides Administration and User functionality through API Endpoints.",
+        "version": "API TOS",
+        "title": "Digital Bank API",
+        "termsOfService": "Terms of Service",
+        "contact": {
+            "name": "Digital Bank",
+            "url": "www.demo.io",
+            "email": "digitalbank@demo.io"
+        },
+        "license": {
+            "name": "License of API",
+            "url": "API License URL"
+        }
+    },
+    "host": "localhost:8080",
+    "basePath": "/api/v1",
+	"schemes": "- http",
+    "tags": [
+        {
+            "name": "account",
+            "description": "Account Controller"
+        },
+        {
+            "name": "authentication",
+            "description": "Authentication Controller"
+        },
+        {
+            "name": "promotion",
+            "description": "Promotion Controller"
+        },
+        {
+            "name": "static",
+            "description": "Static Data Controller"
+        },
+        {
+            "name": "user-controller",
+            "description": "User Controller"
+        }
+    ],
+    "paths": {
+        "/api/v1/account": {
+            "get": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "getAllAccounts",
+                "operationId": "getAllAccountsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/account/checking": {
+            "get": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "getAllCheckingAccounts",
+                "operationId": "getAllCheckingAccountsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/account/savings": {
+            "get": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "getAllSavingsAccounts",
+                "operationId": "getAllSavingsAccountsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/account/{id}": {
+            "get": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "getAccount",
+                "operationId": "getAccountUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            },
+            "delete": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "deleteAccount",
+                "operationId": "deleteAccountUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/account/{id}/coowner": {
+            "get": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "getCoOwner",
+                "operationId": "getCoOwnerUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            },
+            "put": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "setCoOwner",
+                "operationId": "setCoOwnerUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "userId",
+                        "in": "query",
+                        "description": "userId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/account/{id}/owner": {
+            "get": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "getOwner",
+                "operationId": "getOwnerUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/account/{id}/transaction": {
+            "get": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "getAccountTransactions",
+                "operationId": "getAccountTransactionsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            },
+            "post": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "newTransaction",
+                "operationId": "newTransactionUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "action",
+                        "in": "query",
+                        "description": "action",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "body",
+                        "name": "newTransaction",
+                        "description": "newTransaction",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NewTransaction"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/account/{id}/transfer": {
+            "post": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "transferFunds",
+                "operationId": "transferFundsUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "body",
+                        "name": "transfer",
+                        "description": "transfer",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TransferFunds"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/auth": {
+            "post": {
+                "tags": [
+                    "authentication"
+                ],
+                "summary": "authenticateUser",
+                "operationId": "authenticateUserUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "password",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "description": "username",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/data/account/ownership/type": {
+            "get": {
+                "tags": [
+                    "static-data-controller"
+                ],
+                "summary": "getAccountOwndershipTypes",
+                "operationId": "getAccountOwndershipTypesUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/data/account/standing": {
+            "get": {
+                "tags": [
+                    "static-data-controller"
+                ],
+                "summary": "getAccountStandings",
+                "operationId": "getAccountStandingsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/data/account/transaction/state": {
+            "get": {
+                "tags": [
+                    "static"
+                ],
+                "summary": "getAccountTransactionStates",
+                "operationId": "getAccountTransactionStatesUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/data/account/transaction/type": {
+            "get": {
+                "tags": [
+                    "static"
+                ],
+                "summary": "getAccountTransactionTypes",
+                "operationId": "getAccountTransactionTypesUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/data/account/type": {
+            "get": {
+                "tags": [
+                    "static"
+                ],
+                "summary": "getAccountTypes",
+                "operationId": "getAccountTypesUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/data/account/type/checking": {
+            "get": {
+                "tags": [
+                    "static"
+                ],
+                "summary": "getCheckingAccountTypes",
+                "operationId": "getCheckingAccountTypesUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/data/account/type/savings": {
+            "get": {
+                "tags": [
+                    "static"
+                ],
+                "summary": "getSavingsAccountTypes",
+                "operationId": "getSavingsAccountTypesUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/promotions": {
+            "post": {
+                "tags": [
+                    "promotion"
+                ],
+                "summary": "determinePromotions",
+                "operationId": "determinePromotionsUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "candidate",
+                        "description": "candidate",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PromotionCandidate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/user": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "getUser",
+                "operationId": "getUserUsingGET_1",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            },
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "createNewUser",
+                "operationId": "createNewUserUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "newUser",
+                        "description": "newUser",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NewUser"
+                        }
+                    },
+                    {
+                        "name": "role",
+                        "in": "query",
+                        "description": "role",
+                        "required": false,
+                        "type": "string",
+                        "default": "USER"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/user/account": {
+            "get": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "getAccounts",
+                "operationId": "getAccountsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            },
+            "post": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "createAccount",
+                "operationId": "createAccountUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "account",
+                        "description": "account",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NewAccount"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/user/account/checking": {
+            "get": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "getCheckingAccounts",
+                "operationId": "getCheckingAccountsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/user/account/savings": {
+            "get": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "getSavingsAccounts",
+                "operationId": "getSavingsAccountsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/user/password": {
+            "put": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "changePassword",
+                "operationId": "changePasswordUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "changePassword",
+                        "description": "changePassword",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ChangePassword"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/user/profile": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "getUserProfile",
+                "operationId": "getUserProfileUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            },
+            "put": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "updateUserProfile",
+                "operationId": "updateUserProfileUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "profile",
+                        "description": "profile",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateUser"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/user/role": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "getAuthority",
+                "operationId": "getAuthorityUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/user/{id}": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "getUser",
+                "operationId": "getUserUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            },
+            "delete": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "deleteUser",
+                "operationId": "deleteUserUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/user/{id}/account": {
+            "get": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "getAccounts",
+                "operationId": "getAccountsUsingGET_1",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            },
+            "post": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "createAccount",
+                "operationId": "createAccountUsingPOST_1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "account",
+                        "description": "account",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NewAccount"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/user/{id}/account/checking": {
+            "get": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "getCheckingAccounts",
+                "operationId": "getCheckingAccountsUsingGET_1",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/user/{id}/account/savings": {
+            "get": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "getSavingsAccounts",
+                "operationId": "getSavingsAccountsUsingGET_1",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/user/{id}/password": {
+            "put": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "setPassword",
+                "operationId": "setPasswordUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "newPassword",
+                        "in": "query",
+                        "description": "newPassword",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/user/{id}/password/unexpire": {
+            "put": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "setPasswordUnexpired",
+                "operationId": "setPasswordUnexpiredUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "unexpire",
+                        "in": "query",
+                        "description": "unexpire",
+                        "required": true,
+                        "type": "boolean"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/user/{id}/profile": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "getUserProfile",
+                "operationId": "getUserProfileUsingGET_1",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            },
+            "put": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "updateUserProfile",
+                "operationId": "updateUserProfileUsingPUT_1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "body",
+                        "name": "profile",
+                        "description": "profile",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateUser"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/user/{id}/role": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "getAuthority",
+                "operationId": "getAuthorityUsingGET_1",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            },
+            "put": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "addAuthority",
+                "operationId": "addAuthorityUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "role",
+                        "in": "query",
+                        "description": "role",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            },
+            "delete": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "removeAuthority",
+                "operationId": "removeAuthorityUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "role",
+                        "in": "query",
+                        "description": "role",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/user/{id}/state/enable": {
+            "put": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "setUserEnabled",
+                "operationId": "setUserEnabledUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "enabled",
+                        "in": "query",
+                        "description": "enabled",
+                        "required": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/user/{id}/state/unexpire": {
+            "put": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "setUserUnexpired",
+                "operationId": "setUserUnexpiredUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "unexpire",
+                        "in": "query",
+                        "description": "unexpire",
+                        "required": true,
+                        "type": "boolean"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/user/{id}/state/unlock": {
+            "put": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "setUserUnlocked",
+                "operationId": "setUserUnlockedUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "unlock",
+                        "in": "query",
+                        "description": "unlock",
+                        "required": true,
+                        "type": "boolean"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/users": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "getAllUsers",
+                "operationId": "getAllUsersUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        }
+    },
+    "securityDefinitions": {
+        "Bearer %token": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "definitions": {
+        "ChangePassword": {
+            "type": "object",
+            "properties": {
+                "currentPasword": {
+                    "type": "string"
+                },
+                "newPassword": {
+                    "type": "string"
+                }
+            },
+            "title": "ChangePassword"
+        },
+        "NewAccount": {
+            "type": "object",
+            "properties": {
+                "accountName": {
+                    "type": "string"
+                },
+                "accountTypeCode": {
+                    "type": "string"
+                },
+                "openingDeposit": {
+                    "type": "number"
+                },
+                "ownerTypeCode": {
+                    "type": "string"
+                }
+            },
+            "title": "NewAccount"
+        },
+        "NewTransaction": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "number"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "transactionTypeCode": {
+                    "type": "string"
+                }
+            },
+            "title": "NewTransaction"
+        },
+        "NewUser": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "dob": {
+                    "type": "string",
+                    "example": "MM/dd/yyyy"
+                },
+                "emailAddress": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "homePhone": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "locality": {
+                    "type": "string"
+                },
+                "mobilePhone": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "postalCode": {
+                    "type": "string"
+                },
+                "region": {
+                    "type": "string"
+                },
+                "ssn": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "workPhone": {
+                    "type": "string"
+                }
+            },
+            "title": "NewUser"
+        },
+        "PromotionCandidate": {
+            "type": "object",
+            "properties": {
+                "accountType": {
+                    "type": "string"
+                },
+                "age": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "balance": {
+                    "type": "number"
+                },
+                "rating": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "years": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "title": "PromotionCandidate"
+        },
+        "TransferFunds": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "number"
+                },
+                "toAccountId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "TransferFunds"
+        },
+        "UpdateUser": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "homePhone": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "locality": {
+                    "type": "string"
+                },
+                "mobilePhone": {
+                    "type": "string"
+                },
+                "postalCode": {
+                    "type": "string"
+                },
+                "region": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "workPhone": {
+                    "type": "string"
+                }
+            },
+            "title": "UpdateUser"
+        }
+    }
+}

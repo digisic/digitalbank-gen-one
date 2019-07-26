@@ -2,6 +2,8 @@ package io.demo.bank.model;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 public class AtmLocation {
 	
 	private String name;
@@ -14,8 +16,10 @@ public class AtmLocation {
 	private BigDecimal distance;
 	private String latitude;
 	private String longitude;
-	
-	
+	private String name2;
+	private String description2;
+	private String street2;
+
 	/**
 	 * @return the name
 	 */
@@ -136,7 +140,5 @@ public class AtmLocation {
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
-	
-	
 
 }

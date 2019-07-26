@@ -25,6 +25,10 @@ public class Patterns {
 	// ATM Search
 	public static final String US_ZIPCODE			= "^[0-9]{5}(?:-[0-9]{4})?$";
 	
+	// Visa Account
+	public static final String VISA_ACCOUNT			= "^([a-zA-Z0-9_\\\\-\\\\.]+)";
+
+	
 	// Role
 	public static final String ROLE_USER			= "USER";
 	public static final String ROLE_ADMIN			= "ADMIN";

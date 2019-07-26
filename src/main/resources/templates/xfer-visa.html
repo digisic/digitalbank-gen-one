@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"> 
+
+<head th:replace="common/sections :: header-css"/>
+
+<body>
+
+
+	<!-- Left Panel -->
+	<aside th:replace="common/menus :: left-panel"></aside>
+
+    <!-- Right Panel -->
+	<div id="right-panel" class="right-panel">
+	
+		<header th:replace="common/menus :: rp-header"/>
+		
+		<div th:replace="common/menus :: rp-breadcrumbs"/>
+    
+    	<!-- Page Content Begin -->
+    
+	    	<div class="content mt-3">
+	            <div class="animated fadeIn">
+	                
+	              
+	               
+	            	<div class="row">
+                  		<div class="col-lg-12">
+                    		<div class="card">
+                        		<div class="card-header bg-flat-color-1">
+                            		<strong class="text-white card-title">VISA Direct Payment</strong>
+                        		</div>
+
+				<form class="search-form" th:action="@{/search/visa}" method="post">
+                             		<div class="form-group">
+	                            		<label for="visaaccount" class="form-control-label"><strong>VISA Account Number</label> 
+	                                	<input id="zipcode" name="zipcode" class="form-control mr-sm-2" type="text" placeholder="Enter Visa Account Number" aria-label="Search" required th:pattern="${patternvisa}">
+	                            
+	                                </div>
+	                               <div class="row form-group">
+		                        	<div class="col col-sm-4">
+					                	<label class="form-control-label"><strong>Transfer Amount</strong></label>
+					                	<input type="text" class="form-control" th:field="${transaction.amount}" required th:pattern="${patternTransactionAmount}">
+					                	<small class="form-text text-muted">ex. $25.00</small>
+					                 </div>
+		                        	</div>
+								<div class="card-footer">
+		                     	    	<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-dot-circle-o"></i> Submit</button>
+		                     	</div> <!-- End Card Footer -->	
+                            	</form>
+                        	</div>
+
+ 
+                      	</div> <!-- End Card Body -->
+                     			</form>
+                    		</div> <!-- End Card -->
+                 		</div> <!-- End Column-->
+                	</div> <!-- End Row -->
+                	
+	            </div><!-- .animated -->
+	        </div><!-- .content -->
+
+	        
+	    <!-- Page Content End -->
+	    
+	</div> <!-- End right panel -->
+    
+	<!-- Footer -->
+	<div th:replace="common/sections :: footer-scripts"></div>
+
+</body>
+</html>

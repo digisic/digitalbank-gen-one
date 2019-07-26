@@ -48,5 +48,20 @@
     "name": "io.demo.bank.atm.protocol",
     "type": "java.lang.String",
     "description": "A description for 'io.demo.bank.atm.protocol'"
+  },
+  {
+    "name": "io.demo.bank.visa.host",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.bank.visa.host'"
+  },
+  {
+    "name": "io.demo.bank.visa.port",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.bank.visa.port'"
+  },
+  {
+    "name": "io.demo.bank.visa.protocol",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.bank.visa.protocol'"
   }
 ]}

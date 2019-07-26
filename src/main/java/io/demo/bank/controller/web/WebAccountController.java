@@ -473,6 +473,7 @@ public class WebAccountController extends WebCommonController {
 		return Constants.DIR_REDIRECT + Constants.VIEW_CHK_VIEW + "?" + MODEL_ATT_ACCT_SEL_SWITCH + "=" + account.getId();
 		
 	}
+
 	@GetMapping(Constants.URI_XFER_VALIDATE)
 	public String transfer1 (Principal principal, Model model) {
 		
@@ -496,6 +497,31 @@ public class WebAccountController extends WebCommonController {
 		model.addAttribute(MODEL_ATT_PATTERN_TRANS_AMOUNT, Patterns.TRANSACTION_AMOUNT);
 		
 		return Constants.VIEW_XFER_VALIDATE;
+		
+	}
+	@GetMapping(Constants.URI_XFER_VISA)
+	public String transfer2 (Principal principal, Model model) {
+		
+		// Set Display Defaults
+		setDisplayDefaults(principal, model);
+				
+		Users user = userService.findByUsername(principal.getName());
+	
+		// Get all accounts
+		List<Account> accountList = accountService.getCheckingAccounts(user);
+		accountList.addAll(accountService.getSavingsAccounts(user));
+		model.addAttribute(MODEL_ATT_ACCT_LIST, accountList);
+		model.addAttribute(MODEL_ATT_FROM_ACCOUNT, new Long(0));
+		model.addAttribute(MODEL_ATT_TO_ACCOUNT, new Long(0));
+	
+		
+		AccountTransaction accountTransaction = new AccountTransaction();
+		model.addAttribute(MODEL_ATT_ACCT_TRANS, accountTransaction);
+		
+		// Add format patterns
+		model.addAttribute(MODEL_ATT_PATTERN_TRANS_AMOUNT, Patterns.TRANSACTION_AMOUNT);
+		
+		return Constants.VIEW_XFER_VISA;
 		
 	}
 	
@@ -606,9 +632,89 @@ public class WebAccountController extends WebCommonController {
 		return Constants.DIR_REDIRECT + Constants.VIEW_CHK_VIEW + "?" + MODEL_ATT_ACCT_SEL_SWITCH + "=" + toAcct.getId();
 		
 	}
+	@PostMapping(Constants.URI_XFER_VISA)
+	public String transfer2 (Principal principal, Model model,
+							@ModelAttribute(MODEL_ATT_FROM_ACCOUNT) Long fromAccount,
+							@ModelAttribute(MODEL_ATT_TO_ACCOUNT) Long toAccount,
+							@ModelAttribute(MODEL_ATT_ACCT_TRANS) AccountTransaction accountTransaction) {
+		
+		// Set Display Defaults
+		setDisplayDefaults(principal, model);
+		
+		LOG.debug("Transfer1: From Account ID: -> " + fromAccount);
+		LOG.debug("Transfer1: To Account ID: -> " + toAccount);
+		LOG.debug("Transfer1: Amount: -> " + accountTransaction.getAmount());
+		
+		boolean bError = false;
+		
+		Account fromAcct = accountService.getAccountById(fromAccount);
+		Account toAcct = accountService.getAccountById(toAccount);
+		
+		Users user = userService.findByUsername(principal.getName());
+		
+		if (fromAcct.getId() != toAcct.getId()) {
+			
+			// if balance is not less than transfer amount
+			if (fromAcct.getCurrentBalance().compareTo(accountTransaction.getAmount()) != -1){
+				
+				// Check amount is greater than zero
+				if (accountTransaction.getAmount().signum() != 1) {
+					
+					bError = true;
+					model.addAttribute(MODEL_ATT_ERROR_MSG, "The transfer amount ($" 
+						 									 + accountTransaction.getAmount()
+						 									 + ") must be greater than $0.00");
+				}else {
+				
+					// Execute Transfer
+					accountService.transfer(fromAcct, toAcct, accountTransaction);
+				}
+			} else {
+				
+				bError = true;
+				model.addAttribute(MODEL_ATT_ERROR_MSG, "The amount ($" + accountTransaction.getAmount() 
+														 + ") requested for transfer is more than the available balance ($" 
+														 + fromAcct.getCurrentBalance() + ").");
+			}
+		}else {
+			
+			// Error from and to account cannot be the same
+			bError = true;
+			model.addAttribute(MODEL_ATT_ERROR_MSG, "Can not trasnsfer from and to the same account.");
+	
+		}
+		
+		if (bError) {
+			
+			// Get all accounts
+			List<Account> accountList = accountService.getCheckingAccounts(user);
+			accountList.addAll(accountService.getSavingsAccounts(user));
+			model.addAttribute(MODEL_ATT_ACCT_LIST, accountList);
+			model.addAttribute(MODEL_ATT_FROM_ACCOUNT, fromAccount);
+			model.addAttribute(MODEL_ATT_TO_ACCOUNT, toAccount);
+			model.addAttribute(MODEL_ATT_ACCT_TRANS, accountTransaction);
+			
+			// Add format patterns
+			model.addAttribute(MODEL_ATT_PATTERN_TRANS_AMOUNT, Patterns.TRANSACTION_AMOUNT);
+			
+			return Constants.VIEW_XFER_VALIDATE;
+		}
+		
+		
+		// if this is a checking account
+		if (accountService.isSavingsAccount(toAcct)) {
+			
+			// return the savings view - ensure the account for the deposit is in focus
+			return Constants.DIR_REDIRECT + Constants.VIEW_SAV_VIEW + "?" + MODEL_ATT_ACCT_SEL_SWITCH + "=" + toAcct.getId();
+			
+		}
+		
+		// Return to the checking view - ensure the account for the deposit is in focus
+		return Constants.DIR_REDIRECT + Constants.VIEW_CHK_VIEW + "?" + MODEL_ATT_ACCT_SEL_SWITCH + "=" + toAcct.getId();
+		
+	}
 
-	
-	
+		
 	@PostMapping(Constants.URI_XFER_BETWEEN)
 	public String transfer (Principal principal, Model model,
 							@ModelAttribute(MODEL_ATT_FROM_ACCOUNT) Long fromAccount,

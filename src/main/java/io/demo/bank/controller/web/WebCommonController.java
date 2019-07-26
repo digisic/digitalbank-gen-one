@@ -89,6 +89,7 @@ abstract class WebCommonController {
 	// model attribute constants -> Search
 	public static final String MODEL_SEARCH_ZIPCODE				= "zipcode";
 	public static final String MODEL_ATT_PATTERN_ZIPCODE		= "patternZip";
+	public static final String MODEL_ATT_PATTERN_VISAACCOUNT	= "patternvisa";
 	public static final String MODEL_ATT_ATM_LIST				= "atmList";
 
 	/*
@@ -125,6 +126,7 @@ abstract class WebCommonController {
 		
 		// Add ATM Location Service
 		model.addAttribute(MODEL_ATT_PATTERN_ZIPCODE, Patterns.US_ZIPCODE);
+		model.addAttribute(MODEL_ATT_PATTERN_VISAACCOUNT, Patterns.VISA_ACCOUNT);
 		
 		// Check to see if we should enable the Credit Menu
 		if (creditService.isCreditServiceEnabled() && creditService.checkCreditConnection()) {
