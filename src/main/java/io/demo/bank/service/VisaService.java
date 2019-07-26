@@ -130,7 +130,7 @@ public class VisaService {
 						atm.setDescription("Approval Code = " + root.path("approvalCode").asText());
 						atm.setStreet("CAVV Result Code = " + root.path("cavvResultCode").asText());
 						atm.setCity("VISA Response Code" + root.path("responseCode").asText());
-						atm.setState("VISA Transaction Identifier" + root.path("transactionIdentifier").asText());
+						atm.setState("VISA Transaction Identifier = " + root.path("transactionIdentifier").asText());
 						atm.setZipcode(root.path("postalCode").asText());
 						atm.setCountry(root.path("country").asText());
 						results.add(atm);

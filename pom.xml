@@ -18,16 +18,6 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<repositories>
-	<!-- your other repositories -->
-		<repository>
-			<id>bintray-ca-sv</id>
-			<name>bintray-ca</name>
- 			<url>http://ca.bintray.com/sv</url>
-<!--			<url>file:C:\Users\puzke01\Documents\GitHub\Digital-Bank\CodeSVUpdate</url>   -->
-		</repository>
-	</repositories>
-	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -109,11 +99,163 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+			        <exclusions>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-servlets</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-continuation</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-http</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-util</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-io</artifactId>
+            </exclusion>
+
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-webapp</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-xml</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-servlet</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-security</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-server</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-webapp</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-annotations</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-plus</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-jndi</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty.websocket</groupId>
+                <artifactId>websocket-client</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty.websocket</groupId>
+                <artifactId>websocket-server</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty.websocket</groupId>
+                <artifactId>javax-websocket-server-impl</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>com.vaadin.external.google</groupId>
+                <artifactId>android-json</artifactId>
+            </exclusion>
+        </exclusions>
+			
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
+			        <exclusions>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-servlets</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-continuation</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-http</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-util</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-io</artifactId>
+            </exclusion>
+
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-webapp</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-xml</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-servlet</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-security</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-server</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-webapp</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-annotations</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-plus</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-jndi</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty.websocket</groupId>
+                <artifactId>websocket-client</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty.websocket</groupId>
+                <artifactId>websocket-server</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.eclipse.jetty.websocket</groupId>
+                <artifactId>javax-websocket-server-impl</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>com.vaadin.external.google</groupId>
+                <artifactId>android-json</artifactId>
+            </exclusion>
+        </exclusions>
+			
 		</dependency>
 		
 		<!-- Serenity BDD Cucumber -->		
@@ -122,6 +264,78 @@
             <artifactId>serenity-core</artifactId>
             <version>${serenity.version}</version>
             <scope>test</scope>
+                        <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-servlets</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-continuation</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-http</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-util</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-io</artifactId>
+                </exclusion>
+
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-webapp</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-xml</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-servlet</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-security</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-server</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-webapp</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-annotations</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-plus</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-jndi</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty.websocket</groupId>
+                    <artifactId>websocket-client</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty.websocket</groupId>
+                    <artifactId>websocket-server</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty.websocket</groupId>
+                    <artifactId>javax-websocket-server-impl</artifactId>
+                </exclusion>
+            </exclusions>
+            
         </dependency>
         <dependency>
     		<groupId>net.serenity-bdd</groupId>
@@ -210,14 +424,16 @@
         	<version>${selenium.version}</version><!--$NO-MVN-MAN-VER$-->
         	<scope>test</scope>
     	</dependency>  
-    	<!-- CA CodeSV  -->		
-    	<dependency>
-			<groupId>com.ca.codesv</groupId>
-			<artifactId>codesv-dist-jar</artifactId>
-<!--			<artifactId>codesv-dist-all-0.0.0-SNAPSHOT</artifactId>  -->
-			<version>1.3.0</version>
-		</dependency>
-	</dependencies>    	
+    	
+    	        <!-- local experimental CodeSV build with CloudRepo Annotation -->
+        <dependency>
+            <groupId>com.ca.codesv</groupId>
+            <artifactId>codesv-dist-jar</artifactId>
+            <version>0.0.0-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>C:/Users/puzke01/Documents/GitHub/Digital-Bank/CodeSVUpdate/codesv-dist-all-0.0.0-SNAPSHOT.jar</systemPath>
+        </dependency>
+	</dependencies>
 	
 	<build>
 		<plugins>
