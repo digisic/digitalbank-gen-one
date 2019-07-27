@@ -59,6 +59,7 @@ public class Constants {
 	public static final String URI_USR_PASSWORD 		= "/password";
 	public static final String URI_USR_PROFILE 			= "/profile";
 	public static final String URI_ACCOUNT				= "/account";
+	public static final String URI_ACCOUNT_UPDATE		= "/update";
 	public static final String URI_CHK_ADD				= "/checking-add";
 	public static final String URI_CHK_VIEW				= "/checking-view";
 	public static final String URI_SAV_ADD				= "/savings-add";

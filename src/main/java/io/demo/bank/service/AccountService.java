@@ -97,6 +97,15 @@ public class AccountService {
 	}
 	
 	/*
+	 * Update an Account
+	 */
+	public Account updateAccount (Account account) {
+		accountRepository.save(account);
+		
+		return account;
+	}
+	
+	/*
 	 * Delete an Account
 	 */
 	public void deleteAccount (Account account) {

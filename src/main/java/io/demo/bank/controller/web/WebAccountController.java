@@ -7,12 +7,15 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import io.demo.bank.model.Account;
 import io.demo.bank.model.AccountTransaction;
 import io.demo.bank.model.security.Users;
@@ -166,6 +169,21 @@ public class WebAccountController extends WebCommonController {
 		}
 		
 		return Constants.DIR_REDIRECT + Constants.VIEW_SAV_VIEW + "?" + MODEL_ATT_ACCT_SEL_SWITCH + "=" + newAccount.getId();
+	}
+	
+	@PostMapping(Constants.URI_ACCOUNT_UPDATE)
+	public ResponseEntity<?> updateAccount(Principal principal, Model model,
+										  @RequestParam Long id, 
+										  @RequestParam String newName){
+		
+		Account account = accountService.getAccountById(id);
+		
+		if (account == null)
+			return (ResponseEntity<?>) ResponseEntity.notFound();
+		
+		account.setName(newName);
+		
+		return ResponseEntity.ok(accountService.updateAccount(account));
 	}
 	
 	

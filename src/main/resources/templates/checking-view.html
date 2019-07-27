@@ -22,7 +22,7 @@
 	    	<div class="content mt-3">
 	            <div class="animated fadeIn">
 	            
-	                <div class="row">				
+	                <div id="firstRow" class="row">				
 		    			<div class="col-md-6 col-lg-3" th:each="acct : ${accountList}">
 	                        <div th:class="${acct.currentBalance < 0} ? 'card bg-flat-color-4 text-light':'card bg-flat-color-1 text-light'">
 	                        	
@@ -35,7 +35,7 @@
 		                                		<span class="switch-handle"></span>
 		                                </label>
 		                     
-		                                <div class="h4 m-0" th:text="${acct.name}"></div>
+		                                <div class="h4 m-0" th:text="${acct.name}" contenteditable=true></div>
 		                                <div><small class="text-light" th:text="'Account: ' + ${acct.accountType.name}"></small></div>
 		                                <div><small class="text-light" th:text="'Ownership: ' + ${acct.ownershipType.name}"></small></div>
 		                                <div><small class="text-light" th:text="'Account Number: ' + ${acct.accountNumber}"></small></div>
@@ -119,13 +119,107 @@
     <script src="/js/lib/data-table/buttons.print.min.js"></script>
     <script src="/js/lib/data-table/buttons.colVis.min.js"></script>
     <script src="/js/lib/data-table/datatables-init.js"></script>
+    
 	<script type="text/javascript">
+	
 		$('#transactionTable').DataTable({
 		       'order': []
-		   } );
+		} );
+		
+		
+		// variable to save current account name when selected
+		var currentName;
+
+		// Save current account name when seleted
+	    $("div [contenteditable=true]").focus(function() {
+	    	currentName = $(this).html();
+	    });
+
+		// When focus from name is blurred check to see if the account name changed
+	    $("div [contenteditable=true]").blur(function() {
+	        if ($(this).html() != currentName) {
+	        	
+	        	// save the element
+	        	var element = $(this);
+	        	
+	        	// save the new name and id of the account
+	        	var acctId = $(this).closest('form').find('input').val();
+	        	var acctName = $(this).html();
+	        	var valid = true;
+	        	
+	        	if (acctName.length <= 0){
+	        		var error = '<div id="errorUpdate" class="sufee-alert alert with-close alert-danger alert-dismissible fade show">';
+        	    	error += '<span class="badge badge-pill badge-danger">Error</span>';
+	    			error += '<span> Account Name must not be empty.</span>';
+	  				error += '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+	    			error += '<span aria-hidden="true">&times;</span>';
+					error += '</button>';
+					error += '</div>';
+					
+					element.text(currentName);
+        	    	$("#firstRow").before(error);
+        	    	
+        	    	valid = false;
+	        		
+	        	}
+	        	
+	        	if (acctName.length > 40){
+	        		var error = '<div id="errorUpdate" class="sufee-alert alert with-close alert-danger alert-dismissible fade show">';
+        	    	error += '<span class="badge badge-pill badge-danger">Error</span>';
+	    			error += '<span> Account Name must be less than 40 characters.</span>';
+	  				error += '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+	    			error += '<span aria-hidden="true">&times;</span>';
+					error += '</button>';
+					error += '</div>';
+					
+					element.text(currentName);
+        	    	$("#firstRow").before(error);
+        	    	
+        	    	valid = false;
+	        		
+	        	}
+	           	                   
+	        	// make ajax call to update the new account name on server
+	        	if (valid){
+		        	$.ajax({
+		        		type : "POST",
+		        	    contentType : "application/json",
+		        	    url : "/account/update?id=" + acctId + "&newName=" + acctName,
+		        	    cache : false,
+		        	    timeout : 600000,
+		        	    success : function(data) {
+		        	   		
+		        	   		var success = '<div id="successUpdate" class="sufee-alert alert with-close alert-success alert-dismissible fade show">';
+							success += '<span class="badge badge-pill badge-success">Success</span>';
+			    			success += '<span> Update of account name saved.</span>';
+			  				success += '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+			    			success += '<span aria-hidden="true">&times;</span>';
+							success += '</button>';
+							success += '</div>';
+							
+							$("#firstRow").before(success);
+						
+		        	    },
+		        	    error : function(e) {
+		        	    
+		        	      	var error = '<div id="errorUpdate" class="sufee-alert alert with-close alert-danger alert-dismissible fade show">';
+		        	    	error += '<span class="badge badge-pill badge-danger">Error</span>';
+			    			error += '<span> An unknown error occurred while executing an update to the account name.</span>';
+			  				error += '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+			    			error += '<span aria-hidden="true">&times;</span>';
+							error += '</button>';
+							error += '</div>';	
+		        	    
+		        	    	element.text(currentName);
+		        	    	$("#firstRow").before(error);
+		        	    }
+		        	}); // end ajax
+	        	} // end if valid
+	        }   // end if account name changed 
+	    });		
+		
    	</script>
-   
-	
+  
 	<div th:if="${noAccounts}"><script>document.getElementById("showModal").click();</script></div>
 
 </body>

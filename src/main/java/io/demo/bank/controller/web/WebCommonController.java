@@ -47,6 +47,8 @@ abstract class WebCommonController {
 	
 	// public model attribute constants -> Accounts
 	public static final String MODEL_ATT_ACCOUNT 				= "account";
+	public static final String MODEL_ATT_ACCT_ID				= "acctId";
+	public static final String MODEL_ATT_ACCT_NEW_NAME			= "acctNewName";
 	public static final String MODEL_ATT_TO_ACCOUNT 			= "toAccount";
 	public static final String MODEL_ATT_FROM_ACCOUNT 			= "fromAccount";
 	public static final String MODEL_ATT_ACCT_TYPE_LIST 		= "accountTypeList";

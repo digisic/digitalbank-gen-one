@@ -274,6 +274,31 @@ public class AccountController extends CommonController {
 	
 	/*
 	 * API Role
+	 * Update Account
+	 */
+	@PutMapping(Constants.URI_API_ACCT)
+	public ResponseEntity<?> updateAccount(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
+										   @RequestParam(required=true) String newName) {	
+		
+		Users authUser = getAuthenticatedUser();
+		Account account = getAccountById(id);
+		
+		// If this is not an ADMIN user, then make sure the account belongs to the user
+		if (!hasRole(authUser, Role.ROLE_ADMIN)) {
+			if (!(account.getOwner().getId() == authUser.getId() || account.getCoowner().getId() == authUser.getId())) {
+				throw new RestForbiddenException(Messages.ACCESS_FORBIDDEN);
+			}
+		}
+		
+		account.setName(newName);
+
+		return ResponseEntity.ok(accountService.updateAccount(account));
+	}
+	
+	
+	
+	/*
+	 * API Role
 	 * Get Current User's Savings Accounts
 	 */
 	@GetMapping(Constants.URI_API_ACCT_TRAN)
