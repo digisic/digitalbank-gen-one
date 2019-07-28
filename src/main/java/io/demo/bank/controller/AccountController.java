@@ -6,6 +6,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -278,7 +280,7 @@ public class AccountController extends CommonController {
 	 */
 	@PutMapping(Constants.URI_API_ACCT)
 	public ResponseEntity<?> updateAccount(@PathVariable(Constants.PATH_VARIABLE_ID) Long id,
-										   @RequestParam(required=true) String newName) {	
+										   @RequestParam(required=true) @Size(min = 1, max = 40) String newName) {	
 		
 		Users authUser = getAuthenticatedUser();
 		Account account = getAccountById(id);
@@ -457,6 +459,8 @@ public class AccountController extends CommonController {
 	 * New Account
 	 */
 	private static class NewAccount {
+		
+		@Size(min = 1, max = 40)
 		@NotEmpty (message=Messages.ACCT_NAME_REQ)
 		private String accountName;
 		
