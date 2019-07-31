@@ -12,13 +12,6 @@ import com.ca.codesv.protocols.transaction.TxnRepoStoreBuilder;
 
 import org.junit.*;
 
-// @TransactionCloudRepository(
-//        workspaces = {"SWAT Workspace"},
-//        apiKey = "d8b314f66965170c27c3f6d7",
-//        apiSecret = "225f3c25a6b3c496a302def814e230e115501d6e3b5374c2b6f1ba16e471a4b4d27af7a6",
-//        uri = "https://ac-1400-bzctjenkins-develop.blazemeter.net"
-// )
-
 public class VISAPaymentTest {
 
 @Rule
@@ -34,13 +27,13 @@ public class VISAPaymentTest {
 	    .doReturn(okMessage().withJsonBody
 	    	(
 	    	"transactionIdentifier\": 875806056061895,\r\n" + 
-	    	" \"actionCode\": \"51\",\r\n" + 
+	    	" \"actionCode\": \"00\",\r\n" + 
 	    	"\"approvalCode\": \"98765X\",\r\n" + 
 	    	"\"responseCode\": \"5\",\r\n" + 
 	    	"\"transmissionDateTime\": \"2019-07-17T16:30:35.000Z\",\r\n" + 
 	    	"\"cavvResultCode\": \"8\",\r\n" + 
 	    	"\"cpsAuthorizationCharacteristicsIndicator\": \"3333\""
-	    		
+		
 	    	)
 	    );
   }

@@ -19,6 +19,8 @@ public class AtmLocation {
 	private String name2;
 	private String description2;
 	private String street2;
+	private String visaamount;
+	private String amount;
 
 	/**
 	 * @return the name

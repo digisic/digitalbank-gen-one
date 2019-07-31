@@ -91,6 +91,7 @@ abstract class WebCommonController {
 	public static final String MODEL_ATT_PATTERN_ZIPCODE		= "patternZip";
 	public static final String MODEL_ATT_PATTERN_VISAACCOUNT	= "patternvisa";
 	public static final String MODEL_ATT_ATM_LIST				= "atmList";
+	public static final String MODEL_SEARCH_AMOUNT				= "amount";
 
 	/*
 	 * Sets display defaults for Authenticated user

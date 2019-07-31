@@ -29,12 +29,12 @@ public class VisaController extends CommonController {
 	 * VISA API by account number
 	 */
 	@GetMapping (Constants.URI_API_SEARCH_VISA)
-	public ResponseEntity<?> searchAtmLocations (@RequestParam @Pattern (regexp=Patterns.VISA_ACCOUNT, 
-            											   				 message=Messages.VISA_SEARCH_FORMAT) String zipcode){
+	public ResponseEntity<?> searchATMLocations (@RequestParam @Pattern (regexp=Patterns.VISA_ACCOUNT, 
+            											   				 message=Messages.VISA_SEARCH_FORMAT) String zipcode, String visaamount){
 		
 		try {
 			
-			List<AtmLocation> locations = visaService.searchATMLocations(zipcode);
+			List<AtmLocation> locations = visaService.searchATMLocations(zipcode, visaamount);
 						
 			return ResponseEntity.ok(locations);
 		}

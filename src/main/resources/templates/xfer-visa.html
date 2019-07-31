@@ -28,31 +28,34 @@
                   		<div class="col-lg-12">
                     		<div class="card">
                         		<div class="card-header bg-flat-color-1">
-                            		<strong class="text-white card-title">VISA Direct Payment</strong>
+                            		<strong class="text-white card-title">Direct Payment to VISA</strong>
                         		</div>
-
-				<form class="search-form" th:action="@{/search/visa}" method="post">
+					<hr>
+								<form class="search-form" th:action="@{/search/visa}" method="post">
                              		<div class="form-group">
-	                            		<label for="visaaccount" class="form-control-label"><strong>VISA Account Number</label> 
-	                                	<input id="zipcode" name="zipcode" class="form-control mr-sm-2" type="text" placeholder="Enter Visa Account Number" aria-label="Search" required th:pattern="${patternvisa}">
-	                            
-	                                </div>
+	                            		<label for="visaaccount" class="form-control-label"><strong>VISA Account Number</strong></label> 
+                               		<select name="zipcode">
+	                                	<option class="text-light"value="">---------- Select Account -----------</option>
+  										<option value="ABCD1234ABCD123">------ Account Ending in 123  ------</option>
+  										<option value="ABCD1234ABCD456">------ Account Ending in 456  ------</option>
+  									</select>
+  									</div>
 	                               <div class="row form-group">
 		                        	<div class="col col-sm-4">
 					                	<label class="form-control-label"><strong>Transfer Amount</strong></label>
-					                	<input type="text" class="form-control" th:field="${transaction.amount}" required th:pattern="${patternTransactionAmount}">
-					                	<small class="form-text text-muted">ex. $25.00</small>
+					                	<input id="visaamount" name="visaamount" type="text" class="form-control" th:field="${transaction.amount}" required th:pattern="${patternTransactionAmount}">
+					                	<small class="form-text text-muted">Amount to be transferred to VISA account</small>
 					                 </div>
 		                        	</div>
 								<div class="card-footer">
-		                     	    	<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-dot-circle-o"></i> Submit</button>
+		                     	    	<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-dot-circle-o"></i> Submit to VISA</button>
 		                     	</div> <!-- End Card Footer -->	
                             	</form>
                         	</div>
 
  
                       	</div> <!-- End Card Body -->
-                     			</form>
+                     		</form>
                     		</div> <!-- End Card -->
                  		</div> <!-- End Column-->
                 	</div> <!-- End Row -->

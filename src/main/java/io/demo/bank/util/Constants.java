@@ -138,12 +138,12 @@ public class Constants {
 	public static final String VIEW_WITHDRAW 		= "withdraw";
 	public static final String VIEW_XFER_BETWEEN 	= "xfer-between";
 	public static final String VIEW_XFER_VALIDATE 	= "xfer-validate";
-	public static final String VIEW_XFER_VISA 	= "xfer-visa";
+	public static final String VIEW_XFER_VISA 		= "xfer-visa";
 	public static final String VIEW_CREDIT_APP 		= "credit-app";
 	public static final String VIEW_CREDIT_APP_ST 	= "credit-app-status";
 	public static final String VIEW_PROMOTIONS		= "promotions";
 	public static final String VIEW_SEARCH			= "search";
-	public static final String VIEW_VISASEARCH			= "visasearch";
+	public static final String VIEW_VISASEARCH		= "visasearch";
 	
 	// Account Type Codes
 	public static final String ACCT_CHK_STD_CODE	= "SCK";

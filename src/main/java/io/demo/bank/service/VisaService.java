@@ -3,6 +3,7 @@ package io.demo.bank.service;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +21,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
@@ -37,21 +40,29 @@ public class VisaService {
 	
 	// ATM Location Service URL
 	private static String apiBaseUrl;
+
 	
 	@Autowired
 	private Environment environment;
+		
 	
-	public List<AtmLocation> searchATMLocations (String zipcode) throws Exception {
+	public List<AtmLocation> searchATMLocations (String zipcode, String visaamount)	throws Exception {
+		
+		LOG.debug("Visa Amount visa service  = " + visaamount );
+		LOG.debug("Visa Account visa service = " + zipcode );	
 		
 		if (VisaService.apiBaseUrl == null) {
 			getConnectionProperties();
 		}
+
 		
 		List<AtmLocation> results = new ArrayList<AtmLocation>();
-				
+		
+
 		// Add query parameters for authentication credentials
 		UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(VisaService.apiBaseUrl)
-		                					.queryParam("idcode", zipcode);
+		                					.queryParam("idcode", zipcode)
+											.queryParam("amount", visaamount);
 
 		
 //		LOG.debug("ATM Location Request: " + uriBuilder.toUriString());
@@ -91,26 +102,13 @@ public class VisaService {
 			LOG.debug("CAVVResult Code from visa  = " + CAVVResult);
 			
 			
-			
-//			AtmLocation atm2 = new AtmLocation();
-//		
-//					atm.setName(idCode);
-//					atm.setDescription(Approvalcode);
-//					atm.setStreet(CAVVResult);
-								
-//					results.add(atm2);
+
 
 			String approvalcode = "Approved";
 			
 		
 			final Integer approvalID = root.path("actionCode").asInt();
 			LOG.debug("Action code integer value " + approvalID);			
-//		    switch (approvalID) {
-//	        case 0:{
-//	            approvalcode = "Approved";}
-//	        case 51:{
-//	        	approvalcode = "Insufficient Funds";}
-//	    }
 			
 		    
 		    if (approvalID == 0) {
@@ -204,3 +202,4 @@ public class VisaService {
 	}
 
 }
+
