@@ -18,6 +18,14 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
+	<repositories>
+		<repository>
+			<id>bintray-ca-sv</id>
+			<name>bintray-ca</name>
+			<url>http://ca.bintray.com/sv</url>
+		</repository>
+	</repositories>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -199,7 +207,15 @@
         	<artifactId>selenium-api</artifactId>
         	<version>${selenium.version}</version><!--$NO-MVN-MAN-VER$-->
         	<scope>test</scope>
-    	</dependency>  
+    	</dependency>
+
+		<!-- CodeSV public build -->
+		<dependency>
+			<groupId>com.ca.codesv</groupId>
+			<artifactId>codesv-dist-jar</artifactId>
+			<version>1.3.0</version>
+		</dependency>
+
 	</dependencies>
 	
 	<build>
