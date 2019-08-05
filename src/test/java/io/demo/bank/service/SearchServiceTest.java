@@ -50,8 +50,6 @@ public class SearchServiceTest extends BaseTest {
                 )
                 .doReturn(okMessage().withJsonBody(RESPONSE_OK));
 
-        setUpAppKeystoreForTest();
-
         List<AtmLocation> results = searchService.searchATMLocations("94203");
 
         assertTrue(results.size() == 2);
