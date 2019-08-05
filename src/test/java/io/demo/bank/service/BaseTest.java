@@ -1,5 +1,8 @@
 package io.demo.bank.service;
 
+import org.junit.After;
+import org.junit.Before;
+
 public abstract class BaseTest {
 
     static final String KEYSTORE_PATH = BaseTest.class.getClassLoader()
@@ -7,9 +10,15 @@ public abstract class BaseTest {
 
     static final String KEYSTORE_PASSWORD = "password";
 
-    public static void setUpAppKeystoreForTest() {
-        System.setProperty("javax.net.ssl.trustStore","src/test/resources/keystore.jks");
+    @Before
+    public void setUpAppKeystoreForTest() {
+        System.setProperty("javax.net.ssl.trustStore", "src/test/resources/keystore.jks");
         System.setProperty("javax.net.ssl.trustStorePassword", "password");
+    }
+    @After
+    public void resetKeystore() {
+        System.clearProperty("javax.net.ssl.trustStore");
+        System.clearProperty("javax.net.ssl.trustStorePassword");
     }
 
 }
