@@ -113,6 +113,10 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+        	<groupId>javax.xml.bind</groupId>
+        	<artifactId>jaxb-api</artifactId>
+		</dependency>
 		
 		<!-- Serenity BDD Cucumber -->		
         <dependency>
