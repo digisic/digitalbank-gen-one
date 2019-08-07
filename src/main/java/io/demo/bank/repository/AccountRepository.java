@@ -8,12 +8,13 @@ import org.springframework.data.repository.CrudRepository;
 import io.demo.bank.model.Account;
 import io.demo.bank.model.AccountType;
 import io.demo.bank.model.security.Users;
+import io.demo.bank.util.Constants;
 
 
 
 public interface AccountRepository extends CrudRepository<Account, Long> {
 	
-	@Query ("select coalesce(max(accountNumber), 10000000) from Account")
+	@Query ("select coalesce(max(accountNumber), " + Constants.ACCT_BASE_NUMBER + "000000) from Account")
 	Long findMaxAccountNumber();
 	
 	List<Account> findAll ();

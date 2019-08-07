@@ -11,6 +11,10 @@ public class Constants {
 	public static final String API_AUTH_HEADER		= "Authorization";
 	public static final String API_TOKEN_BEGIN		= "Bearer ";
 	
+	// Banking Constants
+	public static final String ACCT_BASE_NUMBER		= "48613";
+	public static final String TRANS_BASE_NUMBER	= "84532";
+	
 	// Has Role
 	public static final String HAS_ROLE_USER		= "hasRole('" + Patterns.ROLE_USER + "')";
 	public static final String HAS_ROLE_ADMIN		= "hasRole('" + Patterns.ROLE_ADMIN + "')";
