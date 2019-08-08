@@ -62,6 +62,7 @@
 				                    <thead>
 				                      <tr>
 				                        <th data-field="date" data-sortable="true">Date</th>
+				                        <th data-field="category" data-sortable="true">Category</th>
 				                        <th data-field="description" data-sortable="true">Description</th>
 				                        <th data-field="amount" data-sortable="true">Amount</th>
 				                        <th data-field="balance" data-sortable="true">Balance</th>
@@ -69,7 +70,8 @@
 				                    </thead>
 				                    <tbody>
 				                      <tr th:each="trans : ${transactionList}">
-				                        <td th:text="${trans.transactionDate}"></td>
+				                        <td th:text="${#dates.format(trans.transactionDate, 'yyyy-MM-dd HH:mm')}"></td>
+				                        <td th:text="${trans.transactionCategory.name}"></td>
 				                        <td th:text="${trans.transactionNumber + ' (' + trans.transactionType.code +') - ' + trans.description}"></td>
 				                        <td th:class="${trans.amount < 0} ? text-danger" th:text="'$' + ${trans.amount}"></td>
 				                        <td th:class="${trans.runningBalance < 0} ? text-danger" th:text="'$' + ${trans.runningBalance}"></td>

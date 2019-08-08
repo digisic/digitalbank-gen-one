@@ -91,4 +91,14 @@ public class StaticDataController extends CommonController {
 	public ResponseEntity<?> getAccountTransactionTypes() {		
 		return ResponseEntity.ok(accountService.getTransactionType());
 	}
+	
+	/*
+	 * ADMIN Role
+	 * Get Account Transaction Categories
+	 */
+	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
+	@GetMapping(Constants.URI_API_DATA_ACCT_TRAN_CT)
+	public ResponseEntity<?> getAccountTransactionCategories() {		
+		return ResponseEntity.ok(accountService.getTransactionCategory());
+	}
 }

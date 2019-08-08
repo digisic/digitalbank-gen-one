@@ -13,6 +13,7 @@ import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
 import io.demo.bank.model.AccountStanding;
 import io.demo.bank.model.AccountType;
+import io.demo.bank.model.TransactionCategory;
 import io.demo.bank.model.OwnershipType;
 import io.demo.bank.model.TransactionState;
 import io.demo.bank.model.TransactionType;
@@ -21,6 +22,7 @@ import io.demo.bank.model.security.Role;
 import io.demo.bank.model.security.Users;
 import io.demo.bank.repository.AccountStandingRepository;
 import io.demo.bank.repository.AccountTypeRepository;
+import io.demo.bank.repository.TransactionCategoryRepository;
 import io.demo.bank.repository.OwnershipTypeRepository;
 import io.demo.bank.repository.RoleRepository;
 import io.demo.bank.repository.TransactionStateRepository;
@@ -49,6 +51,9 @@ public class DefaultData implements CommandLineRunner, Ordered {
 	
 	@Autowired
 	private TransactionStateRepository transactionStateRepository;
+	
+	@Autowired
+	private TransactionCategoryRepository categoryRepository;
 	
 	@Autowired
 	private UserService userService;
@@ -211,6 +216,35 @@ public class DefaultData implements CommandLineRunner, Ordered {
 			transactionStates.add(new TransactionState("REV", "Review"));
 			
 			transactionStateRepository.saveAll(transactionStates);
+		}
+		
+		// Load Transaction Categories
+		if (categoryRepository.findByCode("INC") == null) {
+			
+			LOG.info("** Loading Transaction Categories...");
+			
+			List<TransactionCategory> categories = new ArrayList<TransactionCategory>();
+			
+			categories.add(new TransactionCategory("INC", "Income", true, true, false));
+			categories.add(new TransactionCategory("MIS", "Misc", true, false, true));
+			categories.add(new TransactionCategory("ENT", "Entertainment", true, false, true));
+			categories.add(new TransactionCategory("EDU", "Education", true, false, true));
+			categories.add(new TransactionCategory("SHP", "Shopping", true, false, true));
+			categories.add(new TransactionCategory("PRC", "Personal Care", true, false, true));
+			categories.add(new TransactionCategory("HLT", "Health & Fitness", true, false, true));
+			categories.add(new TransactionCategory("KID", "Kids", true, false, true));
+			categories.add(new TransactionCategory("FDD", "Food & Dinning", true, false, true));
+			categories.add(new TransactionCategory("GFT", "Gifts & Donations", true, false, true));
+			categories.add(new TransactionCategory("INV", "Investments", true, true, false));
+			categories.add(new TransactionCategory("BIL", "Bills & Utilities", true, false, true));
+			categories.add(new TransactionCategory("AUT", "Auto & Transport", true, false, true));
+			categories.add(new TransactionCategory("TRV", "Travel", true, false, true));
+			categories.add(new TransactionCategory("FEE", "Fees & Charges", true, true, true));
+			categories.add(new TransactionCategory("BUS", "Business Services", true, false, true));
+			categories.add(new TransactionCategory("TAX", "Taxes", true, false, true));
+			
+			categoryRepository.saveAll(categories);
+			
 		}
 		
 

@@ -16,6 +16,7 @@ import io.demo.bank.model.AccountStanding;
 import io.demo.bank.model.AccountTransaction;
 import io.demo.bank.model.AccountType;
 import io.demo.bank.model.OwnershipType;
+import io.demo.bank.model.TransactionCategory;
 import io.demo.bank.model.TransactionState;
 import io.demo.bank.model.TransactionType;
 import io.demo.bank.model.security.Users;
@@ -23,6 +24,7 @@ import io.demo.bank.repository.AccountRepository;
 import io.demo.bank.repository.AccountStandingRepository;
 import io.demo.bank.repository.AccountTransactionRepository;
 import io.demo.bank.repository.AccountTypeRepository;
+import io.demo.bank.repository.TransactionCategoryRepository;
 import io.demo.bank.repository.OwnershipTypeRepository;
 import io.demo.bank.repository.TransactionStateRepository;
 import io.demo.bank.repository.TransactionTypeRepository;
@@ -55,6 +57,9 @@ public class AccountService {
 	@Autowired 
 	private AccountTransactionRepository accountTransactionRepository;
 	
+	@Autowired
+	private TransactionCategoryRepository transactionCategoryRepository;
+	
 	
 	/*
 	 * Create a new account
@@ -82,6 +87,7 @@ public class AccountService {
 		accountTransaction.setTransactionDate(new Date());
 		accountTransaction.setTransactionState(transactionStateRepository.findByCode(Constants.ACCT_TRAN_ST_COMP_CODE));
 		accountTransaction.setTransactionType(transactionTypeRepository.findByCode(Constants.ACCT_TRAN_TYPE_DEPOSIT_CODE));
+		accountTransaction.setTransactionCategory(transactionCategoryRepository.findByCode(Constants.ACCT_TRAN_CAT_INC_CODE));
 		accountTransaction.setAccount(newAccount);
 		
 		atl.add(accountTransaction);
@@ -148,6 +154,17 @@ public class AccountService {
 		
 		
 		long transactionNumber = accountTransactionRepository.findMaxTransactionNumber();
+		
+		LOG.debug("Check if Transaction Category is set");
+		
+		// if Category was not set, default to MISC
+		if (accountTransaction.getTransactionCategory() == null) {
+			
+			LOG.debug("Transaction Category is NULL");
+			
+			accountTransaction.setTransactionCategory(transactionCategoryRepository.findByCode(Constants.ACCT_TRAN_CAT_INC_CODE));
+		}
+		
 		accountTransaction.setTransactionNumber(++transactionNumber);
 		accountTransaction.setRunningBalance(balance);
 		accountTransaction.setTransactionDate(new Date());
@@ -204,6 +221,12 @@ public class AccountService {
 		account.setCurrentBalance(balance);
 		
 		long transactionNumber = accountTransactionRepository.findMaxTransactionNumber();
+		
+		// if Category was not set, default to MISC
+		if (accountTransaction.getTransactionCategory() == null) {
+			accountTransaction.setTransactionCategory(transactionCategoryRepository.findByCode(Constants.ACCT_TRAN_CAT_MISC_CODE));
+		}
+		
 		accountTransaction.setTransactionNumber(++transactionNumber);
 		accountTransaction.setRunningBalance(balance);
 		accountTransaction.setAmount(amount);
@@ -241,59 +264,21 @@ public class AccountService {
 		
 		LOG.debug("Transfer Between Accounts:");
 		
-		fromAccount = this.getAccountById(fromAccount.getId());
-		toAccount = this.getAccountById(toAccount.getId());
-		
-		List<AccountTransaction> fromAtl = fromAccount.getAcountTransactionList();
-		List<AccountTransaction> toAtl = toAccount.getAcountTransactionList();
-		
-		BigDecimal fromBalance = fromAccount.getCurrentBalance();
-		BigDecimal toBalance = toAccount.getCurrentBalance();
-		
-		BigDecimal fromAmount = accountTransaction.getAmount();
-		BigDecimal toAmount = accountTransaction.getAmount();
-		
-		// Convert fromAmount to a negative number since it is a withdraw
-		BigDecimal negOne = new BigDecimal(-1);
-		fromAmount = fromAmount.multiply(negOne);
-		
-		fromBalance = fromBalance.add(fromAmount);
-		toBalance = toBalance.add(toAmount);
-		
-		fromAccount.setCurrentBalance(fromBalance);
-		toAccount.setCurrentBalance(toBalance);
-		
 		// From Transaction
+		fromAccount = this.getAccountById(fromAccount.getId());
 		AccountTransaction fromAt = new AccountTransaction();
-		long transactionNumber = accountTransactionRepository.findMaxTransactionNumber();
-		fromAt.setTransactionNumber(++transactionNumber);
-		fromAt.setRunningBalance(fromBalance);
-		fromAt.setAmount(fromAmount);
+		fromAt.setAmount(accountTransaction.getAmount());
 		fromAt.setDescription("Transfer to Account (" + toAccount.getAccountNumber() + ")");
-		fromAt.setTransactionDate(new Date());
-		fromAt.setTransactionState(transactionStateRepository.findByCode(Constants.ACCT_TRAN_ST_COMP_CODE));
 		fromAt.setTransactionType(transactionTypeRepository.findByCode(Constants.ACCT_TRAN_TYPE_XFER_CODE));
-		fromAt.setAccount(fromAccount);
-		fromAtl.add(fromAt);
+		debitTransaction(fromAccount, fromAt);
 		
 		// To Transaction
+		toAccount = this.getAccountById(toAccount.getId());
 		AccountTransaction toAt = new AccountTransaction();
-		transactionNumber = accountTransactionRepository.findMaxTransactionNumber();
-		toAt.setTransactionNumber(++transactionNumber);
-		toAt.setRunningBalance(toBalance);
-		toAt.setAmount(toAmount);
+		toAt.setAmount(accountTransaction.getAmount());
 		toAt.setDescription("Transfer from Account (" + fromAccount.getAccountNumber() + ")");
-		toAt.setTransactionDate(new Date());
-		toAt.setTransactionState(transactionStateRepository.findByCode(Constants.ACCT_TRAN_ST_COMP_CODE));
-		toAt.setTransactionType(transactionTypeRepository.findByCode(Constants.ACCT_TRAN_TYPE_XFER_CODE));
-		toAt.setAccount(toAccount);
-		toAtl.add(toAt);
-		
-		fromAccount.setAcountTransactionList(fromAtl);
-		toAccount.setAcountTransactionList(toAtl);
-		
-		accountRepository.save(fromAccount);
-		accountRepository.save(toAccount);
+		toAt.setTransactionType(transactionTypeRepository.findByCode(Constants.ACCT_TRAN_TYPE_XFER_CODE));		
+		creditTransaction(toAccount, toAt);
 		
 		LOG.debug("Transfer Between Accounts: Accounts Updated.");
 	}
@@ -427,6 +412,10 @@ public class AccountService {
 	
 	public List<TransactionType> getTransactionType(){
 		return transactionTypeRepository.findAll();
+	}
+	
+	public List<TransactionCategory> getTransactionCategory(){
+		return transactionCategoryRepository.findAll();
 	}
 	
 	public TransactionType getTransactionTypeByCode (String code) {

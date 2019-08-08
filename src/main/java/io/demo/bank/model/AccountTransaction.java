@@ -46,6 +46,9 @@ public class AccountTransaction {
 	
 	@ManyToOne
     private TransactionState transactionState;
+	
+	@ManyToOne
+    private TransactionCategory transactionCategory;
 
 	/**
 	 * @return the id
@@ -173,6 +176,18 @@ public class AccountTransaction {
 		this.transactionNumber = transactionNumber;
 	}
 
-	
-	
+	/**
+	 * @return the category
+	 */
+	public TransactionCategory getTransactionCategory() {
+		return transactionCategory;
+	}
+
+	/**
+	 * @param category the category to set
+	 */
+	public void setTransactionCategory(TransactionCategory transactionCategory) {
+		this.transactionCategory = transactionCategory;
+	}
+
 }

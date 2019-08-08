@@ -114,6 +114,7 @@ public class Constants {
 	public static final String URI_API_DATA_ACCT_OWN_TYP= "/api/v1/data/account/ownership/type";
 	public static final String URI_API_DATA_ACCT_TRAN_ST= "/api/v1/data/account/transaction/state";
 	public static final String URI_API_DATA_ACCT_TRAN_TY= "/api/v1/data/account/transaction/type";
+	public static final String URI_API_DATA_ACCT_TRAN_CT= "/api/v1/data/account/transaction/category";
 	public static final String URI_API_PROMO			= "/api/v1/promotions";
 	public static final String URI_API_SEARCH_ATM		= "/api/v1/search/atm";
 	
@@ -186,6 +187,10 @@ public class Constants {
 	public static final String ACCT_TRAN_TYPE_DIRECT_DEP_CODE		= "DDP";
 	public static final String ACCT_TRAN_TYPE_EFT_CODE				= "EFT";
 	public static final String ACCT_TRAN_TYPE_REFUND_CODE			= "RFD";
+	
+	// Transaction Category Codes
+	public static final String ACCT_TRAN_CAT_MISC_CODE				= "MIS";
+	public static final String ACCT_TRAN_CAT_INC_CODE				= "INC";
 	
 	// Promotions
 	public static final String PROMO_ACCT_TYPE_BLUE 				= "Blue";
