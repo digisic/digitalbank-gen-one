@@ -225,7 +225,7 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Go forward 1 month - month 4 of 6
 			monthlyCalendar.roll(Calendar.MONTH, 1);
-			monthlyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 3));
+			monthlyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 3) * -1);
 			
 			// Add monthly interest
 			addInterestTransaction(personalSavings, transaction, monthlyCalendar);
@@ -239,7 +239,7 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Go forward 1 month - month 6 of 6
 			monthlyCalendar.roll(Calendar.MONTH, 1);
-			monthlyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 3));
+			monthlyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 3) * -1);
 			
 			// Add monthly interest
 			addInterestTransaction(personalSavings, transaction, monthlyCalendar);
@@ -328,7 +328,7 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Go forward 1 month - month 2 of 2
 			monthlyCalendar.roll(Calendar.MONTH, 1);
-			monthlyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 3));
+			monthlyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 3) * -1);
 			
 			// Add monthly interest
 			addInterestTransaction(jointSavings, transaction, monthlyCalendar);
