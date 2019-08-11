@@ -71,30 +71,25 @@ public class AccountService {
 		// Set Account Details
 		newAccount.setAccountNumber(++lastAccountNumber);
 		newAccount.setCurrentBalance(newAccount.getOpeningBalance());
-		newAccount.setDateOpened(new Date());
 		newAccount.setInterestRate(newAccount.getAccountType().getInterestRate());
 		newAccount.setAccountStanding(accountStandingRepository.findByCode(Constants.ACCT_STND_OPEN_CODE));
-
-		// Set Initial Transaction
-		List<AccountTransaction> atl = new ArrayList<AccountTransaction>();
-		AccountTransaction accountTransaction = new AccountTransaction();
 		
-		long transactionNumber = accountTransactionRepository.findMaxTransactionNumber();
-		accountTransaction.setTransactionNumber(++transactionNumber);
-		accountTransaction.setAmount(newAccount.getOpeningBalance());
-		accountTransaction.setRunningBalance(newAccount.getOpeningBalance());
-		accountTransaction.setDescription("Initial Deposit - Open Account");
-		accountTransaction.setTransactionDate(new Date());
-		accountTransaction.setTransactionState(transactionStateRepository.findByCode(Constants.ACCT_TRAN_ST_COMP_CODE));
-		accountTransaction.setTransactionType(transactionTypeRepository.findByCode(Constants.ACCT_TRAN_TYPE_DEPOSIT_CODE));
-		accountTransaction.setTransactionCategory(transactionCategoryRepository.findByCode(Constants.ACCT_TRAN_CAT_INC_CODE));
-		accountTransaction.setAccount(newAccount);
-		
-		atl.add(accountTransaction);
-		newAccount.setAcountTransactionList(atl);
+		// Check if Account opening date has been set, if not set it
+		if (newAccount.getDateOpened() == null) {
+			newAccount.setDateOpened(new Date());
+		}
 		
 		// Create Account
 		accountRepository.save(newAccount);
+
+		// Set Initial Transaction
+		AccountTransaction accountTransaction = new AccountTransaction();
+		accountTransaction.setAmount(newAccount.getOpeningBalance());
+		accountTransaction.setDescription(transactionTypeRepository.findByCode(Constants.ACCT_TRAN_TYPE_DEPOSIT_CODE).getName());
+		accountTransaction.setTransactionDate(newAccount.getDateOpened());
+		accountTransaction.setTransactionType(transactionTypeRepository.findByCode(Constants.ACCT_TRAN_TYPE_DEPOSIT_CODE));
+		accountTransaction.setTransactionCategory(transactionCategoryRepository.findByCode(Constants.ACCT_TRAN_CAT_INC_CODE));
+		creditTransaction (newAccount, accountTransaction);
 		
 		LOG.debug("Create Account: New Account Created.");
 				
@@ -137,48 +132,42 @@ public class AccountService {
 		LOG.debug("Credit Transaction to Account:");
 		
 		account = this.getAccountById(account.getId());
-		
+		long transactionNumber = accountTransactionRepository.findMaxTransactionNumber();
+		BigDecimal balance = account.getCurrentBalance();
 		List<AccountTransaction> atl = account.getAcountTransactionList();
 		
+		// if the list is null, then its the first transaction
+		if (atl == null) {
+			atl = new ArrayList<AccountTransaction>();
+		}
+		else { // else we are adding another transaction to the list so calculate the new update
+			balance = balance.add(accountTransaction.getAmount());
+			account.setCurrentBalance(balance);
+		}
+		
 		LOG.debug("Credit Transaction to Account: Current Number of Transactions: ->" + atl.size());
-		
-		BigDecimal balance = account.getCurrentBalance();
-		
-		LOG.debug("Credit Transaction to Account: Current Balance: ->" + balance);
-		
-		balance = balance.add(accountTransaction.getAmount());
-		
-		LOG.debug("Credit Transaction to Account: Updated Balance: ->" + balance);
-		
-		account.setCurrentBalance(balance);
-		
-		
-		long transactionNumber = accountTransactionRepository.findMaxTransactionNumber();
-		
-		LOG.debug("Check if Transaction Category is set");
-		
+
 		// if Category was not set, default to MISC
 		if (accountTransaction.getTransactionCategory() == null) {
-			
-			LOG.debug("Transaction Category is NULL");
-			
 			accountTransaction.setTransactionCategory(transactionCategoryRepository.findByCode(Constants.ACCT_TRAN_CAT_INC_CODE));
+		}
+		
+		// Check if the date was already set, if not set to current date time.
+		if (accountTransaction.getTransactionDate() == null) {
+			accountTransaction.setTransactionDate(new Date());
 		}
 		
 		accountTransaction.setTransactionNumber(++transactionNumber);
 		accountTransaction.setRunningBalance(balance);
-		accountTransaction.setTransactionDate(new Date());
 		accountTransaction.setTransactionState(transactionStateRepository.findByCode(Constants.ACCT_TRAN_ST_COMP_CODE));
 		accountTransaction.setAccount(account);
 		atl.add(accountTransaction);
-		
-		LOG.debug("Credit Transaction to Account: New Number of Transactions: ->" + atl.size());
-		
 		account.setAcountTransactionList(atl);
 		
 		// Update Account
 		accountRepository.save(account);
 		
+		LOG.debug("Credit Transaction to Account: New Number of Transactions: ->" + atl.size());
 		LOG.debug("Credit Transaction to Account: Account Updated.");
 		
 	}
@@ -227,10 +216,14 @@ public class AccountService {
 			accountTransaction.setTransactionCategory(transactionCategoryRepository.findByCode(Constants.ACCT_TRAN_CAT_MISC_CODE));
 		}
 		
+		// Check if the date was already set, if not set to current date time.
+		if (accountTransaction.getTransactionDate() == null) {
+			accountTransaction.setTransactionDate(new Date());
+		}
+		
 		accountTransaction.setTransactionNumber(++transactionNumber);
 		accountTransaction.setRunningBalance(balance);
 		accountTransaction.setAmount(amount);
-		accountTransaction.setTransactionDate(new Date());
 		accountTransaction.setTransactionState(transactionStateRepository.findByCode(Constants.ACCT_TRAN_ST_COMP_CODE));
 		accountTransaction.setAccount(account);
 		atl.add(accountTransaction);
@@ -245,7 +238,7 @@ public class AccountService {
 		// if there is a fee, then add that transaction
 		if (overdraft) {
 			
-			this.overdraftCharge(account);
+			this.overdraftCharge(account, accountTransaction);
 		}
 	
 		
@@ -268,6 +261,7 @@ public class AccountService {
 		fromAccount = this.getAccountById(fromAccount.getId());
 		AccountTransaction fromAt = new AccountTransaction();
 		fromAt.setAmount(accountTransaction.getAmount());
+		fromAt.setTransactionDate(accountTransaction.getTransactionDate());
 		fromAt.setDescription("Transfer to Account (" + toAccount.getAccountNumber() + ")");
 		fromAt.setTransactionType(transactionTypeRepository.findByCode(Constants.ACCT_TRAN_TYPE_XFER_CODE));
 		debitTransaction(fromAccount, fromAt);
@@ -276,6 +270,7 @@ public class AccountService {
 		toAccount = this.getAccountById(toAccount.getId());
 		AccountTransaction toAt = new AccountTransaction();
 		toAt.setAmount(accountTransaction.getAmount());
+		toAt.setTransactionDate(accountTransaction.getTransactionDate());
 		toAt.setDescription("Transfer from Account (" + fromAccount.getAccountNumber() + ")");
 		toAt.setTransactionType(transactionTypeRepository.findByCode(Constants.ACCT_TRAN_TYPE_XFER_CODE));		
 		creditTransaction(toAccount, toAt);
@@ -422,6 +417,10 @@ public class AccountService {
 		return transactionTypeRepository.findByCode(code);
 	}
 	
+	public TransactionCategory getTransactionCategoryByCode (String code) {
+		return transactionCategoryRepository.findByCode(code);
+	}
+	
 	public AccountTransaction getLatestAccountTransaction (Account account) {
 		return accountTransactionRepository.findTopByAccountOrderByTransactionDateDesc(account);
 	}
@@ -445,14 +444,14 @@ public class AccountService {
 	/*
 	 * Creates an Overdraft transaction to apply an overdraft fee
 	 */
-	private void overdraftCharge (Account account) {
+	private void overdraftCharge (Account account, AccountTransaction offender) {
 		
 		LOG.debug("Overdraft Charge: Charge fee for overdraft.");
 		
 		// Add seconds to current date/time to differentiate transactions on sort
 		int seconds = 15;
 		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(new Date());
+		calendar.setTime(offender.getTransactionDate());
 		calendar.add(Calendar.SECOND, seconds);
 		List<AccountTransaction> transList = account.getAcountTransactionList();
 		
@@ -471,7 +470,8 @@ public class AccountService {
 		overTrans.setTransactionNumber(++transactionNumber);
 		overTrans.setRunningBalance(updatedBalance);
 		overTrans.setAmount(overFee);
-		overTrans.setDescription("Overdraft Fee");
+		overTrans.setDescription("Overdraft Fee for transaction " + offender.getTransactionNumber());
+		overTrans.setTransactionCategory(transactionCategoryRepository.findByCode(Constants.ACCT_TRAN_CAT_FEE_CODE));
 		overTrans.setTransactionDate(calendar.getTime());
 		overTrans.setTransactionState(transactionStateRepository.findByCode(Constants.ACCT_TRAN_ST_COMP_CODE));
 		overTrans.setTransactionType(transactionTypeRepository.findByCode(Constants.ACCT_TRAN_TYPE_OVERDRAFT_FEE_CODE));

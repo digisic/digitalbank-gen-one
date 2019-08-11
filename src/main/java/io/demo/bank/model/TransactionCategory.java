@@ -16,23 +16,12 @@ public class TransactionCategory {
 	
 	private String name;
 	private String code;
-	private boolean checking;
-	private boolean savings;
-	private boolean credit;
 	
 	public TransactionCategory() {}
 	
-	public TransactionCategory(String code, 
-							   String name, 
-							   boolean checking,
-							   boolean savings,
-							   boolean credit) {
+	public TransactionCategory(String code,  String name) {
 		this.code = code;
 		this.name = name;
-		this.checking = checking;
-		this.savings = savings;
-		this.credit = credit;
-		
 	}
 
 	/**
@@ -75,48 +64,6 @@ public class TransactionCategory {
 	 */
 	public void setCode(String code) {
 		this.code = code;
-	}
-
-	/**
-	 * @return the checking
-	 */
-	public boolean isChecking() {
-		return checking;
-	}
-
-	/**
-	 * @param checking the checking to set
-	 */
-	public void setChecking(boolean checking) {
-		this.checking = checking;
-	}
-
-	/**
-	 * @return the savings
-	 */
-	public boolean isSavings() {
-		return savings;
-	}
-
-	/**
-	 * @param savings the savings to set
-	 */
-	public void setSavings(boolean savings) {
-		this.savings = savings;
-	}
-
-	/**
-	 * @return the credit
-	 */
-	public boolean isCredit() {
-		return credit;
-	}
-
-	/**
-	 * @param credit the credit to set
-	 */
-	public void setCredit(boolean credit) {
-		this.credit = credit;
 	}
 
 }

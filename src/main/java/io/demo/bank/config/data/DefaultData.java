@@ -1,20 +1,20 @@
-package io.demo.bank.config;
+package io.demo.bank.config.data;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
+import com.github.javafaker.Faker;
 import io.demo.bank.model.AccountStanding;
 import io.demo.bank.model.AccountType;
-import io.demo.bank.model.TransactionCategory;
 import io.demo.bank.model.OwnershipType;
+import io.demo.bank.model.TransactionCategory;
 import io.demo.bank.model.TransactionState;
 import io.demo.bank.model.TransactionType;
 import io.demo.bank.model.UserProfile;
@@ -22,17 +22,23 @@ import io.demo.bank.model.security.Role;
 import io.demo.bank.model.security.Users;
 import io.demo.bank.repository.AccountStandingRepository;
 import io.demo.bank.repository.AccountTypeRepository;
-import io.demo.bank.repository.TransactionCategoryRepository;
 import io.demo.bank.repository.OwnershipTypeRepository;
 import io.demo.bank.repository.RoleRepository;
+import io.demo.bank.repository.TransactionCategoryRepository;
 import io.demo.bank.repository.TransactionStateRepository;
 import io.demo.bank.repository.TransactionTypeRepository;
 import io.demo.bank.service.UserService;
 
+
 @Component
 public class DefaultData implements CommandLineRunner, Ordered {
-
+	
+	// Logger
 	private static final Logger LOG = LoggerFactory.getLogger(DefaultData.class);
+	
+	// API Administrator unique details
+	private static String ADMIN_API_USER_EMAIL 	= "admin@demo.io";
+	private static String ADMIN_API_USER_PASS 	= "Demo123!";
 	
 	@Autowired
 	private RoleRepository roleRepository;
@@ -56,8 +62,8 @@ public class DefaultData implements CommandLineRunner, Ordered {
 	private TransactionCategoryRepository categoryRepository;
 	
 	@Autowired
-	private UserService userService;
-	
+	private UserService userService; 
+		
 	@Override
 	public int getOrder() {
 		return 0;
@@ -65,6 +71,7 @@ public class DefaultData implements CommandLineRunner, Ordered {
 
 	@Override
 	public void run(String... args) throws Exception {
+		
 		
 		LOG.info("*********************************");
 		LOG.info("***** Checking Default Data *****");
@@ -86,33 +93,42 @@ public class DefaultData implements CommandLineRunner, Ordered {
 		
 		// Create a Default API User
 		// If the default user data does not exist, then create it.
-		if (!userService.checkEmailAdressExists("admin@demo.io") && !userService.checkSsnExists("111-11-1111")) {
+		if (!userService.checkEmailAdressExists(ADMIN_API_USER_EMAIL)) {
 			
-			LOG.info("** Loading Default API User...");
+			LOG.info("** Loading Default API Admin User ...");
 			
-			Users user = new Users("api@demo.io", "Demo123!");
+			Faker faker = new Faker(new Locale("en-US"));
+			Users user = new Users(ADMIN_API_USER_EMAIL, ADMIN_API_USER_PASS);
 			UserProfile userProfile = new UserProfile();
-			SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
 			
-			userProfile.setEmailAddress("admin@demo.io");
-			userProfile.setFirstName("API");
-			userProfile.setLastName("User");
-			userProfile.setTitle("Mr.");
-			userProfile.setGender("M");
-			userProfile.setDob(dateFormat.parse("1985-02-15"));
-			userProfile.setSsn("111-11-1111");
-			userProfile.setAddress("123 Digital Lane");
-			userProfile.setCountry("United States");
-			userProfile.setLocality("Internet City");
-			userProfile.setPostalCode("94302");
-			userProfile.setRegion("CA");
-			userProfile.setHomePhone("123-456-7890");
-			userProfile.setMobilePhone("123-456-7890");
-			userProfile.setWorkPhone("123-456-7890");
+			String gender = faker.demographic().sex().substring(0,1);
+			String title = (gender.equals("M")) ? "Mr." : "Mrs."; 
+			String ssn = faker.numerify("###-##-####");
 			
-			user.setUserProfile(userProfile);
-			userService.createUser(user, Role.ROLE_API);
-			userService.addRole(user, Role.ROLE_ADMIN);
+			// make sure we are inserting a unique SSN
+			while (userService.checkSsnExists(ssn)){
+				ssn = faker.numerify("###-##-####");
+			}
+					
+			userProfile.setEmailAddress(ADMIN_API_USER_EMAIL);
+			userProfile.setFirstName(faker.name().firstName()); 
+			userProfile.setLastName(faker.name().lastName());
+			userProfile.setTitle(title);
+			userProfile.setGender(gender);
+			userProfile.setDob(faker.date().birthday());
+			userProfile.setSsn(ssn);
+			userProfile.setAddress(faker.address().streetAddress());
+			userProfile.setCountry("US");
+			userProfile.setLocality(faker.address().city());
+			userProfile.setPostalCode(faker.address().zipCode().split("-")[0]);
+			userProfile.setRegion(faker.address().stateAbbr());
+			userProfile.setHomePhone(faker.numerify("###-###-####"));
+			userProfile.setMobilePhone(faker.numerify("###-###-####"));
+			userProfile.setWorkPhone(faker.numerify("###-###-####"));
+			  
+			user.setUserProfile(userProfile); userService.createUser(user,
+			Role.ROLE_API); userService.addRole(user, Role.ROLE_ADMIN);
+			 
 		
 		}
 		
@@ -225,23 +241,23 @@ public class DefaultData implements CommandLineRunner, Ordered {
 			
 			List<TransactionCategory> categories = new ArrayList<TransactionCategory>();
 			
-			categories.add(new TransactionCategory("INC", "Income", true, true, false));
-			categories.add(new TransactionCategory("MIS", "Misc", true, false, true));
-			categories.add(new TransactionCategory("ENT", "Entertainment", true, false, true));
-			categories.add(new TransactionCategory("EDU", "Education", true, false, true));
-			categories.add(new TransactionCategory("SHP", "Shopping", true, false, true));
-			categories.add(new TransactionCategory("PRC", "Personal Care", true, false, true));
-			categories.add(new TransactionCategory("HLT", "Health & Fitness", true, false, true));
-			categories.add(new TransactionCategory("KID", "Kids", true, false, true));
-			categories.add(new TransactionCategory("FDD", "Food & Dinning", true, false, true));
-			categories.add(new TransactionCategory("GFT", "Gifts & Donations", true, false, true));
-			categories.add(new TransactionCategory("INV", "Investments", true, true, false));
-			categories.add(new TransactionCategory("BIL", "Bills & Utilities", true, false, true));
-			categories.add(new TransactionCategory("AUT", "Auto & Transport", true, false, true));
-			categories.add(new TransactionCategory("TRV", "Travel", true, false, true));
-			categories.add(new TransactionCategory("FEE", "Fees & Charges", true, true, true));
-			categories.add(new TransactionCategory("BUS", "Business Services", true, false, true));
-			categories.add(new TransactionCategory("TAX", "Taxes", true, false, true));
+			categories.add(new TransactionCategory("INC", "Income"));
+			categories.add(new TransactionCategory("MIS", "Misc"));
+			categories.add(new TransactionCategory("ENT", "Entertainment"));
+			categories.add(new TransactionCategory("EDU", "Education"));
+			categories.add(new TransactionCategory("SHP", "Shopping"));
+			categories.add(new TransactionCategory("PRC", "Personal Care"));
+			categories.add(new TransactionCategory("HLT", "Health & Fitness"));
+			categories.add(new TransactionCategory("KID", "Kids"));
+			categories.add(new TransactionCategory("FDD", "Food & Dinning"));
+			categories.add(new TransactionCategory("GFT", "Gifts & Donations"));
+			categories.add(new TransactionCategory("INV", "Investments"));
+			categories.add(new TransactionCategory("BIL", "Bills & Utilities"));
+			categories.add(new TransactionCategory("AUT", "Auto & Transport"));
+			categories.add(new TransactionCategory("TRV", "Travel"));
+			categories.add(new TransactionCategory("FEE", "Fees & Charges"));
+			categories.add(new TransactionCategory("BUS", "Business Services"));
+			categories.add(new TransactionCategory("TAX", "Taxes"));
 			
 			categoryRepository.saveAll(categories);
 			
@@ -249,6 +265,7 @@ public class DefaultData implements CommandLineRunner, Ordered {
 		
 
 		LOG.info("*********************************");
+		
 	}
-
+	
 }

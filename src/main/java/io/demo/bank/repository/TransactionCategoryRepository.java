@@ -10,10 +10,6 @@ public interface TransactionCategoryRepository extends CrudRepository<Transactio
 	TransactionCategory findByName (String name);
 	TransactionCategory findByCode (String code);
 	
-	List<TransactionCategory> findByChecking (boolean checking);
-	List<TransactionCategory> findBySavings (boolean savings);
-	List<TransactionCategory> findByCredit (boolean credit);
-	
 	List<TransactionCategory> findAll();
 
 }

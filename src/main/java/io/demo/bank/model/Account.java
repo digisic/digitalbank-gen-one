@@ -1,6 +1,7 @@
 package io.demo.bank.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -127,7 +128,7 @@ public class Account {
 	 * @param currentBalance the currentBalance to set
 	 */
 	public void setCurrentBalance(BigDecimal currentBalance) {
-		this.currentBalance = currentBalance;
+		this.currentBalance = new BigDecimal(currentBalance.doubleValue()).setScale(2, RoundingMode.HALF_UP);
 	}
 
 	/**
@@ -141,7 +142,7 @@ public class Account {
 	 * @param openingBalance the openingBalance to set
 	 */
 	public void setOpeningBalance(BigDecimal openingBalance) {
-		this.openingBalance = openingBalance;
+		this.openingBalance = new BigDecimal(openingBalance.doubleValue()).setScale(2, RoundingMode.HALF_UP);
 	}
 
 	/**

@@ -191,6 +191,21 @@ public class Constants {
 	// Transaction Category Codes
 	public static final String ACCT_TRAN_CAT_MISC_CODE				= "MIS";
 	public static final String ACCT_TRAN_CAT_INC_CODE				= "INC";
+	public static final String ACCT_TRAN_CAT_ENT_CODE				= "ENT";
+	public static final String ACCT_TRAN_CAT_EDU_CODE				= "EDU";
+	public static final String ACCT_TRAN_CAT_SHP_CODE				= "SHP";
+	public static final String ACCT_TRAN_CAT_PRC_CODE				= "PRC";
+	public static final String ACCT_TRAN_CAT_HLT_CODE				= "HLT";
+	public static final String ACCT_TRAN_CAT_KID_CODE				= "KID";
+	public static final String ACCT_TRAN_CAT_FDD_CODE				= "FDD";
+	public static final String ACCT_TRAN_CAT_GFT_CODE				= "GFT";
+	public static final String ACCT_TRAN_CAT_INV_CODE				= "INV";
+	public static final String ACCT_TRAN_CAT_BIL_CODE				= "BIL";
+	public static final String ACCT_TRAN_CAT_AUT_CODE				= "AUT";
+	public static final String ACCT_TRAN_CAT_TRV_CODE				= "TRV";
+	public static final String ACCT_TRAN_CAT_FEE_CODE				= "FEE";
+	public static final String ACCT_TRAN_CAT_BUS_CODE				= "BUS";
+	public static final String ACCT_TRAN_CAT_TAX_CODE				= "TAX";
 	
 	// Promotions
 	public static final String PROMO_ACCT_TYPE_BLUE 				= "Blue";
