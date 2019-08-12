@@ -82,6 +82,7 @@ public class Constants {
 	public static final String URI_API_AUTH				= "/api/v1/auth";
 	public static final String URI_API_USR_ALL			= "/api/v1/users";
 	public static final String URI_API_USR				= "/api/v1/user";
+	public static final String URI_API_USR_FIND			= "/api/v1/user/find";
 	public static final String URI_API_USR_ID			= "/api/v1/user/{id}";
 	public static final String URI_API_USR_PROF			= "/api/v1/user/{id}/profile";
 	public static final String URI_API_USR_PROF_CURR	= "/api/v1/user/profile";

@@ -65,6 +65,17 @@ public class UserController extends CommonController{
 	
 	/*
 	 * ADMIN Role
+	 * Get All Users
+	 */
+	
+	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
+	@GetMapping(Constants.URI_API_USR_FIND)											
+	public ResponseEntity<?> getUserByUsername(@RequestParam(required=true) String username){
+		return ResponseEntity.ok(userService.findByUsername(username));
+	}
+	
+	/*
+	 * ADMIN Role
 	 * Create a new User
 	 */
 	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
