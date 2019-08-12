@@ -16,22 +16,22 @@ public class LocationSearchTests {
 		searchLocationSteps.navigateToSearch();;
 	}
 	
-	@And ("^he or she enters '(.*)' into the Zip Code field$")
+	@And ("^they enter '(.*)' into the Zip Code field$")
 	public void enterZipCode (String zipcode) {
 		searchLocationSteps.enterZipCode(zipcode);;
 	}
 	
-	@Then ("^(.*) verifies he or she is presented with a validation error message$")
+	@Then ("^(.*) verifies they are presented with a validation error message$")
 	public void validateErrorMessage (String persona) {
 		searchLocationSteps.validateFormatError();;
 	}
 	
-	@Then ("^(.*) verifies he or she is presented with a list of results$")
+	@Then ("^(.*) verifies they are presented with a list of results$")
 	public void validateResults (String persona) {
 		searchLocationSteps.validateResults();;
 	}
 	
-	@Then ("^(.*) verifies he or she is presented with a message indicating zero results$")
+	@Then ("^(.*) verifies they are presented with a message indicating zero results$")
 	public void validateNoResults (String persona) {
 		searchLocationSteps.validateNoResults();;
 	}

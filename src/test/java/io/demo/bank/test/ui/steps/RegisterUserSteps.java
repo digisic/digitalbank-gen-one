@@ -132,5 +132,10 @@ public class RegisterUserSteps extends ScenarioSteps{
 	public void assertSuccessMessage() {
 		assertTrue(registerUserpage.successMessagePresent());
 	}
+	
+	@Step ("Assert Error Message for Registration")
+	public void assertErrorMessage() {
+		assertTrue(registerUserpage.errorMessagePresent());
+	}
 
 }

@@ -4,6 +4,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import io.demo.bank.test.steps.DataServiceSteps;
 import io.demo.bank.test.ui.steps.LoginSteps;
 import net.thucydides.core.annotations.Steps;
 
@@ -13,31 +14,35 @@ public class LoginUserTests {
 	@Steps
 	private LoginSteps login;
 	
+	@Steps
+	private DataServiceSteps data;
+	
 	/** Given **/
-	@Given("^(.*) is a registered user$")
-	public void registeredUser (String persona) {
-		// TODO Data provisioning to get or define a registered user
-		// for now, we will assume a default known user
+	@Given("^(.*) is a registered user with email address (.*)$")
+	public void registeredUser (String persona, String email) {
+		
+		if (!data.validateRegisteredUser(persona, email))
+			data.registerUser();
 	}
 	
-	@And("^he or she has an expired account$")
+	@And("^they have an expired account$")
 	public void expiredAccount (){
-		// TODO Data provisioning to get or define user with this criteria
+		data.expireUserAccount();	
 	}
 	
-	@And("^he or she has an account with expired credentials$")
+	@And("^they have an account with expired credentials$")
 	public void expiredAccountCredentials (){
-		// TODO Data provisioning to get or define user with this criteria
+		data.expireUserCredentials();
 	}
 	
-	@And("^he or she has a locked account$")
+	@And("^they have a locked account$")
 	public void lockedAccount (){
-		// TODO Data provisioning to get or define user with this criteria
+		data.lockUserAccount();
 	}
 	
-	@And("^he or she has a disabled account$")
+	@And("^they have a disabled account$")
 	public void disabledAccount (){
-
+		data.disableUserAccount();
 	}
 	
 	/** When **/
@@ -46,49 +51,49 @@ public class LoginUserTests {
 		login.navigateToLoginPage();
 	}
 
-	@When("^he or she enters '(.*)' into the login Username field$")
+	@When("^they enter '(.*)' into the login Username field$")
 	public void enterUserName (String username) {
 		login.enterUsername (username);
 	}
 	
-	@And("^he or she enters '(.*)' into the login Password field$")
+	@And("^they enter '(.*)' into the login Password field$")
 	public void enterPassword (String password){
 		login.enterPassword (password);
 	}
 	
-	@And("^he or she clicks the Remember Me checkbox$")
+	@And("^they click the Remember Me checkbox$")
 	public void clickRememberMe (){
 		login.clickRememberMe();
 	}
 	
-	@And("^he or she submits the login request$")
+	@And("^they submit the login request$")
 	public void clickSubmit (){
 		login.clickSubmit ();
 	}
 	
 	/** Then **/
 	
-	@Then("^(.*) verifies he or she is presented with a error message indicating invalid credentials or access denied$")
+	@Then("^(.*) verifies they are presented with a error message indicating invalid credentials or access denied$")
 	public void presentedErrorMessage (String persona){
 		login.presentedErrorMessage();
 	}
 	
-	@Then("^(.*) verifies he or she is at the Home page$")
+	@Then("^(.*) verifies they are at the Home page$")
 	public void redirectToHomePage (String persona){
 		login.redirectedToHomePage();
 	}
 	
-	@And("^he or she verifies the remember-me cookie is not present$")
+	@And("^they verify the remember-me cookie is not present$")
 	public void rememberMeNotPresent (){
 		login.remeberMeCookieNotPresent();
 	}
 	
-	@And("^he or she verifies the remember-me cookie is present$")
+	@And("^they verify the remember-me cookie is present$")
 	public void rememberMeIsPresent (){
 		login.remeberMeCookiePresent();
 	}
 	
-	@And("^he or she verifies login (.*) contains (.*)$")
+	@And("^they verify login (.*) contains (.*)$")
 	public void fieldContainsValue (String field, String value){
 		login.assertFieldContainsValue(field, value);
 	}

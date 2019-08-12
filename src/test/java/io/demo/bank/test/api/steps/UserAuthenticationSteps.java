@@ -3,36 +3,17 @@ package io.demo.bank.test.api.steps;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
 
-public class UserAuthentication {
+public class UserAuthenticationSteps {
 	
 	public String authToken;
+	private final String password = "Demo123!";
 	
 	
-	@Step("Authenticate '{0}'")
-	public void authenticateUser(String persona) {
-		
-		String username = "";
-		String password = "";
-		
-		switch (persona) {
-		case "Josh":
-			username = "jsmith@demo.io";
-			password = "Demo123!";
-			break;
-		
-		case "Nicole":
-			username = "nsmith@demo.io";
-			password = "Demo123!";
-			break;
-		
-		default:
-			username = "jsmith@demo.io";
-			password = "Demo123!";
-			break;
-		}
+	@Step("Authenticate '{0}' using email '{1}'")
+	public void authenticateUser(String persona, String email) {
 		
 		SerenityRest.given()
-					.queryParams("username", username)
+					.queryParams("username", email)
 					.queryParams("password", password)
 					.contentType("application/json")
 					.baseUri("http://localhost:8080")

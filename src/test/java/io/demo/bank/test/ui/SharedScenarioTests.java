@@ -3,15 +3,17 @@ package io.demo.bank.test.ui;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
+import io.demo.bank.test.steps.DataServiceSteps;
 import io.demo.bank.test.ui.steps.LoginSteps;
 import io.demo.bank.test.ui.steps.MenuNavigationSteps;
 import net.thucydides.core.annotations.Steps;
 
-public class CommonTests {
+public class SharedScenarioTests {
 	
 	// User Profile Menu Options
 	private final static String UserProfileLogout = "Logout";
 	private final static String UserProfileChangePassword = "Change Password";
+	private final static String password = "Demo123!";
 	
 	@Steps
 	private LoginSteps login;
@@ -19,38 +21,20 @@ public class CommonTests {
 	@Steps
 	private MenuNavigationSteps menu;
 	
+	@Steps
+	private DataServiceSteps data;
+	
 	/** Given **/
 	
-	@Given ("^(.*) is logged into the application$")
-	public void authenticatedUser(String persona) {
-		// TODO determine best way to dynamically determine user 
-		// to use for testing Logout scenarios
+	@Given ("^(.*) is logged into the application with (.*)$")
+	public void authenticatedUser(String persona, String email) {
 		
-		String username;
-		String password;
-		
-		switch (persona) {
-			case "Josh":
-			case "Valid User":
-				username = "jsmith@demo.io";
-				password = "Demo123!";
-				break;
-			
-			case "Nicole":
-				username = "nsmith@demo.io";
-				password = "Demo123!";
-				break;
-			
-			default:
-				username = "jsmith@demo.io";
-				password = "Demo123!";
-				break;
-		}
-		
+		if (!data.validateRegisteredUser(persona, email))
+			data.registerUser();
 		
 		// Login with the identified persona that can authenticate
 		login.navigateToLoginPage();
-		login.enterUsername(username);
+		login.enterUsername(email);
 		login.enterPassword(password);
 		login.clickSubmit();
 	}
@@ -62,7 +46,7 @@ public class CommonTests {
 		menu.clickUserProfileMenu();
 	}
 	
-	@And ("^he or she selects '(.*)' from the User Profile menu$")
+	@And ("^they select '(.*)' from the User Profile menu$")
 	public void clickUserProfileMenuOption(String option) {
 		
 		switch (option){
@@ -76,6 +60,11 @@ public class CommonTests {
 				break;
 		}
 		
+	}
+	
+	@And ("^they verify they are at the Home page$")
+	public void verifyLocationHomePage() {
+		login.redirectedToHomePage();
 	}
 
 }

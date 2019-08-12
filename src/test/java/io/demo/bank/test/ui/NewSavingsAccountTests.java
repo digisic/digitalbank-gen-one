@@ -1,7 +1,6 @@
 package io.demo.bank.test.ui;
 
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.demo.bank.test.ui.steps.LoginSteps;
@@ -21,77 +20,68 @@ public class NewSavingsAccountTests {
 	@Steps
 	private NewSavingsAccountSteps newSavings;
 	
-	@Given("^a user is logged in to DigitalBank$")
-	public void validUserLogin() throws Throwable {
-		login.navigateToLoginPage();
-		login.enterUsername("jsmith@demo.io");
-		login.enterPassword("Demo123!");
-		login.clickSubmit();
-	}
 
-	@And("^they attempt to open a new Savings Account$")
+	@And("^they attempt to open a new 'Savings Account'$")
 	public void openSavingsAccount() throws Throwable {
 		menu.clickSavingsMenu();
 		menu.clickNewSavingsMenuOption();
 	}
 
-	@When("^they enter '(.*)' as Account Name$")
-	public void enterAccountName(String accountName) throws Throwable {
+	@When("^(.*) enters '(.*)' into the Account Name field$")
+	public void enterAccountName(String perosna, String accountName) throws Throwable {
 		newSavings.enterAccountName(accountName);
 	}
 
-	@And("^select '(.*)' for Ownership$")
+	@And("^they select '(.*)' from the Ownership radio button$")
 	public void selectOwnership(String ownershipType) throws Throwable {
 		newSavings.selectOwnershipType(ownershipType);
 	}
 
-	@And("^select '(.*)' for Account Type$")
+	@And("^they select '(.*)' from the Account Type radio button$")
 	public void selectAccountType(String accountType) throws Throwable {
 		newSavings.selectAccountType(accountType);
 	}
 
-	@And("^enter '(.*)' as Money Market Initial Deposit$")
+	@And("^they enter '(.*)' into the Money Market Inital Deposit field$")
 	public void enterMoneyMarketInitialDeposit(String initialDeposit) throws Throwable {
 		newSavings.validateMinBalanceDisplayed(2500);
 		newSavings.enterInitialBalance(initialDeposit);
 	}
 	
-	@And("^enter '(.*)' as Savings Initial Deposit$")
+	@And("^they enter '(.*)' into the Savings Inital Deposit field$")
 	public void enterRegularSavingsInitialDeposit(String initialDeposit) throws Throwable {
 		newSavings.validateMinBalanceDisplayed(25);
 		newSavings.enterInitialBalance(initialDeposit);
 	}
 
-	@And("^then click Submit$")
+	@And("^they click the Submit button$")
 	public void clickSubmit() throws Throwable {
 		newSavings.clickSubmit();
 	}
 
-	@Then("^the account should not be created$")
-	public void accountNotCreated() throws Throwable {
+	@Then("^(.*) verifies the account coould not be created$")
+	public void accountNotCreated(String persona) throws Throwable {
 		newSavings.notRedirectedToViewSavingsPage();
 	}
 	
-	@Then("^a '(.*)' should be created$")
-	public void accountCreated(String accountType) throws Throwable {
+	@Then("^(.*) verifies a '(.*)' should be created$")
+	public void accountCreated(String personal, String accountType) throws Throwable {
 		newSavings.redirectedToViewSavingsPage();
 	}
 
-	@And("^insufficient balance warning should be displayed$")
+	@And("^they verify they are presented with a message indicating insufficient balance$")
 	public void insufficientBalanceWarningDisplayed() throws Throwable {
 		newSavings.validateInsufficientBalAlertPresent();
 	}
 
-	@And("^the account balance should match the initial deposit of '(\\d+)'$")
+	@And("^they verify account balance should be '(\\d+)'$")
 	public void newAccountBalanceValidation(int initialBalance) throws Throwable {
 		//TODO: Validate new account has balance matching initial deposit
 	}
 
-	@And("^form validation error should appear$")
+	@And("^they verify they are presented with a message indicating form validation error$")
 	public void formValidationErrorAppears() throws Throwable {
 		//TODO: Validate that error messages appear for invalid fields
 	}
-
-	
 
 }

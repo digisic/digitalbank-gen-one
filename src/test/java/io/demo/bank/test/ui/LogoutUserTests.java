@@ -10,12 +10,12 @@ public class LogoutUserTests {
 	@Steps
 	private LogoutSteps logout;
 
-	@And ("^(.*) verifies he or she is at the Login page$")
+	@And ("^(.*) verifies they are at the Login page$")
 	public void redirectedToLoginPage(String persona) {
 		logout.redirectedToLoginPage();
 	}
 	
-	@And ("^he or she verifies he or she is presented with a successful message indicating he or she is logged out of the application$")
+	@And ("^they verify they are presented with a successful message indicating he or she is logged out of the application$")
 	public void presentedSuccessMessage() {
 		logout.presentedSuccessMessage();
 	}

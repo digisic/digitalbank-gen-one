@@ -5,21 +5,29 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.demo.bank.test.api.steps.AtmLocationSearchSteps;
-import io.demo.bank.test.api.steps.UserAuthentication;
+import io.demo.bank.test.api.steps.UserAuthenticationSteps;
+import io.demo.bank.test.steps.DataServiceSteps;
 import net.thucydides.core.annotations.Steps;
 
 public class LocationSearchTests {
 	
 	@Steps
-	UserAuthentication userAuthentication;
+	UserAuthenticationSteps userAuthentication;
 	
 	@Steps
 	AtmLocationSearchSteps searchSteps;
 	
+	@Steps
+	private DataServiceSteps data;
 	
-	@Given("^(.*) is authenticated into the API$")
-	public void authenticateUser(String persona) {
-		userAuthentication.authenticateUser(persona);
+	
+	@Given("^(.*) is authenticated into the API with email (.*)$")
+	public void authenticateUser(String persona, String email) {
+		
+		if (!data.validateRegisteredUser(persona, email))
+			data.registerUser();
+			
+		userAuthentication.authenticateUser(persona, email);
 	}
 	
 	@When ("^(.*) populates the Search request with zipcode equal to '(.*)'$")
@@ -27,7 +35,7 @@ public class LocationSearchTests {
 		searchSteps.setZipcode(zipcode);
 	}
 	
-	@And ("^he or she submits the Search request$")
+	@And ("^they submit the Search request$")
 	public void submitRequest () {
 		searchSteps.submitRequest();
 	}
@@ -37,17 +45,17 @@ public class LocationSearchTests {
 		searchSteps.assertResponseCode(responseCode);
 	}
 	
-	@And ("^he or she verifies he or she is presented with a validation error message$")
+	@And ("^they verify they are presented with a validation error message$")
 	public void verifyErrorResponse () {
 		searchSteps.assertResponseErrorMessage();
 	}
 	
-	@And ("^he or she verifies he or she is presented with a list of results$")
+	@And ("^they verify they are presented with a list of results$")
 	public void verifyResponseHasResults () {
 		searchSteps.assertResponseResults();
 	}
 	
-	@And ("^he or she verifies he or she is presented with a empty list$")
+	@And ("^they verify they are presented with a empty list$")
 	public void verifyResponseHasEmptyResults () {
 		searchSteps.assertResponseResultsEmpty();
 	}
