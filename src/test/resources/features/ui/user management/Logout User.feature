@@ -7,8 +7,8 @@ Feature: Logout User (UI)
 
 @positive
 Scenario: Logout user and end the application session
-  Given Swarup is logged into the application with Swarup919593@gmail.com
-  When Swarup navigates to the User Profile menu
-  And he or she selects 'Logout' from the User Profile menu
-  Then Swarup verifies he or she is at the Login page
-  And he or she verifies he or she is presented with a successful message indicating he or she is logged out of the application
+  Given Keanu is logged into the application with Keanu05681@gmail.com
+  When Keanu navigates to the User Profile menu
+  And they select 'Logout' from the User Profile menu
+  Then Keanu verifies they are at the Login page
+  And they verify they are presented with a successful message indicating he or she is logged out of the application

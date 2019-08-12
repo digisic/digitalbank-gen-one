@@ -7,133 +7,133 @@ Feature: Login User (UI)
 
 @negative
 Scenario: Login user with valid username, invalid password
-  Given Seretse is a registered user with email address Seretse81345@gmail.com
-  When Seretse navigates to the Login page
-  And he or she enters 'Seretse81345@gmail.com' into the login Username field
-  And he or she enters 'QfGQQwZjvzaxXTVu83314' into the login Password field
-  And he or she submits the login request
-  Then Seretse verifies he or she is presented with a error message indicating invalid credentials or access denied
+  Given Siddheshwar is a registered user with email address Siddheshwar752490@gmail.com
+  When Siddheshwar navigates to the Login page
+  And they enter 'Siddheshwar752490@gmail.com' into the login Username field
+  And they enter 'jUDaBpdwfjpHejvFghAb9' into the login Password field
+  And they submit the login request
+  Then Siddheshwar verifies they are presented with a error message indicating invalid credentials or access denied
 
 @negative
 Scenario: Login user with valid username, empty password
-  Given Kirsten is a registered user with email address Kirsten068813@gmail.com
-  When Kirsten navigates to the Login page
-  And he or she enters 'Kirsten068813@gmail.com' into the login Username field
-  And he or she enters '' into the login Password field
-  And he or she submits the login request
-  Then Kirsten verifies he or she is presented with a error message indicating invalid credentials or access denied
+  Given Caitie is a registered user with email address Caitie159728@gmail.com
+  When Caitie navigates to the Login page
+  And they enter 'Caitie159728@gmail.com' into the login Username field
+  And they enter '' into the login Password field
+  And they submit the login request
+  Then Caitie verifies they are presented with a error message indicating invalid credentials or access denied
 
 @positive
 Scenario: Login user with valid username, valid password, remember me selected
-  Given Mettabel is a registered user with email address Mettabel4281@gmail.com
-  When Mettabel navigates to the Login page
-  And he or she enters 'Mettabel4281@gmail.com' into the login Username field
-  And he or she enters 'Demo123!' into the login Password field
-  And he or she clicks the Remember Me checkbox
-  And he or she submits the login request
-  Then Mettabel verifies he or she is at the Home page
-  And he or she verifies the remember-me cookie is present
+  Given Madilyn is a registered user with email address Madilyn148910@gmail.com
+  When Madilyn navigates to the Login page
+  And they enter 'Madilyn148910@gmail.com' into the login Username field
+  And they enter 'Demo123!' into the login Password field
+  And they click the Remember Me checkbox
+  And they submit the login request
+  Then Madilyn verifies they are at the Home page
+  And they verify the remember-me cookie is present
 
 @positive
 Scenario: Login user with valid username, valid password
-  Given Shanae is a registered user with email address Shanae6720@gmail.com
-  When Shanae navigates to the Login page
-  And he or she enters 'Shanae6720@gmail.com' into the login Username field
-  And he or she enters 'Demo123!' into the login Password field
-  And he or she submits the login request
-  Then Shanae verifies he or she is at the Home page
-  And he or she verifies the remember-me cookie is not present
+  Given Shrabana is a registered user with email address Shrabana68463@gmail.com
+  When Shrabana navigates to the Login page
+  And they enter 'Shrabana68463@gmail.com' into the login Username field
+  And they enter 'Demo123!' into the login Password field
+  And they submit the login request
+  Then Shrabana verifies they are at the Home page
+  And they verify the remember-me cookie is not present
 
 @negative
 Scenario: Login user with valid username, valid password, credentials expired
-  Given Barnali is a registered user with email address Barnali051844@gmail.com
-  And he or she has an account with expired credentials
-  When Barnali navigates to the Login page
-  And he or she enters 'Barnali051844@gmail.com' into the login Username field
-  And he or she enters 'Demo123!' into the login Password field
-  And he or she submits the login request
-  Then Barnali verifies he or she is presented with a error message indicating invalid credentials or access denied
+  Given Mailsi is a registered user with email address Mailsi1889@gmail.com
+  And they have an account with expired credentials
+  When Mailsi navigates to the Login page
+  And they enter 'Mailsi1889@gmail.com' into the login Username field
+  And they enter 'Demo123!' into the login Password field
+  And they submit the login request
+  Then Mailsi verifies they are presented with a error message indicating invalid credentials or access denied
 
 @negative
 Scenario: Login user with valid username, valid password, account is expired
-  Given Suvarnmala is a registered user with email address Suvarnmala4525@gmail.com
-  And he or she has an expired account
-  When Suvarnmala navigates to the Login page
-  And he or she enters 'Suvarnmala4525@gmail.com' into the login Username field
-  And he or she enters 'Demo123!' into the login Password field
-  And he or she submits the login request
-  Then Suvarnmala verifies he or she is presented with a error message indicating invalid credentials or access denied
+  Given Shravani is a registered user with email address Shravani9953@gmail.com
+  And they have an expired account
+  When Shravani navigates to the Login page
+  And they enter 'Shravani9953@gmail.com' into the login Username field
+  And they enter 'Demo123!' into the login Password field
+  And they submit the login request
+  Then Shravani verifies they are presented with a error message indicating invalid credentials or access denied
 
 @negative
 Scenario: Login user with valid username, valid password, account is locked
-  Given Elvie is a registered user with email address Elvie26191@gmail.com
-  And he or she has a locked account
-  When Elvie navigates to the Login page
-  And he or she enters 'Elvie26191@gmail.com' into the login Username field
-  And he or she enters 'Demo123!' into the login Password field
-  And he or she submits the login request
-  Then Elvie verifies he or she is presented with a error message indicating invalid credentials or access denied
+  Given Chandra is a registered user with email address Chandra892544@gmail.com
+  And they have a locked account
+  When Chandra navigates to the Login page
+  And they enter 'Chandra892544@gmail.com' into the login Username field
+  And they enter 'Demo123!' into the login Password field
+  And they submit the login request
+  Then Chandra verifies they are presented with a error message indicating invalid credentials or access denied
 
 @negative
 Scenario: Login user with valid username, valid password, account is disabled
-  Given Phineus is a registered user with email address Phineus637363@gmail.com
-  And he or she has a disabled account
-  When Phineus navigates to the Login page
-  And he or she enters 'Phineus637363@gmail.com' into the login Username field
-  And he or she enters 'Demo123!' into the login Password field
-  And he or she submits the login request
-  Then Phineus verifies he or she is presented with a error message indicating invalid credentials or access denied
+  Given Anemone is a registered user with email address Anemone0236@gmail.com
+  And they have a disabled account
+  When Anemone navigates to the Login page
+  And they enter 'Anemone0236@gmail.com' into the login Username field
+  And they enter 'Demo123!' into the login Password field
+  And they submit the login request
+  Then Anemone verifies they are presented with a error message indicating invalid credentials or access denied
 
 @negative
 Scenario: Login user with invalid username, valid password
-  Given Florian is a registered user with email address Florian756752@gmail.com
-  When Florian navigates to the Login page
-  And he or she enters 'TbsFlorian756752@gmail.com' into the login Username field
-  And he or she enters 'Demo123!' into the login Password field
-  And he or she submits the login request
-  Then Florian verifies he or she is presented with a error message indicating invalid credentials or access denied
+  Given Nolyn is a registered user with email address Nolyn6365@gmail.com
+  When Nolyn navigates to the Login page
+  And they enter 'DNolyn6365@gmail.com' into the login Username field
+  And they enter 'Demo123!' into the login Password field
+  And they submit the login request
+  Then Nolyn verifies they are presented with a error message indicating invalid credentials or access denied
 
 @negative
 Scenario: Login user with invalid username, invalid password
-  Given Preston is a registered user with email address Preston8894@gmail.com
-  When Preston navigates to the Login page
-  And he or she enters 'FpnPreston8894@gmail.com' into the login Username field
-  And he or she enters 'VMpRmtBYMgcawWmb57' into the login Password field
-  And he or she submits the login request
-  Then Preston verifies he or she is presented with a error message indicating invalid credentials or access denied
+  Given Deeptikana is a registered user with email address Deeptikana61771@gmail.com
+  When Deeptikana navigates to the Login page
+  And they enter 'YeqDeeptikana61771@gmail.com' into the login Username field
+  And they enter 'nuMjvRPT73' into the login Password field
+  And they submit the login request
+  Then Deeptikana verifies they are presented with a error message indicating invalid credentials or access denied
 
 @negative
 Scenario: Login user with invalid username, empty password
-  Given Tovi is a registered user with email address Tovi8702@gmail.com
-  When Tovi navigates to the Login page
-  And he or she enters 'WTovi8702@gmail.com' into the login Username field
-  And he or she enters '' into the login Password field
-  And he or she submits the login request
-  Then Tovi verifies he or she is presented with a error message indicating invalid credentials or access denied
+  Given Moselle is a registered user with email address Moselle870788@gmail.com
+  When Moselle navigates to the Login page
+  And they enter 'EhMoselle870788@gmail.com' into the login Username field
+  And they enter '' into the login Password field
+  And they submit the login request
+  Then Moselle verifies they are presented with a error message indicating invalid credentials or access denied
 
 @negative
 Scenario: Login user with empty username, valid password
-  Given Ritu is a registered user with email address Ritu200052@gmail.com
-  When Ritu navigates to the Login page
-  And he or she enters '' into the login Username field
-  And he or she enters 'Demo123!' into the login Password field
-  And he or she submits the login request
-  Then Ritu verifies he or she is presented with a error message indicating invalid credentials or access denied
+  Given Karlitis is a registered user with email address Karlitis66116@gmail.com
+  When Karlitis navigates to the Login page
+  And they enter '' into the login Username field
+  And they enter 'Demo123!' into the login Password field
+  And they submit the login request
+  Then Karlitis verifies they are presented with a error message indicating invalid credentials or access denied
 
 @negative
 Scenario: Login user with empty username, invalid password
-  Given Jabali is a registered user with email address Jabali99480@gmail.com
-  When Jabali navigates to the Login page
-  And he or she enters '' into the login Username field
-  And he or she enters 'PnLjmtqDCyOcZBGKAsF3731' into the login Password field
-  And he or she submits the login request
-  Then Jabali verifies he or she is presented with a error message indicating invalid credentials or access denied
+  Given Marco is a registered user with email address Marco831245@gmail.com
+  When Marco navigates to the Login page
+  And they enter '' into the login Username field
+  And they enter 'zThpgivpBrA041' into the login Password field
+  And they submit the login request
+  Then Marco verifies they are presented with a error message indicating invalid credentials or access denied
 
 @negative
 Scenario: Login user with empty username, empty password
-  Given Tumbo is a registered user with email address Tumbo30992@gmail.com
-  When Tumbo navigates to the Login page
-  And he or she enters '' into the login Username field
-  And he or she enters '' into the login Password field
-  And he or she submits the login request
-  Then Tumbo verifies he or she is presented with a error message indicating invalid credentials or access denied
+  Given Krishna is a registered user with email address Krishna89230@gmail.com
+  When Krishna navigates to the Login page
+  And they enter '' into the login Username field
+  And they enter '' into the login Password field
+  And they submit the login request
+  Then Krishna verifies they are presented with a error message indicating invalid credentials or access denied
