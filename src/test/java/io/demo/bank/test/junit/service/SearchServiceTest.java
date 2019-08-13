@@ -1,7 +1,9 @@
-package io.demo.bank.service;
+package io.demo.bank.test.junit.service;
 
 import com.ca.codesv.engine.junit4.VirtualServerRule;
 import io.demo.bank.model.AtmLocation;
+import io.demo.bank.service.SearchService;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;

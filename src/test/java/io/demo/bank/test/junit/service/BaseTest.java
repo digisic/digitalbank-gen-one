@@ -1,4 +1,4 @@
-package io.demo.bank.service;
+package io.demo.bank.test.junit.service;
 
 import org.junit.After;
 import org.junit.Before;
