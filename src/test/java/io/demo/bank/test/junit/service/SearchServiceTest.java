@@ -3,17 +3,14 @@ package io.demo.bank.test.junit.service;
 import com.ca.codesv.engine.junit4.VirtualServerRule;
 import io.demo.bank.model.AtmLocation;
 import io.demo.bank.service.SearchService;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
-
+import net.serenitybdd.junit.spring.integration.SpringIntegrationSerenityRunner;
 import java.util.List;
-
 import static com.ca.codesv.protocols.http.fluent.HttpFluentInterface.*;
 import static org.junit.Assert.*;
 
@@ -23,7 +20,7 @@ import static org.junit.Assert.*;
  */
 @SpringBootTest
 @ContextConfiguration(classes = SearchService.class)
-@RunWith(SpringRunner.class)
+@RunWith(SpringIntegrationSerenityRunner.class)
 public class SearchServiceTest extends BaseTest {
 
     @Rule
@@ -39,7 +36,7 @@ public class SearchServiceTest extends BaseTest {
      *
      * @throws Exception
      */
-    @Test
+    @Test 
     public void testSearchATMLocations() throws Exception {
 
         forGet("https://uat-api.synapsefi.com:443/v3.1/nodes/atms")

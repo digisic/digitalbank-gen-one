@@ -37,7 +37,6 @@
         <selenium.version>3.141.59</selenium.version>
         <tags></tags>
         <parallel.tests>1</parallel.tests>
-        <webdriver.base.url></webdriver.base.url>
         <webdriver.driver>firefox</webdriver.driver>
         <webdriver.base.url>http://localhost:8080/</webdriver.base.url>
         <buildNumber>local</buildNumber>
@@ -75,6 +74,10 @@
      		<groupId>org.springframework.boot</groupId>
      		<artifactId>spring-boot-starter-thymeleaf</artifactId>
  		</dependency>
+ 		<dependency>
+    		<groupId>com.fasterxml.jackson.module</groupId>
+    		<artifactId>jackson-module-kotlin</artifactId>
+		</dependency>
  		<dependency>
     		<groupId>io.springfox</groupId>
     		<artifactId>springfox-swagger2</artifactId>
@@ -240,7 +243,8 @@
 							<goal>build-info</goal>
 						</goals>
 					</execution>
-					<execution>
+				<!-- Uncomment to auto start/stop application for test execution 	
+				   <execution>
 			          <id>pre-integration-test</id>
 			          <goals>
 			            <goal>start</goal>
@@ -251,7 +255,8 @@
 			          <goals>
 			            <goal>stop</goal>
 			          </goals>
-			        </execution>
+			        </execution> 
+			    -->
 				</executions>
 			</plugin>    
 			<plugin>
