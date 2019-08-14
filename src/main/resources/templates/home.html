@@ -23,285 +23,47 @@
 	            <div class="animated fadeIn">
 	                
 	                <div class="row">
+	                
+	                	<!-- Begin Chart -->
 						<div class="col-lg-6">
-	                    	<div class="card border border-primary">
-                            	<div class="card-header">
-                                	<i class="fa fa-external-link-square"></i><strong class="card-title pl-2">Market Overview</strong>
-                            	</div>
-                            	<div class="card-body text-center">
-	                    
-	                    			<!-- TradingView Widget BEGIN -->
-									<div class="tradingview-widget-container">
-										<div class="tradingview-widget-container__widget"></div>
-									  	<div class="tradingview-widget-copyright">
-									  		<a href="https://www.tradingview.com" rel="noopener" target="_blank">
-									  			<span class="blue-text">Market Data</span>
-									  		</a> by TradingView
-									  	</div>
-									  	<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-										  {
-										  "showChart": true,
-										  "locale": "en",
-										  "largeChartUrl": "",
-										  "width": "400",
-										  "height": "600",
-										  "plotLineColorGrowing": "rgba(60, 188, 152, 1)",
-										  "plotLineColorFalling": "rgba(255, 74, 104, 1)",
-										  "gridLineColor": "rgba(233, 233, 234, 1)",
-										  "scaleFontColor": "rgba(214, 216, 224, 1)",
-										  "belowLineFillColorGrowing": "rgba(60, 188, 152, 0.05)",
-										  "belowLineFillColorFalling": "rgba(255, 74, 104, 0.05)",
-										  "symbolActiveColor": "rgba(242, 250, 254, 1)",
-										  "tabs": [
-										    {
-										      "title": "Indices",
-										      "symbols": [
-										        {
-										          "s": "INDEX:SPX",
-										          "d": "S&P 500"
-										        },
-										        {
-										          "s": "INDEX:IUXX",
-										          "d": "Nasdaq 100"
-										        },
-										        {
-										          "s": "INDEX:DOWI",
-										          "d": "Dow 30"
-										        },
-										        {
-										          "s": "INDEX:NKY",
-										          "d": "Nikkei 225"
-										        },
-										        {
-										          "s": "INDEX:DAX",
-										          "d": "DAX Index"
-										        },
-										        {
-										          "s": "OANDA:UK100GBP",
-										          "d": "FTSE 100"
-										        }
-										      ],
-										      "originalTitle": "Indices"
-										    },
-										    {
-										      "title": "Commodities",
-										      "symbols": [
-										        {
-										          "s": "CME_MINI:ES1!",
-										          "d": "E-Mini S&P"
-										        },
-										        {
-										          "s": "CME:E61!",
-										          "d": "Euro"
-										        },
-										        {
-										          "s": "COMEX:GC1!",
-										          "d": "Gold"
-										        },
-										        {
-										          "s": "NYMEX:CL1!",
-										          "d": "Crude Oil"
-										        },
-										        {
-										          "s": "NYMEX:NG1!",
-										          "d": "Natural Gas"
-										        },
-										        {
-										          "s": "CBOT:ZC1!",
-										          "d": "Corn"
-										        }
-										      ],
-										      "originalTitle": "Commodities"
-										    },
-										    {
-										      "title": "Bonds",
-										      "symbols": [
-										        {
-										          "s": "CME:GE1!",
-										          "d": "Eurodollar"
-										        },
-										        {
-										          "s": "CBOT:ZB1!",
-										          "d": "T-Bond"
-										        },
-										        {
-										          "s": "CBOT:UD1!",
-										          "d": "Ultra T-Bond"
-										        },
-										        {
-										          "s": "EUREX:GG1!",
-										          "d": "Euro Bund"
-										        },
-										        {
-										          "s": "EUREX:II1!",
-										          "d": "Euro BTP"
-										        },
-										        {
-										          "s": "EUREX:HR1!",
-										          "d": "Euro BOBL"
-										        }
-										      ],
-										      "originalTitle": "Bonds"
-										    },
-										    {
-										      "title": "Forex",
-										      "symbols": [
-										        {
-										          "s": "FX:EURUSD"
-										        },
-										        {
-										          "s": "FX:GBPUSD"
-										        },
-										        {
-										          "s": "FX:USDJPY"
-										        },
-										        {
-										          "s": "FX:USDCHF"
-										        },
-										        {
-										          "s": "FX:AUDUSD"
-										        },
-										        {
-										          "s": "FX:USDCAD"
-										        }
-										      ],
-										      "originalTitle": "Forex"
-										    }
-										  ]
-										}
-									</script>
-								</div>
-								<!-- TradingView Widget END -->
-	                    		</div> <!--  End Card Body -->
-			            	</div> <!-- End Card -->
-			         	</div> <!--  End Column 6 -->	                
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="mb-3">Account Balance Summary</h4>
+                                    <canvas id="balanceSummary"></canvas>
+                                </div>
+                            </div>
+                        </div><!-- End Chart-->	 
+                        
+                        <!-- Begin Chart -->
+						<div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="mb-3">Deposit vs. Withdraw (Last 3 Months)</h4>
+                                    <canvas id="depositVsWithdraw"></canvas>
+                                </div>
+                            </div>
+                        </div><!-- End Chart-->	 
+                        
+                        <!-- Begin Chart -->
+						<div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="mb-3">Withdraw By Category (Last 3 Months)</h4>
+                                    <canvas id="withdrawByCategory"></canvas>
+                                </div>
+                            </div>
+                        </div><!-- End Chart-->	   
+                        
+                        <!-- Begin Chart -->
+						<div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="mb-3">Deposit By Category (Last 3 Months)</h4>
+                                    <canvas id="depositByCategory"></canvas>
+                                </div>
+                            </div>
+                        </div><!-- End Chart-->	                       
 	                
-	                
-	                				
-	    				<div class="col-lg-6">
-	    					<div class="card border border-primary">
-                            	<div class="card-header">
-                                	<i class="fa fa-external-link-square"></i><strong class="card-title pl-2">Stocks Overview</strong>
-                            	</div>
-                            	<div class="card-body text-center">
-	                
-									<!-- TradingView Widget BEGIN -->
-									<div class="tradingview-widget-container">
-										<div class="tradingview-widget-container__widget"></div>
-									  	<div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/stocks-usa/" rel="noopener" target="_blank">
-									  		<span class="blue-text">Stock Quotes</span></a> by TradingView
-									  	</div>
-									  	<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-											  {
-											  "gridLineColor": "rgba(233, 233, 234, 1)",
-											  "scaleFontColor": "rgba(218, 221, 224, 1)",
-											  "title": "Stocks",
-											  "tabs": [
-											    {
-											      "symbols": [
-											        {
-											          "s": "NYSE:JPM",
-											          "d": "Jpmorgan Chase & Co"
-											        },
-											        {
-											          "s": "NYSE:WFC",
-											          "d": "Wells Fargo Co New"
-											        },
-											        {
-											          "s": "NYSE:BAC",
-											          "d": "Bank Amer Corp"
-											        },
-											        {
-											          "s": "NYSE:HSBC",
-											          "d": "Hsbc Hldgs Plc"
-											        },
-											        {
-											          "s": "NYSE:C",
-											          "d": "Citigroup Inc"
-											        },
-											        {
-											          "s": "NYSE:MA",
-											          "d": "Mastercard Incorporated"
-											        }
-											      ],
-											      "title": "Financial"
-											    },
-											    {
-											      "symbols": [
-											        {
-											          "s": "NASDAQ:AAPL",
-											          "d": "Apple"
-											        },
-											        {
-											          "s": "NASDAQ:GOOGL",
-											          "d": "Google Inc"
-											        },
-											        {
-											          "s": "NASDAQ:MSFT",
-											          "d": "Microsoft Corp"
-											        },
-											        {
-											          "s": "NASDAQ:FB",
-											          "d": "Facebook Inc"
-											        },
-											        {
-											          "s": "NYSE:ORCL",
-											          "d": "Oracle Corp"
-											        },
-											        {
-											          "s": "NASDAQ:INTC",
-											          "d": "Intel Corp"
-											        }
-											      ],
-											      "title": "Technology"
-											    },
-											    {
-											      "symbols": [
-											        {
-											          "s": "NASDAQ:AMZN",
-											          "d": "Amazon Com Inc"
-											        },
-											        {
-											          "s": "NYSE:BABA",
-											          "d": "Alibaba Group Hldg Ltd"
-											        },
-											        {
-											          "s": "NYSE:T",
-											          "d": "At&t Inc"
-											        },
-											        {
-											          "s": "NYSE:WMT",
-											          "d": "Wal-mart Stores Inc"
-											        },
-											        {
-											          "s": "NYSE:CHL",
-											          "d": "China Mobile Limited"
-											        },
-											        {
-											          "s": "NYSE:V",
-											          "d": "Visa Inc"
-											        }
-											      ],
-											      "title": "Services"
-											    }
-											  ],
-											  "plotLineColorFalling": "rgba(255, 74, 104, 1)",
-											  "plotLineColorGrowing": "rgba(60, 188, 152, 1)",
-											  "showChart": true,
-											  "height": 660,
-											  "locale": "en",
-											  "symbolActiveColor": "rgba(242, 250, 254, 1)",
-											  "belowLineFillColorFalling": "rgba(255, 74, 104, 0.05)",
-											  "belowLineFillColorGrowing": "rgba(60, 188, 152, 0.05)",
-											  "width": 400
-											}
-										</script>
-									</div>
-									<!-- TradingView Widget END -->
-			                 	</div> <!--  End Card Body -->
-			                 </div> <!-- End Card -->
-			              </div> <!--  End Column 6 -->
-	            
 	    			</div><!-- End Row -->
 
 	    			
@@ -314,6 +76,119 @@
     
 	<!-- Footer -->
 	<div th:replace="common/sections :: footer-scripts"></div>
+	<script th:inline="javascript"> /*<![CDATA[*/
+	
+		( function ( $ ) {
+		    
+			// Balance Summary Bar Chart
+			var ctx = document.getElementById( "balanceSummary" );
+		    ctx.height = 100;
+		    var myChart = new Chart( ctx, {
+		        type: 'bar',
+		        data: {
+		            labels: /*[[${accountBalanceSummary[0]}]]*/ [ ],
+		            datasets: [
+		                {
+		                    label: "Account Balance",
+		                    data: /*[[${accountBalanceSummary[1]}]]*/ [ ],
+		                    borderColor: "rgba(0, 123, 255, 0.9)",
+		                    borderWidth: "0",
+		                    backgroundColor: "rgba(0, 123, 255, 0.5)"
+		                            }
+		                        ]
+		        },
+		        options: {
+		            scales: {
+		                yAxes: [ {
+		                    ticks: {
+		                        beginAtZero: true
+		                    }
+		                                } ]
+		            }
+		        }
+		    } ); 
+		    // End Balance Summary Chart
+		    
+		    // Deposit vs. Withdraw Bar Chart
+		    var ctx = document.getElementById( "depositVsWithdraw" );
+		    ctx.height = 100;
+		    var myChart = new Chart( ctx, {
+		        type: 'bar',
+		        data: {
+		            labels: /*[[${creditVsDebit[0]}]]*/ [ ],
+		            datasets: [
+		                {
+		                    label: "Credit",
+		                    data: /*[[${creditVsDebit[1]}]]*/ [ ],
+		                    borderColor: "rgba(2, 89, 40, 0.9)", // "rgba(0, 123, 255, 0.9)"
+		                    borderWidth: "0",
+		                    backgroundColor: "rgba(2, 89, 40, 0.5)" // "rgba(0, 123, 255, 0.5)"
+		                            },
+		                {
+		                    label: "Debit",
+		                    data: /*[[${creditVsDebit[2]}]]*/ [ ],
+		                    borderColor: "rgba(217,103,4,0.9)",  // "rgba(0,0,0,0.09)"
+		                    borderWidth: "0",
+		                    backgroundColor: "rgba(217,103,4,0.5)" // "rgba(0,0,0,0.07)"
+		                            }
+		                        ]
+		        },
+		        options: {
+		            scales: {
+		                yAxes: [ {
+		                    ticks: {
+		                        beginAtZero: true
+		                    }
+		                                } ]
+		            }
+		        }
+		    } );
+		    // End Balance Summary Chart
+		    
+		    
+		  	// Withdraw By Category
+		    var ctx = document.getElementById( "withdrawByCategory" );
+		    ctx.height = 150;
+		    var myChart = new Chart( ctx, {
+		        type: 'pie',
+		        data: {
+		            datasets: [ {
+		                data: /*[[${transactionByCategory[1]}]]*/ [ ],
+		                backgroundColor: /*[[${transactionByCategory[2]}]]*/ [ ],
+		                hoverBackgroundColor: /*[[${transactionByCategory[2]}]]*/ [ ]
+
+		                            } ],
+		            labels: /*[[${transactionByCategory[0]}]]*/ [ ]
+		        },
+		        options: {
+		            responsive: true
+		        }
+		    } );
+		    
+		 	// Deposit By Category
+		    var ctx = document.getElementById( "depositByCategory" );
+		    ctx.height = 150;
+		    var myChart = new Chart( ctx, {
+		        type: 'pie',
+		        data: {
+		            datasets: [ {
+		                data: /*[[${transactionByCategory[4]}]]*/ [ ],
+		                backgroundColor: /*[[${transactionByCategory[5]}]]*/ [ ],
+		                hoverBackgroundColor: /*[[${transactionByCategory[5]}]]*/ [ ]
+
+		                            } ],
+		            labels: /*[[${transactionByCategory[3]}]]*/ [ ]
+		        },
+		        options: {
+		            responsive: true
+		        }
+		    } );
+			
+			
+	
+		} )( jQuery );
+		/*]]>*/
+	</script>
 
 </body>
 </html>

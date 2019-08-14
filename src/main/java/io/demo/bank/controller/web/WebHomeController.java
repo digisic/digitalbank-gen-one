@@ -3,11 +3,11 @@ package io.demo.bank.controller.web;
 import io.demo.bank.model.UserProfile;
 import io.demo.bank.model.security.Role;
 import io.demo.bank.model.security.Users;
+import io.demo.bank.service.AccountService;
 import io.demo.bank.service.UserService;
 import io.demo.bank.util.Constants;
 import io.demo.bank.util.Messages;
 import io.demo.bank.util.Patterns;
-
 import java.security.Principal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +27,9 @@ public class WebHomeController extends WebCommonController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private AccountService accountService;
 	
 	/*
 	 * Root of application. Redirects to home.
@@ -159,7 +162,7 @@ public class WebHomeController extends WebCommonController {
 		userService.createUser(newUser, Role.ROLE_USER);
 		model.addAttribute(MODEL_ATT_USER, newUser);
 		model.addAttribute(MODEL_ATT_SUCCESS_MSG, Messages.USER_REGIST_SUCC);
-    
+   
 		LOG.debug("User Registered: " + newUser);
     
 		return Constants.VIEW_LOGIN;
@@ -169,6 +172,14 @@ public class WebHomeController extends WebCommonController {
 	public String home(Principal principal, Model model) {
     
 		this.setDisplayDefaults(principal, model);
+		
+		// Get the user that has been authenticated
+		Users user = userService.findByUsername(principal.getName());
+		
+		// Balance Summary Chart Data
+		model.addAttribute(MODEL_ATT_CHART_ACCT_BAL, accountService.getChartDataAccountBalanceSummary(user));
+		model.addAttribute(MODEL_ATT_CHART_CRED_VS_DEB, accountService.getChartDataCreditVsDebit(user));
+		model.addAttribute(MODEL_ATT_CHART_TRANS_BY_CAT, accountService.getChartDataTransactionByCategory(user));
     
 		return Constants.VIEW_HOME;
 	}

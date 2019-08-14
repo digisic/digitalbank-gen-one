@@ -92,6 +92,11 @@ abstract class WebCommonController {
 	public static final String MODEL_SEARCH_ZIPCODE				= "zipcode";
 	public static final String MODEL_ATT_PATTERN_ZIPCODE		= "patternZip";
 	public static final String MODEL_ATT_ATM_LIST				= "atmList";
+	
+	// Chart Data 
+	public static final String MODEL_ATT_CHART_ACCT_BAL			= "accountBalanceSummary";
+	public static final String MODEL_ATT_CHART_CRED_VS_DEB		= "creditVsDebit";
+	public static final String MODEL_ATT_CHART_TRANS_BY_CAT		= "transactionByCategory";
 
 	/*
 	 * Sets display defaults for Authenticated user

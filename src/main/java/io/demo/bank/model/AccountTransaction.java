@@ -5,6 +5,7 @@ import java.math.RoundingMode;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,17 +36,17 @@ public class AccountTransaction {
 	private Date transactionDate;
 	
 	@JsonIgnore
-	@ManyToOne
+	@ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "account_id")
     private Account account;
 	
-	@ManyToOne
+	@ManyToOne (fetch = FetchType.EAGER)
     private TransactionType transactionType;
 	
-	@ManyToOne
+	@ManyToOne (fetch = FetchType.EAGER)
     private TransactionState transactionState;
 	
-	@ManyToOne
+	@ManyToOne (fetch = FetchType.EAGER)
     private TransactionCategory transactionCategory;
 
 	/**

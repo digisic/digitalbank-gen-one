@@ -1,9 +1,11 @@
 package io.demo.bank.service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
@@ -59,6 +61,232 @@ public class AccountService {
 	
 	@Autowired
 	private TransactionCategoryRepository transactionCategoryRepository;
+	
+	
+	/*
+	 * Get Transactions By Category Summary Data
+	 */
+	public List<List<String>> getChartDataTransactionByCategory(Users user) {
+		
+		//
+		GregorianCalendar monthlyCalendar = new GregorianCalendar();
+		monthlyCalendar.setTime(new Date());
+		monthlyCalendar.roll(Calendar.MONTH, -3);
+		
+		// Get all of the user accounts
+		List<Account> accounts = getAllAccounts(user);
+		
+		// 2 Dimension Array for data to be returned
+		List<List<String>> data = new ArrayList<List<String>>();
+		
+		// Lists for data to be returned in array
+		List<String> creditNames = new ArrayList<String>();
+		List<String> debitNames = new ArrayList<String>();
+		List<String> creditSums = new ArrayList<String>();
+		List<String> debitSums = new ArrayList<String>();
+		List<String> creditColors = new ArrayList<String>();
+		List<String> debitColors = new ArrayList<String>();
+		
+		String red = "";
+		String green = "";
+		String blue = "";
+		String transparency = "";
+		int debitTotal = 0;
+		int creditTotal = 0;
+		int debitCount = 0;
+		int creditCount = 0;
+		
+
+				
+		// get the available categories
+		List<TransactionCategory> categories = getTransactionCategory();
+		
+		// For each category get transactions and sum them
+		for (int i = 0; i < categories.size(); i++) {
+			
+			double creditSum = 0;
+			double debitSum = 0;
+			boolean creditTrans = false;
+			boolean debitTrans = false;
+			
+			// For each account
+			for (int j = 0; j < accounts.size(); j++) {
+				List<AccountTransaction> atl = accountTransactionRepository
+											  .findByAccountAndTransactionCategoryAndTransactionDateAfter(accounts.get(j), categories.get(i), monthlyCalendar.getTime());
+				
+				// if we have some transactions for this category
+				if (atl.size() > 0) {
+					// sum the transactions
+					for (int k = 0; k < atl.size(); k++) {
+						
+						double amount = atl.get(k).getAmount().doubleValue();
+						
+						if (amount < 0) { // debit
+							debitTrans = true;
+							debitSum += amount;
+							
+						} else { // credit
+							creditTrans = true;
+							creditSum += amount;
+						}
+					} // end for each transaction sum
+						
+				} // end if transactions
+				
+			} // end for each account
+			
+			if (debitTrans) {
+				
+				debitNames.add(categories.get(i).getName());
+	
+				red = "217";
+				green = "103";
+				blue = "4";
+				transparency = "" + new BigDecimal(1 - (++debitCount * .05)).setScale(2, RoundingMode.HALF_UP);
+					
+				debitSums.add("" + (new BigDecimal(debitSum).setScale(2, RoundingMode.HALF_EVEN)));
+				debitColors.add("rgba(" + red + "," + green + "," + blue + "," + transparency + ")");
+				debitTrans = false;
+				
+				debitTotal += debitSum;
+				debitSum = 0;
+			} // end if debit transactions
+			
+			if (creditTrans) { // credit transactions
+				
+				creditNames.add(categories.get(i).getName());
+		
+				red = "2";
+				green = "89";
+				blue = "40";	
+				transparency = "" + new BigDecimal(1 - (++creditCount * .05)).setScale(2, RoundingMode.HALF_UP);
+		
+				creditSums.add("" + (new BigDecimal(creditSum).setScale(2, RoundingMode.HALF_EVEN)));
+				creditColors.add("rgba(" + red + "," + green + "," + blue + "," + transparency + ")");
+				creditTrans = false;
+				
+				creditTotal += creditSum;
+				creditSum = 0;
+			
+			} // end if credit transactions
+				
+		} // end for each category
+		
+		
+		// Add debit data
+		data.add(debitNames);
+		
+		// Need to figure out percentages
+		debitTotal = debitTotal * -1;
+		
+		for (int i = 0; i < debitSums.size(); i++) {
+			double percent = ((new BigDecimal(debitSums.get(i)).doubleValue() * -1) / debitTotal) * 100;
+			debitSums.set(i, new BigDecimal(percent).setScale(2, RoundingMode.HALF_EVEN).toString());
+		}
+		
+		data.add(debitSums);
+		data.add(debitColors);
+		
+		// Add credit Data
+		data.add(creditNames);
+		
+		for (int i = 0; i < creditSums.size(); i++) {
+			double percent = ((new BigDecimal(creditSums.get(i)).doubleValue()) / creditTotal) * 100;
+			creditSums.set(i, new BigDecimal(percent).setScale(2, RoundingMode.HALF_EVEN).toString());
+		}
+		
+		data.add(creditSums);
+		data.add(creditColors);
+		
+		return data;
+	}
+	
+	/*
+	 * Get Credit vs Debit Summary Data
+	 */
+	public List<List<String>> getChartDataCreditVsDebit(Users user) {
+		
+		// Use Calendar to shift the date back 3 months for transactions 
+		GregorianCalendar monthlyCalendar = new GregorianCalendar();
+		monthlyCalendar.setTime(new Date());
+		monthlyCalendar.roll(Calendar.MONTH, -3);
+		
+		// Get all of the user accounts
+		List<Account> accounts = getAllAccounts(user);
+		
+		// 2 Dimension Array for data to be returned
+		List<List<String>> data = new ArrayList<List<String>>();
+		
+		// Lists for data to be returned in array
+		List<String> names = new ArrayList<String>();
+		List<String> credits = new ArrayList<String>();
+		List<String> debits = new ArrayList<String>();
+		
+		// Used for query greater and less than zerp
+		BigDecimal zero = new BigDecimal(0);
+		
+		// For each account, get the data
+		for (int i = 0; i < accounts.size(); i++) {
+			names.add(accounts.get(i).getName());
+			
+			// Get Credit Transactions and sum them
+			List<AccountTransaction> allCredits = accountTransactionRepository
+					.findAllByAccountAndAmountGreaterThanAndTransactionDateAfter(accounts.get(i), zero, monthlyCalendar.getTime());
+			
+			float sumCredits = 0;
+			for (int j = 0; j < allCredits.size(); j++)
+				sumCredits += allCredits.get(j).getAmount().floatValue();
+			
+			credits.add(new BigDecimal(sumCredits).setScale(2, RoundingMode.HALF_EVEN).toString());
+			
+			// Get debit Transactions and sum them
+			List<AccountTransaction> allDebits = accountTransactionRepository
+					.findAllByAccountAndAmountLessThanAndTransactionDateAfter(accounts.get(i), zero, monthlyCalendar.getTime());
+			
+			float sumDebits = 0;
+			for (int j = 0; j < allDebits.size(); j++)
+				sumDebits += allDebits.get(j).getAmount().floatValue();
+			
+			debits.add(new BigDecimal(sumDebits * -1).setScale(2, RoundingMode.HALF_EVEN).toString());
+					
+		}
+		
+		// Add data to the array
+		data.add(names);
+		data.add(credits);
+		data.add(debits);
+		
+		return data;
+	}
+	
+	/*
+	 * Get Balance Summary Data
+	 */
+	public List<List<String>> getChartDataAccountBalanceSummary(Users user) {
+		
+		// Get all of the user accounts
+		List<Account> accounts = getAllAccounts(user);
+		
+		// 2 Dimension Array for data to be returned
+		List<List<String>> data = new ArrayList<List<String>>();
+		
+		// Lists for data to be returned in array
+		List<String> names = new ArrayList<String>();
+		List<String> balances = new ArrayList<String>();
+		
+		
+		// For each account get the data
+		for (int i = 0; i < accounts.size(); i++) {
+			names.add(accounts.get(i).getName()); 
+			balances.add(accounts.get(i).getCurrentBalance().toString());			
+		}
+		
+		// Add data to the array
+		data.add(names);
+		data.add(balances);
+		
+		return data;
+	}
 	
 	
 	/*
@@ -354,6 +582,17 @@ public class AccountService {
 		savingsAccounts.addAll(accountRepository.findByCoownerAndAccountType_Category(user, Constants.ACCT_SAV_CAT));
 						
 		return savingsAccounts;
+		
+	}
+	
+	/*
+	 * Get all accounts for user
+	 */
+	public List<Account> getAllAccountsUser (Users user){
+		List<Account> accounts = accountRepository.findByOwner(user);
+		accounts.addAll(accountRepository.findByCoowner(user));
+		
+		return accounts;
 		
 	}
 	

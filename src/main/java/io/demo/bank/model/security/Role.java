@@ -2,9 +2,10 @@ package io.demo.bank.model.security;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +25,7 @@ public class Role {
 	private Long id;
 	private String name;
   
-	@OneToMany(mappedBy="role", cascade={javax.persistence.CascadeType.ALL}, fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="role", cascade=CascadeType.ALL)
 	private Set<UserRole> userRoles = new HashSet<>();
 
 	// default constructor

@@ -15,11 +15,11 @@ public class UserRole {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private long id;
   
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne (fetch = FetchType.EAGER)
 	@JoinColumn(name="userId")
 	private Users user;
   
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne (fetch = FetchType.EAGER)
 	@JoinColumn(name="roleId")
 	private Role role;
 	

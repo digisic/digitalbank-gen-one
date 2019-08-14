@@ -2,7 +2,6 @@ package io.demo.bank.model;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,7 +30,7 @@ public class Notification {
 	@DateTimeFormat(pattern="yyyy-MM-dd'T'hh:mm")
 	private Date timestamp;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private Users users;
 	

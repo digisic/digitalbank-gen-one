@@ -26,7 +26,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
-import io.demo.bank.model.Account;
 import io.demo.bank.model.Notification;
 import io.demo.bank.model.UserProfile;
 import io.demo.bank.util.Messages;
@@ -34,60 +33,50 @@ import io.demo.bank.util.Patterns;
 
 @Entity
 public class Users implements UserDetails {
-	
+
 	private static final Logger LOG = LoggerFactory.getLogger(Users.class);
-	
+
 	private static final long serialVersionUID = -1173435728882792083L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(nullable = false, updatable = false)
-	@JsonProperty (access = Access.READ_ONLY)
-    private Long id;
-	
-	@JsonProperty (access = Access.READ_ONLY)
-    private String username;
-    
-	@NotEmpty(message=Messages.USER_PASSWORD_REQUIRED)
-    @JsonProperty(access = Access.WRITE_ONLY, required = true)
-    @Pattern(regexp=Patterns.USER_PASSWORD, message=Messages.USER_PASSWORD_FORMAT)
-    private String password;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(nullable = false, updatable = false)
+	@JsonProperty(access = Access.READ_ONLY)
+	private Long id;
 
-    private boolean enabled = true;
-    private boolean accountNonExpired = true;
-    private boolean accountNonLocked = true;
-    private boolean credentialsNonExpired = true;
-    
-    @Valid
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="profile_id")
-    private UserProfile userProfile;
-    
-    @JsonIgnore
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<UserRole> userRoles = new HashSet<>();
-    
-    @JsonIgnore
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="owner_id")
-    private List<Account> ownerAccounts;
-    
-    @JsonIgnore
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="coowner_id")
-    private List<Account> coownerAccounts;
-    	
-    @JsonIgnore
-	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonProperty(access = Access.READ_ONLY)
+	private String username;
+
+	@NotEmpty(message = Messages.USER_PASSWORD_REQUIRED)
+	@JsonProperty(access = Access.WRITE_ONLY, required = true)
+	@Pattern(regexp = Patterns.USER_PASSWORD, message = Messages.USER_PASSWORD_FORMAT)
+	private String password;
+
+	private boolean enabled = true;
+	private boolean accountNonExpired = true;
+	private boolean accountNonLocked = true;
+	private boolean credentialsNonExpired = true;
+
+	@Valid
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "profile_id")
+	private UserProfile userProfile;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Set<UserRole> userRoles = new HashSet<>();
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
 	@OrderBy("timestamp DESC")
 	private List<Notification> notifications = new ArrayList<>();
-       
+
 	public List<Notification> getNotifications() {
 		if (notifications == null) {
 			LOG.debug("notifcations=null, returning new empty arraylist");
 			return new ArrayList<Notification>();
 		}
-		LOG.debug("getting notifications which has size "+notifications.size());
+		LOG.debug("getting notifications which has size " + notifications.size());
 		return notifications;
 	}
 
@@ -95,56 +84,56 @@ public class Users implements UserDetails {
 		this.notifications = notifications;
 	}
 
-	public Users () {}
-    
-    public Users (String username, String password) {
-    	this.username = username;
-    	this.password = password;
-    }
-    
-    @JsonIgnore
+	public Users() {
+	}
+
+	public Users(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
+
+	@JsonIgnore
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		
+
 		Set<GrantedAuthority> authorities = new HashSet<>();
-        userRoles.forEach(ur -> authorities.add(new Authority(ur.getRole().getName())));
-        
-        return authorities;
+		userRoles.forEach(ur -> authorities.add(new Authority(ur.getRole().getName())));
+
+		return authorities;
 	}
-	
 
 	@Override
 	public String getPassword() {
-		
+
 		return password;
 	}
 
 	@Override
 	public String getUsername() {
-		
+
 		return username;
 	}
 
 	public boolean isAccountNonExpired() {
-		
+
 		return accountNonExpired;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		
+
 		return accountNonLocked;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		
+
 		return credentialsNonExpired;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		
+
 		return enabled;
 	}
 
@@ -232,51 +221,22 @@ public class Users implements UserDetails {
 		this.userRoles = userRoles;
 	}
 
-	
-	/**
-	 * @return the ownerAccounts
-	 */
-	public List<Account> getOwnerAccounts() {
-		return ownerAccounts;
-	}
-
-	/**
-	 * @param ownerAccounts the ownerAccounts to set
-	 */
-	public void setOwnerAccounts(List<Account> ownerAccounts) {
-		this.ownerAccounts = ownerAccounts;
-	}
-
-	/**
-	 * @return the coownerAccounts
-	 */
-	public List<Account> getCoownerAccounts() {
-		return coownerAccounts;
-	}
-
-	/**
-	 * @param coownerAccounts the coownerAccounts to set
-	 */
-	public void setCoownerAccounts(List<Account> coownerAccounts) {
-		this.coownerAccounts = coownerAccounts;
-	}
-
 	public String toString() {
-	    
-		String user = "\n\nUser Profile ***********************";
-	    
-	    user += "\nId:\t\t\t" 					+ this.getId();
-	    user += "\nUser Name:\t\t" 				+ this.getUsername();
-	    user += "\nPassword:\t\t" 				+ this.getPassword();
-	    user += "\nEnabled:\t\t" 				+ this.isEnabled();
-	    user += "\nNon Locked:\t\t" 			+ this.isAccountNonLocked();
-	    user += "\nNon Expired:\t\t" 			+ this.isAccountNonExpired();
-	    user += "\nCredentials Non Expired:" 	+ this.isCredentialsNonExpired();
-	    user += "\n" 							+ this.getUserProfile();
 
-	    user += "\n*******************************************\n";
-    
-	    return user;
+		String user = "\n\nUser Profile ***********************";
+
+		user += "\nId:\t\t\t" + this.getId();
+		user += "\nUser Name:\t\t" + this.getUsername();
+		user += "\nPassword:\t\t" + this.getPassword();
+		user += "\nEnabled:\t\t" + this.isEnabled();
+		user += "\nNon Locked:\t\t" + this.isAccountNonLocked();
+		user += "\nNon Expired:\t\t" + this.isAccountNonExpired();
+		user += "\nCredentials Non Expired:" + this.isCredentialsNonExpired();
+		user += "\n" + this.getUserProfile();
+
+		user += "\n*******************************************\n";
+
+		return user;
 	}
-	
+
 }

@@ -39,13 +39,13 @@ public class Account {
 	private double paymentAmount;
 	private int paymentTerm;
 	
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne (fetch = FetchType.EAGER)
 	private AccountType accountType;
 	
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne (fetch = FetchType.EAGER)
 	private OwnershipType ownershipType;
 		
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne (fetch = FetchType.EAGER)
 	private AccountStanding accountStanding;
 	
 	@JsonFormat(pattern="yyyy-MM-dd'T'hh:mm")
@@ -61,11 +61,11 @@ public class Account {
 	private Date paymentDue;
 	
 	@JsonIgnore
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne (fetch = FetchType.EAGER)
 	private Users owner;
 	
 	@JsonIgnore
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne (fetch = FetchType.EAGER)
 	private Users coowner;
 	
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
