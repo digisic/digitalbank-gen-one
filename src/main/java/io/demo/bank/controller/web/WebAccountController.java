@@ -215,7 +215,7 @@ public class WebAccountController extends WebCommonController {
 			
 			if (selectSwitch.size() > 0) {
 				
-				selectId = new Long(selectSwitch.get(0));
+				selectId = Long.valueOf(selectSwitch.get(0));
 				
 				LOG.debug("SELECTED ID: -> " + selectId);
 				
@@ -272,7 +272,7 @@ public class WebAccountController extends WebCommonController {
 			
 			if (selectSwitch.size() > 0) {
 				
-				selectId = new Long(selectSwitch.get(0));
+				selectId = Long.valueOf(selectSwitch.get(0));
 				
 				LOG.debug("SELECTED ID: -> " + selectId);
 				
@@ -504,8 +504,8 @@ public class WebAccountController extends WebCommonController {
 		List<Account> accountList = accountService.getCheckingAccounts(user);
 		accountList.addAll(accountService.getSavingsAccounts(user));
 		model.addAttribute(MODEL_ATT_ACCT_LIST, accountList);
-		model.addAttribute(MODEL_ATT_FROM_ACCOUNT, new Long(0));
-		model.addAttribute(MODEL_ATT_TO_ACCOUNT, new Long(0));
+		model.addAttribute(MODEL_ATT_FROM_ACCOUNT, Long.valueOf(0));
+		model.addAttribute(MODEL_ATT_TO_ACCOUNT, Long.valueOf(0));
 
 		
 		AccountTransaction accountTransaction = new AccountTransaction();
