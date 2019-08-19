@@ -1,1 +1,0 @@
-java -jar digitalbank-1.0.1.local.jar --spring.config.location=digitalbank.properties
