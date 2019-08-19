@@ -31,6 +31,10 @@
             "description": "Promotion Controller"
         },
         {
+            "name": "search-controller",
+            "description": "Search Controller"
+        },
+        {
             "name": "static-data-controller",
             "description": "Static Data Controller"
         },
@@ -171,6 +175,62 @@
                         "schema": {
                             "type": "object"
                         }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            },
+            "put": {
+                "tags": [
+                    "account-controller"
+                ],
+                "summary": "updateAccount",
+                "operationId": "updateAccountUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "newName",
+                        "in": "query",
+                        "description": "newName",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -677,6 +737,41 @@
                 "deprecated": false
             }
         },
+        "/api/v1/data/account/transaction/category": {
+            "get": {
+                "tags": [
+                    "static-data-controller"
+                ],
+                "summary": "getAccountTransactionCategories",
+                "operationId": "getAccountTransactionCategoriesUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/v1/data/account/transaction/state": {
             "get": {
                 "tags": [
@@ -885,6 +980,50 @@
                     },
                     "201": {
                         "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/search/atm": {
+            "get": {
+                "tags": [
+                    "search-controller"
+                ],
+                "summary": "searchAtmLocations",
+                "operationId": "searchAtmLocationsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "zipcode",
+                        "in": "query",
+                        "description": "zipcode",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -1126,6 +1265,50 @@
                 "operationId": "getSavingsAccountsUsingGET",
                 "produces": [
                     "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/user/find": {
+            "get": {
+                "tags": [
+                    "user-controller"
+                ],
+                "summary": "getUserByUsername",
+                "operationId": "getUserByUsernameUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "description": "username",
+                        "required": true,
+                        "type": "string"
+                    }
                 ],
                 "responses": {
                     "200": {
