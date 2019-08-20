@@ -66,6 +66,9 @@ public class Patterns {
 	public static final String PROMO_ACCT_TYPE		= Constants.PROMO_ACCT_TYPE_BLUE + "|"
 													+ Constants.PROMO_ACCT_TYPE_GOLD + "|"
 													+ Constants.PROMO_ACCT_TYPE_PLATINUM;
+	
+	// Visa Service
+	public static final String VISA_ACCOUNT			= "^([a-zA-Z0-9_\\\\-\\\\.]+)";
 													
 			
 }

@@ -97,6 +97,13 @@ abstract class WebCommonController {
 	public static final String MODEL_ATT_CHART_ACCT_BAL			= "accountBalanceSummary";
 	public static final String MODEL_ATT_CHART_CRED_VS_DEB		= "creditVsDebit";
 	public static final String MODEL_ATT_CHART_TRANS_BY_CAT		= "transactionByCategory";
+	
+	// Visa Service
+	public static final String MODEL_ATT_EXT_ACCOUNT			= "extAccount";
+	public static final String MODEL_ATT_EXT_AMOUNT				= "extAmount";
+	public static final String MODEL_ATT_EXT_RESPONSE			= "visaResponse";
+	
+	
 
 	/*
 	 * Sets display defaults for Authenticated user

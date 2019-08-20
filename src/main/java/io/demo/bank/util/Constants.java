@@ -77,6 +77,11 @@ public class Constants {
 	public static final String URI_SEARCH				= "/search";
 	public static final String URI_SEARCH_ATM			= "/atm";
 	
+	// Visa Service
+	public static final String URI_XFER_EXTERNAL		= "/external";
+	public static final String URI_XFER_VISA_PROC		= "/xfer-visa-process";
+	public static final String URI_XFER_VISA			= "/xfer-visa";
+	
 	// API Authenticated URIs
 	public static final String URI_API_ALL				= "/api/**";
 	public static final String URI_API_AUTH				= "/api/v1/auth";
@@ -119,6 +124,7 @@ public class Constants {
 	public static final String URI_API_PROMO			= "/api/v1/promotions";
 	public static final String URI_API_SEARCH_ATM		= "/api/v1/search/atm";
 	
+	
 
 	
 	
@@ -144,6 +150,10 @@ public class Constants {
 	public static final String VIEW_CREDIT_APP_ST 	= "credit-app-status";
 	public static final String VIEW_PROMOTIONS		= "promotions";
 	public static final String VIEW_SEARCH			= "search";
+	
+	// Visa Service views
+	public static final String VIEW_XFER_VISA 		= "xfer-visa";
+	public static final String VIEW_XFER_VISA_PROC	= "xfer-visa-process";
 	
 	// Account Type Codes
 	public static final String ACCT_CHK_STD_CODE	= "SCK";
@@ -229,6 +239,9 @@ public class Constants {
 	public static final String APP_ATM_PROTOCOL						= "io.demo.bank.atm.protocol";
 	public static final String APP_ATM_HOST							= "io.demo.bank.atm.host";
 	public static final String APP_ATM_PORT							= "io.demo.bank.atm.port";
+	public static final String APP_VISA_PROTOCOL					= "io.demo.bank.visa.protocol";
+	public static final String APP_VISA_HOST						= "io.demo.bank.visa.host";
+	public static final String APP_VISA_PORT						= "io.demo.bank.visa.port";
 	
 	// Credit API URIs
 	public static final String APP_CREDIT_URI_API_BASE				= "/api/v1";	
@@ -236,5 +249,10 @@ public class Constants {
 	
 	// ATM Location Service API URI
 	public static final String APP_ATM_URI_API_BASE					= "/v3.1/nodes/atms";
+	
+	// Visa API Service
+	public static final String URI_API_EXTERNAL_VISA				= "/api/v1/external/visa";
+	public static final String APP_VISA_URI_API_BASE				= "/visadirect/fundstransfer/v1/pullfundstransactions";
+
 	
 }
