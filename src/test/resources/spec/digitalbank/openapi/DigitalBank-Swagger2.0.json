@@ -41,6 +41,10 @@
         {
             "name": "user-controller",
             "description": "User Controller"
+        },
+        {
+            "name": "visa-controller",
+            "description": "Visa Controller"
         }
     ],
     "paths": {
@@ -921,6 +925,57 @@
                 "operationId": "getSavingsAccountTypesUsingGET",
                 "produces": [
                     "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/external/visa": {
+            "get": {
+                "tags": [
+                    "visa-controller"
+                ],
+                "summary": "directVisaPayment",
+                "operationId": "directVisaPaymentUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "account",
+                        "in": "query",
+                        "description": "account",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "amount",
+                        "in": "query",
+                        "description": "amount",
+                        "required": false,
+                        "type": "string"
+                    }
                 ],
                 "responses": {
                     "200": {
