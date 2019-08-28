@@ -30,10 +30,11 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>8</java.version>
-		<serenity.version>2.0.40</serenity.version>
-		<serenity.maven.version>2.0.40</serenity.maven.version>
-		<serenity.spring.version>2.0.40</serenity.spring.version>
-        <serenity.cucumber.version>1.9.31</serenity.cucumber.version>
+		<serenity.version>2.0.69</serenity.version>
+		<serenity.maven.version>2.0.69</serenity.maven.version>
+		<serenity.spring.version>2.0.69</serenity.spring.version>
+        <serenity.cucumber.version>1.0.21</serenity.cucumber.version>
+        <cucumber.version>4.2.0</cucumber.version>
         <selenium.version>3.141.59</selenium.version>
         <tags></tags>
         <parallel.tests>1</parallel.tests>
@@ -127,6 +128,16 @@
 		</dependency>
 		
 		<!-- Serenity BDD Cucumber -->		
+		<dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
         <dependency>
             <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-core</artifactId>
@@ -147,7 +158,7 @@
         </dependency>
         <dependency>
             <groupId>net.serenity-bdd</groupId>
-            <artifactId>serenity-cucumber</artifactId>
+            <artifactId>serenity-cucumber4</artifactId>
             <version>${serenity.cucumber.version}</version>
             <scope>test</scope>
         </dependency>
@@ -242,8 +253,7 @@
 						<goals>
 							<goal>build-info</goal>
 						</goals>
-					</execution>
-				<!-- Uncomment to auto start/stop application for test execution 	
+					</execution>	
 				   <execution>
 			          <id>pre-integration-test</id>
 			          <goals>
@@ -256,7 +266,6 @@
 			            <goal>stop</goal>
 			          </goals>
 			        </execution> 
-			    -->
 				</executions>
 			</plugin>    
 			<plugin>
@@ -284,7 +293,7 @@
                 <version>3.0.0-M3</version><!--$NO-MVN-MAN-VER$-->
                 <configuration>
                     <includes>
-                        <include>**/*Test*.java</include>
+                        <include>**/serenity/*Test*.java</include>
                     </includes>
                     <systemPropertyVariables>
                         <webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
