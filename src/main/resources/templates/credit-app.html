@@ -260,6 +260,30 @@
 		                   			</div>
 		                   			<div class="row form-group">
 						            	<div class="col col-sm-4">
+						                	<label class="form-control-label"><strong>Monthly Auto Loan Payment(s)</strong></label>
+				                            <input type="text" class="form-control" id="monthlyAutoLoan" th:field="${creditApp.monthlyAutoLoan}" placeholder="$" required>
+				                        	
+				                        </div>
+				                        <div class="col col-sm-4">
+				                            <label class="form-control-label"><strong>Monthly Other Loan Payment(s)</strong></label>
+				                            <input type="text" class="form-control" id="monthlyOtherLoan" th:field="${creditApp.monthlyOtherLoan}" placeholder="$" required>
+				                        	
+				                        </div>
+		                   			</div>
+		                   			<div class="row form-group">
+						            	<div class="col col-sm-4">
+						                	<label class="form-control-label"><strong>Monthly Minimum Credit Card Payment(s)</strong></label>
+				                            <input type="text" class="form-control" id="minimumCreditCard" th:field="${creditApp.minimumCreditCard}" placeholder="$" required>
+				                        	
+				                        </div>
+				                        <div class="col col-sm-4">
+				                            <label class="form-control-label"><strong>Credit Card Spend Per Month (Optional)</strong></label>
+				                            <input type="text" class="form-control" id="monthlySpend" th:field="${creditApp.monthlySpend}" placeholder="$" >
+				                        	
+				                        </div>
+				                    </div>
+		                   			<div class="row form-group">
+						            	<div class="col col-sm-12">
 						                	<label for="bankStatus" class=" form-control-label"><strong>Do You Have Bank Accounts?</strong></label>
 				                              <select name="bankStatus" id="bankStatus" class="form-control" th:field="${creditApp.bankStatus}" required>
 				                                <option value="">Please select</option>
@@ -270,11 +294,7 @@
 				                              </select>
 				                        	
 				                        </div>
-				                        <div class="col col-sm-4">
-				                            <label class="form-control-label"><strong>Credit Card Spend Per Month (Optional)</strong></label>
-				                            <input type="text" class="form-control" id="monthlySpend" th:field="${creditApp.monthlySpend}" placeholder="$" >
-				                        	
-				                        </div>
+				                        
 		                   			</div>
 		                   			
 		                   			<br><br>

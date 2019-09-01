@@ -36,6 +36,9 @@ public class CreditApplication {
 	private String bankStatus;
 	private BigDecimal annualIncome;
 	private BigDecimal monthlyMortgage;
+	private BigDecimal monthlyAutoLoan;
+	private BigDecimal monthlyOtherLoan;
+	private BigDecimal minimumCreditCard;
 	private BigDecimal monthlySpend;
 	private boolean cashAdvance;
 	private boolean balanceTransfer;
@@ -349,6 +352,48 @@ public class CreditApplication {
 		this.gender = gender;
 	}
 	
+	/**
+	 * @return the monthlyAutoLoan
+	 */
+	public BigDecimal getMonthlyAutoLoan() {
+		return monthlyAutoLoan;
+	}
+
+	/**
+	 * @param monthlyAutoLoan the monthlyAutoLoan to set
+	 */
+	public void setMonthlyAutoLoan(BigDecimal monthlyAutoLoan) {
+		this.monthlyAutoLoan = monthlyAutoLoan;
+	}
+
+	/**
+	 * @return the monthlyOtherLoan
+	 */
+	public BigDecimal getMonthlyOtherLoan() {
+		return monthlyOtherLoan;
+	}
+
+	/**
+	 * @param monthlyOtherLoan the monthlyOtherLoan to set
+	 */
+	public void setMonthlyOtherLoan(BigDecimal monthlyOtherLoan) {
+		this.monthlyOtherLoan = monthlyOtherLoan;
+	}
+
+	/**
+	 * @return the minimumCreditCard
+	 */
+	public BigDecimal getMinimumCreditCard() {
+		return minimumCreditCard;
+	}
+
+	/**
+	 * @param minimumCreditCard the minimumCreditCard to set
+	 */
+	public void setMinimumCreditCard(BigDecimal minimumCreditCard) {
+		this.minimumCreditCard = minimumCreditCard;
+	}
+
 	public String toString() {
 	    
 		String app = "*** Credit Application ***********************";
@@ -373,11 +418,14 @@ public class CreditApplication {
 	    app += "\nCountry:\t\t" 		+ this.getCountry();
 	    
 	    app += "\n***Financial Information ***********************";
-	    app += "\nBank Status:\t\t" 	+ this.getBankStatus();
-	    app += "\nEmployment Status:\t" + this.getEmploymentStatus();
-	    app += "\nAnnual Income:\t\t" 	+ this.getAnnualIncome();
-	    app += "\nMonthly Mortgage:\t"	+ this.getMonthlyMortgage();
-	    app += "\nMonthly Spend:\t\t" 	+ this.getMonthlySpend();
+	    app += "\nBank Status:\t\t" 						+ this.getBankStatus();
+	    app += "\nEmployment Status:\t" 					+ this.getEmploymentStatus();
+	    app += "\nAnnual Income:\t\t" 						+ this.getAnnualIncome();
+	    app += "\nMonthly Mortgage:\t"						+ this.getMonthlyMortgage();
+	    app += "\nMonthly Car Loan:\t"						+ this.getMonthlyAutoLoan();
+	    app += "\nMonthly Other Loans:\t"					+ this.getMonthlyOtherLoan();
+	    app += "\nMonthly Mimimum Credit Card Payments:\t"	+ this.getMinimumCreditCard();
+	    app += "\nMonthly Spend:\t\t" 						+ this.getMonthlySpend();
 
 	    app += "\n*******************************************\n";
 	    
