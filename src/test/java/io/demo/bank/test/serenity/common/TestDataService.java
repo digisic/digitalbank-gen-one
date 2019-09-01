@@ -1,4 +1,4 @@
-package io.demo.bank.test.serenity.common.steps;
+package io.demo.bank.test.serenity.common;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -7,7 +7,7 @@ import com.github.javafaker.Faker;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
 
-public class DataServiceSteps {
+public class TestDataService {
 	
 	// Get the base URL from the environment
 	private String baseURL = (System.getProperty("webdriver.base.url") != null) 

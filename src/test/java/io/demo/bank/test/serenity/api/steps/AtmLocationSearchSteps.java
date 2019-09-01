@@ -63,6 +63,16 @@ public class AtmLocationSearchSteps {
 							   .size() > 0);
 	}
 	
+	@Step ("Assert response contains a list of results with a size of ")
+	public void assertResponseResults (int size) {
+		assertTrue(SerenityRest.lastResponse()
+							   .then()
+							   .extract()
+							   .jsonPath()
+							   .getList("$")
+							   .size() == size);
+	}
+	
 	@Step ("Assert response contains an empty list of results")
 	public void assertResponseResultsEmpty () {
 		assertTrue(SerenityRest.lastResponse()

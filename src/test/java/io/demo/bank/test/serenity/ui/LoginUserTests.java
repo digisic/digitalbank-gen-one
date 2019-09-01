@@ -4,7 +4,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import io.demo.bank.test.serenity.common.steps.DataServiceSteps;
+import io.demo.bank.test.serenity.common.TestDataService;
 import io.demo.bank.test.serenity.ui.steps.LoginSteps;
 import net.thucydides.core.annotations.Steps;
 
@@ -15,7 +15,7 @@ public class LoginUserTests {
 	private LoginSteps login;
 	
 	@Steps
-	private DataServiceSteps data;
+	private TestDataService data;
 	
 	/** Given **/
 	@Given("^(.*) is a registered user with email address (.*)$")

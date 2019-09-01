@@ -6,7 +6,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.demo.bank.test.serenity.api.steps.AtmLocationSearchSteps;
 import io.demo.bank.test.serenity.api.steps.UserAuthenticationSteps;
-import io.demo.bank.test.serenity.common.steps.DataServiceSteps;
+import io.demo.bank.test.serenity.common.TestDataService;
 import net.thucydides.core.annotations.Steps;
 
 public class LocationSearchTests {
@@ -18,7 +18,7 @@ public class LocationSearchTests {
 	AtmLocationSearchSteps searchSteps;
 	
 	@Steps
-	private DataServiceSteps data;
+	private TestDataService data;
 	
 	
 	@Given("^(.*) is authenticated into the API with email (.*)$")
