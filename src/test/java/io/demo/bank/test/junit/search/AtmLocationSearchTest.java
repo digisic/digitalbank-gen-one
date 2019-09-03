@@ -1,6 +1,7 @@
 package io.demo.bank.test.junit.search;
 
 import static com.ca.codesv.protocols.http.fluent.HttpFluentInterface.*;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -45,7 +46,7 @@ public class AtmLocationSearchTest extends BaseTest {
 	private SearchService searchService;
     
     /**
-     * This methods calls method requesting synapsefi API and tests whether it can handle synapsefi response correctly.
+     * This method calls method requesting synapsefi API and tests whether it can handle synapsefi response correctly.
      *
      * In this test case, the scenario expects correct response from the synapsefi API.
      *
@@ -54,8 +55,8 @@ public class AtmLocationSearchTest extends BaseTest {
     @Test
     public void positiveResultTest() throws Exception {
     	
-    	String zipcode = "94203";
-    	int expResultSize = 2;
+    	final String zipcode = "94203";
+    	final int expResultSize = 2;
     	
     	try { // Setup Virtual Service with Code SV
 
@@ -76,23 +77,23 @@ public class AtmLocationSearchTest extends BaseTest {
     		throw new Exception(ex);
     	} // end try/catch
     	
-    	
-    	// Test Steps
-    	try {
-    		List<AtmLocation> locations = searchService.searchATMLocations(zipcode);
-    		assertTrue(locations.size() == expResultSize);
-   
-    	} catch (Exception ex) {
-    		throw new Exception(ex);
-    	}
+
+		List<AtmLocation> locations = searchService.searchATMLocations(zipcode);
+
+    	assertEquals(expResultSize, locations.size());
     }
-    
-    
-	
+
+    /**
+	 * This method calls method requesting synapsefi API and tests whether it can handle synapsefi response correctly.
+	 *
+	 * In this test case, the scenario expects correct response, but with no ATMs found.
+	 *
+	 * @throws Exception
+	 */
 	@Test 
 	public void zeroResultTest() throws Exception {
 	  
-		String zipcode = "12345"; int expResultSize = 0;
+		final String zipcode = "12345";
 	  
 		try { // Setup Virtual Service with Code SV
 			forGet("https://uat-api.synapsefi.com:443/v3.1/nodes/atms")
@@ -114,23 +115,22 @@ public class AtmLocationSearchTest extends BaseTest {
 			throw new Exception(ex);
 		} // end try/catch
 	  
-		// Test Steps 
-		try {
-			
-			List<AtmLocation> locations = searchService.searchATMLocations(zipcode); 
-			assertTrue(locations.size() == expResultSize);
-	  
-	  	} catch (Exception ex) { 
-	  		
-	  		throw new Exception(ex); 
-	  	} 
+		List<AtmLocation> locations = searchService.searchATMLocations(zipcode);
+
+		assertTrue(locations.isEmpty());
 	}
-	  
-	  
-	@Test 
+
+	/**
+	 * This method calls method requesting synapsefi API and tests whether it can handle synapsefi response correctly.
+	 *
+	 * In this test case, the scenario expects the API returns 404 and application should throw expected <code>HttpStatusCodeException</code>.
+	 *
+	 * @throws Exception
+	 */
+	@Test(expected = HttpStatusCodeException.class)
 	public void unavilableServiceTest() throws Exception {
 	  
-		String zipcode = "94203";
+		final String zipcode = "94203";
 	  
 		try { // Setup Virtual Service with Code SV
 	  
@@ -152,20 +152,11 @@ public class AtmLocationSearchTest extends BaseTest {
 			
 			throw new Exception(ex);
 		} // end try/catch
-	  
-		// Test Steps 
-		try { 
-			searchService.searchATMLocations(zipcode);
-		} catch (HttpStatusCodeException ex) {
-			
-			assertTrue(true);
-			
-		} catch (Exception ex) {
-			throw new Exception(ex);}
-	  	}
-	 
 
-      
+
+		searchService.searchATMLocations(zipcode);
+	  	}
+
 	
 	private static final String ZERO_RESULTS_OK = 	"{\n" + "    \"atms\": [],\n" +
 													"    \"atms_count\": 0,\n" + "    \"error_code\": \"0\",\n" +
