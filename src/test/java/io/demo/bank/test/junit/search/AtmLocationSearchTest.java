@@ -153,9 +153,9 @@ public class AtmLocationSearchTest extends BaseTest {
 			throw new Exception(ex);
 		} // end try/catch
 
-
 		searchService.searchATMLocations(zipcode);
-	  	}
+		
+	}
 
 	
 	private static final String ZERO_RESULTS_OK = 	"{\n" + "    \"atms\": [],\n" +

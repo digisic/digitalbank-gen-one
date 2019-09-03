@@ -1,5 +1,6 @@
 package io.demo.bank.test.junit.search;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static com.ca.codesv.protocols.http.fluent.HttpFluentInterface.*;
 
@@ -49,6 +50,13 @@ public class AtmLocationSearchTestBlazeRepo extends BaseTest {
 	@Autowired
 	private SearchService searchService;
 
+	/**
+     * This method calls method requesting synapsefi API and tests whether it can handle synapsefi response correctly.
+     *
+     * In this test case, the scenario expects correct response from the synapsefi API.
+     *
+     * @throws Exception
+     */
 	@Test
 	public void positiveResultTest() throws Exception {
 		
@@ -60,34 +68,49 @@ public class AtmLocationSearchTestBlazeRepo extends BaseTest {
 				                					.keystorePassword(KEYSTORE_PASSWORD)
 				                					.keyPassword(KEYSTORE_PASSWORD));
 
-		List<AtmLocation> results = searchService.searchATMLocations(zipcode);
+		List<AtmLocation> locations = searchService.searchATMLocations(zipcode);
 
-		LOG.debug("Number of ATMs: " + results.size());
+		LOG.debug("Number of ATMs: " + locations.size());
 
-		assertTrue(results.size() == expResultSize);
+		assertEquals(expResultSize, locations.size());
 
 	}
 	
+	
+	/**
+	 * This method calls method requesting synapsefi API and tests whether it can handle synapsefi response correctly.
+	 *
+	 * In this test case, the scenario expects correct response, but with no ATMs found.
+	 *
+	 * @throws Exception
+	 */
 	@Test
 	public void zeroResultTest() throws Exception {
 		
 		String zipcode = "12345";
-    	int expResultSize = 0;
 		
 		store.useTransaction("ATM Search 12345 With Zero Results", "ATM Search By Zip Code", 
 							 withSecureProtocol(TLS).keystorePath(KEYSTORE_PATH)
 				                					.keystorePassword(KEYSTORE_PASSWORD)
 				                					.keyPassword(KEYSTORE_PASSWORD));
 
-		List<AtmLocation> results = searchService.searchATMLocations(zipcode);
+		List<AtmLocation> locations = searchService.searchATMLocations(zipcode);
 
-		LOG.debug("Number of ATMs: " + results.size());
+		LOG.debug("Number of ATMs: " + locations.size());
 
-		assertTrue(results.size() == expResultSize);
+		assertTrue(locations.isEmpty());
 
 	}
 	
-	@Test
+	
+	/**
+	 * This method calls method requesting synapsefi API and tests whether it can handle synapsefi response correctly.
+	 *
+	 * In this test case, the scenario expects the API returns 404 and application should throw expected <code>HttpStatusCodeException</code>.
+	 *
+	 * @throws Exception
+	 */
+	@Test(expected = HttpStatusCodeException.class)
 	public void unavilableServiceTest() throws Exception {
 		
 		String zipcode = "11749";
@@ -98,16 +121,7 @@ public class AtmLocationSearchTestBlazeRepo extends BaseTest {
 				                					.keystorePassword(KEYSTORE_PASSWORD)
 				                					.keyPassword(KEYSTORE_PASSWORD));
 
-		// Test Steps 
-		try { 
-			searchService.searchATMLocations(zipcode);
-		} catch (HttpStatusCodeException ex) {
-					
-			assertTrue(true);
-					
-		} catch (Exception ex) {
-			throw new Exception(ex);
-		}
+		searchService.searchATMLocations(zipcode);
 	}
 
 }
