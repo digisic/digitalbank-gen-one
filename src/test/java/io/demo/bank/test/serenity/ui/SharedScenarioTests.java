@@ -28,9 +28,6 @@ public class SharedScenarioTests {
 	private EnvironmentVariables env = SystemEnvironmentVariables.createEnvironmentVariables();
 	private String remoteProviderDriver = env.getProperty("webdriver.provided.mydriver");
 	private String blazeGridDriver = "io.demo.bank.test.serenity.BlazeGridDriver";
-	private String testId = env.getProperty("blazemeter.build.id") + "+"
-						  + env.getProperty("blazemeter.test.id") + "/"
-						  + env.getProperty("serenity.project.name");
 	
 	// Remote Driver used when testing with Selenium Grid
 	private RemoteWebDriver remoteDriver = ThucydidesWebDriverSupport.getProxiedDriver();
