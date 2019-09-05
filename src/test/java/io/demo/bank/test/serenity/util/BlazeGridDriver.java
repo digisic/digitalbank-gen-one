@@ -1,4 +1,4 @@
-package io.demo.bank.test.serenity;
+package io.demo.bank.test.serenity.util;
 
 import java.net.MalformedURLException;
 import java.net.URL;

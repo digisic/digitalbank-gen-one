@@ -22,7 +22,6 @@ import net.serenitybdd.junit.spring.integration.SpringIntegrationSerenityRunner;
 import net.thucydides.core.annotations.Narrative;
 import net.thucydides.core.annotations.WithTagValuesOf;
 import io.demo.bank.service.SearchService;
-import io.demo.bank.test.junit.BaseTest;
 
 
 
@@ -30,12 +29,12 @@ import io.demo.bank.test.junit.BaseTest;
 		 "I want to search for local ATM locations",
 		 "So I can find a convenient ATM near me"})
 @SpringBootTest
-@WithTagValuesOf({"feature:search", "feature:atm", "feature:codesv", "feature:blazect"})
+@WithTagValuesOf({"Search"})
 @ContextConfiguration(classes = SearchService.class)
 @RunWith(SpringIntegrationSerenityRunner.class)
-public class AtmLocationSearchTestBlazeRepo extends BaseTest {
+public class AtmLocationSearchTrnxRepoTest extends BaseTest {
 	
-	private static final Logger LOG = LoggerFactory.getLogger(AtmLocationSearchTestBlazeRepo.class);
+	private static final Logger LOG = LoggerFactory.getLogger(AtmLocationSearchTrnxRepoTest.class);
 
 	@Rule
 	public VirtualServerRule vs = new VirtualServerRule();

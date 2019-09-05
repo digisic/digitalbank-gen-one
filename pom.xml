@@ -273,8 +273,11 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M3</version><!--$NO-MVN-MAN-VER$-->
                 <configuration>
-                    <skip>true</skip>
-                    <forkCount>0</forkCount>
+                	<excludes>
+                        <exclude>**/serenity/*Test*.java</exclude>
+                    </excludes>
+                    <skip>false</skip>
+                    <forkCount>2</forkCount>
                     <threadCount>1</threadCount>
                     <argLine></argLine>
                 </configuration>
@@ -293,7 +296,7 @@
                 <version>3.0.0-M3</version><!--$NO-MVN-MAN-VER$-->
                 <configuration>
                     <includes>
-                        <include>**/*Test*.java</include>
+                        <include>**/serenity/*Test*.java</include>
                     </includes>
                     <systemPropertyVariables>
                         <webdriver.base.url>${webdriver.base.url}</webdriver.base.url>

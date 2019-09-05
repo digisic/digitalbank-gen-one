@@ -20,7 +20,6 @@ import net.thucydides.core.annotations.WithTagValuesOf;
 import com.ca.codesv.engine.junit4.VirtualServerRule;
 import io.demo.bank.model.AtmLocation;
 import io.demo.bank.service.SearchService;
-import io.demo.bank.test.junit.BaseTest;
 
 
 /**
@@ -32,7 +31,7 @@ import io.demo.bank.test.junit.BaseTest;
         		 "I want to search for local ATM locations",
         		 "So I can find a convenient ATM near me"})
 @SpringBootTest
-@WithTagValuesOf({"feature:search", "feature:atm", "feature:codesv"})
+@WithTagValuesOf({"Search"})
 @ContextConfiguration(classes = SearchService.class)
 @RunWith(SpringIntegrationSerenityRunner.class)
 public class AtmLocationSearchTest extends BaseTest {

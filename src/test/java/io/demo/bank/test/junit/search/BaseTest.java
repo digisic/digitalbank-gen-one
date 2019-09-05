@@ -1,4 +1,4 @@
-package io.demo.bank.test.junit;
+package io.demo.bank.test.junit.search;
 
 import org.junit.After;
 import org.junit.Before;
