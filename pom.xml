@@ -276,7 +276,7 @@
                 	<excludes>
                         <exclude>**/serenity/*Test*.java</exclude>
                     </excludes>
-                    <skip>false</skip>
+                    <skip>${skipUnitTests}</skip>
                     <forkCount>2</forkCount>
                     <threadCount>1</threadCount>
                     <argLine></argLine>
