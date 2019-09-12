@@ -123,6 +123,7 @@ public class Constants {
 	public static final String URI_API_DATA_ACCT_TRAN_CT= "/api/v1/data/account/transaction/category";
 	public static final String URI_API_PROMO			= "/api/v1/promotions";
 	public static final String URI_API_SEARCH_ATM		= "/api/v1/search/atm";
+	public static final String URI_API_HEALTHCHECK		= "/api/v1/health";
 	
 	
 

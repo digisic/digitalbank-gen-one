@@ -48,6 +48,7 @@ public class MultiHttpSecurityConfig {
 	    	Constants.URI_SWAGGER_RES,
 	    	Constants.URI_SWAGGER_CONF,
 	    	Constants.URI_MANAGER_RES
+	    	
 	};
   
 	@Bean
@@ -79,6 +80,7 @@ public class MultiHttpSecurityConfig {
         		.antMatcher(Constants.URI_API_ALL)
         		.authorizeRequests()
         			.antMatchers(HttpMethod.POST, Constants.URI_API_AUTH).permitAll()
+        			.antMatchers(HttpMethod.GET, Constants.URI_API_HEALTHCHECK).permitAll()
         			.anyRequest()
         			.hasRole(Patterns.ROLE_API)
         			.and()
