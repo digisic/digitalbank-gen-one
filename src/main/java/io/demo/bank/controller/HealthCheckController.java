@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 import io.demo.bank.util.Constants;
 
 @RestController
-public class HealthcheckController {
+public class HealthCheckController {
 
 	@GetMapping(Constants.URI_API_HEALTHCHECK)											
 	public ResponseEntity<?> getApplicationHealth(){
-		return ResponseEntity.ok("Application available");
+		return ResponseEntity.ok("Application Available");
 	}
 	
 }
