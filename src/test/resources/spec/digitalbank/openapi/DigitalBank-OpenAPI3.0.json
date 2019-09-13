@@ -17,6 +17,8 @@ tags:
     description: Account Controller
   - name: authentication-controller
     description: Authentication Controller
+  - name: health-check-controller
+    description: Health Check Controller
   - name: promotion-controller
     description: Promotion Controller
   - name: search-controller
@@ -633,6 +635,28 @@ paths:
           required: false
           schema:
             type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: object
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      security:
+        - Bearer_token: []
+      deprecated: false
+  /api/v1/health:
+    get:
+      tags:
+        - health-check-controller
+      summary: getApplicationHealth
+      operationId: getApplicationHealthUsingGET
       responses:
         "200":
           description: OK
