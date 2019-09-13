@@ -59,7 +59,7 @@ public class AtmLocationSearchTest extends BaseTest {
     	
     	try { // Setup Virtual Service with Code SV
 
-	        forGet("https://uat-api.synapsefi.com:443/v3.1/nodes/atms")
+	        forGet("https://bankingservices.io/v3.1/nodes/atms")
 	        	.matchesQuery("zip", zipcode)
 	        	.usingHttps(withSecureProtocol(TLS).keystorePath(KEYSTORE_PATH)
 	                							     .keystorePassword(KEYSTORE_PASSWORD)
@@ -95,7 +95,7 @@ public class AtmLocationSearchTest extends BaseTest {
 		final String zipcode = "12345";
 	  
 		try { // Setup Virtual Service with Code SV
-			forGet("https://uat-api.synapsefi.com:443/v3.1/nodes/atms")
+			forGet("https://bankingservices.io/v3.1/nodes/atms")
 				.matchesQuery("zip", zipcode)
 				.usingHttps(withSecureProtocol(TLS).keystorePath(KEYSTORE_PATH)
 												   .keystorePassword(KEYSTORE_PASSWORD) 
@@ -133,7 +133,7 @@ public class AtmLocationSearchTest extends BaseTest {
 	  
 		try { // Setup Virtual Service with Code SV
 	  
-			forGet("https://uat-api.synapsefi.com:443/v3.1/nodes/atms")
+			forGet("https://bankingservices.io/v3.1/nodes/atms")
 				.matchesQuery("zip", zipcode)
 				.usingHttps(withSecureProtocol(TLS).keystorePath(KEYSTORE_PATH)
 												   .keystorePassword(KEYSTORE_PASSWORD) 

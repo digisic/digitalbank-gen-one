@@ -160,12 +160,29 @@ public class VisaService {
 		String host = environment.getProperty(Constants.APP_VISA_HOST);
 		String port = environment.getProperty(Constants.APP_VISA_PORT);
 		
-		VisaService.apiBaseUrl 	= protocol + "://"
-				 				 	+ host + ":"
-				 				 	+ port
-				 				 	+ Constants.APP_VISA_URI_API_BASE;
+		// if protocol is null or empty, assume https
+		if (protocol == null || protocol.isEmpty()) {
+			protocol = "https";
+		}
 		
+		// if host is null or empty, assume localhost
+		if (host == null || host.isEmpty()) {
+			host = "creditservices.io";
+		}
+		
+		VisaService.apiBaseUrl = protocol + "://"
+				 				 + host;
+		
+		// check port values to see if it needs to be added to URL
+		if (port != null && !port.isEmpty()) {
+			if (!port.equals("443") && !port.equals("80")) { 
+				VisaService.apiBaseUrl += ":" + port;
+			}
+		}
+		
+		VisaService.apiBaseUrl += Constants.APP_VISA_URI_API_BASE;
 
+		LOG.debug("VISA API Service URL: " + VisaService.apiBaseUrl);
 		
 		// Make sure values were passed in for these properties
 		if (protocol == null ||
@@ -185,6 +202,7 @@ public class VisaService {
 		}
 		catch (IllegalArgumentException ex) {
 			LOG.error("VISA API Service: Connection properties for protocol, host, and port are not correct in the configuration.");
+			LOG.error("VISA API Service URL: " + VisaService.apiBaseUrl);
 			LOG.error(ex.getMessage());
 		}
 		

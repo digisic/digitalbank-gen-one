@@ -146,13 +146,33 @@ public class SearchService {
 		String host = environment.getProperty(Constants.APP_ATM_HOST);
 		String port = environment.getProperty(Constants.APP_ATM_PORT);
 		
-		SearchService.apiBaseUrl 	= protocol + "://"
-				 				 	+ host + ":"
-				 				 	+ port
-				 				 	+ Constants.APP_ATM_URI_API_BASE;
+		
+		// if protocol is null or empty, assume https
+		if (protocol == null || protocol.isEmpty()) {
+			protocol = "https";
+		}
+		
+		// if host is null or empty, assume localhost
+		if (host == null || host.isEmpty()) {
+			host = "bankingservices.io";
+		}
+		
+		SearchService.apiBaseUrl = protocol + "://"
+				 				 + host;
+		
+		// check port values to see if it needs to be added to URL
+		if (port != null && !port.isEmpty()) {
+			if (!port.equals("443") && !port.equals("80")) { 
+				SearchService.apiBaseUrl += ":" + port;
+			}
+		}
+		
+		// Add ATM Search URI
+		SearchService.apiBaseUrl += Constants.APP_ATM_URI_API_BASE;
+		
+		LOG.debug("ATM Location Service URL: " + SearchService.apiBaseUrl);
 		
 
-		
 		// Make sure values were passed in for these properties
 		if (protocol == null ||
 			host == null ||
@@ -171,6 +191,7 @@ public class SearchService {
 		}
 		catch (IllegalArgumentException ex) {
 			LOG.error("ATM Location Service: Connection properties for protocol, host, and port are not correct in the configuration.");
+			LOG.error("ATM Location Service URL: " + SearchService.apiBaseUrl);
 			LOG.error(ex.getMessage());
 		}
 		
