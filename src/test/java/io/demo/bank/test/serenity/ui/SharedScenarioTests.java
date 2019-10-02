@@ -3,6 +3,8 @@ package io.demo.bank.test.serenity.ui;
 import java.util.HashMap;
 import java.util.Map;
 import org.openqa.selenium.remote.RemoteWebDriver;
+
+import cucumber.api.Result;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -12,6 +14,7 @@ import cucumber.api.java.en.When;
 import io.demo.bank.test.serenity.common.TestDataService;
 import io.demo.bank.test.serenity.ui.steps.LoginSteps;
 import io.demo.bank.test.serenity.ui.steps.MenuNavigationSteps;
+import io.demo.bank.test.serenity.util.BlazeGridDriver;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.util.EnvironmentVariables;
 import net.thucydides.core.util.SystemEnvironmentVariables;
@@ -27,7 +30,7 @@ public class SharedScenarioTests {
 	// Environment 
 	private EnvironmentVariables env = SystemEnvironmentVariables.createEnvironmentVariables();
 	private String remoteProviderDriver = env.getProperty("webdriver.provided.mydriver");
-	private String blazeGridDriver = "io.demo.bank.test.serenity.BlazeGridDriver";
+	private String blazeGridDriver = BlazeGridDriver.class.getName();
 	
 	// Remote Driver used when testing with Selenium Grid
 	private RemoteWebDriver remoteDriver = ThucydidesWebDriverSupport.getProxiedDriver();
@@ -47,11 +50,13 @@ public class SharedScenarioTests {
 		
 		// Only execute if we are executing against BlazeGrid
 		if (remoteProviderDriver != null && remoteProviderDriver.equals(blazeGridDriver)) {
+			
 			if (remoteDriver != null) {
+				
 				 Map<String, String> map = new HashMap<>();
 		         map.put("testCaseName", scenario.getName());
 		         map.put("testSuiteName", scenario.getId().substring(scenario.getId().lastIndexOf("/") + 1, scenario.getId().lastIndexOf(".")));
-		   //      map.put("buildId+testId/testName", testId);
+		         
 		         remoteDriver.executeAsyncScript("/* FLOW_MARKER test-case-start */", map);
 			}
 		}
@@ -62,17 +67,21 @@ public class SharedScenarioTests {
 		
 		// Only execute if we are executing against BlazeGrid
 		if (remoteProviderDriver != null && remoteProviderDriver.equals(blazeGridDriver)) {
+			
 			if (remoteDriver != null) {
-				
+		
 				Map<String, String> map = new HashMap<>();
 				
-				if (scenario.isFailed()){
+				if (scenario.getStatus().equals(Result.Type.FAILED)){
 					map.put("status", "failed");
-	                map.put("message", "");
+	                map.put("message", scenario.getStatus().toString());
 				} 
-				else {
+				else if (scenario.getStatus().equals(Result.Type.PASSED)) {
 					map.put("status", "passed");
-	                map.put("message", "");
+	                map.put("message", scenario.getStatus().toString());
+				} else {
+					map.put("status", "broken");
+	                map.put("message", scenario.getStatus().toString());
 				}
 				remoteDriver.executeAsyncScript("/* FLOW_MARKER test-case-stop */", map);
 			} // end if remote driver

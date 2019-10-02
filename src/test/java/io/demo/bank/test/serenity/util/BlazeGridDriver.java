@@ -14,6 +14,7 @@ public class BlazeGridDriver implements DriverSource {
     private final static String BASE = "a.blazemeter.com";
     private final static String curl = String.format("https://%s/api/v4/grid/wd/hub", BASE);
     private static RemoteWebDriver driver;
+    private final static String buildIdExt = (new Integer((int) ((Math.random() * 90000) + 10000))).toString();
     private EnvironmentVariables env = SystemEnvironmentVariables.createEnvironmentVariables();
 
 	@Override
@@ -23,7 +24,7 @@ public class BlazeGridDriver implements DriverSource {
 			
 			URL url = new URL(curl);
 			DesiredCapabilities capabilities = new DesiredCapabilities();
-			
+						
 			// Pass capabilities as defined in the serenity.properties file
 			capabilities.setCapability("blazemeter.apiKey", env.getProperty("blazemeter.api.key"));
 			capabilities.setCapability("blazemeter.apiSecret", env.getProperty("blazemeter.api.secret"));
@@ -37,7 +38,7 @@ public class BlazeGridDriver implements DriverSource {
 	        capabilities.setCapability("blazemeter.locationId", env.getProperty("blazemeter.location.id"));
 	        capabilities.setCapability("blazemeter.projectId", env.getProperty("blazemeter.project.id"));
 	        capabilities.setCapability("blazemeter.testId", env.getProperty("blazemeter.test.id"));
-	        capabilities.setCapability("blazemeter.buildId", env.getProperty("blazemeter.build.id"));
+	        capabilities.setCapability("blazemeter.buildId", env.getProperty("blazemeter.build.id") + "." + buildIdExt);
 	        
 
 	        driver = new RemoteWebDriver(url, capabilities);
