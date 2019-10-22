@@ -27,3 +27,6 @@ HELP.md
 /nbdist/
 /.nb-gradle/
 /build/
+
+### Gradle ###
+/.gradle/
