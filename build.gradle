@@ -5,6 +5,7 @@
 plugins {
     id 'java'
     id 'maven-publish'
+    id 'checkstyle'
 }
 
 repositories {
@@ -66,8 +67,8 @@ sourceCompatibility = '8'
 
 test { 
     systemProperty "cucumber.options", System.getProperty("cucumber.options")
-    // systemProperty "webdriver.driver", System.getProperty("webdriver.driver")
-    // systemProperty "webdriver.base.url", System.getProperty("webdriver.base.url")
+    systemProperty "webdriver.driver", "chrome"
+    systemProperty "webdriver.base.url", "http://localhost:8080/"
     // systemProperties System.getProperties()
 }
 
@@ -78,6 +79,21 @@ publishing {
         }
     }
 }
+
+checkstyle {
+    config = resources.text.fromFile('config/checkstyle/checkstyle.xml', 'UTF-8')
+    showViolations = true
+    ignoreFailures = true
+}
+
+tasks.withType(Checkstyle) {
+  reports {
+  	html.enabled = true
+    html.destination rootProject.file("build/reports/checkstyle/checkstyle.html")
+  }
+}
+
+test.mustRunAfter checkstyleMain, checkstyleTest
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
