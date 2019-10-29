@@ -68,10 +68,8 @@ public class AccountServiceTests {
 		// Set up Mockito hooks
 		doReturn(acctList).when(acctSvc).getAllAccounts(user);
 		doReturn(tranxCtgyList).when(acctSvc).getTransactionCategory();
-		doReturn(acctTranxList).when(acctTranxRepoMock)
-				.findByAccountAndTransactionCategoryAndTransactionDateAfter(any(Account.class),
-						any(TransactionCategory.class), any(Date.class));
-		// when(acctSvc.getAllAccounts(anyObject())).thenReturn(acctList);
+		doReturn(acctTranxList).when(acctTranxRepoMock).findByAccountAndTransactionCategoryAndTransactionDateAfter(
+				any(Account.class), any(TransactionCategory.class), any(Date.class));
 
 		// Execute method under test
 		List<List<String>> tranxByCategory = acctSvc.getChartDataTransactionByCategory(user);
@@ -90,4 +88,5 @@ public class AccountServiceTests {
 		acctTranxList.add(acctTranx);
 		acct.setAcountTransactionList(acctTranxList);
 	}
+
 }
