@@ -1,5 +1,9 @@
 package io.demo.bank.test.junit.service;
 
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.any;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -52,12 +56,7 @@ public class AccountServiceTests {
 
 		List<AccountTransaction> acctTranxList = new ArrayList<>();
 		TransactionCategory shoppingTranxCtgy = new TransactionCategory("789", "Online Shopping");
-		AccountTransaction acctTranx = new AccountTransaction(12345L, "tranx desc", new BigDecimal(15.0),
-				new BigDecimal(185.0), 56789L, new Date(), acct,
-				new TransactionType("123", "Purchase", "Online Shopping"), new TransactionState("456", "Pending"),
-				shoppingTranxCtgy);
-		acctTranxList.add(acctTranx);
-		acct.setAcountTransactionList(acctTranxList);
+		createAndAddShoppingPurchaseAcctTranx(acct, acctTranxList, shoppingTranxCtgy);
 
 		// Initialize Mockito return objects
 		List<Account> acctList = new ArrayList<>();
@@ -67,11 +66,11 @@ public class AccountServiceTests {
 		tranxCtgyList.add(shoppingTranxCtgy);
 
 		// Set up Mockito hooks
-		Mockito.doReturn(acctList).when(acctSvc).getAllAccounts(user);
-		Mockito.doReturn(tranxCtgyList).when(acctSvc).getTransactionCategory();
-		Mockito.doReturn(acctTranxList).when(acctTranxRepoMock)
-				.findByAccountAndTransactionCategoryAndTransactionDateAfter(Mockito.any(Account.class),
-						Mockito.any(TransactionCategory.class), Mockito.any(Date.class));
+		doReturn(acctList).when(acctSvc).getAllAccounts(user);
+		doReturn(tranxCtgyList).when(acctSvc).getTransactionCategory();
+		doReturn(acctTranxList).when(acctTranxRepoMock)
+				.findByAccountAndTransactionCategoryAndTransactionDateAfter(any(Account.class),
+						any(TransactionCategory.class), any(Date.class));
 		// when(acctSvc.getAllAccounts(anyObject())).thenReturn(acctList);
 
 		// Execute method under test
@@ -79,5 +78,16 @@ public class AccountServiceTests {
 
 		// Assertions
 		System.out.println(tranxByCategory);
+		assertNotNull(tranxByCategory);
+	}
+
+	private void createAndAddShoppingPurchaseAcctTranx(Account acct, List<AccountTransaction> acctTranxList,
+			TransactionCategory shoppingTranxCtgy) {
+		AccountTransaction acctTranx = new AccountTransaction(12345L, "tranx desc", new BigDecimal(15.0),
+				new BigDecimal(185.0), 56789L, new Date(), acct,
+				new TransactionType("123", "Purchase", "Online Shopping"), new TransactionState("456", "Pending"),
+				shoppingTranxCtgy);
+		acctTranxList.add(acctTranx);
+		acct.setAcountTransactionList(acctTranxList);
 	}
 }
