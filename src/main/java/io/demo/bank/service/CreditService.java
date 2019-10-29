@@ -21,7 +21,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import io.demo.bank.model.CreditApplication;
 import io.demo.bank.model.CreditReference;
-import io.demo.bank.model.security.Users;
+import io.demo.bank.model.security.User;
 import io.demo.bank.repository.CreditReferenceRepository;
 import io.demo.bank.util.Constants;
 
@@ -49,7 +49,7 @@ public class CreditService {
 	/*
 	 * Check id User has a Credit Application
 	 */
-	public boolean userHasApplication(Users user) {
+	public boolean userHasApplication(User user) {
 		
 		LOG.debug("User Has Credit Application? ");
 		
@@ -72,7 +72,7 @@ public class CreditService {
 	/*
 	 * Get Application Status
 	 */
-	public CreditReference getCurrentCreditAppStatus(Users user) {
+	public CreditReference getCurrentCreditAppStatus(User user) {
 		
 		Optional<CreditReference> opt = creditReferenceRepository.findByBankUserId(user.getId());
 		
@@ -86,7 +86,7 @@ public class CreditService {
 	/*
 	 * Check is User has a Credit Account Linked
 	 */
-	public boolean userHasLinkedCreditAccount (Users user) {
+	public boolean userHasLinkedCreditAccount (User user) {
 		
 		LOG.debug("User Has Credit Account Linked? ");
 		
@@ -109,7 +109,7 @@ public class CreditService {
 	/*
 	 * Submit Credit Application
 	 */
-	public boolean submitCreditApplication (Users user, CreditApplication app) {
+	public boolean submitCreditApplication (User user, CreditApplication app) {
 		
 		String url = CreditService.apiBaseUrl + "/credit/application";
 		

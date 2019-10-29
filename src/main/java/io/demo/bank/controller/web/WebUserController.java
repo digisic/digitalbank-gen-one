@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import io.demo.bank.model.UserProfile;
-import io.demo.bank.model.security.Users;
+import io.demo.bank.model.security.User;
 import io.demo.bank.service.UserService;
 import io.demo.bank.util.Constants;
 import io.demo.bank.util.Messages;
@@ -49,7 +49,7 @@ public class WebUserController extends WebCommonController {
 		// Set Display Defaults
 		setDisplayDefaults(principal, model);
 				
-		Users user = userService.findByUsername(principal.getName());
+		User user = userService.findByUsername(principal.getName());
 		
 		LOG.debug("Change Password: Validate Password Entries.");
 		
@@ -99,7 +99,7 @@ public class WebUserController extends WebCommonController {
 		// Set Display Defaults
 		setDisplayDefaults(principal, model);
 				
-		Users user = userService.findByUsername(principal.getName());
+		User user = userService.findByUsername(principal.getName());
 		
 		model.addAttribute(MODEL_ATT_USER_PROFILE, user.getUserProfile());
 		
@@ -117,7 +117,7 @@ public class WebUserController extends WebCommonController {
 		// Set Display Defaults
 		setDisplayDefaults(principal, model);
 				
-		Users user = userService.findByUsername(principal.getName());
+		User user = userService.findByUsername(principal.getName());
 		
 		user = userService.updateUserProfile(user, updateProfile);
 		

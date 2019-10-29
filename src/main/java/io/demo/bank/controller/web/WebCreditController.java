@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import io.demo.bank.model.CreditApplication;
 import io.demo.bank.model.CreditReference;
-import io.demo.bank.model.security.Users;
+import io.demo.bank.model.security.User;
 import io.demo.bank.service.CreditService;
 import io.demo.bank.service.UserService;
 import io.demo.bank.util.Constants;
@@ -37,7 +37,7 @@ public class WebCreditController extends WebCommonController {
 		setDisplayDefaults(principal, model);
 		
 		// Pass in user profile details to prefill application
-		Users user = userService.findByUsername(principal.getName());
+		User user = userService.findByUsername(principal.getName());
 		
 		model.addAttribute(MODEL_CREDIT_APP, new CreditApplication(user.getUserProfile()));
 		    
@@ -51,7 +51,7 @@ public class WebCreditController extends WebCommonController {
 		// Set Display Defaults
 		setDisplayDefaults(principal, model);
 		
-		Users user = userService.findByUsername(principal.getName());
+		User user = userService.findByUsername(principal.getName());
 		
 		creditService.submitCreditApplication(user, app);
 		
@@ -64,7 +64,7 @@ public class WebCreditController extends WebCommonController {
 		// Set Display Defaults
 		setDisplayDefaults(principal, model);
 		
-		Users user = userService.findByUsername(principal.getName());
+		User user = userService.findByUsername(principal.getName());
 		
 		CreditReference creditReference = creditService.getCurrentCreditAppStatus(user);
 		

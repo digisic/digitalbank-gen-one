@@ -48,7 +48,27 @@ public class AccountTransaction {
 	
 	@ManyToOne (fetch = FetchType.EAGER)
     private TransactionCategory transactionCategory;
+	
+	public AccountTransaction() {
+		
+	}
 
+	public AccountTransaction(Long id, String description, BigDecimal amount, BigDecimal runningBalance,
+			Long transactionNumber, Date transactionDate, Account account, TransactionType transactionType,
+			TransactionState transactionState, TransactionCategory transactionCategory) {
+		super();
+		this.id = id;
+		this.description = description;
+		this.amount = amount;
+		this.runningBalance = runningBalance;
+		this.transactionNumber = transactionNumber;
+		this.transactionDate = transactionDate;
+		this.account = account;
+		this.transactionType = transactionType;
+		this.transactionState = transactionState;
+		this.transactionCategory = transactionCategory;
+	}
+	
 	/**
 	 * @return the id
 	 */

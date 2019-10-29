@@ -21,7 +21,7 @@ import io.demo.bank.model.OwnershipType;
 import io.demo.bank.model.TransactionCategory;
 import io.demo.bank.model.TransactionState;
 import io.demo.bank.model.TransactionType;
-import io.demo.bank.model.security.Users;
+import io.demo.bank.model.security.User;
 import io.demo.bank.repository.AccountRepository;
 import io.demo.bank.repository.AccountStandingRepository;
 import io.demo.bank.repository.AccountTransactionRepository;
@@ -62,11 +62,14 @@ public class AccountService {
 	@Autowired
 	private TransactionCategoryRepository transactionCategoryRepository;
 	
+	public void setAccountTransactionRepository(AccountTransactionRepository accountTransactionRepository) {
+		this.accountTransactionRepository = accountTransactionRepository;
+	}
 	
 	/*
 	 * Get Transactions By Category Summary Data
 	 */
-	public List<List<String>> getChartDataTransactionByCategory(Users user) {
+	public List<List<String>> getChartDataTransactionByCategory(User user) {
 		
 		//
 		GregorianCalendar monthlyCalendar = new GregorianCalendar();
@@ -204,7 +207,7 @@ public class AccountService {
 	/*
 	 * Get Credit vs Debit Summary Data
 	 */
-	public List<List<String>> getChartDataCreditVsDebit(Users user) {
+	public List<List<String>> getChartDataCreditVsDebit(User user) {
 		
 		// Use Calendar to shift the date back 3 months for transactions 
 		GregorianCalendar monthlyCalendar = new GregorianCalendar();
@@ -262,7 +265,7 @@ public class AccountService {
 	/*
 	 * Get Balance Summary Data
 	 */
-	public List<List<String>> getChartDataAccountBalanceSummary(Users user) {
+	public List<List<String>> getChartDataAccountBalanceSummary(User user) {
 		
 		// Get all of the user accounts
 		List<Account> accounts = getAllAccounts(user);
@@ -554,7 +557,7 @@ public class AccountService {
 	/*
 	 * Get all accounts assigned to the user
 	 */
-	public List<Account> getAllAccounts (Users user) {
+	public List<Account> getAllAccounts (User user) {
 		
 		List<Account> allAccounts = accountRepository.findByOwner(user);
 		allAccounts.addAll(accountRepository.findByCoowner(user));
@@ -565,7 +568,7 @@ public class AccountService {
 	/*
 	 * Get all checking accounts assigned to the user
 	 */
-	public List<Account> getCheckingAccounts (Users user) {
+	public List<Account> getCheckingAccounts (User user) {
 		
 		List<Account> checkingAccounts = accountRepository.findByOwnerAndAccountType_Category(user, Constants.ACCT_CHK_CAT);
 		checkingAccounts.addAll(accountRepository.findByCoownerAndAccountType_Category(user, Constants.ACCT_CHK_CAT));
@@ -576,7 +579,7 @@ public class AccountService {
 	/*
 	 * Get all savings accounts assigned to the user
 	 */
-	public List<Account> getSavingsAccounts (Users user) {
+	public List<Account> getSavingsAccounts (User user) {
 				
 		List<Account> savingsAccounts = accountRepository.findByOwnerAndAccountType_Category(user, Constants.ACCT_SAV_CAT);
 		savingsAccounts.addAll(accountRepository.findByCoownerAndAccountType_Category(user, Constants.ACCT_SAV_CAT));
@@ -588,7 +591,7 @@ public class AccountService {
 	/*
 	 * Get all accounts for user
 	 */
-	public List<Account> getAllAccountsUser (Users user){
+	public List<Account> getAllAccountsUser (User user){
 		List<Account> accounts = accountRepository.findByOwner(user);
 		accounts.addAll(accountRepository.findByCoowner(user));
 		

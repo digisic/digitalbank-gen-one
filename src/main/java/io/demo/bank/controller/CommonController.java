@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.demo.bank.exception.RestBadRequestException;
 import io.demo.bank.exception.RestObjectNotFoundException;
-import io.demo.bank.model.security.Users;
+import io.demo.bank.model.security.User;
 import io.demo.bank.service.UserService;
 import io.demo.bank.util.Messages;
 
@@ -21,13 +21,13 @@ public class CommonController {
 	/*
 	 * Find the user by Id
 	 */
-	public Users getUserById(Long id) {
+	public User getUserById(Long id) {
 		
 		if (id < 0) {
 			throw new RestBadRequestException (Messages.INVALID_OBJECT_ID);
 		}
 	
-		Users user = userService.findById(id);
+		User user = userService.findById(id);
 		
 		if (user == null) {
 			throw new RestObjectNotFoundException (Messages.OBJECT_NOT_FOUND + id);
@@ -39,7 +39,7 @@ public class CommonController {
 	/*
 	 * Gets current authenticated user
 	 */
-	public Users getAuthenticatedUser () {
+	public User getAuthenticatedUser () {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
@@ -49,7 +49,7 @@ public class CommonController {
 	/*
 	 * Checks the current role of the user
 	 */
-	public boolean hasRole(Users user, String roleName) {
+	public boolean hasRole(User user, String roleName) {
 		return userService.hasRole(user, roleName);
 	}
 

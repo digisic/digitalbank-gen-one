@@ -56,8 +56,9 @@ dependencies {
     testCompile 'org.seleniumhq.selenium:selenium-support:3.141.59'
     testCompile 'org.seleniumhq.selenium:selenium-api:3.141.59'
     testCompile 'com.broadcom.codesv:codesv-dist-jar:2.0.2'
+    //testCompile group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.6.0-M1'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '3.1.0'
     compileOnly 'org.springframework.boot:spring-boot-starter-tomcat:2.1.7.RELEASE'
-    //compile group: 'net.serenity-bdd', name: 'serenity-gradle-plugin', version: '1.0.23'
 }
 
 group = 'io.demo'

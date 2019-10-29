@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import io.demo.bank.model.Account;
 import io.demo.bank.model.AccountTransaction;
-import io.demo.bank.model.security.Users;
+import io.demo.bank.model.security.User;
 import io.demo.bank.service.AccountService;
 import io.demo.bank.service.UserService;
 import io.demo.bank.util.Constants;
@@ -61,7 +61,7 @@ public class WebAccountController extends WebCommonController {
 		// Set Display Defaults
 		setDisplayDefaults(principal, model);
 		
-		Users user = userService.findByUsername(principal.getName());
+		User user = userService.findByUsername(principal.getName());
 		
 		LOG.debug("New Checking: Account Name -> " + newAccount.getName());
 		LOG.debug("New Checking: Initial Deposit -> " + newAccount.getOpeningBalance());
@@ -130,7 +130,7 @@ public class WebAccountController extends WebCommonController {
 		// Set Display Defaults
 		setDisplayDefaults(principal, model);
 				
-		Users user = userService.findByUsername(principal.getName());
+		User user = userService.findByUsername(principal.getName());
 		
 		LOG.debug("Add New Savings: Account Name -> " + newAccount.getName());
 		LOG.debug("Add New Savings: Initial Deposit -> " + newAccount.getOpeningBalance());
@@ -195,7 +195,7 @@ public class WebAccountController extends WebCommonController {
 		// Set Display Defaults
 		setDisplayDefaults(principal, model);
 				
-		Users user = userService.findByUsername(principal.getName());
+		User user = userService.findByUsername(principal.getName());
 		
 		LOG.debug("SELECTED: ->" + selectSwitch.size());
 		long selectId = 0;
@@ -252,7 +252,7 @@ public class WebAccountController extends WebCommonController {
 		// Set Display Defaults
 		setDisplayDefaults(principal, model);
 				
-		Users user = userService.findByUsername(principal.getName());
+		User user = userService.findByUsername(principal.getName());
 		
 		LOG.debug("SELECTED: ->" + selectSwitch.size());
 		long selectId = 0;
@@ -308,7 +308,7 @@ public class WebAccountController extends WebCommonController {
 		// Set Display Defaults
 		setDisplayDefaults(principal, model);
 				
-		Users user = userService.findByUsername(principal.getName());
+		User user = userService.findByUsername(principal.getName());
 		
 		// Add format patterns
 		model.addAttribute(MODEL_ATT_PATTERN_TRANS_AMOUNT, Patterns.TRANSACTION_AMOUNT);
@@ -340,7 +340,7 @@ public class WebAccountController extends WebCommonController {
 		// get full object from partial object
 		account = accountService.getAccountById(account.getId());
 		
-		Users user = userService.findByUsername(principal.getName());
+		User user = userService.findByUsername(principal.getName());
 		
 		// Check amount is greater than zero
 		if (accountTransaction.getAmount().signum() != 1) {
@@ -390,7 +390,7 @@ public class WebAccountController extends WebCommonController {
 		// Set Display Defaults
 		setDisplayDefaults(principal, model);
 				
-		Users user = userService.findByUsername(principal.getName());
+		User user = userService.findByUsername(principal.getName());
 
 		// Get all accounts
 		List<Account> accountList = accountService.getCheckingAccounts(user);
@@ -424,7 +424,7 @@ public class WebAccountController extends WebCommonController {
 		
 		boolean bError = false;
 		
-		Users user = userService.findByUsername(principal.getName());
+		User user = userService.findByUsername(principal.getName());
 		
 		// Check amount is greater than zero
 		if (accountTransaction.getAmount().signum() != 1) {
@@ -498,7 +498,7 @@ public class WebAccountController extends WebCommonController {
 		// Set Display Defaults
 		setDisplayDefaults(principal, model);
 				
-		Users user = userService.findByUsername(principal.getName());
+		User user = userService.findByUsername(principal.getName());
 
 		// Get all accounts
 		List<Account> accountList = accountService.getCheckingAccounts(user);
@@ -536,7 +536,7 @@ public class WebAccountController extends WebCommonController {
 		Account fromAcct = accountService.getAccountById(fromAccount);
 		Account toAcct = accountService.getAccountById(toAccount);
 		
-		Users user = userService.findByUsername(principal.getName());
+		User user = userService.findByUsername(principal.getName());
 		
 		if (fromAcct.getId() != toAcct.getId()) {
 			

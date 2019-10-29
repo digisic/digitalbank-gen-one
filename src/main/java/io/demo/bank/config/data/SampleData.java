@@ -16,7 +16,7 @@ import io.demo.bank.model.Account;
 import io.demo.bank.model.AccountTransaction;
 import io.demo.bank.model.UserProfile;
 import io.demo.bank.model.security.Role;
-import io.demo.bank.model.security.Users;
+import io.demo.bank.model.security.User;
 import io.demo.bank.service.AccountService;
 import io.demo.bank.service.UserService;
 import io.demo.bank.util.Constants;
@@ -79,7 +79,7 @@ public class SampleData implements CommandLineRunner, Ordered {
 			// Create Male
 			LOG.info("** Loading Sample User " + SMPL_MALE_FIRST_NAME + " " + SMPL_COMMON_LAST_NAME + " ...");
 			
-			Users male = new Users(SMPL_MALE_EMAIL, SMPL_COMMON_PASSWORD);
+			User male = new User(SMPL_MALE_EMAIL, SMPL_COMMON_PASSWORD);
 			UserProfile maleProfile = new UserProfile();
 			String maleSsn = faker.numerify("###-##-####");
 			
@@ -118,7 +118,7 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Create Female
 			LOG.info("** Loading Sample User " + SMPL_FEMALE_FIRST_NAME + " " + SMPL_COMMON_LAST_NAME + " ...");
-			Users female = new Users(SMPL_FEMALE_FIRST_NAME, SMPL_COMMON_PASSWORD);
+			User female = new User(SMPL_FEMALE_FIRST_NAME, SMPL_COMMON_PASSWORD);
 			UserProfile femaleProfile = new UserProfile();
 			
 			String femaleSsn = faker.numerify("###-##-####");

@@ -2,7 +2,7 @@ package io.demo.bank.controller.web;
 
 import io.demo.bank.model.UserProfile;
 import io.demo.bank.model.security.Role;
-import io.demo.bank.model.security.Users;
+import io.demo.bank.model.security.User;
 import io.demo.bank.service.AccountService;
 import io.demo.bank.service.UserService;
 import io.demo.bank.util.Constants;
@@ -47,7 +47,7 @@ public class WebHomeController extends WebCommonController {
 	@GetMapping(Constants.URI_LOGIN)
 	public String login(Model model) {
 		
-		model.addAttribute(MODEL_ATT_USER, new Users());
+		model.addAttribute(MODEL_ATT_USER, new User());
     
 		return Constants.VIEW_LOGIN;
 	}
@@ -58,7 +58,7 @@ public class WebHomeController extends WebCommonController {
 	@GetMapping(Constants.URI_SIGNUP)
 	public String signup(Model model) {
 		
-		model.addAttribute(MODEL_ATT_USER, new Users());
+		model.addAttribute(MODEL_ATT_USER, new User());
 		model.addAttribute(MODEL_ATT_USER_PROFILE, new UserProfile());
 		
 		// Add format patterns
@@ -77,7 +77,7 @@ public class WebHomeController extends WebCommonController {
 	 */
 	@PostMapping(Constants.URI_SIGNUP)
 	public String signup(Model model,
-						 @ModelAttribute(MODEL_ATT_USER) Users newUser, 
+						 @ModelAttribute(MODEL_ATT_USER) User newUser, 
 						 @ModelAttribute(MODEL_ATT_USER_PROFILE) UserProfile newProfile) {
 		
 		boolean bError = false;
@@ -136,7 +136,7 @@ public class WebHomeController extends WebCommonController {
 	public String register(Model model) {
     
 		// Since this a a registration process, add user object and send them to signup
-		model.addAttribute(MODEL_ATT_USER, new Users());
+		model.addAttribute(MODEL_ATT_USER, new User());
 		model.addAttribute(MODEL_ATT_USER_PROFILE, new UserProfile());
 		
 		// Add format patterns
@@ -152,7 +152,7 @@ public class WebHomeController extends WebCommonController {
   
 	@PostMapping(Constants.URI_REGISTER)
 	public String register(Model model,
-						   @ModelAttribute(MODEL_ATT_USER) Users newUser, 
+						   @ModelAttribute(MODEL_ATT_USER) User newUser, 
 						   @ModelAttribute(MODEL_ATT_USER_PROFILE) UserProfile newProfile) {
 		
 		newUser.setUserProfile(newProfile);
@@ -174,7 +174,7 @@ public class WebHomeController extends WebCommonController {
 		this.setDisplayDefaults(principal, model);
 		
 		// Get the user that has been authenticated
-		Users user = userService.findByUsername(principal.getName());
+		User user = userService.findByUsername(principal.getName());
 		
 		// Balance Summary Chart Data
 		model.addAttribute(MODEL_ATT_CHART_ACCT_BAL, accountService.getChartDataAccountBalanceSummary(user));

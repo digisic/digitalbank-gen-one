@@ -24,7 +24,7 @@ import io.demo.bank.model.UserProfile;
 import io.demo.bank.model.enums.NotificationType;
 import io.demo.bank.model.security.UserRole;
 import io.demo.bank.model.security.Role;
-import io.demo.bank.model.security.Users;
+import io.demo.bank.model.security.User;
 import io.demo.bank.repository.RoleRepository;
 import io.demo.bank.repository.UserProfileRepository;
 import io.demo.bank.repository.UserRepository;
@@ -70,7 +70,7 @@ public class UserService {
 			
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 			
-			Users user = userRepository.findByUsername(username);
+			User user = userRepository.findByUsername(username);
 			
 			Set<UserRole> ur = user.getUserRoles();
 			List<Role> roles = new ArrayList<Role>();
@@ -91,7 +91,7 @@ public class UserService {
 	 * Find the user by the specified username. Returns the User object
 	 * if found otherwise the User object will be null.
 	 */
-	public Users findByUsername(String username) {
+	public User findByUsername(String username) {
 	
 		return userRepository.findByUsername(username);
 	}
@@ -100,9 +100,9 @@ public class UserService {
 	 * Find the user by the specified id. Returns the User object
 	 * if found otherwise the User object will be null.
 	 */
-	public Users findById(Long id) {
+	public User findById(Long id) {
 	
-		Optional<Users> opt = userRepository.findById(id);
+		Optional<User> opt = userRepository.findById(id);
 		
 		if (opt.isPresent()) {
 			return opt.get();
@@ -143,7 +143,7 @@ public class UserService {
 	/*
 	 * Saves the User object to the data store
 	 */
-	public Users save(Users user) {
+	public User save(User user) {
 		
 		return userRepository.save(user);
 	}
@@ -151,7 +151,7 @@ public class UserService {
 	/*
 	 * Gets a list of Users from the data store.
 	 */
-	public List<Users> findUserList() {
+	public List<User> findUserList() {
 	    
 		return this.userRepository.findAll();
 	}
@@ -159,7 +159,7 @@ public class UserService {
 	/*
 	 * Creates a new User account within the data store.
 	 */
-	public void createUser(Users newUser, String role) {
+	public void createUser(User newUser, String role) {
 	
 		// Encode the password before storing user
 		newUser.setPassword(encoder.encode(newUser.getPassword()));
@@ -189,14 +189,14 @@ public class UserService {
 	/*
 	 * Delete the user
 	 */
-	public void deleteUser (Users user) {
+	public void deleteUser (User user) {
 		userRepository.delete(user);
 	}
 	
 	/*
 	 * Updates an existing user profile with new profile data
 	 */
-	public Users updateUserProfile(Users user, UserProfile newProfile) {
+	public User updateUserProfile(User user, UserProfile newProfile) {
 		
 		UserProfile up = user.getUserProfile();
 		
@@ -231,7 +231,7 @@ public class UserService {
 	 * Checks whether the provided password matches the password stored
 	 * with the User object.
 	 */
-	public boolean passwordMatches (Users user, String password) {
+	public boolean passwordMatches (User user, String password) {
 		
 		return encoder.matches(password, user.getPassword());
 	}
@@ -239,7 +239,7 @@ public class UserService {
 	/*
 	 * Sets the password for the User object to the provided password.
 	 */
-	public void changePassword (Users user, String newPassword) {
+	public void changePassword (User user, String newPassword) {
 		
 		user.setPassword(encoder.encode(newPassword));
 		
@@ -253,7 +253,7 @@ public class UserService {
 	 * Adds a new role authority to the user
 	 * 
 	 */
-	public void addRole(Users user, String role) {
+	public void addRole(User user, String role) {
 		
 		// Get the user's roles
 		Set<UserRole> userRoles = user.getUserRoles();
@@ -272,7 +272,7 @@ public class UserService {
 	 * Removes a role authority from the user
 	 * 
 	 */
-	public void removeRole(Users user, String roleName) {
+	public void removeRole(User user, String roleName) {
 		
 		LOG.debug("Remove Role -> Remove existing role '" + roleName + "'");
 		
@@ -303,7 +303,7 @@ public class UserService {
 	
 	
 	
-	public void addNotification(Users user, String content) {
+	public void addNotification(User user, String content) {
 		
 		Notification notif = new Notification();
 		
@@ -409,7 +409,7 @@ public class UserService {
 	/*
 	 * Check to see if the user already has the passed in role
 	 */
-	public boolean hasRole(Users user, String roleName) {
+	public boolean hasRole(User user, String roleName) {
 		  
 		Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
 		
@@ -430,7 +430,7 @@ public class UserService {
 	/*
 	 * Enable or Disable User
 	 */
-	public void enableUser (Users user, boolean enabled) {
+	public void enableUser (User user, boolean enabled) {
 		user.setEnabled(enabled);
 		userRepository.save(user);
 	}
@@ -438,7 +438,7 @@ public class UserService {
 	/*
 	 * Lock or Unlock User
 	 */
-	public void unlockUser (Users user, boolean unlock) {
+	public void unlockUser (User user, boolean unlock) {
 		user.setAccountNonLocked(unlock);
 		userRepository.save(user);
 	}
@@ -446,7 +446,7 @@ public class UserService {
 	/*
 	 * Expire or Unexpire User
 	 */
-	public void unexpireUser (Users user, boolean unexpire) {
+	public void unexpireUser (User user, boolean unexpire) {
 		user.setAccountNonExpired(unexpire);
 		userRepository.save(user);
 	}
@@ -454,7 +454,7 @@ public class UserService {
 	/*
 	 * Expire or Unexpire Password
 	 */
-	public void unexpirePassword (Users user, boolean unexpire) {
+	public void unexpirePassword (User user, boolean unexpire) {
 		user.setCredentialsNonExpired(unexpire);
 		userRepository.save(user);
 	}

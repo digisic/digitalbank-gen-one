@@ -19,7 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.demo.bank.model.AccountType;
-import io.demo.bank.model.security.Users;
+import io.demo.bank.model.security.User;
 
 @Entity
 public class Account {
@@ -62,17 +62,28 @@ public class Account {
 	
 	@JsonIgnore
 	@ManyToOne (fetch = FetchType.EAGER)
-	private Users owner;
+	private User owner;
 	
 	@JsonIgnore
 	@ManyToOne (fetch = FetchType.EAGER)
-	private Users coowner;
+	private User coowner;
 	
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@OrderBy("transaction_date DESC")
     @JsonIgnore
     private List<AccountTransaction> acountTransactionList;
 	
+	public Account (BigDecimal currentBalance, BigDecimal openingBalance, double interestRate, double paymentAmount, int paymentTerm) {
+		this.currentBalance = currentBalance;
+		this.openingBalance = openingBalance;
+		this.interestRate = interestRate;
+		this.paymentAmount = paymentAmount;
+		this.paymentTerm = paymentTerm;
+	}
+	
+	public Account() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @return the id
@@ -288,28 +299,28 @@ public class Account {
 	/**
 	 * @return the owner
 	 */
-	public Users getOwner() {
+	public User getOwner() {
 		return owner;
 	}
 
 	/**
 	 * @param owner the owner to set
 	 */
-	public void setOwner(Users owner) {
+	public void setOwner(User owner) {
 		this.owner = owner;
 	}
 
 	/**
 	 * @return the coowner
 	 */
-	public Users getCoowner() {
+	public User getCoowner() {
 		return coowner;
 	}
 
 	/**
 	 * @param coowner the coowner to set
 	 */
-	public void setCoowner(Users coowner) {
+	public void setCoowner(User coowner) {
 		this.coowner = coowner;
 	}
 

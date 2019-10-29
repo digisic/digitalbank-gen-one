@@ -19,7 +19,7 @@ import io.demo.bank.model.TransactionState;
 import io.demo.bank.model.TransactionType;
 import io.demo.bank.model.UserProfile;
 import io.demo.bank.model.security.Role;
-import io.demo.bank.model.security.Users;
+import io.demo.bank.model.security.User;
 import io.demo.bank.repository.AccountStandingRepository;
 import io.demo.bank.repository.AccountTypeRepository;
 import io.demo.bank.repository.OwnershipTypeRepository;
@@ -98,7 +98,7 @@ public class DefaultData implements CommandLineRunner, Ordered {
 			LOG.info("** Loading Default API Admin User ...");
 			
 			Faker faker = new Faker(new Locale("en-US"));
-			Users user = new Users(ADMIN_API_USER_EMAIL, ADMIN_API_USER_PASS);
+			User user = new User(ADMIN_API_USER_EMAIL, ADMIN_API_USER_PASS);
 			UserProfile userProfile = new UserProfile();
 			
 			String gender = faker.demographic().sex().substring(0,1);
