@@ -1,11 +1,12 @@
 package io.demo.bank.test.junit.service;
 
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.any;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +14,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +76,9 @@ public class AccountServiceTests {
 
 		// Assertions
 		System.out.println(tranxByCategory);
+		List<String> emptyList = new ArrayList<>();
+		//List<String> populatedList = Arrays.asList(a)
+		List<List<String>> expected = Arrays.asList(emptyList, emptyList, emptyList);
 		assertNotNull(tranxByCategory);
 	}
 

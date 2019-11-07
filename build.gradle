@@ -6,6 +6,8 @@ plugins {
     id 'java'
     id 'maven-publish'
     id 'checkstyle'
+    //id 'net.serenity-bdd.aggregator'
+    id 'org.gretty' version '2.3.1'
 }
 
 repositories {
@@ -17,6 +19,7 @@ repositories {
     maven {
         url = 'http://repo.maven.apache.org/maven2'
     }
+    jcenter()
 }
 
 dependencies {
@@ -59,6 +62,7 @@ dependencies {
     //testCompile group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.6.0-M1'
     testCompile group: 'org.mockito', name: 'mockito-core', version: '3.1.0'
     compileOnly 'org.springframework.boot:spring-boot-starter-tomcat:2.1.7.RELEASE'
+    compile group: 'net.serenity-bdd', name: 'serenity-gradle-plugin', version: '2.0.69'
 }
 
 group = 'io.demo'
@@ -68,7 +72,7 @@ sourceCompatibility = '8'
 
 test { 
     systemProperty "cucumber.options", System.getProperty("cucumber.options")
-    systemProperty "webdriver.driver", "chrome"
+    //systemProperty "webdriver.driver", "chrome"
     systemProperty "webdriver.base.url", "http://localhost:8080/"
     // systemProperties System.getProperties()
 }
@@ -98,4 +102,10 @@ test.mustRunAfter checkstyleMain, checkstyleTest
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+}
+
+gretty {
+  httpPort = 8080
+  springBoot = true
+  //integrationTestTask = 'test' // name of existing gradle task
 }
