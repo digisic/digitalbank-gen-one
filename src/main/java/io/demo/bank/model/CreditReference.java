@@ -21,18 +21,24 @@ public class CreditReference {
 	
 	private Long bankUserId;
 	private Long creditUserId;
-	private Long appId;
-	private Long acctId;
-	private String appStatus;
-	private String acctStatus;
+	private Long applicationId;
+	private Long creditCardId;
+	private String creditScore;
+	private String riskScore;
+	private String applicationStatus;
+	private String accountStatus;
+	private String applicationNumber;
+	private String correlationId;
+	private String applicationStatusDetail;
+	
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern=Patterns.DATE_FORMAT)
 	@DateTimeFormat(pattern=Patterns.DATE_FORMAT)
-	private Date appDate;
+	private Date applicationDate;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern=Patterns.DATE_FORMAT)
 	@DateTimeFormat(pattern=Patterns.DATE_FORMAT)
-	private Date acctOpenDate;
+	private Date accountOpenDate;
 
 	/**
 	 * @return the id
@@ -77,87 +83,157 @@ public class CreditReference {
 	}
 
 	/**
-	 * @return the appId
+	 * @return the applicationId
 	 */
-	public Long getAppId() {
-		return appId;
+	public Long getApplicationId() {
+		return applicationId;
 	}
 
 	/**
-	 * @param appId the appId to set
+	 * @param applicationId the applicationId to set
 	 */
-	public void setAppId(Long appId) {
-		this.appId = appId;
+	public void setApplicationId(Long applicationId) {
+		this.applicationId = applicationId;
 	}
 
 	/**
-	 * @return the acctId
+	 * @return the creditCardId
 	 */
-	public Long getAcctId() {
-		return acctId;
+	public Long getCreditCardId() {
+		return creditCardId;
 	}
 
 	/**
-	 * @param acctId the acctId to set
+	 * @param creditCardId the creditCardId to set
 	 */
-	public void setAcctId(Long acctId) {
-		this.acctId = acctId;
+	public void setCreditCardId(Long creditCardId) {
+		this.creditCardId = creditCardId;
 	}
 
 	/**
-	 * @return the appStatus
+	 * @return the applicationStatus
 	 */
-	public String getAppStatus() {
-		return appStatus;
+	public String getApplicationStatus() {
+		return applicationStatus;
 	}
 
 	/**
-	 * @param appStatus the appStatus to set
+	 * @param applicationStatus the applicationStatus to set
 	 */
-	public void setAppStatus(String appStatus) {
-		this.appStatus = appStatus;
+	public void setApplicationStatus(String applicationStatus) {
+		this.applicationStatus = applicationStatus;
 	}
 
 	/**
-	 * @return the acctStatus
+	 * @return the accountStatus
 	 */
-	public String getAcctStatus() {
-		return acctStatus;
+	public String getAccountStatus() {
+		return accountStatus;
 	}
 
 	/**
-	 * @param acctStatus the acctStatus to set
+	 * @param accountStatus the accountStatus to set
 	 */
-	public void setAcctStatus(String acctStatus) {
-		this.acctStatus = acctStatus;
+	public void setAccountStatus(String accountStatus) {
+		this.accountStatus = accountStatus;
 	}
 
 	/**
-	 * @return the appDate
+	 * @return the applicationDate
 	 */
-	public Date getAppDate() {
-		return appDate;
+	public Date getApplicationDate() {
+		return applicationDate;
 	}
 
 	/**
-	 * @param appDate the appDate to set
+	 * @param applicationDate the applicationDate to set
 	 */
-	public void setAppDate(Date appDate) {
-		this.appDate = appDate;
+	public void setApplicationDate(Date applicationDate) {
+		this.applicationDate = applicationDate;
 	}
 
 	/**
-	 * @return the acctOpenDate
+	 * @return the accountOpenDate
 	 */
-	public Date getAcctOpenDate() {
-		return acctOpenDate;
+	public Date getAccountOpenDate() {
+		return accountOpenDate;
 	}
 
 	/**
-	 * @param acctOpenDate the acctOpenDate to set
+	 * @param accountOpenDate the accountOpenDate to set
 	 */
-	public void setAcctOpenDate(Date acctOpenDate) {
-		this.acctOpenDate = acctOpenDate;
+	public void setAccountOpenDate(Date accountOpenDate) {
+		this.accountOpenDate = accountOpenDate;
+	}
+
+	/**
+	 * @return the correlationId
+	 */
+	public String getCorrelationId() {
+		return correlationId;
+	}
+
+	/**
+	 * @param correlationId the correlationId to set
+	 */
+	public void setCorrelationId(String correlationId) {
+		this.correlationId = correlationId;
+	}
+
+	/**
+	 * @return the applicationNumber
+	 */
+	public String getApplicationNumber() {
+		return applicationNumber;
+	}
+
+	/**
+	 * @param applicationNumber the applicationNumber to set
+	 */
+	public void setApplicationNumber(String applicationNumber) {
+		this.applicationNumber = applicationNumber;
+	}
+
+	/**
+	 * @return the creditScore
+	 */
+	public String getCreditScore() {
+		return creditScore;
+	}
+
+	/**
+	 * @param creditScore the creditScore to set
+	 */
+	public void setCreditScore(String creditScore) {
+		this.creditScore = creditScore;
+	}
+
+	/**
+	 * @return the riskScore
+	 */
+	public String getRiskScore() {
+		return riskScore;
+	}
+
+	/**
+	 * @param riskScore the riskScore to set
+	 */
+	public void setRiskScore(String riskScore) {
+		this.riskScore = riskScore;
+	}
+
+	/**
+	 * @return the applicationStatusDetail
+	 */
+	public String getApplicationStatusDetail() {
+		return applicationStatusDetail;
+	}
+
+	/**
+	 * @param applicationStatusDetail the applicationStatusDetail to set
+	 */
+	public void setApplicationStatusDetail(String applicationStatusDetail) {
+		this.applicationStatusDetail = applicationStatusDetail;
 	}
 	
 }

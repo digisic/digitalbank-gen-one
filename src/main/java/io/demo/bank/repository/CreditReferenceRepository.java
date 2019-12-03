@@ -10,6 +10,8 @@ public interface CreditReferenceRepository extends CrudRepository<CreditReferenc
 	
 	Optional<CreditReference> findById(Long Id);
 	Optional<CreditReference> findByBankUserId(Long userId);
+	Optional<CreditReference> findByCorrelationId(String correlationId);
 	Optional<CreditReference> findByCreditUserId(Long userId);
+	Optional<CreditReference> findByApplicationId(Long applicationId);
 
 }

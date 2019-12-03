@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import io.demo.bank.model.CreditApplication;
+import io.demo.bank.model.CreditCardDetails;
 import io.demo.bank.model.CreditReference;
 import io.demo.bank.model.security.Users;
 import io.demo.bank.service.CreditService;
@@ -68,11 +69,44 @@ public class WebCreditController extends WebCommonController {
 		
 		CreditReference creditReference = creditService.getCurrentCreditAppStatus(user);
 		
-		model.addAttribute(MODEL_CREDIT_APP_DATE, creditReference.getAppDate());
-		model.addAttribute(MODEL_CREDIT_APP_STATUS_VALUE, creditReference.getAppStatus());
+		model.addAttribute(MODEL_CREDIT_APP_NUMBER, creditReference.getApplicationNumber());
+		model.addAttribute(MODEL_CREDIT_APP_DATE, creditReference.getApplicationDate());
+		model.addAttribute(MODEL_CREDIT_APP_CREDIT_SCORE, creditReference.getCreditScore());
+		model.addAttribute(MODEL_CREDIT_APP_RISK_SCORE, creditReference.getRiskScore());
+		model.addAttribute(MODEL_CREDIT_APP_STATUS_VALUE, creditReference.getApplicationStatus());
+		model.addAttribute(MODEL_CREDIT_APP_STATUS_DETAIL, creditReference.getApplicationStatusDetail());
+		
 		
 		    
 		return Constants.VIEW_CREDIT_APP_ST;
+	}
+	
+	@GetMapping(Constants.URI_CREDIT_VIEW)
+	public String getCreditView(Principal principal, Model model) {
+		
+		// Set Display Defaults
+		setDisplayDefaults(principal, model);
+		
+		Users user = userService.findByUsername(principal.getName());
+		CreditReference creditReference = creditService.getCurrentCreditAppStatus(user);
+		CreditCardDetails ccDetails = creditService.getCreditCardDetails(creditReference.getCreditCardId());
+		
+		if (ccDetails != null) {
+			
+			model.addAttribute(MODEL_CREDIT_CARD_NO, Constants.CREDIT_CARD_NO_MASK + ccDetails.getCardNumber().substring(12));
+			model.addAttribute(MODEL_CREDIT_CARD_LIMIT, ccDetails.getLimit().doubleValue());
+			model.addAttribute(MODEL_CREDIT_CARD_APR, ccDetails.getApr().doubleValue());
+			
+			return Constants.VIEW_CREDIT_VIEW;
+			
+			
+		} else {
+			
+			// return for a new credit application
+			model.addAttribute(MODEL_CREDIT_APP, new CreditApplication(user.getUserProfile()));
+			return Constants.VIEW_CREDIT_APP;
+		}  // end if
+
 	}
 	
 }

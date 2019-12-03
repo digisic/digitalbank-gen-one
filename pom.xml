@@ -126,6 +126,22 @@
     		<artifactId>javafaker</artifactId>
     		<version>1.0.0</version>
 		</dependency>
+		<dependency>
+      		<groupId>org.springframework.boot</groupId>
+      		<artifactId>spring-boot-starter-artemis</artifactId>
+   		</dependency>
+   		<dependency>
+      		<groupId>org.springframework</groupId>
+      		<artifactId>spring-jms</artifactId>
+   		</dependency>
+   		<dependency>
+      		<groupId>org.apache.activemq</groupId>
+      		<artifactId>artemis-jms-client</artifactId>
+   		</dependency>
+   		<dependency> 
+        	<groupId>com.fasterxml.jackson.core</groupId> 
+        	<artifactId>jackson-databind</artifactId> 
+		</dependency>
 		
 		<!-- Serenity BDD Cucumber -->		
 		<dependency>

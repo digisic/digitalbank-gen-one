@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"> 
+
+<head th:replace="common/sections :: header-css"/>
+
+<body>
+
+
+	<!-- Left Panel -->
+	<aside th:replace="common/menus :: left-panel"></aside>
+
+    <!-- Right Panel -->
+	<div id="right-panel" class="right-panel">
+	
+		<header th:replace="common/menus :: rp-header"/>
+		
+		<div th:replace="common/menus :: rp-breadcrumbs"/>
+    
+    	<!-- Page Content Begin -->
+    
+	    	<div class="content mt-3">
+	            <div class="animated fadeIn">
+	            
+	                <div id="firstRow" class="row">				
+		    			<div class="col-md-6 col-lg-3">
+	                        <div class="card bg-flat-color-6 text-light">
+		                    	<div class="card-body">
+	                            	<label class="float-right">
+	                                	<i class="visa fa fa-cc-visa fa-2x"></i>
+	                                </label>
+		                     
+	                                <div class="visa h4 m-0">Digital Credit</div>
+	                                <div><small class="text-light" th:text="'Card Number: ' + ${creditCardNumber}"></small></div>
+	                                <div><small class="text-light" th:text="'Credit Limit: $' + ${creditCardLimit}"></small></div>
+	                                <div><small class="text-light" th:text="'APR: ' + ${creditCardApr} + '%'"></small></div>
+	                                <div><small class="text-light"><br></small></div>
+	                                <div><small class="text-light" th:text="'Available Balance: $' + ${creditCardLimit}"></small></div>
+	                                <div><small class="text-light" th:text="'Minimum Payment Due: $0.00'"></small></div>
+	                                <div><small class="text-light" th:text="'Payment Due Date: 12/30/2019'"></small></div>
+	                                <div><br></div>
+	                                <div class="h4 m-0" th:text="'Current Balance: $0.00'"></div>
+		                       </div> <!-- End Card Body -->
+	                        </div> <!-- End Card -->
+	                    </div><!-- End Column 6-->
+                	</div> <!-- End Row -->
+                
+                	<div class="row">
+	                	<div class="col-md-12">
+	                    	<div class="card">
+		                        <div class="card-header bg-secondary">
+		                            <strong class="card-title text-light">Transactions</strong>
+		                        </div>
+		                        <div class="card-body">
+		                        	<table id="transactionTable" class="table table-striped table-bordered">
+					                    <thead>
+					                      <tr class="bg-secondary text-light">
+					                        <th data-field="date" data-sortable="true">Date</th>
+					                        <th data-field="category" data-sortable="true">Category</th>
+					                        <th data-field="description" data-sortable="true">Description</th>
+					                        <th data-field="amount" data-sortable="true">Amount</th>
+					                        <th data-field="balance" data-sortable="true">Balance</th>
+					                      </tr>
+					                    </thead>
+					                    <tbody>
+					                  <!--      <tr th:each="trans : ${transactionList}">
+					                        <td th:text="${#dates.format(trans.transactionDate, 'yyyy-MM-dd HH:mm')}"></td>
+					                        <td th:text="${trans.transactionCategory.name}"></td>
+					                        <td th:text="${trans.transactionNumber + ' (' + trans.transactionType.code +') - ' + trans.description}"></td>
+					                        <td th:class="${trans.amount < 0} ? text-danger" th:text="'$' + ${trans.amount}"></td>
+					                        <td th:class="${trans.runningBalance < 0} ? text-danger" th:text="'$' + ${trans.runningBalance}"></td>
+					                      </tr> -->
+					                   </tbody>
+		                  			</table>
+		                        </div> <!-- End Card Body -->
+	                    	</div> <!-- End Card -->
+	                	</div>   <!-- End Column 12 -->
+	           		</div> <!--  End Row -->
+	           
+	    		</div><!-- .animated -->
+			</div><!-- .content -->
+	    
+	    <!-- Page Content End -->
+	    
+	</div> <!-- End right panel -->
+	
+	
+    
+	<!-- Footer -->
+	<div th:replace="common/sections :: footer-scripts"></div>
+	
+	<script src="/js/lib/data-table/datatables.min.js"></script>
+    <script src="/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+    <script src="/js/lib/data-table/dataTables.buttons.min.js"></script>
+    <script src="/js/lib/data-table/buttons.bootstrap.min.js"></script>
+    <script src="/js/lib/data-table/jszip.min.js"></script>
+    <script src="/js/lib/data-table/pdfmake.min.js"></script>
+    <script src="/js/lib/data-table/vfs_fonts.js"></script>
+    <script src="/js/lib/data-table/buttons.html5.min.js"></script>
+    <script src="/js/lib/data-table/buttons.print.min.js"></script>
+    <script src="/js/lib/data-table/buttons.colVis.min.js"></script>
+    <script src="/js/lib/data-table/datatables-init.js"></script>
+    
+	<script type="text/javascript">
+	
+		$('#transactionTable').DataTable({
+		       'order': []
+		} );
+		
+		
+   	</script>
+
+</body>
+</html>

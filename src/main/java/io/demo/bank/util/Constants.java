@@ -74,6 +74,7 @@ public class Constants {
 	public static final String URI_CREDIT				= "/credit";
 	public static final String URI_CREDIT_APP			= "/credit-app";
 	public static final String URI_CREDIT_APP_STATUS	= "/credit-app-status";
+	public static final String URI_CREDIT_VIEW			= "/credit-view";
 	public static final String URI_SEARCH				= "/search";
 	public static final String URI_SEARCH_ATM			= "/atm";
 	
@@ -149,6 +150,7 @@ public class Constants {
 	public static final String VIEW_XFER_BETWEEN 	= "xfer-between";
 	public static final String VIEW_CREDIT_APP 		= "credit-app";
 	public static final String VIEW_CREDIT_APP_ST 	= "credit-app-status";
+	public static final String VIEW_CREDIT_VIEW 	= "credit-view";
 	public static final String VIEW_PROMOTIONS		= "promotions";
 	public static final String VIEW_SEARCH			= "search";
 	
@@ -230,6 +232,21 @@ public class Constants {
 	public static final String PROMO_NO_PROMOTIONS					= "No Promotions!";
 	
 	
+	// Credit Application
+	public static final String APP_STATUS_SUBMITTED					= "Submitted";
+	public static final String CREDIT_CARD_NO_MASK					= "xxxx xxxx xxxx ";
+	
+	// Constants for message attributes
+	public static final String STATUS_ATT_APP_ID 					= "Id";
+	public static final String STATUS_ATT_APP_NO 					= "Number";
+	public static final String STATUS_ATT_APP_STATUS 				= "Status";
+	public static final String STATUS_ATT_APP_STATUS_DETAIL 		= "StatusDetail";
+	public static final String STATUS_ATT_APP_CREDIT_SCORE  		= "CreditScore";
+	public static final String STATUS_ATT_APP_RISK_SCORE    		= "RiskScore";
+	public static final String STATUS_ATT_APP_CREDIT_ID 			= "approvedCardId";
+	public static final String STATUS_ATT_APP_CREDIT_APR 			= "approvedCardApr";
+	
+	
 	// Application Properties
 	public static final String APP_CREDIT_ENABLED					= "io.demo.credit.enabled";
 	public static final String APP_CREDIT_PROTOCOL					= "io.demo.credit.protocol";
@@ -247,6 +264,7 @@ public class Constants {
 	// Credit API URIs
 	public static final String APP_CREDIT_URI_API_BASE				= "/api/v1";	
 	public static final String APP_CREDIT_URI_API_AUTH				= "/auth";	
+	public static final String APP_CREDIT_URI_CREDIT_CARD_ID		= "/credit/card/{0}";
 	
 	// ATM Location Service API URI
 	public static final String APP_ATM_URI_API_BASE					= "/v3.1/nodes/atms";

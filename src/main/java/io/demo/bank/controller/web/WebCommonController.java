@@ -83,10 +83,17 @@ abstract class WebCommonController {
 	public static final String MODEL_CREDIT_ENABLED				= "creditEnabled";
 	public static final String MODEL_CREDIT_NEW_APP				= "creditNewApp";
 	public static final String MODEL_CREDIT_APP_STATUS			= "creditAppStatus";
+	public static final String MODEL_CREDIT_APP_STATUS_DETAIL	= "creditAppStatusDetail";
+	public static final String MODEL_CREDIT_APP_CREDIT_SCORE	= "creditCreditScore";
+	public static final String MODEL_CREDIT_APP_RISK_SCORE		= "creditRiskScore";
 	public static final String MODEL_CREDIT_ACCOUNT				= "creditAccount";
 	public static final String MODEL_CREDIT_APP					= "creditApp";
 	public static final String MODEL_CREDIT_APP_DATE			= "creditAppDate";
-	public static final String MODEL_CREDIT_APP_STATUS_VALUE	= "creditAppStatuValue";
+	public static final String MODEL_CREDIT_APP_NUMBER			= "creditAppNumber";
+	public static final String MODEL_CREDIT_APP_STATUS_VALUE	= "creditAppStatusValue";
+	public static final String MODEL_CREDIT_CARD_NO				= "creditCardNumber";
+	public static final String MODEL_CREDIT_CARD_LIMIT			= "creditCardLimit";
+	public static final String MODEL_CREDIT_CARD_APR			= "creditCardApr";
 	
 	// model attribute constants -> Search
 	public static final String MODEL_SEARCH_ZIPCODE				= "zipcode";

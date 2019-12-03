@@ -742,6 +742,9 @@
 
 .bg-flat-color-5 {
   background: #4dbd74; }
+  
+.bg-flat-color-6 {
+  background: #1a1f71; }
 
 .transition {
   -webkit-transition: all 0.3s ease;
@@ -2095,6 +2098,10 @@ header .form-inline {
       background: #272c33;
       border-color: #272c33;
       color: #fff; }
+
+.visa {
+	color: #f7b600;
+}
 
 @media (max-width: 1368px) {
   .content {

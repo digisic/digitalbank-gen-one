@@ -1,5 +1,8 @@
 package io.demo.bank.service;
 
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Optional;
@@ -19,7 +22,13 @@ import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import io.demo.bank.jms.CreditAppProducer;
 import io.demo.bank.model.CreditApplication;
+import io.demo.bank.model.CreditCardDetails;
 import io.demo.bank.model.CreditReference;
 import io.demo.bank.model.security.Users;
 import io.demo.bank.repository.CreditReferenceRepository;
@@ -45,6 +54,67 @@ public class CreditService {
 	@Autowired
 	private Environment environment;
 	
+	@Autowired
+	private CreditAppProducer creditAppProducer;
+	
+	/*
+	 * Get Credit Card Account Details
+	 */
+	public CreditCardDetails getCreditCardDetails (Long id) {
+		
+		CreditCardDetails ccDetails = null;
+		
+		if (checkCreditConnection()) {
+			
+			// Create the Request
+			HttpEntity<?> requestEntity = new HttpEntity<>(requestHeaders);
+			
+			RestTemplate restTemplate = new RestTemplate();
+			
+			// Set URL for Authentication
+			String url = CreditService.apiBaseUrl + MessageFormat.format(Constants.APP_CREDIT_URI_CREDIT_CARD_ID, id);
+			
+			// Add query parameters for authentication credentials
+			UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(url);
+			
+			try { // Submit Authentication Request
+				
+				ResponseEntity<String> responseEntity = restTemplate.exchange(uriBuilder.toUriString(), 
+																				 HttpMethod.GET, 
+																				 requestEntity, 
+																				 String.class);
+				
+				
+				
+				if (responseEntity.getStatusCode() == HttpStatus.OK) {
+				      
+					 ccDetails = mapCreditCardDetails(responseEntity.getBody());
+					 
+				} // End If
+				else {
+					
+					 LOG.error("Digital Credit: Could not find credit card requested.");
+					 LOG.error(responseEntity.getStatusCode().toString());
+					 LOG.error(responseEntity.getBody().toString());
+					 
+					 
+			    } // End Else
+			} // End Try
+			catch (HttpStatusCodeException ex) {
+				LOG.error("Digital Credit: Could not find credit card requested.");
+				LOG.error(ex.getResponseBodyAsString());
+				
+			} // End Catch
+			catch (ResourceAccessException ex) {
+				LOG.error("Digital Credit: Unable to reach Digital Credit endpoint");
+				LOG.error(ex.getMessage());
+			} // End Catch
+			
+		}
+		
+		return ccDetails;
+		
+	}
 	
 	/*
 	 * Check id User has a Credit Application
@@ -52,21 +122,15 @@ public class CreditService {
 	public boolean userHasApplication(Users user) {
 		
 		LOG.debug("User Has Credit Application? ");
-		
+
 		Optional<CreditReference> opt = creditReferenceRepository.findByBankUserId(user.getId());
-		
-		if (opt.isPresent() && opt.get().getAppId() > 0) {
-			
-			LOG.debug("Credit Application Found -> " + opt.get().getAppId());
-			
-			return true;
+		  
+		if (opt.isPresent()) {
+			return true; 
+		} else {
+			return false; 
 		}
-		else {
-			
-			LOG.debug("No Credit Application Found");
-			
-			return false;
-		}
+		 
 	}
 	
 	/*
@@ -84,24 +148,54 @@ public class CreditService {
 	}
 	
 	/*
+	 * Get Credit Reference
+	 */
+	public CreditReference getCreditReference (String correlationId) {
+		
+		Optional<CreditReference> opt = creditReferenceRepository.findByCorrelationId(correlationId);
+		
+		if (opt.isPresent())
+			return opt.get();
+		else
+			return null;
+	}
+	
+
+	/*
+	 * Get Credit Reference
+	 */
+	public CreditReference getCreditReference (Long applicationId) {
+		
+		Optional<CreditReference> opt = creditReferenceRepository.findByApplicationId(applicationId);
+		
+		if (opt.isPresent())
+			return opt.get();
+		else
+			return null;
+	}
+	
+	/*
+	 * Update Credit Reference
+	 */
+	public void updateCreditReference (CreditReference creditReference) {
+		creditReferenceRepository.save(creditReference);
+	}
+			
+	
+	/*
 	 * Check is User has a Credit Account Linked
 	 */
 	public boolean userHasLinkedCreditAccount (Users user) {
 		
 		LOG.debug("User Has Credit Account Linked? ");
 		
+		
 		Optional<CreditReference> opt = creditReferenceRepository.findByBankUserId(user.getId());
 		
-		if (opt.isPresent() && opt.get().getAcctId() != null) {
-			
-			LOG.debug("Credit Account Found -> " + opt.get().getAcctId());
-			
+		if (opt.isPresent() && opt.get().getCreditCardId() != null) {
 			return true;
 		}
 		else {
-			
-			LOG.debug("No Credit Account Found");
-			
 			return false;
 		}
 	}
@@ -111,50 +205,22 @@ public class CreditService {
 	 */
 	public boolean submitCreditApplication (Users user, CreditApplication app) {
 		
-		String url = CreditService.apiBaseUrl + "/credit/application";
+		String messageId = creditAppProducer.sendCreditApplication(app);
 		
-		UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(url);
+		// Create a new Credit Reference record
+		CreditReference creditReference = new CreditReference();
 		
-		HttpEntity<CreditApplication> requestEntity = new HttpEntity<>(app, CreditService.requestHeaders);
+		creditReference.setBankUserId(user.getId());
+		creditReference.setCorrelationId(messageId);
+		creditReference.setApplicationDate(new Date()); 
+		creditReference.setApplicationStatus(Constants.APP_STATUS_SUBMITTED);
+		creditReference.setApplicationStatusDetail("Your credit application has been sent to the credit provider for review."
+				+ " Expect a response from the credit provider shortly.");
+		 
+		creditReferenceRepository.save(creditReference);
 		
-		LOG.debug("Credit Application Request ->" + requestEntity.toString());
+		return true;
 		
-		RestTemplate restTemplate = new RestTemplate();
-		
-		try {
-			ResponseEntity<CreditAppStatus> responseEntity = restTemplate.exchange(uriBuilder.toUriString(), 
-																		  HttpMethod.POST, 
-																		  requestEntity, 
-																		  CreditAppStatus.class);
-			
-			CreditReference creditReference = new CreditReference();
-			
-			// Create a new Credit Reference record
-			creditReference.setBankUserId(user.getId());
-			creditReference.setAppDate(new Date());
-			creditReference.setAppId(responseEntity.getBody().getId());
-			creditReference.setAppStatus(responseEntity.getBody().getStatus());
-			
-			creditReferenceRepository.save(creditReference);
-			
-			LOG.debug("Application ID -> " + responseEntity.getBody().getId());
-			LOG.debug("Application Status -> " + responseEntity.getBody().getStatus());
-			
-			return true;
-		}
-		catch (HttpStatusCodeException ex) {
-			LOG.debug("Digital Credit: Unable to successfully post credit application");
-			LOG.debug(ex.getMessage());
-			LOG.debug(ex.getResponseBodyAsString());
-			
-			return false;
-		}
-		catch (ResourceAccessException ex) {
-			LOG.error("Digital Credit: Unable to reach Digital Credit endpoint");
-			LOG.error(ex.getMessage());
-			
-			return false;
-		} // End Catch
 	}
 	
 	
@@ -249,6 +315,33 @@ public class CreditService {
 		return false;
 	}
 	
+	private CreditCardDetails mapCreditCardDetails (String response) {
+		CreditCardDetails ccDetails = new CreditCardDetails();
+		
+
+			ObjectMapper mapper = new ObjectMapper();
+			JsonNode node;
+			
+			try {
+				
+				node = mapper.readTree(response);
+				
+				ccDetails.setId(node.get("id").longValue());
+				ccDetails.setCardNumber(node.get("cardNumber").asText());
+				ccDetails.setCvv(node.get("cvv").asText());
+				ccDetails.setApr(new BigDecimal(node.get("apr").asDouble()));
+				ccDetails.setLimit(new BigDecimal(node.get("creditLimit").asDouble()));
+				ccDetails.setDateValid(node.get("dateValid").asText());
+				ccDetails.setDateExpire(node.get("dateExpire").asText());
+				
+			} catch (IOException e) {
+				LOG.error("Unable to read Json response for Credit Card and covert to an object.");
+				e.printStackTrace();
+			}
+			
+		return ccDetails;
+	}
+	
 	/*
 	 * Get Digital Credit connection details from application.properties
 	 */
@@ -306,24 +399,4 @@ public class CreditService {
 		}
 	}
 	
-	/*
-	 * Object for Credit Application Status 
-	 */
-	private static class CreditAppStatus {
-		
-		private Long id;
-		private String status;
-		/**
-		 * @return the id
-		 */
-		public Long getId() {
-			return id;
-		}
-		/**
-		 * @return the status
-		 */
-		public String getStatus() {
-			return status;
-		}
-	}
 }

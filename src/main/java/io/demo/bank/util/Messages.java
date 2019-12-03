@@ -120,13 +120,13 @@ public class Messages {
 	
 	// ATM Location Search
 	public static final String ATM_SEARCH_FORMAT		= "Zip Code must follow proper postal code format";
-	public static final String ATM_SEARCH_EMPTY			= "Unfortunatley, no ATM locations were found for the Zip Code provided.";
+	public static final String ATM_SEARCH_EMPTY			= "Unfortunately, no ATM locations were found for the Zip Code provided.";
 	public static final String ATM_SEARCH_UNAVAILABLE	= "The ATM Location Search service is temporarily unavailable. We applogize for "
 														+ "any inconvenience this may cause. Please try again at a later time.";
 	
 	// VISA API Service
 	public static final String VISA_ACCOUNT_FORMAT		= "Account number must follow proper account format";
-	public static final String VISA_ACCT_NOT_FOUND		= "Unfortunatley, no account was found for the account provided.";
+	public static final String VISA_ACCT_NOT_FOUND		= "Unfortunately, no account was found for the account provided.";
 	public static final String VISA_SVC_UNAVAILABLE		= "The VISA API service is temporarily unavailable. We applogize for "
 														+ "any inconvenience this may cause. Please try again at a later time.";
 		

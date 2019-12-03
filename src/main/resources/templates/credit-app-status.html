@@ -21,38 +21,71 @@
     
 	    	<div class="content mt-3">
 	            <div class="animated fadeIn">
-	                
-	               <form th:action="@{/credit/credit-app-status}" method="post">
-	               
+
 	            	<div class="row">
+                  		<div class="col-lg-12">
+                    		<div class="card">
+                        		<div class="card-header bg-flat-color-1">
+                            		<strong class="text-white card-title">Credit Application Status</strong>
+                        		</div>
+                        		
+                        		<div class="card-body">
+	                        		<div class="col-md-12">
+				                        <div class="card">
+				                            <div class="card-body">
+				                                <div class="stat-widget-one">
+	
+													<div class="row">
+                            							<div class="col col-md-3"><label class=" form-control-label"><strong>Application Number:</strong></label></div>
+                            							<div class="col-12 col-md-6">
+                              								<p class="form-control-static" th:if="${creditAppNumber != null}" th:text="${creditAppNumber}"></p>
+                              								<p class="form-control-static" th:unless="${creditAppNumber != null}">Not Assigned</p>
+                           								 </div>
+                          							</div>
+                          							<div class="row">
+                            							<div class="col col-md-3"><label class=" form-control-label"><strong>Application Date:</strong></label></div>
+                            							<div class="col-12 col-md-6">
+                              								<p class="form-control-static" th:text="${#dates.format(creditAppDate, 'yyyy-MM-dd HH:mm')}"></p>
+                           								 </div>
+                          							</div>
+                          							<div class="row" th:if="${creditCreditScore != null}">
+                            							<div class="col col-md-3"><label class=" form-control-label"><strong>Credit Score:</strong></label></div>
+                            							<div class="col-12 col-md-6">
+                              								<p class="form-control-static" th:if="${creditCreditScore != null}" th:text="${creditCreditScore}"></p>
+                           								 </div>
+                          							</div>
+                          							<div class="row" th:if="${creditRiskScore != null}">
+                            							<div class="col col-md-3"><label class=" form-control-label"><strong>Risk Score:</strong></label></div>
+                            							<div class="col-12 col-md-6">
+                              								<p class="form-control-static" th:if="${creditRiskScore != null}" th:text="${creditRiskScore}"></p>
+                           								 </div>
+                          							</div>
+                          							<div class="row">
+                            							<div class="col col-md-3"><label class=" form-control-label"><strong>Application Status:</strong></label></div>
+                            							<div class="col-12 col-md-6">
+                              								<p class="form-control-static" th:text="${creditAppStatusValue}"></p>
+                           								 </div>
+                          							</div>
+                          							<div class="row">
+                            							<div class="col col-md-3"><label class=" form-control-label"><strong>Status Detail:</strong></label></div>
+                            							<div class="col-12 col-md-6">
+                              								<p class="form-control-static" th:text="${creditAppStatusDetail}"></p>
+                           								 </div>
+                          							</div>                                 		                                      	                                  
+				                                </div>
+				                            </div>
+				                        </div>
+				                    </div>
 
-
-                    	<div class="col-md-4" >
-	                        <div th:class="${creditAppDeclined} ? 'card bg-flat-color-4 text-light':'card bg-flat-color-1 text-light'">
-	                        	
-	                        
-		                            <div class="card-body">
-		                            	
-		                      
-		                     
-		                                <div class="h4 m-0"> Credit Application Status</div>
-		                                <br><br>
-		                                <div class="text-light" th:text="'Date Recieved: ' + ${creditAppDate}"></div>
-		                                <div class="text-light" th:text="'Current Status: ' + ${creditAppStatuValue}"></div>
-		                                
-		                                <div><br></div>
-		                                <div class="h4 m-0"></div>
-		                            </div>
-	                    
-	                        </div> <!-- End Card -->
-	                    </div><!-- End Column 6-->
+	                     		</div> <!-- End card Body -->
+                    		</div> <!-- .card -->
+						</div><!--/.col-->
+					</div> <!-- End Row -->
                     
-                   </div> <!-- End Row -->
-	                            
-                  </form>
+                    
                 	
-	           </div><!-- .animated -->
-	       </div><!-- .content -->
+	            </div><!-- .animated -->
+	        </div><!-- .content -->
 	        
 	    <!-- Page Content End -->
 	    
