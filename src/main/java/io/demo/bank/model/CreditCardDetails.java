@@ -1,7 +1,6 @@
 package io.demo.bank.model;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 public class CreditCardDetails {
 	
