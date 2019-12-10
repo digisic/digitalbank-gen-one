@@ -1,0 +1,14 @@
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+Status: 200 OK
+Connection: keep-alive
+
+{
+	"transactionIdentifier": 875806056061895,
+	"actionCode": "03",
+	"approvalCode": "98765X",
+	"responseCode": "5",
+	"transmissionDateTime": "2019-07-17T16:30:35.000Z",
+	"cavvResultCode": "8",
+	"cpsAuthorizationCharacteristicsIndicator": "3333"
+}

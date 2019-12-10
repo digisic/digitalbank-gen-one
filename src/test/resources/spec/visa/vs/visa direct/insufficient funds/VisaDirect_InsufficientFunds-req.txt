@@ -1,0 +1,4 @@
+GET /visadirect/fundstransfer/v1/pullfundstransactions?idcode=ABCD1234ABCD123&amount=1000 HTTP/1.1
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
