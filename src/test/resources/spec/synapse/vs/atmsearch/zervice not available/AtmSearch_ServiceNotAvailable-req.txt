@@ -1,0 +1,4 @@
+GET /v3.1/nodes/atms?zip=54321&radius=10 HTTP/1.1
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
