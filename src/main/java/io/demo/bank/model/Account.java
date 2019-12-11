@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -18,6 +19,9 @@ import javax.persistence.OrderBy;
 import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import io.demo.bank.model.AccountType;
 import io.demo.bank.model.security.Users;
 
@@ -30,8 +34,10 @@ public class Account {
 	private Long id;
 	private String name;
 	
-	@Column(name="accountNumber", nullable=false, unique=true)
-	private Long accountNumber;
+	@OneToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "account_number")
+	@JsonProperty (access = Access.READ_ONLY)
+	private AccountNumberSeq accountNumber;
 	
 	private BigDecimal currentBalance;
 	private BigDecimal openingBalance;
@@ -73,6 +79,14 @@ public class Account {
     @JsonIgnore
     private List<AccountTransaction> acountTransactionList;
 	
+	
+	/*
+	 * Constructor
+	 */
+	public Account () {
+		accountNumber = new AccountNumberSeq();
+	}
+	
 
 	/**
 	 * @return the id
@@ -106,17 +120,9 @@ public class Account {
 	 * @return the accountNumber
 	 */
 	public Long getAccountNumber() {
-		return accountNumber;
+		return accountNumber.getId();
 	}
 	
-	
-	/**
-	 * @param accountNumber the accountNumber to set
-	 */
-	public void setAccountNumber(Long accountNumber) {
-		this.accountNumber = accountNumber;
-	}
-
 	/**
 	 * @return the currentBalance
 	 */

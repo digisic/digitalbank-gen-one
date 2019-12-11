@@ -3,6 +3,8 @@ package io.demo.bank.model;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,9 +13,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 
 @Entity
@@ -27,8 +33,10 @@ public class AccountTransaction {
 	private BigDecimal amount;
 	private BigDecimal runningBalance;
 	
-	@Column(name="transactionNumber", nullable=false, unique=true)
-	private Long transactionNumber;
+	@OneToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "transaction_number")
+	@JsonProperty (access = Access.READ_ONLY)
+	private TransactionNumberSeq transactionNumber;
 
 	
 	@JsonFormat(pattern="yyyy-MM-dd'T'hh:mm")
@@ -49,6 +57,13 @@ public class AccountTransaction {
 	@ManyToOne (fetch = FetchType.EAGER)
     private TransactionCategory transactionCategory;
 
+	/*
+	 * Constructor
+	 */
+	public AccountTransaction () {
+		transactionNumber = new TransactionNumberSeq();
+	}
+	
 	/**
 	 * @return the id
 	 */
@@ -167,14 +182,7 @@ public class AccountTransaction {
 	 * @return the transactionNumber
 	 */
 	public Long getTransactionNumber() {
-		return transactionNumber;
-	}
-
-	/**
-	 * @param transactionNumber the transactionNumber to set
-	 */
-	public void setTransactionNumber(Long transactionNumber) {
-		this.transactionNumber = transactionNumber;
+		return transactionNumber.getId();
 	}
 
 	/**

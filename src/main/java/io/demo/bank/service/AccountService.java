@@ -293,11 +293,8 @@ public class AccountService {
 	 * Create a new account
 	 */
 	public Account createNewAccount (Account newAccount) {
-		
-		Long lastAccountNumber = accountRepository.findMaxAccountNumber();
-		
+				
 		// Set Account Details
-		newAccount.setAccountNumber(++lastAccountNumber);
 		newAccount.setCurrentBalance(newAccount.getOpeningBalance());
 		newAccount.setInterestRate(newAccount.getAccountType().getInterestRate());
 		newAccount.setAccountStanding(accountStandingRepository.findByCode(Constants.ACCT_STND_OPEN_CODE));
@@ -360,7 +357,6 @@ public class AccountService {
 		LOG.debug("Credit Transaction to Account:");
 		
 		account = this.getAccountById(account.getId());
-		long transactionNumber = accountTransactionRepository.findMaxTransactionNumber();
 		BigDecimal balance = account.getCurrentBalance();
 		List<AccountTransaction> atl = account.getAcountTransactionList();
 		
@@ -385,7 +381,6 @@ public class AccountService {
 			accountTransaction.setTransactionDate(new Date());
 		}
 		
-		accountTransaction.setTransactionNumber(++transactionNumber);
 		accountTransaction.setRunningBalance(balance);
 		accountTransaction.setTransactionState(transactionStateRepository.findByCode(Constants.ACCT_TRAN_ST_COMP_CODE));
 		accountTransaction.setAccount(account);
@@ -437,8 +432,6 @@ public class AccountService {
 		balance = balance.add(amount);
 		account.setCurrentBalance(balance);
 		
-		long transactionNumber = accountTransactionRepository.findMaxTransactionNumber();
-		
 		// if Category was not set, default to MISC
 		if (accountTransaction.getTransactionCategory() == null) {
 			accountTransaction.setTransactionCategory(transactionCategoryRepository.findByCode(Constants.ACCT_TRAN_CAT_MISC_CODE));
@@ -449,7 +442,6 @@ public class AccountService {
 			accountTransaction.setTransactionDate(new Date());
 		}
 		
-		accountTransaction.setTransactionNumber(++transactionNumber);
 		accountTransaction.setRunningBalance(balance);
 		accountTransaction.setAmount(amount);
 		accountTransaction.setTransactionState(transactionStateRepository.findByCode(Constants.ACCT_TRAN_ST_COMP_CODE));
@@ -705,8 +697,6 @@ public class AccountService {
 		BigDecimal updatedBalance = currentBalance.add(overFee);
 		account.setCurrentBalance(updatedBalance);
 		
-		long transactionNumber = accountTransactionRepository.findMaxTransactionNumber();
-		overTrans.setTransactionNumber(++transactionNumber);
 		overTrans.setRunningBalance(updatedBalance);
 		overTrans.setAmount(overFee);
 		overTrans.setDescription("Overdraft Fee for transaction " + offender.getTransactionNumber());
