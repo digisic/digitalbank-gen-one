@@ -264,7 +264,9 @@ public class Constants {
 	// Credit API URIs
 	public static final String APP_CREDIT_URI_API_BASE				= "/api/v1";	
 	public static final String APP_CREDIT_URI_API_AUTH				= "/auth";	
-	public static final String APP_CREDIT_URI_CREDIT_CARD_ID		= "/credit/card/{0}";
+	public static final String APP_CREDIT_URI_CC_ID					= "/credit/card/{0}";
+	public static final String APP_CREDIT_URI_CC_ID_BILLING			= "/credit/card/{0}/billing";
+	public static final String APP_CREDIT_URI_CC_ID_TRANS			= "/credit/card/{0}/transactions";
 	
 	// ATM Location Service API URI
 	public static final String APP_ATM_URI_API_BASE					= "/v3.1/nodes/atms";

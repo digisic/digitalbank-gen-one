@@ -2,16 +2,23 @@ package io.demo.bank.model;
 
 import java.math.BigDecimal;
 
-public class CreditCardDetails {
+public class CreditCardDetail {
 	
 	private Long id;
 	private String cardNumber;
-	private Long accountId;
 	private String dateExpire;
 	private String dateValid;
 	private String cvv;
-	private BigDecimal limit;
+	private BigDecimal creditLimit;
 	private BigDecimal apr;
+	private BigDecimal currentBalance;
+	private BigDecimal availableBalance;
+	
+	/*
+	 * Default Constructor
+	 */
+	public CreditCardDetail () {}
+	
 	/**
 	 * @return the id
 	 */
@@ -35,18 +42,6 @@ public class CreditCardDetails {
 	 */
 	public void setCardNumber(String cardNumber) {
 		this.cardNumber = cardNumber;
-	}
-	/**
-	 * @return the accountId
-	 */
-	public Long getAccountId() {
-		return accountId;
-	}
-	/**
-	 * @param accountId the accountId to set
-	 */
-	public void setAccountId(Long accountId) {
-		this.accountId = accountId;
 	}
 	/**
 	 * @return the dateExpire
@@ -87,14 +82,14 @@ public class CreditCardDetails {
 	/**
 	 * @return the limit
 	 */
-	public BigDecimal getLimit() {
-		return limit;
+	public BigDecimal getCreditLimit() {
+		return creditLimit;
 	}
 	/**
 	 * @param limit the limit to set
 	 */
-	public void setLimit(BigDecimal limit) {
-		this.limit = limit;
+	public void setCreditLimit(BigDecimal limit) {
+		this.creditLimit = limit;
 	}
 	/**
 	 * @return the apr
@@ -108,5 +103,41 @@ public class CreditCardDetails {
 	public void setApr(BigDecimal apr) {
 		this.apr = apr;
 	}
+	/**
+	 * @return the currentBalance
+	 */
+	public BigDecimal getCurrentBalance() {
+		return currentBalance;
+	}
+
+	/**
+	 * @param currentBalance the currentBalance to set
+	 */
+	public void setCurrentBalance(BigDecimal currentBalance) {
+		this.currentBalance = currentBalance;
+	}
+
+	/**
+	 * @return the availableBalance
+	 */
+	public BigDecimal getAvailableBalance() {
+		return availableBalance;
+	}
+
+	/**
+	 * @param availableBalance the availableBalance to set
+	 */
+	public void setAvailableBalance(BigDecimal availableBalance) {
+		this.availableBalance = availableBalance;
+	}
+
+	@Override
+	public String toString() {
+		return "CreditCardDetail [id=" + id + ", cardNumber=" + cardNumber
+				+ ", dateExpire=" + dateExpire + ", dateValid=" + dateValid + ", cvv=" + cvv + ", creditLimit="
+				+ creditLimit + ", apr=" + apr + "]";
+	}
+	
+	
 	
 }

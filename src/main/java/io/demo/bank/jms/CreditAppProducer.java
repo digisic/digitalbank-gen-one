@@ -9,7 +9,7 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.demo.bank.model.CreditApplication;
+import io.demo.bank.model.CreditCardApplication;
 
 
 @Component
@@ -23,7 +23,7 @@ public class CreditAppProducer {
     @Value("${io.demo.partner.credit.app.request}")
     String destinationQueue;
 
-    public String sendCreditApplication(CreditApplication app){
+    public String sendCreditApplication(CreditCardApplication app){
     	
     	String correlationId = UUID.randomUUID().toString();
     	ObjectMapper mapper = new ObjectMapper();

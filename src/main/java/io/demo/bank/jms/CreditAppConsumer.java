@@ -9,8 +9,8 @@ import org.springframework.jms.annotation.JmsListener;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.demo.bank.model.CreditReference;
-import io.demo.bank.service.CreditService;
+import io.demo.bank.model.CreditCardReference;
+import io.demo.bank.service.CreditCardService;
 import io.demo.bank.util.Constants;
 import org.springframework.jms.support.JmsHeaders;
 
@@ -22,7 +22,7 @@ public class CreditAppConsumer {
 	private static final Logger LOG = LoggerFactory.getLogger(CreditAppConsumer.class);
 	
 	@Autowired
-	CreditService creditService;
+	CreditCardService ccService;
 	
 	/*
 	 * This method listens for credit application status updates from
@@ -42,7 +42,7 @@ public class CreditAppConsumer {
 			Map<?, ?> map = (Map<?, ?>) mapper.readValue(msg, Map.class);
 			
 			LOG.debug("Getting Credit Reference By Correlation: " + correlationId);
-			CreditReference cr = creditService.getCreditReference(correlationId);
+			CreditCardReference cr = ccService.getCreditReference(correlationId);
 			
 			// If we find a submitted application reference, then update it
 			if (cr != null) {
@@ -63,7 +63,7 @@ public class CreditAppConsumer {
 				
 				LOG.debug("Updating Credit Reference: " + cr.getCorrelationId());
 				
-				creditService.updateCreditReference(cr);
+				ccService.updateCreditReference(cr);
 				
 			} 
 		

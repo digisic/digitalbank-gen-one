@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import io.demo.bank.util.Patterns;
 
-public class CreditApplication {
+public class CreditCardApplication {
 	
 	// Personal Info
 	private String firstName;
@@ -47,12 +47,12 @@ public class CreditApplication {
 	/*
 	 * Empty Application
 	 */
-	public CreditApplication(){}
+	public CreditCardApplication(){}
 	
 	/*
 	 * Prefilled Application
 	 */
-	public CreditApplication(UserProfile profile){
+	public CreditCardApplication(UserProfile profile){
 		
 		this.firstName = profile.getFirstName();
 		this.lastName = profile.getLastName();

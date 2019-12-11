@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import io.demo.bank.util.Patterns;
 
 @Entity
-public class CreditReference {
+public class CreditCardReference {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)

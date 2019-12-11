@@ -12,7 +12,7 @@ import org.springframework.boot.info.BuildProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import io.demo.bank.model.security.Users;
-import io.demo.bank.service.CreditService;
+import io.demo.bank.service.CreditCardService;
 import io.demo.bank.service.UserService;
 import io.demo.bank.util.Constants;
 import io.demo.bank.util.Patterns;
@@ -29,7 +29,7 @@ abstract class WebCommonController {
 	private UserService userService;
 	
 	@Autowired
-	private CreditService creditService;
+	private CreditCardService ccService;
 	
 	// private model attribute constants
 	private static final String MODEL_ATT_FIRST_NAME 			= "firstName";
@@ -83,17 +83,13 @@ abstract class WebCommonController {
 	public static final String MODEL_CREDIT_ENABLED				= "creditEnabled";
 	public static final String MODEL_CREDIT_NEW_APP				= "creditNewApp";
 	public static final String MODEL_CREDIT_APP_STATUS			= "creditAppStatus";
-	public static final String MODEL_CREDIT_APP_STATUS_DETAIL	= "creditAppStatusDetail";
-	public static final String MODEL_CREDIT_APP_CREDIT_SCORE	= "creditCreditScore";
-	public static final String MODEL_CREDIT_APP_RISK_SCORE		= "creditRiskScore";
 	public static final String MODEL_CREDIT_ACCOUNT				= "creditAccount";
 	public static final String MODEL_CREDIT_APP					= "creditApp";
-	public static final String MODEL_CREDIT_APP_DATE			= "creditAppDate";
-	public static final String MODEL_CREDIT_APP_NUMBER			= "creditAppNumber";
-	public static final String MODEL_CREDIT_APP_STATUS_VALUE	= "creditAppStatusValue";
-	public static final String MODEL_CREDIT_CARD_NO				= "creditCardNumber";
-	public static final String MODEL_CREDIT_CARD_LIMIT			= "creditCardLimit";
-	public static final String MODEL_CREDIT_CARD_APR			= "creditCardApr";
+	public static final String MODEL_CREDIT_CC_REFERENCE		= "ccReference";
+	public static final String MODEL_CREDIT_CC_MASKED_NO		= "ccMaskedNumber";
+	public static final String MODEL_CREDIT_CC_DETAIL			= "ccDetail";
+	public static final String MODEL_CREDIT_CC_BILLING_DETAIL	= "ccBillingDetail";
+	public static final String MODEL_CREDIT_CC_TRANS_DETAIL		= "ccTransDetailList";
 	
 	// model attribute constants -> Search
 	public static final String MODEL_SEARCH_ZIPCODE				= "zipcode";
@@ -148,7 +144,7 @@ abstract class WebCommonController {
 		model.addAttribute(MODEL_ATT_PATTERN_ZIPCODE, Patterns.US_ZIPCODE);
 		
 		// Check to see if we should enable the Credit Menu
-		if (creditService.isCreditServiceEnabled() && creditService.checkCreditConnection()) {
+		if (ccService.isCreditServiceEnabled() && ccService.checkCreditConnection()) {
 			
 			LOG.debug("Credit Service is Enabled");
 			
@@ -156,12 +152,12 @@ abstract class WebCommonController {
 			model.addAttribute(MODEL_CREDIT_ENABLED, true);
 			
 			// Do we have a credit account?
-			if (creditService.userHasLinkedCreditAccount(user)) {
+			if (ccService.userHasLinkedCreditAccount(user)) {
 				model.addAttribute(MODEL_CREDIT_ACCOUNT, true);
 				LOG.debug("Show Credit Account");
 			}
 			// do we have an existing application
-			else if (creditService.userHasApplication(user)) {
+			else if (ccService.userHasApplication(user)) {
 				// show application status
 				model.addAttribute(MODEL_CREDIT_APP_STATUS, true);
 				

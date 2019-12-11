@@ -1,10 +1,10 @@
 package io.demo.bank.service;
 
-import java.io.IOException;
-import java.math.BigDecimal;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,23 +22,21 @@ import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import io.demo.bank.jms.CreditAppProducer;
-import io.demo.bank.model.CreditApplication;
-import io.demo.bank.model.CreditCardDetails;
-import io.demo.bank.model.CreditReference;
+import io.demo.bank.model.CreditCardApplication;
+import io.demo.bank.model.CreditCardBillingDetail;
+import io.demo.bank.model.CreditCardDetail;
+import io.demo.bank.model.CreditCardReference;
+import io.demo.bank.model.CreditCardTransaction;
 import io.demo.bank.model.security.Users;
-import io.demo.bank.repository.CreditReferenceRepository;
+import io.demo.bank.repository.CreditCardReferenceRepository;
 import io.demo.bank.util.Constants;
 
 @Service
 @Transactional
-public class CreditService {
+public class CreditCardService {
 	
-	private static final Logger LOG = LoggerFactory.getLogger(CreditService.class);
+	private static final Logger LOG = LoggerFactory.getLogger(CreditCardService.class);
 	
 	// Digital Credit Connection details
 	private static Boolean creditEnabled;
@@ -48,8 +46,9 @@ public class CreditService {
 	private static String authToken;
 	private static HttpHeaders requestHeaders;
 	
+	
 	@Autowired
-	private CreditReferenceRepository creditReferenceRepository;
+	private CreditCardReferenceRepository ccReferenceRepository;
 	
 	@Autowired
 	private Environment environment;
@@ -60,9 +59,8 @@ public class CreditService {
 	/*
 	 * Get Credit Card Account Details
 	 */
-	public CreditCardDetails getCreditCardDetails (Long id) {
+	public CreditCardDetail getCreditCardDetails (Long id) {
 		
-		CreditCardDetails ccDetails = null;
 		
 		if (checkCreditConnection()) {
 			
@@ -72,23 +70,23 @@ public class CreditService {
 			RestTemplate restTemplate = new RestTemplate();
 			
 			// Set URL for Authentication
-			String url = CreditService.apiBaseUrl + MessageFormat.format(Constants.APP_CREDIT_URI_CREDIT_CARD_ID, id);
+			String url = CreditCardService.apiBaseUrl + MessageFormat.format(Constants.APP_CREDIT_URI_CC_ID, id);
 			
 			// Add query parameters for authentication credentials
 			UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(url);
 			
 			try { // Submit Authentication Request
 				
-				ResponseEntity<String> responseEntity = restTemplate.exchange(uriBuilder.toUriString(), 
+				ResponseEntity<CreditCardDetail> responseEntity = restTemplate.exchange(uriBuilder.toUriString(), 
 																				 HttpMethod.GET, 
 																				 requestEntity, 
-																				 String.class);
+																				 CreditCardDetail.class);
 				
 				
 				
 				if (responseEntity.getStatusCode() == HttpStatus.OK) {
 				      
-					 ccDetails = mapCreditCardDetails(responseEntity.getBody());
+					 return responseEntity.getBody();
 					 
 				} // End If
 				else {
@@ -112,7 +110,125 @@ public class CreditService {
 			
 		}
 		
-		return ccDetails;
+		return null;
+		
+	}
+	
+	/*
+	 * Get Credit Card Billing Detail
+	 */
+	public CreditCardBillingDetail getCreditCardBillingDetail (Long id) {
+		
+		if (checkCreditConnection()) {
+			
+			// Create the Request
+			HttpEntity<?> requestEntity = new HttpEntity<>(requestHeaders);
+			
+			RestTemplate restTemplate = new RestTemplate();
+			
+			// Set URL for Authentication
+			String url = CreditCardService.apiBaseUrl + MessageFormat.format(Constants.APP_CREDIT_URI_CC_ID_BILLING, id);
+			
+			// Add query parameters for authentication credentials
+			UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(url);
+			
+			try { // Submit Authentication Request
+				
+				ResponseEntity<CreditCardBillingDetail> responseEntity = restTemplate.exchange(uriBuilder.toUriString(), 
+																				 HttpMethod.GET, 
+																				 requestEntity, 
+																				 CreditCardBillingDetail.class);
+				
+				
+				
+				if (responseEntity.getStatusCode() == HttpStatus.OK) {
+				      
+					 return responseEntity.getBody();
+					 
+				} // End If
+				else {
+					
+					 LOG.error("Digital Credit: Could not find credit card billing requested.");
+					 LOG.error(responseEntity.getStatusCode().toString());
+					 LOG.error(responseEntity.getBody().toString());
+					 
+					 
+			    } // End Else
+			} // End Try
+			catch (HttpStatusCodeException ex) {
+				LOG.error("Digital Credit: Could not find credit card billing requested.");
+				LOG.error(ex.getResponseBodyAsString());
+				
+			} // End Catch
+			catch (ResourceAccessException ex) {
+				LOG.error("Digital Credit: Unable to reach Digital Credit endpoint");
+				LOG.error(ex.getMessage());
+			} // End Catch
+			
+		}
+		
+		return null;
+		
+	}
+	
+	
+	/*
+	 * Get Credit Card Transactions
+	 */
+	public List<CreditCardTransaction> getCreditCardTransactions (Long id) {
+		
+		if (checkCreditConnection()) {
+			
+			// Create the Request
+			HttpEntity<?> requestEntity = new HttpEntity<>(requestHeaders);
+			
+			RestTemplate restTemplate = new RestTemplate();
+			
+			// Set URL for Authentication
+			String url = CreditCardService.apiBaseUrl + MessageFormat.format(Constants.APP_CREDIT_URI_CC_ID_TRANS, id);
+			
+			// Add query parameters for authentication credentials
+			UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(url);
+			
+			try { // Submit Authentication Request
+				
+				ResponseEntity<CreditCardTransaction[]> responseEntity = restTemplate.exchange(uriBuilder.toUriString(), 
+																				 HttpMethod.GET, 
+																				 requestEntity, 
+																				 CreditCardTransaction[].class);
+				
+				
+				
+				if (responseEntity.getStatusCode() == HttpStatus.OK) {
+					
+					List<CreditCardTransaction> transList = new ArrayList<>(Arrays.asList(responseEntity.getBody()));
+					
+					return transList;
+					
+					 
+				} // End If
+				else {
+					
+					 LOG.error("Digital Credit: Could not find credit card transactions requested.");
+					 LOG.error(responseEntity.getStatusCode().toString());
+					 LOG.error(responseEntity.getBody().toString());
+					 
+					 
+			    } // End Else
+			} // End Try
+			catch (HttpStatusCodeException ex) {
+				LOG.error("Digital Credit: Could not find credit card transactions requested.");
+				LOG.error(ex.getResponseBodyAsString());
+				
+			} // End Catch
+			catch (ResourceAccessException ex) {
+				LOG.error("Digital Credit: Unable to reach Digital Credit endpoint");
+				LOG.error(ex.getMessage());
+			} // End Catch
+			
+		}
+		
+		return new ArrayList<CreditCardTransaction>();
 		
 	}
 	
@@ -123,7 +239,7 @@ public class CreditService {
 		
 		LOG.debug("User Has Credit Application? ");
 
-		Optional<CreditReference> opt = creditReferenceRepository.findByBankUserId(user.getId());
+		Optional<CreditCardReference> opt = ccReferenceRepository.findByBankUserId(user.getId());
 		  
 		if (opt.isPresent()) {
 			return true; 
@@ -136,9 +252,9 @@ public class CreditService {
 	/*
 	 * Get Application Status
 	 */
-	public CreditReference getCurrentCreditAppStatus(Users user) {
+	public CreditCardReference getCurrentCreditAppStatus(Users user) {
 		
-		Optional<CreditReference> opt = creditReferenceRepository.findByBankUserId(user.getId());
+		Optional<CreditCardReference> opt = ccReferenceRepository.findByBankUserId(user.getId());
 		
 		if (opt.isPresent()) {
 			return opt.get();
@@ -150,9 +266,9 @@ public class CreditService {
 	/*
 	 * Get Credit Reference
 	 */
-	public CreditReference getCreditReference (String correlationId) {
+	public CreditCardReference getCreditReference (String correlationId) {
 		
-		Optional<CreditReference> opt = creditReferenceRepository.findByCorrelationId(correlationId);
+		Optional<CreditCardReference> opt = ccReferenceRepository.findByCorrelationId(correlationId);
 		
 		if (opt.isPresent())
 			return opt.get();
@@ -164,9 +280,9 @@ public class CreditService {
 	/*
 	 * Get Credit Reference
 	 */
-	public CreditReference getCreditReference (Long applicationId) {
+	public CreditCardReference getCreditReference (Long applicationId) {
 		
-		Optional<CreditReference> opt = creditReferenceRepository.findByApplicationId(applicationId);
+		Optional<CreditCardReference> opt = ccReferenceRepository.findByApplicationId(applicationId);
 		
 		if (opt.isPresent())
 			return opt.get();
@@ -177,8 +293,8 @@ public class CreditService {
 	/*
 	 * Update Credit Reference
 	 */
-	public void updateCreditReference (CreditReference creditReference) {
-		creditReferenceRepository.save(creditReference);
+	public void updateCreditReference (CreditCardReference creditReference) {
+		ccReferenceRepository.save(creditReference);
 	}
 			
 	
@@ -190,7 +306,7 @@ public class CreditService {
 		LOG.debug("User Has Credit Account Linked? ");
 		
 		
-		Optional<CreditReference> opt = creditReferenceRepository.findByBankUserId(user.getId());
+		Optional<CreditCardReference> opt = ccReferenceRepository.findByBankUserId(user.getId());
 		
 		if (opt.isPresent() && opt.get().getCreditCardId() != null) {
 			return true;
@@ -203,21 +319,21 @@ public class CreditService {
 	/*
 	 * Submit Credit Application
 	 */
-	public boolean submitCreditApplication (Users user, CreditApplication app) {
+	public boolean submitCreditApplication (Users user, CreditCardApplication app) {
 		
 		String messageId = creditAppProducer.sendCreditApplication(app);
 		
 		// Create a new Credit Reference record
-		CreditReference creditReference = new CreditReference();
+		CreditCardReference ccReference = new CreditCardReference();
 		
-		creditReference.setBankUserId(user.getId());
-		creditReference.setCorrelationId(messageId);
-		creditReference.setApplicationDate(new Date()); 
-		creditReference.setApplicationStatus(Constants.APP_STATUS_SUBMITTED);
-		creditReference.setApplicationStatusDetail("Your credit application has been sent to the credit provider for review."
+		ccReference.setBankUserId(user.getId());
+		ccReference.setCorrelationId(messageId);
+		ccReference.setApplicationDate(new Date()); 
+		ccReference.setApplicationStatus(Constants.APP_STATUS_SUBMITTED);
+		ccReference.setApplicationStatusDetail("Your credit application has been sent to the credit provider for review."
 				+ " Expect a response from the credit provider shortly.");
 		 
-		creditReferenceRepository.save(creditReference);
+		ccReferenceRepository.save(ccReference);
 		
 		return true;
 		
@@ -229,10 +345,10 @@ public class CreditService {
 	 */
 	public boolean isCreditServiceEnabled () {
 		
-		if (CreditService.creditEnabled == null)
-			CreditService.creditEnabled = Boolean.parseBoolean(environment.getProperty(Constants.APP_CREDIT_ENABLED));
+		if (CreditCardService.creditEnabled == null)
+			CreditCardService.creditEnabled = Boolean.parseBoolean(environment.getProperty(Constants.APP_CREDIT_ENABLED));
 		
-		return CreditService.creditEnabled;
+		return CreditCardService.creditEnabled;
 	}
 	
 	/*
@@ -240,7 +356,7 @@ public class CreditService {
 	 */
 	public boolean checkCreditConnection () {
 		
-		if (CreditService.authToken != null) {
+		if (CreditCardService.authToken != null) {
 			return true;
 		} 
 		else if (getConnectionProperties()) {
@@ -256,12 +372,12 @@ public class CreditService {
 	private boolean createCreditConnection () {
 		
 		// Set URL for Authentication
-		String url = CreditService.apiBaseUrl + Constants.APP_CREDIT_URI_API_AUTH;
+		String url = CreditCardService.apiBaseUrl + Constants.APP_CREDIT_URI_API_AUTH;
 		
 		// Add query parameters for authentication credentials
 		UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(url)
-                .queryParam("username", CreditService.username)
-                .queryParam("password", CreditService.password);
+                .queryParam("username", CreditCardService.username)
+                .queryParam("password", CreditCardService.password);
 		
 		// Create required headers
 		HttpHeaders requestHeaders = new HttpHeaders();
@@ -283,10 +399,10 @@ public class CreditService {
 			      
 				 LOG.info("Digital Credit: Obtained authentication succcessfully");
 				 
-				 CreditService.authToken = responseEntity.getBody().getAuthToken();
+				 CreditCardService.authToken = responseEntity.getBody().getAuthToken();
 				 
-				 requestHeaders.add("Authorization", "Bearer " + CreditService.authToken);
-				 CreditService.requestHeaders = requestHeaders;
+				 requestHeaders.add("Authorization", "Bearer " + CreditCardService.authToken);
+				 CreditCardService.requestHeaders = requestHeaders;
 				 
 				 return true;
 				 
@@ -315,32 +431,6 @@ public class CreditService {
 		return false;
 	}
 	
-	private CreditCardDetails mapCreditCardDetails (String response) {
-		CreditCardDetails ccDetails = new CreditCardDetails();
-		
-
-			ObjectMapper mapper = new ObjectMapper();
-			JsonNode node;
-			
-			try {
-				
-				node = mapper.readTree(response);
-				
-				ccDetails.setId(node.get("id").longValue());
-				ccDetails.setCardNumber(node.get("cardNumber").asText());
-				ccDetails.setCvv(node.get("cvv").asText());
-				ccDetails.setApr(new BigDecimal(node.get("apr").asDouble()));
-				ccDetails.setLimit(new BigDecimal(node.get("creditLimit").asDouble()));
-				ccDetails.setDateValid(node.get("dateValid").asText());
-				ccDetails.setDateExpire(node.get("dateExpire").asText());
-				
-			} catch (IOException e) {
-				LOG.error("Unable to read Json response for Credit Card and covert to an object.");
-				e.printStackTrace();
-			}
-			
-		return ccDetails;
-	}
 	
 	/*
 	 * Get Digital Credit connection details from application.properties
@@ -351,17 +441,17 @@ public class CreditService {
 		String host = environment.getProperty(Constants.APP_CREDIT_HOST);
 		String port = environment.getProperty(Constants.APP_CREDIT_PORT);
 		
-		CreditService.apiBaseUrl 	= protocol + "://"
+		CreditCardService.apiBaseUrl 	= protocol + "://"
 				 				 	+ host + ":"
 				 				 	+ port
 				 				 	+ Constants.APP_CREDIT_URI_API_BASE;
 		
-		CreditService.username 		= environment.getProperty(Constants.APP_CREDIT_USER);
-		CreditService.password		= environment.getProperty(Constants.APP_CREDIT_PASSWORD);
+		CreditCardService.username 		= environment.getProperty(Constants.APP_CREDIT_USER);
+		CreditCardService.password		= environment.getProperty(Constants.APP_CREDIT_PASSWORD);
 		
 		// Make sure values were passed in for these properties
-		if (CreditService.username == null || 
-			CreditService.password == null ||
+		if (CreditCardService.username == null || 
+			CreditCardService.password == null ||
 			protocol == null ||
 			host == null ||
 			port == null) {
@@ -372,7 +462,7 @@ public class CreditService {
 		
 		// Check the URL properties to ensure a valid URL can be formed
 		try {
-			UriComponentsBuilder.fromHttpUrl(CreditService.apiBaseUrl);
+			UriComponentsBuilder.fromHttpUrl(CreditCardService.apiBaseUrl);
 			
 			return true;
 		}

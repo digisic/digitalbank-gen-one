@@ -38,38 +38,38 @@
 													<div class="row">
                             							<div class="col col-md-3"><label class=" form-control-label"><strong>Application Number:</strong></label></div>
                             							<div class="col-12 col-md-6">
-                              								<p class="form-control-static" th:if="${creditAppNumber != null}" th:text="${creditAppNumber}"></p>
-                              								<p class="form-control-static" th:unless="${creditAppNumber != null}">Not Assigned</p>
+                              								<p class="form-control-static" th:if="${ccReference.applicationNumber != null}" th:text="${ccReference.applicationNumber}"></p>
+                              								<p class="form-control-static" th:unless="${ccReference.applicationNumber != null}">Not Assigned</p>
                            								 </div>
                           							</div>
                           							<div class="row">
                             							<div class="col col-md-3"><label class=" form-control-label"><strong>Application Date:</strong></label></div>
                             							<div class="col-12 col-md-6">
-                              								<p class="form-control-static" th:text="${#dates.format(creditAppDate, 'yyyy-MM-dd HH:mm')}"></p>
+                              								<p class="form-control-static" th:text="${#dates.format(ccReference.applicationDate, 'MM/dd/yyyy HH:mm')}"></p>
                            								 </div>
                           							</div>
-                          							<div class="row" th:if="${creditCreditScore != null}">
+                          							<div class="row" th:if="${ccReference.creditScore != null}">
                             							<div class="col col-md-3"><label class=" form-control-label"><strong>Credit Score:</strong></label></div>
                             							<div class="col-12 col-md-6">
-                              								<p class="form-control-static" th:if="${creditCreditScore != null}" th:text="${creditCreditScore}"></p>
+                              								<p class="form-control-static" th:if="${ccReference.creditScore != null}" th:text="${ccReference.creditScore}"></p>
                            								 </div>
                           							</div>
-                          							<div class="row" th:if="${creditRiskScore != null}">
+                          							<div class="row" th:if="${ccReference.riskScore != null}">
                             							<div class="col col-md-3"><label class=" form-control-label"><strong>Risk Score:</strong></label></div>
                             							<div class="col-12 col-md-6">
-                              								<p class="form-control-static" th:if="${creditRiskScore != null}" th:text="${creditRiskScore}"></p>
+                              								<p class="form-control-static" th:if="${ccReference.riskScore != null}" th:text="${ccReference.riskScore}"></p>
                            								 </div>
                           							</div>
                           							<div class="row">
                             							<div class="col col-md-3"><label class=" form-control-label"><strong>Application Status:</strong></label></div>
                             							<div class="col-12 col-md-6">
-                              								<p class="form-control-static" th:text="${creditAppStatusValue}"></p>
+                              								<p class="form-control-static" th:text="${ccReference.applicationStatus}"></p>
                            								 </div>
                           							</div>
                           							<div class="row">
                             							<div class="col col-md-3"><label class=" form-control-label"><strong>Status Detail:</strong></label></div>
                             							<div class="col-12 col-md-6">
-                              								<p class="form-control-static" th:text="${creditAppStatusDetail}"></p>
+                              								<p class="form-control-static" th:text="${ccReference.applicationStatusDetail}"></p>
                            								 </div>
                           							</div>                                 		                                      	                                  
 				                                </div>

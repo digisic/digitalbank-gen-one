@@ -44,6 +44,22 @@
                             <li><i class="menu-icon fa fa-sign-out"></i><a th:href="@{/account/withdraw}">Withdraw</a></li>
                         </ul>
                     </li>
+                    
+                    <h3 class="menu-title" th:if="${creditEnabled}">Credit Accounts</h3><!-- /.menu-title -->
+
+                    <li class="menu-item-has-children dropdown" th:if="${creditEnabled}">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-credit-card"></i>Digital Credit</a>
+                        <ul class="sub-menu children dropdown-menu" th:if="${creditNewApp}">
+                            <li><i class="menu-icon fa fa-pencil-square"></i><a th:href="@{/credit/credit-app}">New Application</a></li>
+                        </ul>
+                        <ul class="sub-menu children dropdown-menu" th:if="${creditAppStatus}">
+                            <li><i class="menu-icon fa fa-eye"></i><a th:href="@{/credit/credit-app-status}">Application Status</a></li>
+                        </ul>
+                        <ul class="sub-menu children dropdown-menu" th:if="${creditAccount}">
+                            <li><i class="menu-icon fa fa-cc-visa"></i><a th:href="@{/credit/credit-view}">Blaze Rewards VISA</a></li>
+                        </ul>
+                    </li>
+                    
              <!--         <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Checks</a>
                         <ul class="sub-menu children dropdown-menu">
@@ -59,7 +75,7 @@
                         </ul>
                     </li>
 			-->
-                    <h3 class="menu-title">Transfers/Payments</h3><!-- /.menu-title -->
+                    <h3 class="menu-title">Transfers / Payments</h3><!-- /.menu-title -->
 
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-random"></i>Transfer</a>
@@ -86,7 +102,7 @@
                         </ul>
                     </li>
            -->          
-           			<h3 class="menu-title">3rd Party/Transfers</h3><!-- /.menu-title -->
+           			<h3 class="menu-title">3rd Party Transfers</h3><!-- /.menu-title -->
 
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-credit-card"></i>VISA Direct</a>
@@ -95,21 +111,6 @@
                         </ul>
                     </li>
            
-           			<h3 class="menu-title" th:if="${creditEnabled}">Credit Accounts</h3><!-- /.menu-title -->
-
-                    <li class="menu-item-has-children dropdown" th:if="${creditEnabled}">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-credit-card"></i>My Account</a>
-                        <ul class="sub-menu children dropdown-menu" th:if="${creditNewApp}">
-                            <li><i class="menu-icon fa fa-pencil-square"></i><a th:href="@{/credit/credit-app}">New Application</a></li>
-                        </ul>
-                        <ul class="sub-menu children dropdown-menu" th:if="${creditAppStatus}">
-                            <li><i class="menu-icon fa fa-eye"></i><a th:href="@{/credit/credit-app-status}">Application Status</a></li>
-                        </ul>
-                        <ul class="sub-menu children dropdown-menu" th:if="${creditAccount}">
-                            <li><i class="menu-icon fa fa-cc-visa"></i><a th:href="@{/credit/credit-view}">Digital Credit VISA</a></li>
-                        </ul>
-                    </li>
-           		    
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
