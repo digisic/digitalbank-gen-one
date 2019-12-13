@@ -25,22 +25,27 @@
 	                <div id="firstRow" class="row">				
 		    			<div class="col-md-6 col-lg-4">
 	                        <div class="card bg-flat-color-6 text-light">
-		                    	<div class="card-body">
-	                            	<label class="float-right">
-	                                	<i class="visa fa fa-cc-visa fa-2x"></i>
-	                                </label>
-	                                <div class="visa h4 m-0">Blaze Rewards VISA</div>
-	                                <div><br></div>
-	                                <div><small class="text-light" th:text="'Card Number: ' + ${ccMaskedNumber}"></small></div>
-	                                <div><small class="text-light" th:text="'Credit Limit: $' + ${ccDetail.creditLimit}"></small></div>
-	                                <div><small class="text-light" th:text="'APR: ' + ${ccDetail.apr} + '%'"></small></div>
-	                                <div><small class="text-light"><br></small></div>
-	                                <div><small class="text-light" th:text="'Available Balance: $' + ${ccDetail.availableBalance}"></small></div>
-	                                <div><small class="text-light" th:text="'Minimum Payment Due: $' + ${ccBillingDetail.minimumPaymentDue}"></small></div>
-	                                <div><small class="text-light" th:text="'Payment Due Date: ' + ${#dates.format(ccBillingDetail.paymentDueDate, 'MM/dd/yyyy')}"></small></div>
-	                                <div><br></div>
-	                                <div class="h4 m-0" th:text="'Current Balance: $' + ${ccDetail.currentBalance}"></div>
-		                       </div> <!-- End Card Body -->
+	                        
+	                        	<form id="deleteCard" th:action="@{/credit/credit-delete}" method="get">
+			                    	<div class="card-body">
+		                            	<label class="float-right">
+		                                	<a href="#" onclick="document.getElementById('deleteCard').submit();">
+		                                		<i class="visa fa fa-cc-visa fa-2x"></i>
+		                                	</a>
+		                                </label>
+		                                <div class="visa h4 m-0">Blaze Rewards VISA</div>
+		                                <div><br></div>
+		                                <div><small class="text-light" th:text="'Card Number: ' + ${ccMaskedNumber}"></small></div>
+		                                <div><small class="text-light" th:text="'Credit Limit: $' + ${ccDetail.creditLimit}"></small></div>
+		                                <div><small class="text-light" th:text="'APR: ' + ${ccDetail.apr} + '%'"></small></div>
+		                                <div><small class="text-light"><br></small></div>
+		                                <div><small class="text-light" th:text="'Available Balance: $' + ${ccDetail.availableBalance}"></small></div>
+		                                <div><small class="text-light" th:text="'Minimum Payment Due: $' + ${ccBillingDetail.minimumPaymentDue}"></small></div>
+		                                <div><small class="text-light" th:text="'Payment Due Date: ' + ${#dates.format(ccBillingDetail.paymentDueDate, 'MM/dd/yyyy')}"></small></div>
+		                                <div><br></div>
+		                                <div class="h4 m-0" th:text="'Current Balance: $' + ${ccDetail.currentBalance}"></div>
+			                       </div> <!-- End Card Body -->
+			                    </form> <!-- End form -->
 	                        </div> <!-- End Card -->
 	                    </div><!-- End Column 6-->
                 	</div> <!-- End Row -->
@@ -106,8 +111,7 @@
 		$('#transactionTable').DataTable({
 		       'order': []
 		} );
-		
-		
+	
    	</script>
 
 </body>

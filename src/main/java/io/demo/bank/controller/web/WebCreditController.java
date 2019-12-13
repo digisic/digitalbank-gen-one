@@ -76,11 +76,19 @@ public class WebCreditController extends WebCommonController {
 		
 		Users user = userService.findByUsername(principal.getName());
 		
-		CreditCardReference ccReference = ccService.getCurrentCreditAppStatus(user);
+		CreditCardReference ccReference = ccService.getCreditReference(user);
 		
 		model.addAttribute(MODEL_CREDIT_CC_REFERENCE, ccReference);
 		
 		
+		// Remove Credit Reference if status is Declined. Once user views the declined status,
+		// the UI should take them back to the credit application 
+		if (ccReference.getApplicationStatus().equals(Constants.APP_STATUS_DECLINED)) {
+			ccService.removeCreditCardReference(ccReference);
+			
+			// show New Application
+			model.addAttribute(MODEL_CREDIT_NEW_APP, true);
+		}
 		    
 		return Constants.VIEW_CREDIT_APP_ST;
 	}
@@ -92,7 +100,7 @@ public class WebCreditController extends WebCommonController {
 		setDisplayDefaults(principal, model);
 		
 		Users user = userService.findByUsername(principal.getName());
-		CreditCardReference ccReference = ccService.getCurrentCreditAppStatus(user);
+		CreditCardReference ccReference = ccService.getCreditReference(user);
 		CreditCardDetail ccDetail = ccService.getCreditCardDetails(ccReference.getCreditCardId());
 		CreditCardBillingDetail ccBillingDetail = ccService.getCreditCardBillingDetail(ccReference.getCreditCardId());
 		List<CreditCardTransaction> ccTransDetailList = ccService.getCreditCardTransactions(ccReference.getCreditCardId());
@@ -113,11 +121,27 @@ public class WebCreditController extends WebCommonController {
 			
 		} else {
 			
+			ccService.removeCreditCardReference(ccReference);
+			
 			// return for a new credit application
 			model.addAttribute(MODEL_CREDIT_APP, new CreditCardApplication(user.getUserProfile()));
 			return Constants.VIEW_CREDIT_APP;
 		}  // end if
 
+	}
+	
+	@GetMapping(Constants.URI_CREDIT_DELETE)
+	public String deleteCreditCard(Principal principal, Model model) {
+		
+		// Set Display Defaults
+		setDisplayDefaults(principal, model);
+		
+		Users user = userService.findByUsername(principal.getName());
+		
+		ccService.deleteCreditCard(user);
+		
+		return Constants.DIR_REDIRECT + Constants.URI_HOME;
+		
 	}
 	
 }

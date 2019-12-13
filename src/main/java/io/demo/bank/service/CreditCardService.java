@@ -250,9 +250,9 @@ public class CreditCardService {
 	}
 	
 	/*
-	 * Get Application Status
+	 * Get Credit Reference by User
 	 */
-	public CreditCardReference getCurrentCreditAppStatus(Users user) {
+	public CreditCardReference getCreditReference (Users user) {
 		
 		Optional<CreditCardReference> opt = ccReferenceRepository.findByBankUserId(user.getId());
 		
@@ -264,7 +264,7 @@ public class CreditCardService {
 	}
 	
 	/*
-	 * Get Credit Reference
+	 * Get Credit Reference By Correlation Id
 	 */
 	public CreditCardReference getCreditReference (String correlationId) {
 		
@@ -278,7 +278,7 @@ public class CreditCardService {
 	
 
 	/*
-	 * Get Credit Reference
+	 * Get Credit Reference By Application Id
 	 */
 	public CreditCardReference getCreditReference (Long applicationId) {
 		
@@ -330,8 +330,7 @@ public class CreditCardService {
 		ccReference.setCorrelationId(messageId);
 		ccReference.setApplicationDate(new Date()); 
 		ccReference.setApplicationStatus(Constants.APP_STATUS_SUBMITTED);
-		ccReference.setApplicationStatusDetail("Your credit application has been sent to the credit provider for review."
-				+ " Expect a response from the credit provider shortly.");
+		ccReference.setApplicationStatusDetail(Constants.APP_STATUS_SUBMITTED_DETAIL);
 		 
 		ccReferenceRepository.save(ccReference);
 		
@@ -364,6 +363,76 @@ public class CreditCardService {
 		}
 		
 		return false;
+	}
+	
+	/*
+	 * Delete Credit Card record
+	 */
+	public boolean deleteCreditCard (Users user) {
+
+		if (checkCreditConnection()) {
+			
+			CreditCardReference ccReference = getCreditReference(user);
+			Long id = ccReference.getCreditCardId();
+			
+			// Create the Request
+			HttpEntity<?> requestEntity = new HttpEntity<>(requestHeaders);
+			
+			RestTemplate restTemplate = new RestTemplate();
+			
+			// Set URL for Authentication
+			String url = CreditCardService.apiBaseUrl + MessageFormat.format(Constants.APP_CREDIT_URI_CC_ID, id);
+			
+			// Add query parameters for authentication credentials
+			UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(url);
+			
+			try { // Submit Authentication Request
+				
+				ResponseEntity<String> responseEntity = restTemplate.exchange(uriBuilder.toUriString(), 
+																				 HttpMethod.DELETE, 
+																				 requestEntity, 
+																				 String.class);
+				
+			
+				if (responseEntity.getStatusCode() == HttpStatus.NO_CONTENT) {
+					
+					removeCreditCardReference(ccReference);
+					
+					return true;
+					 
+				} // End If
+				else {
+					
+					 LOG.error("Digital Credit: Unable to Delete Credit Card with id: " + id);
+					 LOG.error(responseEntity.getStatusCode().toString());
+					 
+					 if (responseEntity.hasBody())
+						 LOG.error(responseEntity.getBody().toString());
+					 
+					 return false;
+					 
+			    } // End Else
+			} // End Try
+			catch (HttpStatusCodeException ex) {
+				LOG.error("Digital Credit: Unable to Delete Credit Card with id: " + id);
+				LOG.error(ex.getResponseBodyAsString());
+				
+			} // End Catch
+			catch (ResourceAccessException ex) {
+				LOG.error("Digital Credit: Unable to reach Digital Credit endpoint");
+				LOG.error(ex.getMessage());
+			} // End Catch
+		
+		}
+		
+		return false;
+	}
+	
+	/*
+	 * Delete the credit card reference record
+	 */
+	public void removeCreditCardReference (CreditCardReference ccReference) {
+		ccReferenceRepository.delete(ccReference);
 	}
 	
 	/*
@@ -473,6 +542,7 @@ public class CreditCardService {
 		
 		return false;
 	}
+	
 	
 
 	/*

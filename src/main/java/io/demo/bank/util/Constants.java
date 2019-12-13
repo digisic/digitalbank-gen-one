@@ -71,6 +71,7 @@ public class Constants {
 	public static final String URI_CREDIT_APP			= "/credit-app";
 	public static final String URI_CREDIT_APP_STATUS	= "/credit-app-status";
 	public static final String URI_CREDIT_VIEW			= "/credit-view";
+	public static final String URI_CREDIT_DELETE		= "/credit-delete";
 	public static final String URI_SEARCH				= "/search";
 	public static final String URI_SEARCH_ATM			= "/atm";
 	
@@ -229,7 +230,6 @@ public class Constants {
 	
 	
 	// Credit Application
-	public static final String APP_STATUS_SUBMITTED					= "Submitted";
 	public static final String CREDIT_CARD_NO_MASK					= "xxxx xxxx xxxx ";
 	
 	// Constants for message attributes
@@ -242,6 +242,14 @@ public class Constants {
 	public static final String STATUS_ATT_APP_CREDIT_ID 			= "approvedCardId";
 	public static final String STATUS_ATT_APP_CREDIT_APR 			= "approvedCardApr";
 	
+	// Credit Application
+	public static final String APP_STATUS_SUBMITTED					= "Submitted";
+	public static final String APP_STATUS_ACCEPTED					= "Accepted";
+	public static final String APP_STATUS_DECLINED					= "Declined";
+	public static final String APP_STATUS_APPROVED					= "Approved";
+	
+	public static final String APP_STATUS_SUBMITTED_DETAIL			= "Your credit application has been sent to the credit provider for review."
+																	+ " Expect a response from the credit provider shortly.";
 	
 	// Application Properties
 	public static final String APP_CREDIT_ENABLED					= "io.demo.credit.enabled";
