@@ -43,6 +43,18 @@
         <buildNumber>local</buildNumber>
         <revision>1.0.1.${buildNumber}</revision>
 	</properties>
+	
+	<dependencyManagement>
+  		<dependencies>
+    		<dependency>
+      			<groupId>org.junit</groupId>
+      			<artifactId>junit-bom</artifactId>
+      			<version>5.5.2</version>
+      			<type>pom</type>
+      			<scope>import</scope>
+    		</dependency>
+  		</dependencies>
+	</dependencyManagement>
 
 	<dependencies>
 		<dependency>
@@ -117,6 +129,22 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+    	<dependency>
+        	<groupId>org.junit.jupiter</groupId>
+        	<artifactId>junit-jupiter-api</artifactId>
+        	<scope>test</scope>
+    	</dependency>
+    	<dependency>
+        	<groupId>org.junit.jupiter</groupId>
+        	<artifactId>junit-jupiter-engine</artifactId>
+        	<scope>test</scope>
+    	</dependency>
+    	<!--Optional: Supports running Junit4 along with Junit5 -->
+  		<dependency>
+    		<groupId>org.junit.vintage</groupId>
+    		<artifactId>junit-vintage-engine</artifactId>
+    		<scope>test</scope>
+  		</dependency>
 		<dependency>
         	<groupId>javax.xml.bind</groupId>
         	<artifactId>jaxb-api</artifactId>
@@ -188,11 +216,6 @@
             <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-reports</artifactId>
             <version>${serenity.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>

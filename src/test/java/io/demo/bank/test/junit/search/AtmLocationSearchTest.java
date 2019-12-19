@@ -1,25 +1,26 @@
 package io.demo.bank.test.junit.search;
 
 import static com.ca.codesv.protocols.http.fluent.HttpFluentInterface.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.List;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledOnJre;
+import org.junit.jupiter.api.condition.JRE;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.web.client.HttpStatusCodeException;
-import net.serenitybdd.junit.spring.integration.SpringIntegrationSerenityRunner;
-import net.thucydides.core.annotations.Narrative;
-import net.thucydides.core.annotations.WithTagValuesOf;
-import com.ca.codesv.engine.junit4.VirtualServerRule;
+import com.ca.codesv.engine.junit5.VirtualServerResolver;
 import io.demo.bank.model.AtmLocation;
 import io.demo.bank.service.SearchService;
+
 
 
 /**
@@ -27,22 +28,28 @@ import io.demo.bank.service.SearchService;
  *
  */
 
-@Narrative(text={"As an application user",                      
-        		 "I want to search for local ATM locations",
-        		 "So I can find a convenient ATM near me"})
 @SpringBootTest
-@WithTagValuesOf({"Search"})
 @ContextConfiguration(classes = SearchService.class)
-@RunWith(SpringIntegrationSerenityRunner.class)
+@ExtendWith(SpringExtension.class)
+@ExtendWith(VirtualServerResolver.class)
 public class AtmLocationSearchTest extends BaseTest {
 
 	private static final Logger LOG = LoggerFactory.getLogger(AtmLocationSearchTest.class);
 	
-    @Rule
-    public VirtualServerRule vs = new VirtualServerRule();
+    public VirtualServerResolver vs = new VirtualServerResolver();
     
     @Autowired
 	private SearchService searchService;
+    
+    @BeforeAll
+    public static void testSetup() {
+		setUpAppKeystoreForTest();
+    }
+    
+    @AfterAll
+    public static void testTearDown() {
+    	resetKeystore();
+    }
     
     /**
      * This method calls method requesting synapsefi API and tests whether it can handle synapsefi response correctly.
@@ -52,6 +59,7 @@ public class AtmLocationSearchTest extends BaseTest {
      * @throws Exception
      */
     @Test
+    @EnabledOnJre({JRE.JAVA_8})
     public void positiveResultTest() throws Exception {
     	
     	final String zipcode = "94203";
@@ -79,7 +87,7 @@ public class AtmLocationSearchTest extends BaseTest {
 
 		List<AtmLocation> locations = searchService.searchATMLocations(zipcode);
 
-    	assertEquals(expResultSize, locations.size());
+    	Assertions.assertEquals(expResultSize, locations.size());
     }
 
     /**
@@ -89,7 +97,8 @@ public class AtmLocationSearchTest extends BaseTest {
 	 *
 	 * @throws Exception
 	 */
-	@Test 
+	@Test
+	@EnabledOnJre({JRE.JAVA_8})
 	public void zeroResultTest() throws Exception {
 	  
 		final String zipcode = "12345";
@@ -116,7 +125,7 @@ public class AtmLocationSearchTest extends BaseTest {
 	  
 		List<AtmLocation> locations = searchService.searchATMLocations(zipcode);
 
-		assertTrue(locations.isEmpty());
+		Assertions.assertTrue(locations.isEmpty());
 	}
 
 	/**
@@ -126,13 +135,14 @@ public class AtmLocationSearchTest extends BaseTest {
 	 *
 	 * @throws Exception
 	 */
-	@Test(expected = HttpStatusCodeException.class)
+	@Test
+	@EnabledOnJre({JRE.JAVA_8})
 	public void unavilableServiceTest() throws Exception {
 	  
 		final String zipcode = "94203";
 	  
 		try { // Setup Virtual Service with Code SV
-	  
+			
 			forGet("https://bankingservices.io/v3.1/nodes/atms")
 				.matchesQuery("zip", zipcode)
 				.usingHttps(withSecureProtocol(TLS).keystorePath(KEYSTORE_PATH)
@@ -140,6 +150,7 @@ public class AtmLocationSearchTest extends BaseTest {
 												   .keyPassword(KEYSTORE_PASSWORD))
 	  
 				.doReturn(notFoundMessage());
+			
 	  
 		} catch (Exception ex) { 
 			
@@ -152,7 +163,9 @@ public class AtmLocationSearchTest extends BaseTest {
 			throw new Exception(ex);
 		} // end try/catch
 
-		searchService.searchATMLocations(zipcode);
+		Assertions.assertThrows(HttpStatusCodeException.class, () -> {
+			searchService.searchATMLocations(zipcode);
+		});
 		
 	}
 

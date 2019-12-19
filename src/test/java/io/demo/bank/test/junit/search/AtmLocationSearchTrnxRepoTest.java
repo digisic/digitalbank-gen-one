@@ -1,53 +1,77 @@
 package io.demo.bank.test.junit.search;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static com.ca.codesv.protocols.http.fluent.HttpFluentInterface.*;
 
 import io.demo.bank.model.AtmLocation;
 import java.util.List;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Assumptions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledOnJre;
+import org.junit.jupiter.api.condition.JRE;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.HttpStatusCodeException;
-import com.ca.codesv.engine.junit4.VirtualServerRule;
+import com.ca.codesv.engine.junit5.VirtualServerResolver;
+import com.ca.codesv.protocols.transaction.TransactionException;
 import com.ca.codesv.protocols.transaction.TxnRepoStore;
+import com.ca.codesv.protocols.transaction.UseTransactionRule;
 import com.ca.codesv.sdk.CloudRepositoryConfig.ConfigBuilder;
-import net.serenitybdd.junit.spring.integration.SpringIntegrationSerenityRunner;
-import net.thucydides.core.annotations.Narrative;
-import net.thucydides.core.annotations.WithTagValuesOf;
 import io.demo.bank.service.SearchService;
 
 
-
-@Narrative(text={"As an application user",                      
-		 "I want to search for local ATM locations",
-		 "So I can find a convenient ATM near me"})
 @SpringBootTest
-@WithTagValuesOf({"Search"})
 @ContextConfiguration(classes = SearchService.class)
-@RunWith(SpringIntegrationSerenityRunner.class)
+@ExtendWith(SpringExtension.class)
+@ExtendWith(VirtualServerResolver.class)
 public class AtmLocationSearchTrnxRepoTest extends BaseTest {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(AtmLocationSearchTrnxRepoTest.class);
 
-	@Rule
-	public VirtualServerRule vs = new VirtualServerRule();
+	public VirtualServerResolver vs = new VirtualServerResolver();
 	
-	// BlazeCT Transaction Store
-	private TxnRepoStore store = new TxnRepoStore(new ConfigBuilder().withUri(BLAZEMETER_TRN_REPO_URI)
-			 														 .withApiKey(BLAZEMETER_API_KEY)
-			 														 .withApiSecret(BLAZEMETER_API_SECRET)
-			 														 .withWorkspace(BLAZEMETER_WORKSPACE)
-			 														 .build(), this);
+	private static TxnRepoStore store;
+	
+	// Initialize Cloud Transaction Repository
+	static {
+		
+		// try 
+		try {
+		
+			store = new TxnRepoStore(new ConfigBuilder().withUri(BLAZEMETER_TRN_REPO_URI)
+														.withApiKey(BLAZEMETER_API_KEY) 
+														.withApiSecret(BLAZEMETER_API_SECRET)
+														.withWorkspace(BLAZEMETER_WORKSPACE) .build(), AtmLocationSearchTrnxRepoTest.class);
+		} catch (TransactionException e) {
+			LOG.error("ATM Location Search Test: Could not connect to Cloud Transaction Repository.");
+		}
+	}
+		
 	
 	@Autowired
 	private SearchService searchService;
+	
+	@BeforeAll
+    public static void testSetup() {
+		
+		setUpAppKeystoreForTest();
+		
+		// Only run test if these conditions are true
+		Assumptions.assumeTrue(connectionDetailProvided());
+
+    }
+    
+    @AfterAll
+    public static void testTearDown() {
+    	resetKeystore();
+    }
 
 	/**
      * This method calls method requesting synapsefi API and tests whether it can handle synapsefi response correctly.
@@ -57,21 +81,29 @@ public class AtmLocationSearchTrnxRepoTest extends BaseTest {
      * @throws Exception
      */
 	@Test
+	@EnabledOnJre({JRE.JAVA_8})
 	public void positiveResultTest() throws Exception {
 		
-		String zipcode = "11749";
-		int expResultSize = 2;
-	
-		store.useTransaction("ATM Search 11749 With 2 Results", "ATM Search By Zip Code", 
-							 withSecureProtocol(TLS).keystorePath(KEYSTORE_PATH)
-				                					.keystorePassword(KEYSTORE_PASSWORD)
-				                					.keyPassword(KEYSTORE_PASSWORD));
+		final String zipcode = "11749"; 
+		final int expResultSize = 2;
+		  
+		UseTransactionRule rule = new UseTransactionRule.RuleBuilder(BLAZEMETER_TRN_SVC_NAME)
+														.forTransaction(BLAZEMETER_TRN_NAME_POSITIVE)
+														.withHttps(withSecureProtocol(TLS)
+																   .keystorePath(KEYSTORE_PATH)
+																   .keystorePassword(KEYSTORE_PASSWORD) 
+																   .keyPassword(KEYSTORE_PASSWORD))
+														.build();
 
+		store.useTransactionWithRule(rule);
+		
+		
 		List<AtmLocation> locations = searchService.searchATMLocations(zipcode);
-
+		  
 		LOG.debug("Number of ATMs: " + locations.size());
-
-		assertEquals(expResultSize, locations.size());
+		  
+		Assertions.assertEquals(expResultSize, locations.size());
+		 
 
 	}
 	
@@ -84,21 +116,32 @@ public class AtmLocationSearchTrnxRepoTest extends BaseTest {
 	 * @throws Exception
 	 */
 	@Test
+	@EnabledOnJre({JRE.JAVA_8})
 	public void zeroResultTest() throws Exception {
+				
+		final String zipcode = "12345";
 		
-		String zipcode = "12345";
+		TxnRepoStore store = new TxnRepoStore(new ConfigBuilder().withUri(BLAZEMETER_TRN_REPO_URI)
+				 .withApiKey(BLAZEMETER_API_KEY) 
+				 .withApiSecret(BLAZEMETER_API_SECRET)
+				 .withWorkspace(BLAZEMETER_WORKSPACE) .build(), this);
 		
-		store.useTransaction("ATM Search 12345 With Zero Results", "ATM Search By Zip Code", 
-							 withSecureProtocol(TLS).keystorePath(KEYSTORE_PATH)
-				                					.keystorePassword(KEYSTORE_PASSWORD)
-				                					.keyPassword(KEYSTORE_PASSWORD));
-
+		UseTransactionRule rule = new UseTransactionRule.RuleBuilder(BLAZEMETER_TRN_SVC_NAME)
+														.forTransaction(BLAZEMETER_TRN_NAME_ZERO)
+														.withHttps(withSecureProtocol(TLS)
+																   .keystorePath(KEYSTORE_PATH)
+																   .keystorePassword(KEYSTORE_PASSWORD) 
+																   .keyPassword(KEYSTORE_PASSWORD))
+														.build();		
+		  
+		store.useTransactionWithRule(rule);
+		  
 		List<AtmLocation> locations = searchService.searchATMLocations(zipcode);
-
+		  
 		LOG.debug("Number of ATMs: " + locations.size());
-
-		assertTrue(locations.isEmpty());
-
+		  
+		Assertions.assertTrue(locations.isEmpty());
+		 
 	}
 	
 	
@@ -109,18 +152,32 @@ public class AtmLocationSearchTrnxRepoTest extends BaseTest {
 	 *
 	 * @throws Exception
 	 */
-	@Test(expected = HttpStatusCodeException.class)
+	@Test
+	@EnabledOnJre({JRE.JAVA_8})
 	public void unavilableServiceTest() throws Exception {
 		
-		String zipcode = "11749";
-   
+		final String zipcode = "54321";
 		
-		store.useTransaction("ATM Search 11749 With Unavailable Service", "ATM Search By Zip Code", 
-							 withSecureProtocol(TLS).keystorePath(KEYSTORE_PATH)
-				                					.keystorePassword(KEYSTORE_PASSWORD)
-				                					.keyPassword(KEYSTORE_PASSWORD));
+		TxnRepoStore store = new TxnRepoStore(new ConfigBuilder().withUri(BLAZEMETER_TRN_REPO_URI)
+				 .withApiKey(BLAZEMETER_API_KEY) 
+				 .withApiSecret(BLAZEMETER_API_SECRET)
+				 .withWorkspace(BLAZEMETER_WORKSPACE) .build(), this);
+		
+		UseTransactionRule rule = new UseTransactionRule.RuleBuilder(BLAZEMETER_TRN_SVC_NAME)
+														.forTransaction(BLAZEMETER_TRN_NAME_NO_SVC)
+														.withHttps(withSecureProtocol(TLS)
+																   .keystorePath(KEYSTORE_PATH)
+				 						  						   .keystorePassword(KEYSTORE_PASSWORD) 
+				 						  						   .keyPassword(KEYSTORE_PASSWORD))
+														.build();
+												
+		store.useTransactionWithRule(rule);
+		  
+		Assertions.assertThrows(HttpStatusCodeException.class, () -> {
+			searchService.searchATMLocations(zipcode);
+		});
 
-		searchService.searchATMLocations(zipcode);
 	}
 
+		
 }

@@ -175,8 +175,7 @@ public class SearchService {
 
 		// Make sure values were passed in for these properties
 		if (protocol == null ||
-			host == null ||
-			port == null) {
+			host == null) {
 			
 			LOG.error("ATM Location Service: Connection properties are missing in the configuration.");
 			
