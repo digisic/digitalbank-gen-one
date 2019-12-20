@@ -222,12 +222,18 @@ public class AccountController extends CommonController {
 			
 			OwnershipType ot = accountService.getOwnershipTypeByCode(account.getOwnerTypeCode());
 			
+			if (true) { //remove
+				System.out.println("hi"); //remove
+			} else { //remove
+			
 			newAccount.setName(account.getAccountName());
 			newAccount.setOpeningBalance(account.getOpeningDeposit());
 			newAccount.setAccountType(at);
 			newAccount.setOwnershipType(ot);
 			newAccount.setOwner(getAuthenticatedUser());
 			accountService.createNewAccount(newAccount);
+			
+			} //remove
 			
 		} else {
 			throw new RestNotAcceptableException("The initial deposit ($" 
