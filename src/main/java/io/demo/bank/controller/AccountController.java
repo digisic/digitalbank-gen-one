@@ -45,7 +45,7 @@ import io.demo.bank.util.Patterns;
 public class AccountController extends CommonController {
 
 
-	private static final Logger LOG = LoggerFactory.getLogger(AccountController.class); 
+	private static final Logger LOG = LoggerFactory.getLogger(AccountController.class);     
 	
 	@Autowired
 	AccountService accountService;
@@ -215,7 +215,7 @@ public class AccountController extends CommonController {
 	public ResponseEntity<?> createAccount(@RequestBody @Valid NewAccount account) {		
 		
 		Account newAccount = new Account();
-		AccountType at = accountService.getAccoutTypeByCode(account.getAccountTypeCode());
+		AccountType at = accountService.getAccoutTypeByCode(account.getAccountTypeCode());    
 	
 		// if we meet the minimum balance requirement, then open account
 		if (account.getOpeningDeposit().compareTo(at.getMinDeposit()) >= 0) {
