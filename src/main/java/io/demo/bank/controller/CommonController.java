@@ -24,7 +24,7 @@ public class CommonController {
 	public User getUserById(Long id) {
 		
 		if (id < 0) {
-			throw new RestBadRequestException (Messages.INVALID_OBJECT_ID);      
+			throw new RestBadRequestException (Messages.INVALID_OBJECT_ID);
 		}
 	
 		User user = userService.findById(id);
