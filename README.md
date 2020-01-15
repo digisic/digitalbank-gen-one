@@ -36,7 +36,10 @@ Digital Bank can be deployed as a single application service or be deployed and 
 * [Swagger](https://swagger.io/) - API Documentation
 * [Apache Maven](https://maven.apache.org/) - Software Project Management
 * [Apache Artemis](https://activemq.apache.org/components/artemis/) - Messaging Broker
-* [H2 Data Base Engine](https://www.h2database.com/html/main.html) - In-Memory Database
+* [H2 Database Engine](https://www.h2database.com/html/main.html) - In-Memory Database
+* [MSSQL Server Database Engine](https://www.microsoft.com/en-us/sql-server/default.aspx) - Microsoft SQL Server
+* [MySQL Database Engine](https://www.mysql.com/) - MySQL 
+* [PostgreSQL Database Engine](https://www.postgresql.org/) - PostgreSQL
 * [Serenity BDD](http://www.thucydides.info/#/) - Acceptance Testing Framework
 * [JUnit 5](https://junit.org/junit5/) - Unit Testing Framework
 * [CodeSV](http://codesv.io/) - Unit Testing with Mock Services
