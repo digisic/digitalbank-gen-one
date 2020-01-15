@@ -11,9 +11,9 @@ The application is an example online banking application with integrations into 
 * [Swagger](https://swagger.io/) - API Documentation
 * [Apache Maven](https://maven.apache.org/) - Software Project Management
 * [Apache Artemis](https://activemq.apache.org/components/artemis/) - Messaging Broker
+* [H2 Data Base Engine](https://www.h2database.com/html/main.html) - In-Memory Database
 * [Serenity BDD](http://www.thucydides.info/#/) - Acceptance Testing Framework
 * [JUnit 5](https://junit.org/junit5/) - Unit Testing Framework
-* [H2 Data Base Engine](https://www.h2database.com/html/main.html) - In-Memory Database
 * [CodeSV](http://codesv.io/) - Unit Testing with Mock Services
 * [BlazeMeter](https://www.blazemeter.com/) - Functional / Performance API & UI Testing Services
 
@@ -23,3 +23,7 @@ The application is an example online banking application with integrations into 
 [Mark Asbury](https://github.com/asburymr)
 
 See the additional list of [contributors](https://github.com/asburymr/Digital-Bank/graphs/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
