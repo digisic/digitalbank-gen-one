@@ -38,6 +38,10 @@ public class SearchService {
 	@Autowired
 	private Environment environment;
 	
+	// Search Service Default properties
+	private static final String DEFAULT_ATM_SEARCH_PROTOCOL 	= "https";
+	private static final String DEFAULT_ATM_SEARCH_HOSTNAME 	= "bankingservices.io";
+	
 	public List<AtmLocation> searchATMLocations (String zipcode) throws Exception {
 		
 		if (SearchService.apiBaseUrl == null) {
@@ -142,23 +146,11 @@ public class SearchService {
 	 */
 	private boolean getConnectionProperties () {
 		
-		String protocol = environment.getProperty(Constants.APP_ATM_PROTOCOL);
-		String host = environment.getProperty(Constants.APP_ATM_HOST);
-		String port = environment.getProperty(Constants.APP_ATM_PORT);
+		String protocol = environment.getProperty(Constants.APP_ATM_PROTOCOL, DEFAULT_ATM_SEARCH_PROTOCOL);
+		String host = environment.getProperty(Constants.APP_ATM_HOST, DEFAULT_ATM_SEARCH_HOSTNAME);
+		String port = environment.getProperty(Constants.APP_ATM_PORT, "");
 		
-		
-		// if protocol is null or empty, assume https
-		if (protocol == null || protocol.isEmpty()) {
-			protocol = "https";
-		}
-		
-		// if host is null or empty, assume localhost
-		if (host == null || host.isEmpty()) {
-			host = "bankingservices.io";
-		}
-		
-		SearchService.apiBaseUrl = protocol + "://"
-				 				 + host;
+		SearchService.apiBaseUrl = protocol + "://" + host;
 		
 		// check port values to see if it needs to be added to URL
 		if (port != null && !port.isEmpty()) {

@@ -46,6 +46,14 @@ public class CreditCardService {
 	private static String authToken;
 	private static HttpHeaders requestHeaders;
 	
+	// Digital Credit Default properties
+	private static final String DEFAULT_DIGTIAL_CREDIT_PROTOCOL 	= "http";
+	private static final String DEFAULT_DIGTIAL_CREDIT_HOSTNAME 	= "localhost"; 
+	private static final String DEFAULT_DIGTIAL_CREDIT_PORT 		= "8080";
+	private static final String DEFAULT_DIGTIAL_CREDIT_CONTEXT_PATH = "/credit";
+	private static final String DEFAULT_DIGTIAL_CREDIT_USERNAME 	= "admin@demo.io";
+	private static final String DEFAULT_DIGTIAL_CREDIT_PASSWORD 	= "Demo123!";
+	
 	
 	@Autowired
 	private CreditCardReferenceRepository ccReferenceRepository;
@@ -53,7 +61,7 @@ public class CreditCardService {
 	@Autowired
 	private Environment environment;
 	
-	@Autowired
+	@Autowired(required = false)
 	private CreditAppProducer creditAppProducer;
 	
 	/*
@@ -506,17 +514,29 @@ public class CreditCardService {
 	 */
 	private boolean getConnectionProperties () {
 		
-		String protocol = environment.getProperty(Constants.APP_CREDIT_PROTOCOL);
-		String host = environment.getProperty(Constants.APP_CREDIT_HOST);
-		String port = environment.getProperty(Constants.APP_CREDIT_PORT);
+		String protocol = environment.getProperty(Constants.APP_CREDIT_PROTOCOL, DEFAULT_DIGTIAL_CREDIT_PROTOCOL);
+		String host = environment.getProperty(Constants.APP_CREDIT_HOST, DEFAULT_DIGTIAL_CREDIT_HOSTNAME);
+		String port = environment.getProperty(Constants.APP_CREDIT_PORT, DEFAULT_DIGTIAL_CREDIT_PORT);
+		String contextPath = environment.getProperty(Constants.APP_CREDIT_CONTEXT_PATH, DEFAULT_DIGTIAL_CREDIT_CONTEXT_PATH);
+
+		// Add path separator in the beginning if its not there
+		if (!contextPath.startsWith("/")) {
+			contextPath = "/" + contextPath;
+		}
 		
-		CreditCardService.apiBaseUrl 	= protocol + "://"
-				 				 	+ host + ":"
-				 				 	+ port
-				 				 	+ Constants.APP_CREDIT_URI_API_BASE;
+		// Remove path separator if it exists in the end
+		if (contextPath.endsWith("/")) {
+			contextPath = contextPath.substring(0, contextPath.length()-1);
+		}
 		
-		CreditCardService.username 		= environment.getProperty(Constants.APP_CREDIT_USER);
-		CreditCardService.password		= environment.getProperty(Constants.APP_CREDIT_PASSWORD);
+		CreditCardService.apiBaseUrl = protocol + "://"
+				 				 	 + host + ":"
+				 				 	 + port
+				 				 	 + contextPath
+				 				 	 + Constants.APP_CREDIT_URI_API_BASE;
+		
+		CreditCardService.username 		= environment.getProperty(Constants.APP_CREDIT_USER, DEFAULT_DIGTIAL_CREDIT_USERNAME);
+		CreditCardService.password		= environment.getProperty(Constants.APP_CREDIT_PASSWORD, DEFAULT_DIGTIAL_CREDIT_PASSWORD);
 		
 		// Make sure values were passed in for these properties
 		if (CreditCardService.username == null || 

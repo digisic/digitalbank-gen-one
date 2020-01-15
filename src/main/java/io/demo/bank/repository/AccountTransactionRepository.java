@@ -21,7 +21,7 @@ public interface AccountTransactionRepository extends CrudRepository<AccountTran
 	public List<AccountTransaction> findAllByAccountAndAmountGreaterThanAndTransactionDateAfter (Account account, BigDecimal amount, Date date);
 	public List<AccountTransaction> findAllByAccountAndAmountLessThanAndTransactionDateAfter (Account account, BigDecimal amount, Date date);
 	
-	public List<AccountTransaction> findByAccountAndTransactionCategory (Account account, TransactionCategory category);
-	public List<AccountTransaction> findByAccountAndTransactionCategoryAndTransactionDateAfter (Account account, TransactionCategory category, Date date);
+	public List<AccountTransaction> findAllByAccountAndTransactionCategory (Account account, TransactionCategory category);
+	public List<AccountTransaction> findAllByAccountAndTransactionCategoryAndTransactionDateAfter (Account account, TransactionCategory category, Date date);
 
 }

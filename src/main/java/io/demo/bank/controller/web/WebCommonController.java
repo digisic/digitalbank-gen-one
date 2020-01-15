@@ -38,8 +38,8 @@ abstract class WebCommonController {
 	private static final String MODEL_ATT_APP_VERSION			= "appVersion";
 	private static final String MODEL_ATT_APP_NAME				= "appName";
 	private static final String MODEL_ATT_APP_BUILD_DATE		= "appBuildDate";
-	private static final String MODEL_VAL_AVATAR_MALE			= "/images/admin.jpg";
-	private static final String MODEL_VAL_AVATAR_FEMALE			= "/images/avatar/5.jpg";
+	private static final String MODEL_VAL_AVATAR_MALE			= "admin.jpg";
+	private static final String MODEL_VAL_AVATAR_FEMALE			= "avatar/5.jpg";
 	
 	// public model attribute constants -> Common
 	public static final String MODEL_ATT_ERROR_MSG				= "errorMsg";

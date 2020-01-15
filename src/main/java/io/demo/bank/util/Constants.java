@@ -256,6 +256,7 @@ public class Constants {
 	public static final String APP_CREDIT_PROTOCOL					= "io.demo.credit.protocol";
 	public static final String APP_CREDIT_HOST						= "io.demo.credit.host";
 	public static final String APP_CREDIT_PORT						= "io.demo.credit.port";
+	public static final String APP_CREDIT_CONTEXT_PATH				= "io.demo.credit.context-path";
 	public static final String APP_CREDIT_USER						= "io.demo.credit.username";
 	public static final String APP_CREDIT_PASSWORD					= "io.demo.credit.password";
 	public static final String APP_ATM_PROTOCOL						= "io.demo.bank.atm.protocol";

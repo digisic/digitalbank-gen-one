@@ -6,7 +6,7 @@
 	<groupId>io.demo</groupId>
 	<artifactId>digitalbank</artifactId>
 	<version>${revision}</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>Digital Bank</name>
 	<description>Digital Online Banking Sample Application</description>
@@ -39,9 +39,10 @@
         <tags></tags>
         <parallel.tests>1</parallel.tests>
         <webdriver.driver>firefox</webdriver.driver>
-        <webdriver.base.url>http://localhost:8080/</webdriver.base.url>
+        <webdriver.base.url>http://localhost:8080/bank/</webdriver.base.url>
         <buildNumber>local</buildNumber>
-        <revision>1.0.1.${buildNumber}</revision>
+        <revision>2.0.0.${buildNumber}</revision>
+        <contextPathName>bank</contextPathName>
 	</properties>
 	
 	<dependencyManagement>
@@ -60,11 +61,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -310,7 +306,21 @@
 			          </goals>
 			        </execution> 
 				</executions>
-			</plugin>    
+			</plugin>
+			<plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-war-plugin</artifactId>
+            	<configuration>
+                <archive>
+                	<addMavenDescriptor>false</addMavenDescriptor>
+                    <manifest>
+                        <addClasspath>true</addClasspath>
+                        <classpathPrefix>lib/</classpathPrefix>
+                    </manifest>
+                </archive>
+                <warName>${contextPathName}##${revision}</warName>
+            </configuration>
+        </plugin>   
 			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>

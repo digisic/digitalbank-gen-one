@@ -12,8 +12,8 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="/"><img src="/images/logo.png" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="/"><img src="/images/logo2.png" alt="Logo"></a>
+                <a class="navbar-brand" th:href="@{/}"><img th:src="@{/images/logo.png}" alt="Logo"></a>
+                <a class="navbar-brand hidden" th:href="@{/}"><img th:src="@{/images/logo2.png}" alt="Logo"></a>
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
@@ -60,21 +60,6 @@
                         </ul>
                     </li>
                     
-             <!--         <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Checks</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa ti-hand-stop"></i><a th:href="@{/home}">Stop Payment</a></li>
-                            <li><i class="fa fa-spinner"></i><a th:href="@{/home}">Reorder Checks</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart-o"></i>Reporting</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-file-text"></i><a th:href="@{/home}">eStatements</a></li>
-                            <li><i class="menu-icon fa fa-tachometer"></i><a th:href="@{/home}">Account Reporting</a></li>
-                        </ul>
-                    </li>
-			-->
                     <h3 class="menu-title">Transfers / Payments</h3><!-- /.menu-title -->
 
                     <li class="menu-item-has-children dropdown">
@@ -83,25 +68,7 @@
                             <li><i class="menu-icon fa fa-chain"></i><a th:href="@{/account/xfer-between}">Between Accounts</a></li>
                         </ul>
                     </li>
-            <!--         <li>
-                        <a th:href="@{/home}"> <i class="menu-icon fa fa-stack-exchange"></i>Loans </a>
-                    </li>
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-money"></i>External Transfers</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-line-chart"></i><a th:href="@{/home}">Money Market</a></li>
-                            <li><i class="menu-icon fa fa-area-chart"></i><a th:href="@{/home}">Business</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>People</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-user"></i><a th:href="@{/home}">Person</a></li>
-                            <li><i class="menu-icon fa fa-group"></i><a th:href="@{/home}">Member</a></li>
-                        </ul>
-                    </li>
-           -->          
+         
            			<h3 class="menu-title">3rd Party Transfers</h3><!-- /.menu-title -->
 
                     <li class="menu-item-has-children dropdown">
@@ -190,23 +157,16 @@
                 </div>
 
                 <div class="col-sm-5">
-                
-                	
-					
                     <div class="user-area dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" th:src="${avatar}" alt="User Avatar"></img>
+                            <img class="user-avatar rounded-circle" th:src="@{/images/} + ${avatar}" alt="User Avatar"></img>
                         </a>
-
                         <div class="user-menu dropdown-menu">
                                 <a class="nav-link" th:href="@{/user/profile}"><i class="fa fa- user"></i>My Profile</a>
                                 <a class="nav-link" th:href="@{/user/password}"><i class="fa fa- user"></i>Change Password</a>
                                 <a class="nav-link" th:href="@{/logout}"><i class="fa fa-power -off"></i>Logout</a> 
                         </div>
                     </div>
-                    
-                    
-
                     <div class="language-select dropdown" id="language-select">
                         <a class="dropdown-toggle" href="#" data-toggle="dropdown"  id="language" aria-haspopup="true" aria-expanded="true">
                             <i class="flag-icon flag-icon-us"></i>
@@ -215,12 +175,9 @@
                     
                     <div class="user-area dropdown">
                     	<a class="user-avatar rounded-circle" data-toggle="modal" href="#aboutModal" id="aboutLink">
-                    	<!--  	<img class="user-avatar rounded-circle"  src="/images/info.png" alt="About"></img> -->
                     	<i class="ti-help-alt text-primary border-primary"></i>
                     	</a>
 					</div>
-                    
-                    
                 </div>
                 
                  <!--  About Modal Begin -->
@@ -228,7 +185,7 @@
 		       		<div class="modal-dialog modal-sm" role="document">
 		           		<div class="modal-content">
 		               		<div class="modal-header">
-		               			<a href="#"><img class="align-self-center rounded-circle mr-3" style="width:40px; height:40px;" alt="" src="/favicon.ico"></a>
+		               			<a href="#"><img class="align-self-center rounded-circle mr-3" style="width:40px; height:40px;" alt="" th:src="@{/favicon.ico}"></a>
 		                   		<h3 class="modal-title" id="aboutModalTitle" th:text="${appName}"></h3>
 		                   		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 	<span aria-hidden="true">×</span>

@@ -93,5 +93,20 @@
     "name": "io.demo.partner.credit.app.request",
     "type": "java.lang.String",
     "description": "A description for 'io.demo.partner.credit.app.request'"
+  },
+  {
+    "name": "io.demo.credit.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.credit.enabled'"
+  },
+  {
+    "name": "io.demo.credit.context-path",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.credit.context-path'"
+  },
+  {
+    "name": "io.demo.credit.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.credit.enabled'"
   }
 ]}

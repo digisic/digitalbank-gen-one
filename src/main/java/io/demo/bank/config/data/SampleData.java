@@ -168,12 +168,12 @@ public class SampleData implements CommandLineRunner, Ordered {
 			AccountTransaction transaction = new AccountTransaction();
 			
 			// Go back 6 months
-			monthlyCalendar.roll(Calendar.MONTH, -6);
+			monthlyCalendar.add(Calendar.MONTH, -6);
 			
 			// Roll the time forward some random value
 			dailyCalendar.setTime(monthlyCalendar.getTime());
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 					
 			// Create Personal Savings Account
 			LOG.info("** Loading Account " + SMPL_PERSONAL_SAVINGS + " ...");
@@ -187,23 +187,23 @@ public class SampleData implements CommandLineRunner, Ordered {
 			accountService.createNewAccount(personalSavings);
 			
 			// Go forward 1 month - month 1 of 6
-			monthlyCalendar.roll(Calendar.MONTH, 1);
-			monthlyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 3));
+			monthlyCalendar.add(Calendar.MONTH, 1);
+			monthlyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 3));
 			
 			// Add monthly interest
 			addInterestTransaction(personalSavings, transaction, monthlyCalendar);
 			
 			
 			// Go forward 1 month - month 2 of 6
-			monthlyCalendar.roll(Calendar.MONTH, 1);
-			monthlyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 3) * -1);
+			monthlyCalendar.add(Calendar.MONTH, 1);
+			monthlyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 3) * -1);
 			
 			// Add monthly interest
 			addInterestTransaction(personalSavings, transaction, monthlyCalendar);
 			
 			// Go forward 1 month - month 3 of 6
-			monthlyCalendar.roll(Calendar.MONTH, 1);
-			monthlyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 3));
+			monthlyCalendar.add(Calendar.MONTH, 1);
+			monthlyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 3));
 			
 			// Add monthly interest
 			addInterestTransaction(personalSavings, transaction, monthlyCalendar);
@@ -211,8 +211,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			// Roll the time forward some random value
 			dailyCalendar.setTime(monthlyCalendar.getTime());
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(5, 12));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			// Add a Deposit
 			transaction = new AccountTransaction();
@@ -224,22 +224,22 @@ public class SampleData implements CommandLineRunner, Ordered {
 			accountService.creditTransaction(personalSavings, transaction);
 			
 			// Go forward 1 month - month 4 of 6
-			monthlyCalendar.roll(Calendar.MONTH, 1);
-			monthlyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 3) * -1);
+			monthlyCalendar.add(Calendar.MONTH, 1);
+			monthlyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 3) * -1);
 			
 			// Add monthly interest
 			addInterestTransaction(personalSavings, transaction, monthlyCalendar);
 			
 			// Go forward 1 month - month 5 of 6
-			monthlyCalendar.roll(Calendar.MONTH, 1);
-			monthlyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 3));
+			monthlyCalendar.add(Calendar.MONTH, 1);
+			monthlyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 3));
 			
 			// Add monthly interest
 			addInterestTransaction(personalSavings, transaction, monthlyCalendar);
 			
 			// Go forward 1 month - month 6 of 6
-			monthlyCalendar.roll(Calendar.MONTH, 1);
-			monthlyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 3) * -1);
+			monthlyCalendar.add(Calendar.MONTH, 1);
+			monthlyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 3) * -1);
 			
 			// Add monthly interest
 			addInterestTransaction(personalSavings, transaction, monthlyCalendar);
@@ -254,12 +254,12 @@ public class SampleData implements CommandLineRunner, Ordered {
 			dailyCalendar.setTime(new Date());
 			
 			// Go back 2 months
-			monthlyCalendar.roll(Calendar.MONTH, -2);
+			monthlyCalendar.add(Calendar.MONTH, -2);
 			
 			// Roll the time forward some random value
 			dailyCalendar.setTime(monthlyCalendar.getTime());
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			// Create Joint Savings Account
 			LOG.info("** Loading Account " + SMPL_JOINT_SAVINGS + " ...");
@@ -276,8 +276,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			// Roll the time forward some random value
 			dailyCalendar.setTime(monthlyCalendar.getTime());
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(5, 12));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			// Make a Deposit
 			transaction = new AccountTransaction();
@@ -289,8 +289,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			accountService.creditTransaction(jointSavings, transaction);
 			
 			// Go forward 1 month - month 1 of 2
-			monthlyCalendar.roll(Calendar.MONTH, 1);
-			monthlyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 3));
+			monthlyCalendar.add(Calendar.MONTH, 1);
+			monthlyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 3));
 			
 			// Add monthly interest
 			addInterestTransaction(jointSavings, transaction, monthlyCalendar);
@@ -298,8 +298,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			// Roll the time forward some random value
 			dailyCalendar.setTime(monthlyCalendar.getTime());
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(5, 12));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			// Make a Deposit
 			transaction = new AccountTransaction();
@@ -313,8 +313,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			// Roll the time forward some random value
 			dailyCalendar.setTime(monthlyCalendar.getTime());
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(5, 12));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			// Make a Deposit
 			transaction = new AccountTransaction();
@@ -327,8 +327,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			
 			// Go forward 1 month - month 2 of 2
-			monthlyCalendar.roll(Calendar.MONTH, 1);
-			monthlyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 3) * -1);
+			monthlyCalendar.add(Calendar.MONTH, 1);
+			monthlyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 3) * -1);
 			
 			// Add monthly interest
 			addInterestTransaction(jointSavings, transaction, monthlyCalendar);
@@ -347,12 +347,12 @@ public class SampleData implements CommandLineRunner, Ordered {
 			dailyCalendar.setTime(new Date());
 			
 			// Go back 3 months
-			monthlyCalendar.roll(Calendar.MONTH, -2);
+			monthlyCalendar.add(Calendar.MONTH, -2);
 			
 			// Roll the time forward some random value
 			dailyCalendar.setTime(monthlyCalendar.getTime());
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 23));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 23));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			// Create Joint Checking Account
 			LOG.info("** Loading Account " + SMPL_JOINT_CHECKING + " ...");
@@ -368,8 +368,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Roll the time forward some random value
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(minDay, maxDay));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			transaction = new AccountTransaction();
 			transaction.setTransactionDate(dailyCalendar.getTime());
@@ -381,8 +381,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Roll the time forward some random value
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(minDay, maxDay));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			transaction = new AccountTransaction();
 			transaction.setTransactionDate(dailyCalendar.getTime());
@@ -394,8 +394,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Roll the time forward some random value
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(minDay, maxDay));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			transaction = new AccountTransaction();
 			transaction.setTransactionDate(dailyCalendar.getTime());
@@ -407,8 +407,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Roll the time forward some random value
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(minDay, maxDay));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			transaction = new AccountTransaction();
 			transaction.setTransactionDate(dailyCalendar.getTime());
@@ -420,8 +420,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Roll the time forward some random value
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(minDay, maxDay));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			transaction = new AccountTransaction();
 			transaction.setTransactionDate(dailyCalendar.getTime());
@@ -433,8 +433,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Roll the time forward some random value
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(minDay, maxDay));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			transaction = new AccountTransaction();
 			transaction.setTransactionDate(dailyCalendar.getTime());
@@ -446,8 +446,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Roll the time forward some random value
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(minDay, maxDay));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			transaction = new AccountTransaction();
 			transaction.setTransactionDate(dailyCalendar.getTime());
@@ -459,8 +459,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Roll the time forward some random value
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(minDay, maxDay));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			transaction = new AccountTransaction();
 			transaction.setTransactionDate(dailyCalendar.getTime());
@@ -469,8 +469,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Roll the time forward some random value
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(minDay, maxDay));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			transaction = new AccountTransaction();
 			transaction.setTransactionDate(dailyCalendar.getTime());
@@ -482,8 +482,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Roll the time forward some random value
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(minDay, maxDay));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			transaction = new AccountTransaction();
 			transaction.setTransactionDate(dailyCalendar.getTime());
@@ -495,8 +495,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Roll the time forward some random value
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(minDay, maxDay));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			transaction = new AccountTransaction();
 			transaction.setTransactionDate(dailyCalendar.getTime());
@@ -508,8 +508,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Roll the time forward some random value
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(minDay, maxDay));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			transaction = new AccountTransaction();
 			transaction.setTransactionDate(dailyCalendar.getTime());
@@ -521,8 +521,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Roll the time forward some random value
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(minDay, maxDay));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			transaction = new AccountTransaction();
 			transaction.setTransactionDate(dailyCalendar.getTime());
@@ -534,8 +534,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Roll the time forward some random value
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(minDay, maxDay));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			transaction = new AccountTransaction();
 			transaction.setTransactionDate(dailyCalendar.getTime());
@@ -547,8 +547,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Roll the time forward some random value
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(minDay, maxDay));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			transaction = new AccountTransaction();
 			transaction.setTransactionDate(dailyCalendar.getTime());
@@ -560,8 +560,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Roll the time forward some random value
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(minDay, maxDay));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			transaction = new AccountTransaction();
 			transaction.setTransactionDate(dailyCalendar.getTime());
@@ -573,8 +573,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Roll the time forward some random value
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(minDay, maxDay));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			transaction = new AccountTransaction();
 			transaction.setTransactionDate(dailyCalendar.getTime());
@@ -586,8 +586,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Roll the time forward some random value
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(minDay, maxDay));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			transaction = new AccountTransaction();
 			transaction.setTransactionDate(dailyCalendar.getTime());
@@ -599,8 +599,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Roll the time forward some random value
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(minDay, maxDay));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			transaction = new AccountTransaction();
 			transaction.setTransactionDate(dailyCalendar.getTime());
@@ -612,8 +612,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Roll the time forward some random value
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(minDay, maxDay));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			transaction = new AccountTransaction();
 			transaction.setTransactionDate(dailyCalendar.getTime());
@@ -622,8 +622,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Roll the time forward some random value
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(minDay, maxDay));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			transaction = new AccountTransaction();
 			transaction.setTransactionDate(dailyCalendar.getTime());
@@ -635,8 +635,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Roll the time forward some random value
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(minDay, maxDay));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			transaction = new AccountTransaction();
 			transaction.setTransactionDate(dailyCalendar.getTime());
@@ -648,8 +648,8 @@ public class SampleData implements CommandLineRunner, Ordered {
 			
 			// Roll the time forward some random value
 			dailyCalendar = addDays(dailyCalendar, faker.random().nextInt(minDay, maxDay));
-			dailyCalendar.roll(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
-			dailyCalendar.roll(Calendar.MINUTE, faker.random().nextInt(1, 59));
+			dailyCalendar.add(Calendar.HOUR_OF_DAY, faker.random().nextInt(1, 6));
+			dailyCalendar.add(Calendar.MINUTE, faker.random().nextInt(1, 59));
 			
 			transaction = new AccountTransaction();
 			transaction.setTransactionDate(dailyCalendar.getTime());
@@ -696,27 +696,27 @@ public class SampleData implements CommandLineRunner, Ordered {
 		current.setTime(calendar.getTime());
 		today.setTime(new Date());
 		
-		calendar.roll(Calendar.DATE, days);
+		calendar.add(Calendar.DATE, days);
 		
 		if (calendar.before(current)) {
 			
-			// If it is December then roll to January of next year
+			// If it is December then add to January of next year
 			if (current.get(Calendar.MONTH) == Calendar.DECEMBER) {
 				
-				calendar.roll(Calendar.YEAR, 1);
+				calendar.add(Calendar.YEAR, 1);
 				calendar.set(Calendar.MONTH, Calendar.JANUARY);
 				
 			} 
-			else  // roll to the next month
+			else  // add to the next month
 			{
-				calendar.roll(Calendar.MONTH, 1);
+				calendar.add(Calendar.MONTH, 1);
 			}
 			
 		} 
-		// If we go past current date and time, then roll back 1 day
+		// If we go past current date and time, then add back 1 day
 		if (calendar.after(today)) {
 			calendar.setTime(today.getTime());
-			calendar.roll(Calendar.DATE, -1);
+			calendar.add(Calendar.DATE, -1);
 		}
 		
 		return calendar;

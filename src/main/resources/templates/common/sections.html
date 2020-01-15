@@ -9,19 +9,18 @@
    	<meta name="description" content="Digital Bank"/>
    	<meta name="viewport" content="width=device-width, initial-scale=1"/>
    
-   	<link rel="apple-touch-icon" href="/images/apple-icon.png"/>
-   	<link rel="stylesheet" href="/css/normalize.css"/>
-   	<link rel="stylesheet" href="/css/bootstrap.min.css"/>
-   	<link rel="stylesheet" href="/css/font-awesome.min.css"/>
-   	<link rel="stylesheet" href="/css/themify-icons.css"/>
-   	<link rel="stylesheet" href="/css/flag-icon.min.css"/>
-   	<link rel="stylesheet" href="/css/cs-skin-elastic.css"/>
-   	<link rel="stylesheet" href="/scss/style.css"/>
-   	<link rel="stylesheet" href="/css/google-fonts-opensans.css" type="text/css"/>
-   	<link rel="stylesheet" href="/css/jquery-ui.css"/>
-   	
-   	<link rel="icon" href="/favicon.ico">
-   	<link rel="shortcut icon" href="/favicon.ico">
+   	<link rel="apple-touch-icon" th:href="@{/images/apple-icon.png}"/>
+   	<link rel="stylesheet" th:href="@{/css/normalize.css}"/>
+   	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+   	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
+   	<link rel="stylesheet" th:href="@{/css/themify-icons.css}"/>
+   	<link rel="stylesheet" th:href="@{/css/flag-icon.min.css}"/>
+   	<link rel="stylesheet" th:href="@{/css/cs-skin-elastic.css}"/>
+   	<link rel="stylesheet" th:href="@{/scss/style.css}"/>
+   	<link rel="stylesheet" th:href="@{/css/google-fonts-opensans.css}" type="text/css"/>
+   	<link rel="stylesheet" th:href="@{/css/jquery-ui.css}"/>
+   	<link rel="icon" th:href="@{/favicon.ico}">
+   	<link rel="shortcut icon" th:href="@{/favicon.ico}">
 
 </head>
 
@@ -29,19 +28,19 @@
 <body>
 
 <div th:fragment="footer-scripts">
-    <script src="/js/vendor/jquery-2.1.4.min.js"></script>
-    <script src="/js/vendor/jquery-1.12.4.js"></script>
-    <script src="/js/vendor/jquery-ui.js"></script>
-    <script src="/js/popper.min.js"></script>
-    <script src="/js/plugins.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/dashboard.js"></script>
-    <script src="/js/widgets.js"></script>
-    <script src="/js/lib/chart-js/Chart.bundle.js"></script>
-    <script src="/js/lib/vector-map/jquery.vmap.js"></script>
-    <script src="/js/lib/vector-map/jquery.vmap.min.js"></script>
-    <script src="/js/lib/vector-map/jquery.vmap.sampledata.js"></script>
-    <script src="/js/lib/vector-map/country/jquery.vmap.world.js"></script>
+    <script th:src="@{/js/vendor/jquery-2.1.4.min.js}"></script>
+    <script th:src="@{/js/vendor/jquery-1.12.4.js}"></script>
+    <script th:src="@{/js/vendor/jquery-ui.js}"></script>
+    <script th:src="@{/js/popper.min.js}"></script>
+    <script th:src="@{/js/plugins.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/dashboard.js}"></script>
+    <script th:src="@{/js/widgets.js}"></script>
+    <script th:src="@{/js/lib/chart-js/Chart.bundle.js}"></script>
+    <script th:src="@{/js/lib/vector-map/jquery.vmap.js}"></script>
+    <script th:src="@{/js/lib/vector-map/jquery.vmap.min.js}"></script>
+    <script th:src="@{/js/lib/vector-map/jquery.vmap.sampledata.js}"></script>
+    <script th:src="@{/js/lib/vector-map/country/jquery.vmap.world.js}"></script>
 
     <script>
         ( function ( $ ) {

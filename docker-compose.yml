@@ -1,0 +1,106 @@
+version: "3.5"
+services:
+
+# =====================================================================
+# Digital Broker Service Configuration
+# =====================================================================
+  broker:
+    image: asburymr/digitalbroker:latest
+    container_name: broker
+    ports:
+      - "8161:8161"
+      - "61616:61616"
+    networks:
+      - digitalbank
+    restart: unless-stopped
+
+# =====================================================================
+# Digital Credit Service Configuration
+# =====================================================================    
+  credit:
+    image: asburymr/digitalcredit:2.0.0.102
+    container_name: credit
+    environment:
+
+      # Debug Options
+      LOGGING_LEVEL_IO_DEMO_CREDIT: INFO
+
+      # Digital Broker Connection
+      SPRING_ARTEMIS_MODE: native
+      SPRING_ARTEMIS_HOST: broker
+      SPRING_ARTEMIS_PORT: 61616
+      SPRING_ARTEMIS_USER: admin
+      SPRING_ARTEMIS_PASSWORD: admin
+
+      # Credit Application Process
+      IO_DEMO_CREDIT_APP_PROCESS_ENABLED: 'true'
+      IO_DEMO_CREDIT_APP_PROCESS_TIME: 20
+
+      # Digital Credit Application Process JMS Queues
+      IO_DEMO_PARTNER_CREDIT_APP_REQUEST: CREDIT.APP.REQUEST
+      IO_DEMO_PARTNER_CREDIT_APP_RESPONSE: CREDIT.APP.RESPONSE
+
+    ports:
+      - "3500:8080"
+    networks:
+      - digitalbank
+    depends_on:
+      - broker
+    restart: unless-stopped
+
+# =====================================================================
+# Digital Bank Service Configuration
+# =====================================================================
+  bank:
+    image: asburymr/digitalbank:2.0.0.102
+    container_name: bank
+    environment:
+
+      # Debug Options
+      LOGGING_LEVEL_IO_DEMO_BANK: INFO
+      
+      # Digital Broker connection
+      SPRING_ARTEMIS_MODE: native
+      SPRING_ARTEMIS_HOST: broker
+      SPRING_ARTEMIS_PORT: 61616
+      SPRING_ARTEMIS_USER: admin
+      SPRING_ARTEMIS_PASSWORD: admin
+
+      # Digital Credit Connection
+      IO_DEMO_CREDIT_ENABLED: 'true'
+      IO_DEMO_CREDIT_PROTOCOL: http
+      IO_DEMO_CREDIT_HOST: credit
+      IO_DEMO_CREDIT_PORT: 8080
+      IO_DEMO_CREDIT_CONTEXT-PATH: /credit
+      IO_DEMO_CREDIT_USERNAME: admin@demo.io
+      IO_DEMO_CREDIT_PASSWORD: Demo123!
+
+      # Digital Credit Application Process JMS Queues
+      IO_DEMO_PARTNER_CREDIT_APP_REQUEST: CREDIT.APP.REQUEST
+      IO_DEMO_PARTNER_CREDIT_APP_RESPONSE: CREDIT.APP.RESPONSE
+
+      # ATM Location Service Connection 
+      IO_DEMO_BANK_ATM_PROTOCOL: https
+      IO_DEMO_BANK_ATM_HOST: bankingservices.io # uat-api.synapsefi.com #
+      IO_DEMO_BANK_ATM_PORT: 
+
+      # VISA Direct Payment Service
+      IO_DEMO_BANK_VISA_PROTOCOL: https
+      IO_DEMO_BANK_VISA_HOST: creditservices.io
+      IO_DEMO_BANK_VISA_PORT:
+
+    ports:
+      - "8080:8080"
+    networks:
+      - digitalbank
+    depends_on:
+      - broker
+      - credit
+    restart: unless-stopped
+      
+# =====================================================================
+# Docker Network Configuration
+# =====================================================================
+networks:
+  digitalbank:
+

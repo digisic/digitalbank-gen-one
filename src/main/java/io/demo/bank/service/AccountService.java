@@ -68,10 +68,10 @@ public class AccountService {
 	 */
 	public List<List<String>> getChartDataTransactionByCategory(Users user) {
 		
-		//
+		// Get Calendar today and roll back 3 months
 		GregorianCalendar monthlyCalendar = new GregorianCalendar();
 		monthlyCalendar.setTime(new Date());
-		monthlyCalendar.roll(Calendar.MONTH, -3);
+		monthlyCalendar.add(Calendar.MONTH, -3);
 		
 		// Get all of the user accounts
 		List<Account> accounts = getAllAccounts(user);
@@ -101,6 +101,8 @@ public class AccountService {
 		// get the available categories
 		List<TransactionCategory> categories = getTransactionCategory();
 		
+		LOG.debug("Chart Data - Transaction By Category: Total Accounts Found: " + accounts.size());
+		
 		// For each category get transactions and sum them
 		for (int i = 0; i < categories.size(); i++) {
 			
@@ -112,7 +114,12 @@ public class AccountService {
 			// For each account
 			for (int j = 0; j < accounts.size(); j++) {
 				List<AccountTransaction> atl = accountTransactionRepository
-											  .findByAccountAndTransactionCategoryAndTransactionDateAfter(accounts.get(j), categories.get(i), monthlyCalendar.getTime());
+											  .findAllByAccountAndTransactionCategoryAndTransactionDateAfter(accounts.get(j), categories.get(i), monthlyCalendar.getTime());
+				
+				LOG.debug("Chart Data - Transaction By Category: Account: " + accounts.get(j).getName());
+				LOG.debug("Chart Data - Transaction By Category: Category: " + categories.get(i).getName());
+				LOG.debug("Chart Data - Transaction By Category: After Date: " + monthlyCalendar.getTime());
+				LOG.debug("Chart Data - Transaction By Category: Transactions: " + atl.size());
 				
 				// if we have some transactions for this category
 				if (atl.size() > 0) {
@@ -120,6 +127,8 @@ public class AccountService {
 					for (int k = 0; k < atl.size(); k++) {
 						
 						double amount = atl.get(k).getAmount().doubleValue();
+						
+						LOG.debug("Evaluating amount: " + amount);
 						
 						if (amount < 0) { // debit
 							debitTrans = true;
@@ -132,6 +141,10 @@ public class AccountService {
 					} // end for each transaction sum
 						
 				} // end if transactions
+				
+				LOG.debug("Chart Data (Transaction By Category): Credit Sum(" + accounts.get(j).getName() + "): " + creditSum);
+				LOG.debug("Chart Data (Transaction By Category): Debit Sum(" + accounts.get(j).getName() + "): " + debitSum);
+				
 				
 			} // end for each account
 			
@@ -198,6 +211,8 @@ public class AccountService {
 		data.add(creditSums);
 		data.add(creditColors);
 		
+		LOG.debug("Chart Data (Transaction By Category): " + data.toString());
+		
 		return data;
 	}
 	
@@ -209,7 +224,7 @@ public class AccountService {
 		// Use Calendar to shift the date back 3 months for transactions 
 		GregorianCalendar monthlyCalendar = new GregorianCalendar();
 		monthlyCalendar.setTime(new Date());
-		monthlyCalendar.roll(Calendar.MONTH, -3);
+		monthlyCalendar.add(Calendar.MONTH, -3);
 		
 		// Get all of the user accounts
 		List<Account> accounts = getAllAccounts(user);

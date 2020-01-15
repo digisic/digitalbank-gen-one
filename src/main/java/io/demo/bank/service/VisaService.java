@@ -32,11 +32,13 @@ public class VisaService {
 	
 	// Visa Service URL
 	private static String apiBaseUrl;
-
 	
 	@Autowired
 	private Environment environment;
-		
+	
+	// Visa Service Default properties
+	private static final String DEFAULT_VISA_PROTOCOL 	= "https";
+	private static final String DEFAULT_VISA_HOSTNAME 	= "creditservices.io"; 	
 	
 	public List<String> directVisaPayment (String extAccount, String extAmount)	throws Exception {
 		
@@ -156,22 +158,11 @@ public class VisaService {
 	 */
 	private boolean getConnectionProperties () {
 		
-		String protocol = environment.getProperty(Constants.APP_VISA_PROTOCOL);
-		String host = environment.getProperty(Constants.APP_VISA_HOST);
-		String port = environment.getProperty(Constants.APP_VISA_PORT);
+		String protocol = environment.getProperty(Constants.APP_VISA_PROTOCOL, DEFAULT_VISA_PROTOCOL);
+		String host = environment.getProperty(Constants.APP_VISA_HOST, DEFAULT_VISA_HOSTNAME);
+		String port = environment.getProperty(Constants.APP_VISA_PORT, "");
 		
-		// if protocol is null or empty, assume https
-		if (protocol == null || protocol.isEmpty()) {
-			protocol = "https";
-		}
-		
-		// if host is null or empty, assume localhost
-		if (host == null || host.isEmpty()) {
-			host = "creditservices.io";
-		}
-		
-		VisaService.apiBaseUrl = protocol + "://"
-				 				 + host;
+		VisaService.apiBaseUrl = protocol + "://" + host;
 		
 		// check port values to see if it needs to be added to URL
 		if (port != null && !port.isEmpty()) {
