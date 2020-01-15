@@ -3,6 +3,9 @@
 Digital Bank is a sample application that was developed for exploratory purposes to examine development frameworks and techniques.
 The application is an example online banking application with integrations into other services.
 
+Banking User Dashboard
+![](images/dashboard.png)
+
 ## Built With
 
 * [Sufee Admin Dashboard](https://github.com/rockmantic2018/sufee-admin-dashboard-master) - A HTML5 Dashboard Template
