@@ -3,8 +3,30 @@
 Digital Bank is a sample application that was developed for exploratory purposes to examine development frameworks and techniques.
 The application is an example online banking application with integrations into other services.
 
-Banking User Dashboard
-![](images/dashboard.png)
+## Getting Started
+
+This project is a Apache Maven based project. Using either an Eclipse IDE or an IntelliJ, import the source code as an Existing Maven Project. 
+
+## Prerequisites
+
+* Java SDK 8 - Required only for JUnit tests using CodeSV mock services.
+
+## Running Tests
+
+* JUnit Tests - mvn clean test
+* Serenity BDD Acceptance Tests - mvn clean verify
+
+Serenity BDD tests use Cucumber Feature file definitions. 
+* UI Tests are executed using the Selenium Java framework.
+* API Test are executed using the Rest Assured Java framework.
+
+Use -Dcucumber.options="--tags @login" to filter test execution based on Feature or Scenario tags defined within the feature files.
+
+## Deployment
+Digital Bank can be deployed as a single application service or be deployed and configured to integrate with Digital Credit.
+
+* [WAR Package Deployment](https://bintray.com/asburymr/Digital-Bank/Digital-Bank) - Deploy the WAR file into an existing Tomcat instance under ${catalina.bas}/webapps folder. Deploy the digitalbank.properites file into the ${catalina.base}/conf folder.
+* [Docker Deployment](https://hub.docker.com/r/asburymr/digitalbank)
 
 ## Built With
 
