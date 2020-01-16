@@ -23,7 +23,7 @@ public class SearchController extends CommonController {
 	
 	
 	@Autowired
-	private SearchService searchService;
+	private SearchService searchService;       
 	
 	/*
 	 * Search ATM Locations by ZipCode
