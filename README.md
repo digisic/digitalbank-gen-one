@@ -29,7 +29,9 @@ Digital Bank can be deployed as a single standalone application service or be de
 
 * [WAR Package Deployment](https://bintray.com/asburymr/Digital-Bank/Digital-Bank)
   * Copy the WAR file into an existing Tomcat instance under ${catalina.base}/webapps folder. 
-  * (Optional) Copy the digitalbank.properites file into the ${catalina.base}/conf folder. Use to customize the configuration of the application.
+  * (Optional) Copy the application.properites file into the ${catalina.base}/conf folder and rename it to digitalbank.properties. 
+    * Use to customize the configuration of the application.
+    * The digitalbank.properties file is configured to be a "watched resource" in the deployment context. Any updates to the digitalbank.properties file will automatically trigger Tomcat to recycle the application to pick up the new changes.
   * Start the Tomcat service.
   * A digitalbank.log file will be created within ${catalina.base}/logs.
 * [Docker Deployment](https://hub.docker.com/r/asburymr/digitalbank)
@@ -53,6 +55,7 @@ Digital Bank can be deployed as a single standalone application service or be de
 * [Thymeleaf](https://www.thymeleaf.org/) - Server-Side Java Template
 * [Swagger](https://swagger.io/) - API Documentation
 * [Apache Maven](https://maven.apache.org/) - Software Project Management
+* [Apache Tomcat](http://tomcat.apache.org/) - Application Server / Servlet Engine
 * [Apache Artemis](https://activemq.apache.org/components/artemis/) - Messaging Broker
 * [H2 Database Engine](https://www.h2database.com/html/main.html) - In-Memory Database
 * [MSSQL Server Database Engine](https://www.microsoft.com/en-us/sql-server/default.aspx) - Microsoft SQL Server
