@@ -30,7 +30,7 @@ Digital Bank can be deployed as a single standalone application service or be de
 
 * [WAR Package Deployment](https://bintray.com/asburymr/Digital-Bank/Digital-Bank)
   * Copy the WAR file into an existing Tomcat instance under ${catalina.base}/webapps folder. 
-  * (Optional) Copy the application.properites file into the ${catalina.base}/conf folder and rename it to digitalbank.properties. 
+  * (Optional) Copy the digitalbank.properites file into the ${catalina.base}/conf folder. 
     * Use to customize the configuration of the application.
     * The digitalbank.properties file is configured to be a "watched resource" in the deployment context. Any updates to the digitalbank.properties file will automatically trigger Tomcat to recycle the application to pick up the new changes.
   * Start the Tomcat service.
