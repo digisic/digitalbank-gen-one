@@ -10,7 +10,7 @@ Digital Bank is a sample application that was developed for exploratory purposes
 
 * Java SDK 8 - Required only for JUnit tests using CodeSV mock services.
 
-## Running Tests
+## Executing Tests
 
 * JUnit Tests - Execute "mvn clean test"
 * Serenity BDD Acceptance Tests - Execute "mvn clean verify"
@@ -22,6 +22,7 @@ Digital Bank is a sample application that was developed for exploratory purposes
 ## Packaging
 
 * To create a deployment package, execute "mvn clean package -DbuildNumber={###}"
+* To create a new Docker image, update the [Dockerfile](Dockerfile) with the latest build number and then execute "docker build -t {imageName}:{imageTag} ."
 
 ## Deployment
 
