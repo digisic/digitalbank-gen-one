@@ -30,7 +30,7 @@ Digital Bank is a sample application that was developed for exploratory purposes
 
 Digital Bank can be deployed as a single standalone application service or be deployed and configured to integrate with Digital Credit.
 
-* [WAR Package Deployment](https://bintray.com/asburymr/Digital-Bank/Digital-Bank)
+* [WAR Package Deployment](https://dl.bintray.com/asburymr/digitalbank/)
   * Copy the WAR file into an existing Tomcat instance under ${catalina.base}/webapps folder. 
   * (Optional) Copy the digitalbank.properites file into the ${catalina.base}/conf folder. 
     * Use to customize the configuration of the application.
