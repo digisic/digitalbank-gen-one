@@ -1,11 +1,10 @@
 # Digital Bank
 
-Digital Bank is a sample application that was developed for exploratory purposes to examine development frameworks and techniques.
-The application is an example online banking application with integrations into other services.
+Digital Bank is a sample application that was developed for exploratory purposes to examine development frameworks and techniques. The application is an example online digital banking application with integrations into other services.
 
 ## Getting Started
 
-This project is a Apache Maven based project. Using either an Eclipse IDE or an IntelliJ, import the source code as an Existing Maven Project. 
+* Using either an Eclipse IDE or IntelliJ, import the source code as an Existing Maven Project. 
 
 ## Prerequisites
 
@@ -18,15 +17,34 @@ This project is a Apache Maven based project. Using either an Eclipse IDE or an 
   * Serenity BDD tests use Cucumber Feature file definitions. 
     * UI Tests are executed using the Selenium Java framework.
     * API Test are executed using the Rest Assured Java framework.
-  * Use -Dcucumber.options="--tags @login" to filter test execution based on Feature or Scenario tags defined within the feature files.
+  * Use -Dcucumber.options="--tags @login" mnv command line option to filter test execution based on Feature or Scenario tags defined within the [feature files](src/test/resources/features).
+
+## Packaging
+
+* To create a deployment package, execute mvn clean package -DbuildNumber={###}
 
 ## Deployment
 
-Digital Bank can be deployed as a single application service or be deployed and configured to integrate with Digital Credit.
+Digital Bank can be deployed as a single standalone application service or be deployed and configured to integrate with Digital Credit.
 
-* [WAR Package Deployment](https://bintray.com/asburymr/Digital-Bank/Digital-Bank) - Deploy the WAR file into an existing Tomcat instance under ${catalina.bas}/webapps folder. Deploy the digitalbank.properites file into the ${catalina.base}/conf folder.
+* [WAR Package Deployment](https://bintray.com/asburymr/Digital-Bank/Digital-Bank)
+  * Copy the WAR file into an existing Tomcat instance under ${catalina.base}/webapps folder. 
+  * (Optional) Copy the digitalbank.properites file into the ${catalina.base}/conf folder. Use to customize the configuration of the application.
+  * Start the Tomcat service.
+  * A digitalbank.log file will be created within ${catalina.base}/logs.
 * [Docker Deployment](https://hub.docker.com/r/asburymr/digitalbank)
-* [Docker Compose Deployment](docker-compose.yml) - Docker Compose file to deploy all available services integrated together.
+* [Docker Compose Deployment](docker-compose.yml)
+  * Use docker-compose up to deploy all of the defined services integrated together.
+
+## Interfaces
+
+* Web Interface @ http://{hostname}:{port}/bank
+  * Sample user data is created when the application is started. User credentials for these user are as follows:
+    * jsmith@demo.io/Demo123!
+    * nsmith@demo.io/Demo123!
+* Swagger UI @ http://{hostname}:{port}/bank/swagger-ui.html
+  * The API Admin user credentials are as follows:
+    * admin@demo.io/Demo123!
 
 ## Built With
 
