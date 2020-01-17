@@ -168,6 +168,15 @@ public class VisaService {
 		if (port != null && !port.isEmpty()) {
 			if (!port.equals("443") && !port.equals("80")) { 
 				VisaService.apiBaseUrl += ":" + port;
+			} else {
+				// if the port is a default of 443 or 80, then only add the port if 
+				// it has been specified without the associated default protocol for the port.
+				if (port.equals("443") && protocol.equals("http")) {
+					VisaService.apiBaseUrl += ":" + port;
+				}
+				if (port.equals("80") && protocol.equals("https")) {
+					VisaService.apiBaseUrl += ":" + port;
+				}
 			}
 		}
 		
