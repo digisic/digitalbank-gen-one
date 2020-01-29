@@ -16,7 +16,7 @@ import io.demo.bank.util.Constants;
 @RestController
 public class AuthenticationController extends CommonController{
 	
-	private static final Logger LOG = LoggerFactory.getLogger(AuthenticationController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(AuthenticationController.class);     
 	
 	@Autowired
 	UserService userService;
