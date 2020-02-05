@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # wait for SQL Server to come up
-echo Initializing Databases will start in 20 seconds...
-sleep 20
+echo Initializing Databases will start in 30 seconds...
+sleep 30
 echo Initializing Databases
 
 # run the init.sql script to create the databases
