@@ -11,7 +11,7 @@ services:
       - "8161:8161"
       - "61616:61616"
     networks:
-      - digitalbank
+      - digitalnet
     restart: unless-stopped
 
 # =====================================================================
@@ -43,7 +43,7 @@ services:
     ports:
       - "3500:8080"
     networks:
-      - digitalbank
+      - digitalnet
     depends_on:
       - broker
     restart: unless-stopped
@@ -92,7 +92,7 @@ services:
     ports:
       - "8080:8080"
     networks:
-      - digitalbank
+      - digitalnet
     depends_on:
       - broker
       - credit
@@ -102,5 +102,5 @@ services:
 # Docker Network Configuration
 # =====================================================================
 networks:
-  digitalbank:
+  digitalnet:
 
