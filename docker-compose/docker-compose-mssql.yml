@@ -5,7 +5,7 @@ services:
 # Database Service: MS SQL Server
 # =====================================================================
   mssql:
-    image: mcr.microsoft.com/mssql/server
+    image: mcr.microsoft.com/mssql/server:latest
     container_name: mssql
     command: sh -c 'chmod +x /usr/src/init.sh & /usr/src/init.sh & /opt/mssql/bin/sqlservr'
     environment:
