@@ -8,7 +8,8 @@ Digital Bank is a sample application that was developed for exploratory purposes
 
 ## Prerequisites
 
-* Java SDK 8 - Required only for JUnit tests using CodeSV mock services.
+* Install [Java SDK](https://openjdk.java.net/)
+  * [Java SDK 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) - Required only for JUnit tests using CodeSV mock services.
 * Install [Apache Maven](https://maven.apache.org/install.html)
 * Install [Eclipse IDE](https://www.eclipse.org/ide/), [Spring Tools Suite](https://spring.io/tools) or [IntelliJ](https://www.jetbrains.com/idea/)
 
