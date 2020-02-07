@@ -51,7 +51,7 @@ Digital Bank can be deployed as a single standalone application service or be de
 ## Interfaces
 
 * Web Interface @ http://{hostname}:{port}/bank
-  * Sample user data is created when the application is started. User credentials for these user are as follows:
+  * Sample user data is created when the application is started. User credentials for these users are as follows:
     * jsmith@demo.io/Demo123!
     * nsmith@demo.io/Demo123!
 * Swagger UI @ http://{hostname}:{port}/bank/swagger-ui.html
