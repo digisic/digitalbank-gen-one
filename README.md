@@ -68,7 +68,7 @@ Digital Bank can be deployed as a single standalone application service or be de
 * [Apache Tomcat](http://tomcat.apache.org/) - Application Server / Servlet Engine
 * [Apache Artemis](https://activemq.apache.org/components/artemis/) - Messaging Broker
 * [H2 Database Engine](https://www.h2database.com/html/main.html) - In-Memory Database
-* [MSSQL Server Database Engine](https://www.microsoft.com/en-us/sql-server/default.aspx) - Microsoft SQL Server
+* [MS SQL Server Database Engine](https://www.microsoft.com/en-us/sql-server/default.aspx) - Microsoft SQL Server
 * [MySQL Database Engine](https://www.mysql.com/) - MySQL 
 * [PostgreSQL Database Engine](https://www.postgresql.org/) - PostgreSQL
 * [Serenity BDD](http://www.thucydides.info/#/) - Acceptance Testing Framework
