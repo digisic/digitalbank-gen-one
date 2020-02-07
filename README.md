@@ -40,6 +40,7 @@ Digital Bank can be deployed as a single standalone application service or be de
   * Start the Tomcat service.
   * A digitalbank.log file will be created within ${catalina.base}/logs.
 * [Docker Deployment](https://hub.docker.com/r/asburymr/digitalbank)
+  * Deploy Digital Bank as a standalone service.
 * [Docker Compose Deployment](docker-compose)
   * Deploy a full stack of the defined services integrated together.
   * Use 'docker-compose -f [DOCKER_COMPOSE_FILE_NAME]'.
