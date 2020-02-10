@@ -22,12 +22,10 @@ import io.demo.bank.test.serenity.common.TestDataService;
 import io.demo.bank.test.serenity.ui.steps.LoginSteps;
 import io.demo.bank.test.serenity.ui.steps.MenuNavigationSteps;
 import io.demo.bank.test.serenity.util.BlazeGridDriver;
-import io.github.bonigarcia.wdm.ChromiumDriverManager;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.util.EnvironmentVariables;
 import net.thucydides.core.util.SystemEnvironmentVariables;
-import net.thucydides.core.webdriver.DriverSource;
 import net.thucydides.core.webdriver.ThucydidesWebDriverSupport;
 
 /*
@@ -44,12 +42,10 @@ public class SharedScenarioTests {
 	private final static String password = "Demo123!";
 	
 	// Environment 
-	private static EnvironmentVariables env = SystemEnvironmentVariables.createEnvironmentVariables();
+	private EnvironmentVariables env = SystemEnvironmentVariables.createEnvironmentVariables();
 	private String remoteProviderDriver = env.getProperty("webdriver.provided.mydriver");
-	private static String defaultDriver = env.getProperty("webdriver.driver");
+	private String defaultDriver = env.getProperty("webdriver.driver");
 	private String blazeGridDriver = BlazeGridDriver.class.getName();
-	
-	private static RemoteWebDriver driver;
 	
 	// Remote Driver used when testing with Selenium Grid
 	private RemoteWebDriver remoteDriver = ThucydidesWebDriverSupport.getProxiedDriver();
@@ -63,13 +59,17 @@ public class SharedScenarioTests {
 	@Steps
 	private TestDataService data;
 	
+	public SharedScenarioTests() {
+		
+	}
+	
 	@BeforeClass
-    public static void setupClass() {
+    public void setupClass() {
 		ThucydidesWebDriverSupport.reset();
 		ThucydidesWebDriverSupport.getWebdriverManager().setCurrentDriver(getManagedDriver());
     }
 	
-	public static WebDriver getManagedDriver() {
+	public WebDriver getManagedDriver() {
 		WebDriver managedDriver;
 		/*
 		 * WebDriverManager.operadriver().setup(); 
