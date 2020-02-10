@@ -70,7 +70,7 @@ public class SharedScenarioTests {
     }
 	
 	public static WebDriver getManagedDriver() {
-		
+		WebDriver managedDriver;
 		/*
 		 * WebDriverManager.operadriver().setup(); 
 		 * WebDriverManager.phantomjs().setup();
@@ -80,26 +80,26 @@ public class SharedScenarioTests {
 		switch (defaultDriver) {
 			case "chrome":
 				WebDriverManager.chromedriver().setup();
-				driver = new ChromeDriver();
+				managedDriver = new ChromeDriver();
 				break;
 			case "firefox":
 				WebDriverManager.firefoxdriver().setup();
-				driver = new FirefoxDriver();
+				managedDriver = new FirefoxDriver();
 				break;
 			case "ie":
-				driver = new InternetExplorerDriver();
+				managedDriver = new InternetExplorerDriver();
 				WebDriverManager.iedriver().setup();
 				break;
 			case "edge":
 				WebDriverManager.edgedriver().setup();
-				driver = new EdgeDriver();
+				managedDriver = new EdgeDriver();
 				break;
 			default:
 				WebDriverManager.firefoxdriver().setup();
-				driver = new FirefoxDriver();
+				managedDriver = new FirefoxDriver();
 		}
 		
-		return driver;	
+		return managedDriver;	
 	}
 	
 	@Before
