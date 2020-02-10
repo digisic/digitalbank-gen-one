@@ -60,6 +60,8 @@ public class SharedScenarioTests {
 	@Before
 	public void setupTest(Scenario scenario) {
 		
+		LOG.info("!!!!!!WTF!!!!!!");
+		
 		// Only execute if we are executing against BlazeGrid
 		if (remoteProviderDriver != null && remoteProviderDriver.equals(blazeGridDriver)) {
 			

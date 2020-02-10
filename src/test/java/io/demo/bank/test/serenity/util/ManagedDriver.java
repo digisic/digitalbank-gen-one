@@ -48,6 +48,7 @@ public class ManagedDriver implements DriverSource {
 			default:
 				WebDriverManager.firefoxdriver().setup();
 				managedDriver = new FirefoxDriver();
+				LOG.info("!!!!!!!!!!DEFAULT FIREFOX!!!!!!!!!!!");
 		}
 		
 	    return managedDriver;
