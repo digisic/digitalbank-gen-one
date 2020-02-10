@@ -2,6 +2,13 @@ package io.demo.bank.test.serenity.ui;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import org.junit.BeforeClass;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import cucumber.api.Result;
@@ -15,12 +22,21 @@ import io.demo.bank.test.serenity.common.TestDataService;
 import io.demo.bank.test.serenity.ui.steps.LoginSteps;
 import io.demo.bank.test.serenity.ui.steps.MenuNavigationSteps;
 import io.demo.bank.test.serenity.util.BlazeGridDriver;
+import io.github.bonigarcia.wdm.ChromiumDriverManager;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.util.EnvironmentVariables;
 import net.thucydides.core.util.SystemEnvironmentVariables;
+import net.thucydides.core.webdriver.DriverSource;
 import net.thucydides.core.webdriver.ThucydidesWebDriverSupport;
 
-public class SharedScenarioTests {
+/*
+ * This class handles the WebDriver setup and common login functions for the UI tests. 
+ * It is NOT actually referenced by any other class, but the assumption is that it will
+ * always be called given there are no operations that can be performed on the UI unless
+ * the user 'logs in'.
+ * */
+public class SharedScenarioTests implements DriverSource {
 	
 	// User Profile Menu Options
 	private final static String UserProfileLogout = "Logout";
@@ -30,7 +46,10 @@ public class SharedScenarioTests {
 	// Environment 
 	private EnvironmentVariables env = SystemEnvironmentVariables.createEnvironmentVariables();
 	private String remoteProviderDriver = env.getProperty("webdriver.provided.mydriver");
+	private String defaultDriver = env.getProperty("webdriver.driver");
 	private String blazeGridDriver = BlazeGridDriver.class.getName();
+	
+	private static RemoteWebDriver driver;
 	
 	// Remote Driver used when testing with Selenium Grid
 	private RemoteWebDriver remoteDriver = ThucydidesWebDriverSupport.getProxiedDriver();
@@ -44,6 +63,41 @@ public class SharedScenarioTests {
 	@Steps
 	private TestDataService data;
 	
+	@BeforeClass
+    public static void setupClass() {
+		
+    }
+	
+	@Override
+	public WebDriver newDriver() {
+		
+		WebDriverManager.chromedriver().setup();
+		WebDriverManager.firefoxdriver().setup();
+		WebDriverManager.operadriver().setup();
+		WebDriverManager.phantomjs().setup();
+		WebDriverManager.edgedriver().setup();
+		WebDriverManager.iedriver().setup();
+		WebDriverManager.chromiumdriver().setup();
+		
+		switch (defaultDriver) {
+			case "chrome":
+				driver = new ChromeDriver();
+				break;
+			case "firefox":
+				driver = new FirefoxDriver();
+				break;
+			case "ie":
+				driver = new InternetExplorerDriver();
+				break;
+			case "edge":
+				driver = new EdgeDriver();
+				break;
+			default:
+				driver = new FirefoxDriver();
+		}
+		
+		return driver;	
+	}
 	
 	@Before
 	public void setupTest(Scenario scenario) {
@@ -131,6 +185,12 @@ public class SharedScenarioTests {
 	@And ("^they verify they are at the Home page$")
 	public void verifyLocationHomePage() {
 		login.redirectedToHomePage();
+	}
+
+	@Override
+	public boolean takesScreenshots() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
