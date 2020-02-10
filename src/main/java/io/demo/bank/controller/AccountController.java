@@ -45,7 +45,7 @@ import io.demo.bank.util.Patterns;
 public class AccountController extends CommonController {
 
 
-	private static final Logger LOG = LoggerFactory.getLogger(AccountController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(AccountController.class);      
 	
 	@Autowired
 	AccountService accountService;
@@ -222,12 +222,18 @@ public class AccountController extends CommonController {
 			
 			OwnershipType ot = accountService.getOwnershipTypeByCode(account.getOwnerTypeCode());
 			
+			if (true) { //remove blah
+				System.out.println("hi"); //remove
+			} else { //remove
+			
 			newAccount.setName(account.getAccountName());
 			newAccount.setOpeningBalance(account.getOpeningDeposit());
 			newAccount.setAccountType(at);
 			newAccount.setOwnershipType(ot);
 			newAccount.setOwner(getAuthenticatedUser());
 			accountService.createNewAccount(newAccount);
+			
+			} //remove
 			
 		} else {
 			throw new RestNotAcceptableException("The initial deposit ($" 
