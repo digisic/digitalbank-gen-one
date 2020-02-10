@@ -36,7 +36,7 @@ import net.thucydides.core.webdriver.ThucydidesWebDriverSupport;
  * always be called given there are no operations that can be performed on the UI unless
  * the user 'logs in'.
  * */
-public class SharedScenarioTests implements DriverSource {
+public class SharedScenarioTests {
 	
 	// User Profile Menu Options
 	private final static String UserProfileLogout = "Logout";
@@ -44,9 +44,9 @@ public class SharedScenarioTests implements DriverSource {
 	private final static String password = "Demo123!";
 	
 	// Environment 
-	private EnvironmentVariables env = SystemEnvironmentVariables.createEnvironmentVariables();
+	private static EnvironmentVariables env = SystemEnvironmentVariables.createEnvironmentVariables();
 	private String remoteProviderDriver = env.getProperty("webdriver.provided.mydriver");
-	private String defaultDriver = env.getProperty("webdriver.driver");
+	private static String defaultDriver = env.getProperty("webdriver.driver");
 	private String blazeGridDriver = BlazeGridDriver.class.getName();
 	
 	private static RemoteWebDriver driver;
@@ -65,34 +65,37 @@ public class SharedScenarioTests implements DriverSource {
 	
 	@BeforeClass
     public static void setupClass() {
-		
+		ThucydidesWebDriverSupport.reset();
+		ThucydidesWebDriverSupport.getWebdriverManager().setCurrentDriver(getManagedDriver());
     }
 	
-	@Override
-	public WebDriver newDriver() {
+	public static WebDriver getManagedDriver() {
 		
-		WebDriverManager.chromedriver().setup();
-		WebDriverManager.firefoxdriver().setup();
-		WebDriverManager.operadriver().setup();
-		WebDriverManager.phantomjs().setup();
-		WebDriverManager.edgedriver().setup();
-		WebDriverManager.iedriver().setup();
-		WebDriverManager.chromiumdriver().setup();
+		/*
+		 * WebDriverManager.operadriver().setup(); 
+		 * WebDriverManager.phantomjs().setup();
+		 * WebDriverManager.chromiumdriver().setup();
+		 */
 		
 		switch (defaultDriver) {
 			case "chrome":
+				WebDriverManager.chromedriver().setup();
 				driver = new ChromeDriver();
 				break;
 			case "firefox":
+				WebDriverManager.firefoxdriver().setup();
 				driver = new FirefoxDriver();
 				break;
 			case "ie":
 				driver = new InternetExplorerDriver();
+				WebDriverManager.iedriver().setup();
 				break;
 			case "edge":
+				WebDriverManager.edgedriver().setup();
 				driver = new EdgeDriver();
 				break;
 			default:
+				WebDriverManager.firefoxdriver().setup();
 				driver = new FirefoxDriver();
 		}
 		
@@ -186,11 +189,5 @@ public class SharedScenarioTests implements DriverSource {
 	public void verifyLocationHomePage() {
 		login.redirectedToHomePage();
 	}
-
-	@Override
-	public boolean takesScreenshots() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
+	
 }
