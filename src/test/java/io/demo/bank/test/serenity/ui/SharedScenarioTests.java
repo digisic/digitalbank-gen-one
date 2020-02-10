@@ -3,13 +3,9 @@ package io.demo.bank.test.serenity.ui;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.BeforeClass;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import cucumber.api.Result;
 import cucumber.api.Scenario;
@@ -22,7 +18,7 @@ import io.demo.bank.test.serenity.common.TestDataService;
 import io.demo.bank.test.serenity.ui.steps.LoginSteps;
 import io.demo.bank.test.serenity.ui.steps.MenuNavigationSteps;
 import io.demo.bank.test.serenity.util.BlazeGridDriver;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import io.demo.bank.test.serenity.util.ManagedDriver;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.util.EnvironmentVariables;
 import net.thucydides.core.util.SystemEnvironmentVariables;
@@ -41,11 +37,13 @@ public class SharedScenarioTests {
 	private final static String UserProfileChangePassword = "Change Password";
 	private final static String password = "Demo123!";
 	
+	private static final Logger LOG = LoggerFactory.getLogger(SharedScenarioTests.class);
+	
 	// Environment 
 	private EnvironmentVariables env = SystemEnvironmentVariables.createEnvironmentVariables();
 	private String remoteProviderDriver = env.getProperty("webdriver.provided.mydriver");
-	private String defaultDriver = env.getProperty("webdriver.driver");
 	private String blazeGridDriver = BlazeGridDriver.class.getName();
+	private String managedDriver = ManagedDriver.class.getName();
 	
 	// Remote Driver used when testing with Selenium Grid
 	private RemoteWebDriver remoteDriver = ThucydidesWebDriverSupport.getProxiedDriver();
@@ -58,49 +56,6 @@ public class SharedScenarioTests {
 	
 	@Steps
 	private TestDataService data;
-	
-	public SharedScenarioTests() {
-		
-	}
-	
-	@BeforeClass
-    public void setupClass() {
-		ThucydidesWebDriverSupport.reset();
-		ThucydidesWebDriverSupport.getWebdriverManager().setCurrentDriver(getManagedDriver());
-    }
-	
-	public WebDriver getManagedDriver() {
-		WebDriver managedDriver;
-		/*
-		 * WebDriverManager.operadriver().setup(); 
-		 * WebDriverManager.phantomjs().setup();
-		 * WebDriverManager.chromiumdriver().setup();
-		 */
-		
-		switch (defaultDriver) {
-			case "chrome":
-				WebDriverManager.chromedriver().setup();
-				managedDriver = new ChromeDriver();
-				break;
-			case "firefox":
-				WebDriverManager.firefoxdriver().setup();
-				managedDriver = new FirefoxDriver();
-				break;
-			case "ie":
-				managedDriver = new InternetExplorerDriver();
-				WebDriverManager.iedriver().setup();
-				break;
-			case "edge":
-				WebDriverManager.edgedriver().setup();
-				managedDriver = new EdgeDriver();
-				break;
-			default:
-				WebDriverManager.firefoxdriver().setup();
-				managedDriver = new FirefoxDriver();
-		}
-		
-		return managedDriver;	
-	}
 	
 	@Before
 	public void setupTest(Scenario scenario) {
