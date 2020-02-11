@@ -127,6 +127,7 @@ public class SharedScenarioTests {
 			case "chrome":
 				WebDriverManager.chromedriver().setup();
 				managedDriver = new ChromeDriver();
+				LOG.info("!!!!!!!!!!CHROME!!!!!!!!!!!");
 				break;
 			case "firefox":
 				WebDriverManager.firefoxdriver().setup();
