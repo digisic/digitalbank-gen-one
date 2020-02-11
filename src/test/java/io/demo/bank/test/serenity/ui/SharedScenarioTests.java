@@ -159,6 +159,8 @@ public class SharedScenarioTests {
 		if (!data.validateRegisteredUser(persona, email))
 			data.registerUser();
 		
+		LOG.info("!!!!!!!!!!!!!!!!!!WTF!!!!!!!!!!!!!!!!!!!!!!");
+		
 		// Login with the identified persona that can authenticate
 		login.navigateToLoginPage();
 		login.enterUsername(email);
