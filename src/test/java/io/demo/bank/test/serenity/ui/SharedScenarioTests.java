@@ -3,6 +3,10 @@ package io.demo.bank.test.serenity.ui;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +23,7 @@ import io.demo.bank.test.serenity.ui.steps.LoginSteps;
 import io.demo.bank.test.serenity.ui.steps.MenuNavigationSteps;
 import io.demo.bank.test.serenity.util.BlazeGridDriver;
 import io.demo.bank.test.serenity.util.ManagedDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.util.EnvironmentVariables;
 import net.thucydides.core.util.SystemEnvironmentVariables;
@@ -41,12 +46,14 @@ public class SharedScenarioTests {
 	
 	// Environment 
 	private EnvironmentVariables env = SystemEnvironmentVariables.createEnvironmentVariables();
-	private String remoteProviderDriver = env.getProperty("webdriver.provided.mydriver");
+	private String userSelectedDriver = env.getProperty("webdriver.provided.mydriver");
+	private String defaultDriver = env.getProperty("webdriver.driver"); //added
 	private String blazeGridDriver = BlazeGridDriver.class.getName();
-	private String managedDriver = ManagedDriver.class.getName();
+	private String managedDriverName = ManagedDriver.class.getName(); //added
 	
 	// Remote Driver used when testing with Selenium Grid
 	private RemoteWebDriver remoteDriver = ThucydidesWebDriverSupport.getProxiedDriver();
+	private RemoteWebDriver webDriver;
 	
 	@Steps
 	private LoginSteps login;
@@ -60,10 +67,8 @@ public class SharedScenarioTests {
 	@Before
 	public void setupTest(Scenario scenario) {
 		
-		LOG.info("!!!!!!WTF!!!!!!");
-		
 		// Only execute if we are executing against BlazeGrid
-		if (remoteProviderDriver != null && remoteProviderDriver.equals(blazeGridDriver)) {
+		if (userSelectedDriver != null && userSelectedDriver.equals(blazeGridDriver)) {
 			
 			if (remoteDriver != null) {
 				
@@ -73,6 +78,17 @@ public class SharedScenarioTests {
 		         
 		         remoteDriver.executeAsyncScript("/* FLOW_MARKER test-case-start */", map);
 			}
+			
+		} else if (userSelectedDriver != null && userSelectedDriver.equals(managedDriverName)) {
+			
+			LOG.info("!!!!!!!!Executing script with managed driver!!!!!!!!!");
+			Map<String, String> map = new HashMap<>();
+	         map.put("testCaseName", scenario.getName());
+	         map.put("testSuiteName", scenario.getId().substring(scenario.getId().lastIndexOf("/") + 1, scenario.getId().lastIndexOf(".")));
+	         
+			webDriver = getManagedDriver();
+			webDriver.executeScript("HI-ALEX-START-TEST", map);
+			LOG.info("!!!!!!!!DONE executing script with managed driver [TEARDOWN]!!!!!!!!!");
 		}
 	}
 	
@@ -80,7 +96,7 @@ public class SharedScenarioTests {
 	public void tearDownTest(Scenario scenario) {
 		
 		// Only execute if we are executing against BlazeGrid
-		if (remoteProviderDriver != null && remoteProviderDriver.equals(blazeGridDriver)) {
+		if (userSelectedDriver != null && userSelectedDriver.equals(blazeGridDriver)) {
 			
 			if (remoteDriver != null) {
 		
@@ -100,9 +116,39 @@ public class SharedScenarioTests {
 				remoteDriver.executeAsyncScript("/* FLOW_MARKER test-case-stop */", map);
 			} // end if remote driver
 		} // end if blaze grid
+		else if (userSelectedDriver != null && userSelectedDriver.equals(managedDriverName)) {
+			LOG.info("!!!!!!!!DONE executing script with managed driver [TEARDOWN]!!!!!!!!!");
+		}
 	}
 	
-	
+	private RemoteWebDriver getManagedDriver() {
+		RemoteWebDriver managedDriver;
+		switch (defaultDriver) {
+			case "chrome":
+				WebDriverManager.chromedriver().setup();
+				managedDriver = new ChromeDriver();
+				break;
+			case "firefox":
+				WebDriverManager.firefoxdriver().setup();
+				managedDriver = new FirefoxDriver();
+				LOG.info("!!!!!!!!!!FIREFOX!!!!!!!!!!!");
+				break;
+			case "ie":
+				managedDriver = new InternetExplorerDriver();
+				WebDriverManager.iedriver().setup();
+				break;
+			case "edge":
+				WebDriverManager.edgedriver().setup();
+				managedDriver = new EdgeDriver();
+				break;
+			default:
+				WebDriverManager.firefoxdriver().setup();
+				managedDriver = new FirefoxDriver();
+				LOG.info("!!!!!!!!!!DEFAULT FIREFOX!!!!!!!!!!!");
+		}
+		
+	    return managedDriver;
+	}
 	
 	/** Given **/
 	
