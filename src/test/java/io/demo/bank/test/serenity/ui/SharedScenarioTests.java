@@ -83,17 +83,21 @@ public class SharedScenarioTests {
 		         remoteDriver.executeAsyncScript("/* FLOW_MARKER test-case-start */", map);
 			}
 			
-		} else if (userSelectedDriver != null && userSelectedDriver.equals(managedDriverName)) {
-			
-			LOG.info("!!!!!!!!Executing script with managed driver!!!!!!!!!");
-			Map<String, String> map = new HashMap<>();
-	         map.put("testCaseName", scenario.getName());
-	         map.put("testSuiteName", scenario.getId().substring(scenario.getId().lastIndexOf("/") + 1, scenario.getId().lastIndexOf(".")));
-	         
-			webDriver = getManagedDriver();
-			webDriver.executeScript("HI-ALEX-START-TEST", map);
-			LOG.info("!!!!!!!!DONE executing script with managed driver [TEARDOWN]!!!!!!!!!");
-		}
+		} /*
+			 * else if (userSelectedDriver != null &&
+			 * userSelectedDriver.equals(managedDriverName)) {
+			 * 
+			 * LOG.info("!!!!!!!!Executing script with managed driver!!!!!!!!!");
+			 * Map<String, String> map = new HashMap<>(); map.put("testCaseName",
+			 * scenario.getName()); map.put("testSuiteName",
+			 * scenario.getId().substring(scenario.getId().lastIndexOf("/") + 1,
+			 * scenario.getId().lastIndexOf(".")));
+			 * 
+			 * webDriver = getManagedDriver(); webDriver.executeScript("HI-ALEX-START-TEST",
+			 * map); LOG.
+			 * info("!!!!!!!!DONE executing script with managed driver [TEARDOWN]!!!!!!!!!"
+			 * ); }
+			 */
 	}
 	
 	@After
@@ -120,9 +124,12 @@ public class SharedScenarioTests {
 				remoteDriver.executeAsyncScript("/* FLOW_MARKER test-case-stop */", map);
 			} // end if remote driver
 		} // end if blaze grid
-		else if (userSelectedDriver != null && userSelectedDriver.equals(managedDriverName)) {
-			LOG.info("!!!!!!!!DONE executing script with managed driver [TEARDOWN]!!!!!!!!!");
-		}
+		/*
+		 * else if (userSelectedDriver != null &&
+		 * userSelectedDriver.equals(managedDriverName)) { LOG.
+		 * info("!!!!!!!!DONE executing script with managed driver [TEARDOWN]!!!!!!!!!"
+		 * ); }
+		 */
 	}
 	
 	private RemoteWebDriver getManagedDriver() {
