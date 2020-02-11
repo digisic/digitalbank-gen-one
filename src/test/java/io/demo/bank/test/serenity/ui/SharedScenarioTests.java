@@ -51,6 +51,10 @@ public class SharedScenarioTests {
 	private String blazeGridDriver = BlazeGridDriver.class.getName();
 	private String managedDriverName = ManagedDriver.class.getName(); //added
 	
+	public SharedScenarioTests() {
+		
+	}
+	
 	// Remote Driver used when testing with Selenium Grid
 	private RemoteWebDriver remoteDriver = ThucydidesWebDriverSupport.getProxiedDriver();
 	private RemoteWebDriver webDriver;
