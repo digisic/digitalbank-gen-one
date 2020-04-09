@@ -7,7 +7,7 @@ services:
   mssql:
     image: mcr.microsoft.com/mssql/server:latest
     container_name: mssql
-    command: sh -c 'chmod +x /usr/src/init.sh & /usr/src/init.sh & /opt/mssql/bin/sqlservr'
+    command: sh -c '/usr/src/init.sh & /opt/mssql/bin/sqlservr'
     environment:
       ACCEPT_EULA: 'Y'
       SA_PASSWORD: Demo123!
