@@ -37,7 +37,7 @@ services:
 # Digital Credit Service Configuration
 # =====================================================================    
   credit:
-    image: asburymr/digitalcredit:2.0.0.102
+    image: asburymr/digitalcredit:2.0.0.103
     container_name: credit
     environment:
 
@@ -79,7 +79,7 @@ services:
 # Digital Bank Service Configuration
 # =====================================================================
   bank:
-    image: asburymr/digitalbank:2.0.0.103
+    image: asburymr/digitalbank:2.0.0.104
     container_name: bank
     environment:
 

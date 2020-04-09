@@ -55,9 +55,18 @@ public class CreditAppConsumer {
 				cr.setApplicationId(Long.valueOf((String) map.get(Constants.STATUS_ATT_APP_ID)));
 				cr.setApplicationNumber((String) map.get(Constants.STATUS_ATT_APP_NO));
 				cr.setApplicationStatus((String) map.get(Constants.STATUS_ATT_APP_STATUS));
-				cr.setApplicationStatusDetail((String) map.get(Constants.STATUS_ATT_APP_STATUS_DETAIL));
-				cr.setCreditScore((String) map.get(Constants.STATUS_ATT_APP_CREDIT_SCORE));
-				cr.setRiskScore((String) map.get(Constants.STATUS_ATT_APP_RISK_SCORE));
+				
+				if (map.containsKey(Constants.STATUS_ATT_APP_STATUS_DETAIL)) {
+					cr.setApplicationStatusDetail((String) map.get(Constants.STATUS_ATT_APP_STATUS_DETAIL));
+				}
+				
+				if (map.containsKey(Constants.STATUS_ATT_APP_CREDIT_SCORE)) {
+					cr.setCreditScore((String) map.get(Constants.STATUS_ATT_APP_CREDIT_SCORE));
+				}
+				
+				if (map.containsKey(Constants.STATUS_ATT_APP_RISK_SCORE)) {
+					cr.setRiskScore((String) map.get(Constants.STATUS_ATT_APP_RISK_SCORE));
+				}
 				
 				if (map.containsKey(Constants.STATUS_ATT_APP_CREDIT_ID)) {
 					cr.setCreditCardId(Long.valueOf((String) map.get(Constants.STATUS_ATT_APP_CREDIT_ID)));

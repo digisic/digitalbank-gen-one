@@ -29,6 +29,8 @@ public class CreditCardReference {
 	private String accountStatus;
 	private String applicationNumber;
 	private String correlationId;
+	
+	@Column(length = 1024)
 	private String applicationStatusDetail;
 	
 	
