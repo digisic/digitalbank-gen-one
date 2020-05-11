@@ -24,10 +24,10 @@
                     
                     <h3 class="menu-title">Banking Accounts</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-pencil-square-o"></i>Checking</a>
+                        <a href="#" id="checking-menu" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-pencil-square-o"></i>Checking</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-tasks"></i><a th:href="@{/account/checking-view}">View Checking</a></li>
-                            <li><i class="fa fa-plus-square"></i><a th:href="@{/account/checking-add}">New Checking</a></li>
+                            <li><i class="fa fa-plus-square"></i><a id="new-checking-menu-option" th:href="@{/account/checking-add}">New Checking</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
