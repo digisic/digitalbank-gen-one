@@ -74,6 +74,11 @@ public class Constants {
 	public static final String URI_CREDIT_DELETE		= "/credit-delete";
 	public static final String URI_SEARCH				= "/search";
 	public static final String URI_SEARCH_ATM			= "/atm";
+	public static final String URI_OBP					= "/obp";
+	public static final String URI_OBP_ADD				= "/obp-add";
+	public static final String URI_OBP_ADD_ACCT			= "/obp-add-acct";
+	public static final String URI_OBP_VIEW				= "/obp-view";
+	public static final String URI_OBP_DELETE			= "/obp-delete";
 	
 	// Visa Service
 	public static final String URI_XFER_EXTERNAL		= "/external";
@@ -150,6 +155,9 @@ public class Constants {
 	public static final String VIEW_CREDIT_VIEW 	= "credit-view";
 	public static final String VIEW_PROMOTIONS		= "promotions";
 	public static final String VIEW_SEARCH			= "search";
+	public static final String VIEW_OBP_ADD 		= "obp-add";
+	public static final String VIEW_OBP_ADD_ACCT 	= "obp-add-acct";
+	public static final String VIEW_OBP_VIEW 		= "obp-view";
 	
 	// Visa Service views
 	public static final String VIEW_XFER_VISA 		= "xfer-visa";
@@ -265,6 +273,12 @@ public class Constants {
 	public static final String APP_VISA_PROTOCOL					= "io.demo.bank.visa.protocol";
 	public static final String APP_VISA_HOST						= "io.demo.bank.visa.host";
 	public static final String APP_VISA_PORT						= "io.demo.bank.visa.port";
+	public static final String APP_OBP_ENABLED						= "io.demo.bank.obp.enabled";
+	public static final String APP_OBP_PROTOCOL						= "io.demo.bank.obp.protocol";
+	public static final String APP_OBP_HOST							= "io.demo.bank.obp.host";
+	public static final String APP_OBP_PORT							= "io.demo.bank.obp.port";
+	public static final String APP_OBP_VERSION						= "io.demo.bank.obp.version";
+	public static final String APP_OBP_CONSUMER_KEY					= "io.demo.bank.obp.consumer_key";
 	
 	// Credit API URIs
 	public static final String APP_CREDIT_URI_API_BASE				= "/api/v1";	
@@ -279,6 +293,21 @@ public class Constants {
 	// Visa API Service
 	public static final String URI_API_EXTERNAL_VISA				= "/api/v1/external/visa";
 	public static final String APP_VISA_URI_API_BASE				= "/visadirect/fundstransfer/v1/pullfundstransactions";
+	
+	
+	// Open Banking Properties
+	
+	
+	// Open Banking API URIs
+	public static final String HEADER_OBP_DIRECT_AUTH				= "DirectLogin username={0}, password={1}, consumer_key={2}";
+	public static final String HEADER_OBP_DIRECT_AUTH_TOKEN			= "DirectLogin token={0}";
+	public static final String URI_OBP_API_BASE						= "/obp/{0}";
+	public static final String URI_OBP_API_DIRECT_LOGIN				= "/my/logins/direct";
+	public static final String URI_OBP_API_BANKS					= "/banks";
+	public static final String URI_OBP_API_BANK						= "/banks/{0}";
+	public static final String URI_OBP_API_BANK_ACCTS				= "/banks/{0}/accounts";
+	public static final String URI_OBP_API_BANK_ACCOUNT				= "/banks/{0}/accounts/{1}/account";
+	public static final String URI_OBP_API_BANK_ACCOUNT_TRANS		= "/banks/{0}/accounts/{1}/transactions";
 
 	
 }

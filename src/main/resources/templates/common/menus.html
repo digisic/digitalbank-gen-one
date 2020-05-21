@@ -60,6 +60,16 @@
                         </ul>
                     </li>
                     
+                    <h3 class="menu-title" th:if="${obpEnabled}">External Accounts</h3><!-- /.menu-title -->
+
+                    <li class="menu-item-has-children dropdown" th:if="${obpEnabled}">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-external-link"></i>Open Banking</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-plus-square"></i><a th:href="@{/obp/obp-add}">Link External Account</a></li>
+                            <li><i class="menu-icon fa fa-exchange"></i><a th:href="@{/obp/obp-view}">View External Accounts</a></li>
+                        </ul>
+                    </li>
+                    
                     <h3 class="menu-title">Transfers / Payments</h3><!-- /.menu-title -->
 
                     <li class="menu-item-has-children dropdown">

@@ -82,7 +82,7 @@ services:
 # Digital Bank Service Configuration
 # =====================================================================
   bank:
-    image: asburymr/digitalbank:2.0.0.105
+    image: asburymr/digitalbank:2.0.0.106
     container_name: bank
     environment:
 
@@ -118,6 +118,14 @@ services:
       IO_DEMO_BANK_VISA_PROTOCOL: https
       IO_DEMO_BANK_VISA_HOST: creditservices.io
       IO_DEMO_BANK_VISA_PORT:
+      
+      # Open Banking API Service
+      IO_DEMO_BANK_OBP_ENABLED: 'true'
+      IO_DEMO_BANK_OBP_CONSUMER_KEY: vwfpvwfr1kngt0up2jelebzmvxrhst4vhxvw1jm3
+      IO_DEMO_BANK_OBP_VERSION: v4.0.0
+      IO_DEMO_BANK_OBP_PROTOCOL: https
+      IO_DEMO_BANK_OBP_HOST:
+      IO_DEMO_BANK_OBP_PORT:
 
       # Database Configuration
       SPRING_DATASOURCE_PLATFORM: mysql

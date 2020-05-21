@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import io.demo.bank.model.security.Users;
 import io.demo.bank.service.CreditCardService;
+import io.demo.bank.service.ObpService;
 import io.demo.bank.service.UserService;
 import io.demo.bank.util.Constants;
 import io.demo.bank.util.Patterns;
@@ -30,6 +31,9 @@ abstract class WebCommonController {
 	
 	@Autowired
 	private CreditCardService ccService;
+	
+	@Autowired
+	private ObpService obpService;
 	
 	// private model attribute constants
 	private static final String MODEL_ATT_FIRST_NAME 			= "firstName";
@@ -106,6 +110,19 @@ abstract class WebCommonController {
 	public static final String MODEL_ATT_EXT_AMOUNT				= "extAmount";
 	public static final String MODEL_ATT_EXT_RESPONSE			= "visaResponse";
 	
+	// model attribute constants ->  Open Banking Project
+	public static final String MODEL_OBP_ENABLED				= "obpEnabled";
+	public static final String MODEL_OBP_BANKS					= "bankList";
+	public static final String MODEL_OBP_BANK_ID				= "bankId";
+	public static final String MODEL_OBP_BANK					= "bank";
+	public static final String MODEL_OBP_USERNAME				= "username";
+	public static final String MODEL_OBP_PASSWORD				= "password";
+	public static final String MODEL_OBP_ACCOUNT_ID				= "accountId";
+	public static final String MODEL_OBP_ACCOUNTS				= "accountList";
+	public static final String MODEL_OBP_TRANSACTIONS			= "transactionList";
+	public static final String MODEL_OBP_HAS_LINKED_ACCT		= "obpLinked";
+	public static final String MODEL_OBP_DELETE_ID				= "deleteId";
+	
 	
 
 	/*
@@ -167,6 +184,22 @@ abstract class WebCommonController {
 				model.addAttribute(MODEL_CREDIT_NEW_APP, true);
 				
 				LOG.debug("Show New Appplication Menu");
+			}
+		}
+		
+		// Check to see if we should enable the OBP Menu
+		if (obpService.isObpServiceEnabled()) {
+			
+			LOG.debug("Open Banking Service is Enabled.");
+			
+			// Determine what menu option to show
+			model.addAttribute(MODEL_OBP_ENABLED, true);
+			
+			if (obpService.userHasLinkedAccount(user)) {
+				
+				LOG.debug("User has linked accounts with the Open Banking Service.");
+				
+				model.addAttribute(MODEL_OBP_HAS_LINKED_ACCT, true);
 			}
 		}
 		

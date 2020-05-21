@@ -129,6 +129,14 @@ public class Messages {
 	public static final String VISA_ACCT_NOT_FOUND		= "Unfortunately, no account was found for the account provided.";
 	public static final String VISA_SVC_UNAVAILABLE		= "The VISA API service is temporarily unavailable. We applogize for "
 														+ "any inconvenience this may cause. Please try again at a later time.";
-		
+	// OBP API Service
+	public static final String OBP_NO_BANKS				= "There are no banking providers available.";
+	public static final String OBP_NO_BANK_DETAILS		= "Unable to get the details for the banking provider selected.";
+	public static final String OBP_NO_BANK_DETAILS_ACCT	= "Unable to get the details for the banking provider for the selected Account.";
+	public static final String OBP_NO_ACCOUNTS			= "There are no accounts available from the selected banking provider.";
+	public static final String OBP_NO_ACCOUNT_DETAILS	= "Unable to get the details for the account selected.";
+	public static final String OBP_NO_AUTHENTICATION	= "Unable to authenticate to the Open Banking service with the credentials provided.";
+	public static final String OBP_ACCOUNT_LINKED		= "The Account selected is already linked to Digital Bank.";
+	public static final String OBP_ACCOUNT_VIEW_ERROR	= "Unable to retreive an update for the latest account details. Last known account details will be displayed.";
 	
 }

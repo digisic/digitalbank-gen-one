@@ -108,5 +108,55 @@
     "name": "io.demo.credit.enabled",
     "type": "java.lang.String",
     "description": "A description for 'io.demo.credit.enabled'"
+  },
+  {
+    "name": "io.demo.bank.obp.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.bank.obp.enabled'"
+  },
+  {
+    "name": "io.demo.bank.obp.protocol",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.bank.obp.protocol'"
+  },
+  {
+    "name": "io.demo.bank.obp.host",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.bank.obp.host'"
+  },
+  {
+    "name": "io.demo.bank.obp.port",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.bank.obp.port'"
+  },
+  {
+    "name": "io.demo.bank.obp.version",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.bank.obp.version'"
+  },
+  {
+    "name": "io.demo.bank.obp.user",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.bank.obp.user'"
+  },
+  {
+    "name": "io.demo.bank.obp.password",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.bank.obp.password'"
+  },
+  {
+    "name": "io.demo.bank.obp.consumer_key",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.bank.obp.consumer_key'"
+  },
+  {
+    "name": "io.demo.bank.obp.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.bank.obp.enabled'"
+  },
+  {
+    "name": "io.demo.bank.obp.consumer_key",
+    "type": "java.lang.String",
+    "description": "A description for 'io.demo.bank.obp.consumer_key'"
   }
 ]}

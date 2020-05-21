@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"> 
+
+<head th:replace="common/sections :: header-css"/>
+
+<body>
+
+
+	<!-- Left Panel -->
+	<aside th:replace="common/menus :: left-panel"></aside>
+
+    <!-- Right Panel -->
+	<div id="right-panel" class="right-panel">
+	
+		<header th:replace="common/menus :: rp-header"/>
+		
+		<div th:replace="common/menus :: rp-breadcrumbs"/>
+    
+    	<!-- Page Content Begin -->
+    
+	    	<div class="content mt-3">
+	            <div class="animated fadeIn">
+	                
+	                <div class="row">				
+		    			<div class="col-lg-12">
+	                    	<div class="card">
+                      			<div class="card-header bg-flat-color-1">
+                        			<strong class="card-title text-white">Add Open Banking Account</strong>
+                      			</div>
+	                      		<form th:action="@{/obp/obp-add}" method="post">
+		                     		<div class="card-body card-block">
+	                   					<div class="form-group text-left">
+	                   						<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" th:if="${errorMsg}">
+						                       <span class="badge badge-pill badge-danger">Error</span>
+						                         <span th:text="${errorMsg}"></span>
+						                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						                           <span aria-hidden="true">&times;</span>
+						                       </button>
+						                   </div>
+	                   					</div>
+	                   					
+		                      			<div class="row form-group">
+		    								<div class="col col-sm-4">
+					                            <label class=" form-control-label"><strong>Open Banking Providers</strong></label>
+				                            	<select class="form-control" id="bankId" name="bankId" required>
+				                            		<option class="text-light"value="">---------- Select Provider -----------</option>
+				                              	  	<option th:each="bank : ${bankList}" th:selected="${bank.id == bankId}" th:text="${bank.full_name}" th:value="${bank.id}"></option>
+				            					 </select>
+					                        </div>
+					                   	</div>
+
+		                        		<div class="row form-group">
+		                        			<div class="col col-sm-4">
+					                            <label class="form-control-label"><strong>Username</strong></label>
+					                            <input type="text" class="form-control" id="username" name="username" th:value=${username} required>
+					                        	<small class="form-text text-muted">Enter Username</small>
+					                        </div>
+		                        		</div>
+		                        		<div class="row form-group">
+		                        			<div class="col col-sm-4">
+					                            <label class="form-control-label"><strong>Password</strong></label>
+					                            <input type="password" class="form-control" id="password" name="password" required>
+					                        	<small class="form-text text-muted">Enter Password</small>
+					                        </div>
+		                        		</div>		
+                      				</div> <!-- End Card Body -->
+		                   			<div class="card-footer">
+		                     			<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-dot-circle-o"></i> Submit</button>
+		                     			<button type="reset" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Reset</button>
+		                  			</div> <!-- End Card Footer -->	
+                     			</form>
+                    		</div> <!-- End Card -->
+                 		</div> <!-- End Column-->
+                	</div> <!-- End Row -->
+                	
+	            </div><!-- .animated -->
+	        </div><!-- .content -->
+	        
+	    <!-- Page Content End -->
+	    
+	</div> <!-- End right panel -->
+    
+	<!-- Footer -->
+	<div th:replace="common/sections :: footer-scripts"></div>
+
+</body>
+</html>
