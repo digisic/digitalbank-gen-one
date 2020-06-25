@@ -69,6 +69,10 @@ public class Patterns {
 	
 	// Visa Service
 	public static final String VISA_ACCOUNT			= "^([a-zA-Z0-9_\\\\-\\\\.]+)";
+	
+	// Credit Application Service
+	public static final String CREDIT_APP_EMP_STATUS = "Employed|Self-Employed|Retired|Student|Unemployed";
+	public static final String CREDIT_APP_BANK_ACCTS = "Checking and Savings|Checking Only|Savings Only|Neither";
 													
 			
 }

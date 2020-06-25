@@ -16,7 +16,7 @@
         }
     },
     "host": "localhost:8080",
-    "basePath": "/",
+    "basePath": "/bank",
     "tags": [
         {
             "name": "account-controller",
@@ -25,6 +25,10 @@
         {
             "name": "authentication-controller",
             "description": "Authentication Controller"
+        },
+        {
+            "name": "credit-controller",
+            "description": "Credit Controller"
         },
         {
             "name": "health-check-controller",
@@ -656,6 +660,339 @@
                     },
                     "201": {
                         "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/credit/account/{id}": {
+            "get": {
+                "tags": [
+                    "credit-controller"
+                ],
+                "summary": "getCreditCardDetails",
+                "operationId": "getCreditCardDetailsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/credit/account/{id}/billing": {
+            "get": {
+                "tags": [
+                    "credit-controller"
+                ],
+                "summary": "getCreditCardBillingDetails",
+                "operationId": "getCreditCardBillingDetailsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/credit/account/{id}/transactions": {
+            "get": {
+                "tags": [
+                    "credit-controller"
+                ],
+                "summary": "getCreditCardTransactionDetails",
+                "operationId": "getCreditCardTransactionDetailsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/credit/reference": {
+            "get": {
+                "tags": [
+                    "credit-controller"
+                ],
+                "summary": "getCreditApplicationReference",
+                "operationId": "getCreditApplicationReferenceUsingGET_1",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            },
+            "post": {
+                "tags": [
+                    "credit-controller"
+                ],
+                "summary": "submitCreditApplication",
+                "operationId": "submitCreditApplicationUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "application",
+                        "description": "application",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Application"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            },
+            "delete": {
+                "tags": [
+                    "credit-controller"
+                ],
+                "summary": "deleteCreditApplicationReference",
+                "operationId": "deleteCreditApplicationReferenceUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/credit/reference/{id}": {
+            "get": {
+                "tags": [
+                    "credit-controller"
+                ],
+                "summary": "getCreditApplicationReference",
+                "operationId": "getCreditApplicationReferenceUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer %token": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/credit/references": {
+            "get": {
+                "tags": [
+                    "credit-controller"
+                ],
+                "summary": "creditApplications",
+                "operationId": "creditApplicationsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -2470,6 +2807,45 @@
         }
     },
     "definitions": {
+        "Application": {
+            "type": "object",
+            "properties": {
+                "agreeTerms": {
+                    "type": "boolean"
+                },
+                "annualIncome": {
+                    "type": "number"
+                },
+                "balanceTransfer": {
+                    "type": "boolean"
+                },
+                "bankStatus": {
+                    "type": "string"
+                },
+                "cashAdvance": {
+                    "type": "boolean"
+                },
+                "employmentStatus": {
+                    "type": "string"
+                },
+                "minimumCreditCard": {
+                    "type": "number"
+                },
+                "monthlyAutoLoan": {
+                    "type": "number"
+                },
+                "monthlyMortgage": {
+                    "type": "number"
+                },
+                "monthlyOtherLoan": {
+                    "type": "number"
+                },
+                "monthlySpend": {
+                    "type": "number"
+                }
+            },
+            "title": "Application"
+        },
         "ChangePassword": {
             "type": "object",
             "properties": {

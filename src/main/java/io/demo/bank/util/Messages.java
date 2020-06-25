@@ -139,4 +139,35 @@ public class Messages {
 	public static final String OBP_ACCOUNT_LINKED		= "The Account selected is already linked to Digital Bank.";
 	public static final String OBP_ACCOUNT_VIEW_ERROR	= "Unable to retreive an update for the latest account details. Last known account details will be displayed.";
 	
+	
+	// Credit API Service
+	public static final String CREDIT_APP_INCOME_REQ		= "Total Annual Income is required.";
+	public static final String CREDIT_APP_INCOME_FORMAT		= "Total Annual Income must be zero or a positive number.";
+	public static final String CREDIT_APP_MORTGAGE_REQ		= "Monthly Rent/Mortgage is required.";
+	public static final String CREDIT_APP_MORTGAGE_FORMAT	= "Monthly Rent/Mortgage must be zero or a positive number.";
+	public static final String CREDIT_APP_AUTO_LN_REQ		= "Monthly Automotive Loan Payment(s) is required.";
+	public static final String CREDIT_APP_AUTO_LN_FORMAT	= "Monthly Automotive Loan must be zero or a positive number.";
+	public static final String CREDIT_APP_OTHER_LN_REQ		= "Monthly Other Loan Payment(s) is required.";
+	public static final String CREDIT_APP_OTHER_LN_FORMAT	= "Monthly Other Loan must be zero or a positive number.";
+	public static final String CREDIT_APP_CREDIT_PYMT_REQ	= "Monthly Credit Card Payment(s) is required.";
+	public static final String CREDIT_APP_CREDIT_PYMT_FORMAT= "Monthly Credit Card Payment(s) must be zero or a positive number.";
+	public static final String CREDIT_APP_CREDIT_SPEMD_REQ	= "Monthly Credit Card Spend is required.";
+	public static final String CREDIT_APP_CREDIT_SPEND_FORMT= "Monthly Credit Card Spend must be zero or a positive number.";
+	public static final String CREDIT_APP_EMP_STATUS_REQ	= "Employment Status is required.";
+	public static final String CREDIT_APP_EMP_STATUS_FORMAT	= "Employment Status must either be "
+															+ "'Employed', "
+															+ "'Self-Employed', "
+															+ "'Retired', "
+															+ "'Student', or "
+															+ "'Unemployed'";
+	public static final String CREDIT_APP_BANK_STATUS_REQ	= "Bank Account Status is required.";
+	public static final String CREDIT_APP_BANK_STATUS_FORMT = "Bank Account Status must either be "
+															+ "'Checking and Savings', "
+															+ "'Checking Only', "
+															+ "'Savings Only', or "
+															+ "'Neither'";
+	public static final String CREDIT_APP_AGREE_TERMS_REQ	= "Agree to Terms is required.";
+	public static final String CREDIT_APP_AGREE_TERMS_FORMT	= "Agree to Terms must be true.";
+	public static final String CREDIT_APP_SVC_UNAVAILABLE   = "The Digital Credit service is temporarily unavailable. We applogize for "
+															+ "any inconvenience this may cause. Please try again at a later time.";
 }

@@ -82,7 +82,7 @@ services:
 # Digital Bank Service Configuration
 # =====================================================================
   bank:
-    image: asburymr/digitalbank:2.0.0.106
+    image: asburymr/digitalbank:2.0.0.107
     container_name: bank
     environment:
 

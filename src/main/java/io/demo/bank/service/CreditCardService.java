@@ -258,6 +258,13 @@ public class CreditCardService {
 	}
 	
 	/*
+	 * Get all Credit References
+	 */
+	public List<CreditCardReference> getCreditReferences(){
+		return ccReferenceRepository.findAll();
+	}
+	
+	/*
 	 * Get Credit Reference by User
 	 */
 	public CreditCardReference getCreditReference (Users user) {

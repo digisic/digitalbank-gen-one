@@ -127,6 +127,13 @@ public class Constants {
 	public static final String URI_API_PROMO			= "/api/v1/promotions";
 	public static final String URI_API_SEARCH_ATM		= "/api/v1/search/atm";
 	public static final String URI_API_HEALTHCHECK		= "/api/v1/health";
+	public static final String URI_API_CREDIT_APP_ALL	= "/api/v1/credit/references";
+	public static final String URI_API_CREDIT_APP		= "/api/v1/credit/reference";
+	public static final String URI_API_CREDIT_APP_ID	= "/api/v1/credit/reference/{id}";
+	public static final String URI_API_CREDIT_ACCT_ID	= "/api/v1/credit/account/{id}";
+	public static final String URI_API_CREDIT_ACCT_ID_BILLING = "/api/v1/credit/account/{id}/billing";
+	public static final String URI_API_CREDIT_ACCT_ID_TRANS = "/api/v1/credit/account/{id}/transactions";
+
 	
 	
 

@@ -1,5 +1,6 @@
 package io.demo.bank.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
@@ -13,5 +14,6 @@ public interface CreditCardReferenceRepository extends CrudRepository<CreditCard
 	Optional<CreditCardReference> findByCorrelationId(String correlationId);
 	Optional<CreditCardReference> findByCreditUserId(Long userId);
 	Optional<CreditCardReference> findByApplicationId(Long applicationId);
+	List<CreditCardReference> findAll();
 
 }
