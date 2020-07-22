@@ -22,10 +22,6 @@ import net.thucydides.core.webdriver.ThucydidesWebDriverSupport;
 
 public class SharedScenarioTests {
 	
-	public SharedScenarioTests() {
-		
-	}
-	
 	// User Profile Menu Options
 	private final static String UserProfileLogout = "Logout";
 	private final static String UserProfileChangePassword = "Change Password";
