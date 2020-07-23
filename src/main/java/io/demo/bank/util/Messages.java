@@ -106,6 +106,7 @@ public class Messages {
 														+ TransactionType.CAT_EITHER + "'";
 	
 	public static final String ACCT_XFER_TO_ACCT_REQ	= "Transfer To Account is required.";
+	public static final String ACCT_CREATE_MSG_FORMAT	= "Successfully created new {0} account named {1}";
 	
 	// Promotions
 	public static final String PROMO_ACCT_TYPE_REQ		= "Account Type is required";
