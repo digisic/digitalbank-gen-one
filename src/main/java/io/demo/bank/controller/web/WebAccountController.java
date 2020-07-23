@@ -2,6 +2,7 @@ package io.demo.bank.controller.web;
 
 import java.math.BigDecimal;
 import java.security.Principal;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
@@ -15,13 +16,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import io.demo.bank.model.Account;
 import io.demo.bank.model.AccountTransaction;
 import io.demo.bank.model.security.Users;
 import io.demo.bank.service.AccountService;
+import io.demo.bank.service.ObpService;
 import io.demo.bank.service.UserService;
 import io.demo.bank.util.Constants;
+import io.demo.bank.util.Messages;
 import io.demo.bank.util.Patterns;
 
 @Controller
@@ -56,14 +61,18 @@ public class WebAccountController extends WebCommonController {
 	
 	@PostMapping(Constants.URI_CHK_ADD)
 	public String checkingAdd(Principal principal, Model model,
-							  @ModelAttribute(MODEL_ATT_ACCOUNT) Account newAccount) {
+							  @ModelAttribute(MODEL_ATT_ACCOUNT) Account newAccount,
+							  RedirectAttributes redirectAttrs) {
 		
 		// Set Display Defaults
 		setDisplayDefaults(principal, model);
 		
 		Users user = userService.findByUsername(principal.getName());
 		
-		LOG.debug("New Checking: Account Name -> " + newAccount.getName());
+		String accountName = newAccount.getName();
+		String accountType = newAccount.getAccountType().getName();
+		
+		LOG.debug("New Checking: Account Name -> " + accountName);
 		LOG.debug("New Checking: Initial Deposit -> " + newAccount.getOpeningBalance());
 		LOG.debug("New Checking: Account Type -> " + newAccount.getAccountType().getId());
 		LOG.debug("New Checking: Owner Type -> " + newAccount.getOwnershipType().getId());
@@ -78,9 +87,12 @@ public class WebAccountController extends WebCommonController {
 			accountService.createNewAccount(newAccount);
 			
 			// Add notification to user
-			userService.addNotification(user, "New "+newAccount.getAccountType().getName()+" account named "+newAccount.getName()+" created");
-		}
-		else {
+			userService.addNotification(user, "New "+accountType+" account named "+accountName+" created");
+			
+			// Add "Flash" attribute, which survives a redirect initially and then automatically cleared (see PRG)
+			redirectAttrs.addFlashAttribute(MODEL_NEW_ACCT_CONF_MSG, MessageFormat.format(Messages.ACCT_CREATE_MSG_FORMAT, accountType, accountName));
+			
+		} else {
 			
 			LOG.debug("New Checking: Error meeting minimum deposit requirement.");
 			
@@ -125,14 +137,18 @@ public class WebAccountController extends WebCommonController {
 	
 	@PostMapping(Constants.URI_SAV_ADD)
 	public String savingsAdd (Principal principal, Model model,
-							  @ModelAttribute(MODEL_ATT_ACCOUNT) Account newAccount) {
+							  @ModelAttribute(MODEL_ATT_ACCOUNT) Account newAccount,
+							  RedirectAttributes redirectAttrs) {
 		
 		// Set Display Defaults
 		setDisplayDefaults(principal, model);
 				
 		Users user = userService.findByUsername(principal.getName());
 		
-		LOG.debug("Add New Savings: Account Name -> " + newAccount.getName());
+		String accountType = newAccount.getAccountType().getName();
+		String accountName = newAccount.getName();
+		
+		LOG.debug("Add New Savings: Account Name -> " + accountName);
 		LOG.debug("Add New Savings: Initial Deposit -> " + newAccount.getOpeningBalance());
 		LOG.debug("Add New Savings: Account Type -> " + newAccount.getAccountType().getId());
 		LOG.debug("Add New Savings: Owner Type -> " + newAccount.getOwnershipType().getId());
@@ -146,8 +162,14 @@ public class WebAccountController extends WebCommonController {
 			newAccount.setOwner(user);
 			
 			newAccount = accountService.createNewAccount(newAccount);
-		}
-		else {
+			
+			// Add notification to user
+			userService.addNotification(user, "New "+accountType+" account named "+accountName+" created");
+			
+			// Add "Flash" attribute, which survives a redirect initially and then automatically cleared (see PRG)
+			redirectAttrs.addFlashAttribute(MODEL_NEW_ACCT_CONF_MSG, MessageFormat.format(Messages.ACCT_CREATE_MSG_FORMAT, accountType, accountName));
+			
+		} else {
 			
 			LOG.debug("Savings: Error meeting minimum deposit requirement.");
 			
@@ -190,11 +212,12 @@ public class WebAccountController extends WebCommonController {
 	
 	@GetMapping(Constants.URI_CHK_VIEW)
 	public String checkingView (Principal principal, Model model,
-							   @ModelAttribute(MODEL_ATT_ACCT_SEL_SWITCH) ArrayList<String> selectSwitch) {
+							   @ModelAttribute(MODEL_ATT_ACCT_SEL_SWITCH) ArrayList<String> selectSwitch,
+							   @ModelAttribute(MODEL_NEW_ACCT_CONF_MSG) String newAcctConfMsg) {
 		
 		// Set Display Defaults
 		setDisplayDefaults(principal, model);
-				
+		
 		Users user = userService.findByUsername(principal.getName());
 		
 		LOG.debug("SELECTED: ->" + selectSwitch.size());
@@ -247,7 +270,8 @@ public class WebAccountController extends WebCommonController {
 	
 	@GetMapping(Constants.URI_SAV_VIEW)
 	public String savingsView (Principal principal, Model model,
-							   @ModelAttribute(MODEL_ATT_ACCT_SEL_SWITCH) ArrayList<String> selectSwitch) {
+							   @ModelAttribute(MODEL_ATT_ACCT_SEL_SWITCH) ArrayList<String> selectSwitch,
+							   @ModelAttribute(MODEL_NEW_ACCT_CONF_MSG) String newAcctConfMsg) {
 		
 		// Set Display Defaults
 		setDisplayDefaults(principal, model);

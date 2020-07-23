@@ -63,6 +63,7 @@ abstract class WebCommonController {
 	public static final String MODEL_ATT_ACCT_SEL_ID			= "selectId";
 	public static final String MODEL_ATT_ACCT_SEL_SWITCH		= "selectSwitch";
 	public static final String MODEL_ATT_ACCT_NONE				= "noAccounts";
+	public static final String MODEL_NEW_ACCT_CONF_MSG			= "newAcctConfMsg";
 	
 	// model attribute constants -> Users
 	public static final String MODEL_ATT_USER 					= "user";
