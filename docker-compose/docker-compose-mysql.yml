@@ -27,7 +27,7 @@ services:
 # Digital Broker Service Configuration
 # =====================================================================
   broker:
-    image: asburymr/digitalbroker:latest
+    image: digisic/digitalbroker:2.1.0.1
     container_name: broker
     ports:
       - "8161:8161"
@@ -40,12 +40,12 @@ services:
 # Digital Credit Service Configuration
 # =====================================================================    
   credit:
-    image: asburymr/digitalcredit:2.0.0.103
+    image: digisic/digitalcredit:2.1.0.1
     container_name: credit
     environment:
 
       # Debug Options
-      LOGGING_LEVEL_IO_DEMO_CREDIT: INFO
+      LOGGING_LEVEL_IO_DIGISIC_CREDIT: INFO
 
       # Digital Broker Connection
       SPRING_ARTEMIS_MODE: native
@@ -55,12 +55,12 @@ services:
       SPRING_ARTEMIS_PASSWORD: admin
 
       # Credit Application Process
-      IO_DEMO_CREDIT_APP_PROCESS_ENABLED: 'true'
-      IO_DEMO_CREDIT_APP_PROCESS_TIME: 20
+      IO_DIGISIC_CREDIT_APP_PROCESS_ENABLED: 'true'
+      IO_DIGISIC_CREDIT_APP_PROCESS_TIME: 20
 
       # Digital Credit Application Process JMS Queues
-      IO_DEMO_PARTNER_CREDIT_APP_REQUEST: CREDIT.APP.REQUEST
-      IO_DEMO_PARTNER_CREDIT_APP_RESPONSE: CREDIT.APP.RESPONSE
+      IO_DIGISIC_PARTNER_CREDIT_APP_REQUEST: CREDIT.APP.REQUEST
+      IO_DIGISIC_PARTNER_CREDIT_APP_RESPONSE: CREDIT.APP.RESPONSE
 
       # Database Configuration
       SPRING_DATASOURCE_PLATFORM: mysql
@@ -82,12 +82,12 @@ services:
 # Digital Bank Service Configuration
 # =====================================================================
   bank:
-    image: asburymr/digitalbank:2.0.0.108
+    image: digisic/digitalbank:2.1.0.1
     container_name: bank
     environment:
 
       # Debug Options
-      LOGGING_LEVEL_IO_DEMO_BANK: INFO
+      LOGGING_LEVEL_IO_DIGISIC_BANK: INFO
       
       # Digital Broker connection
       SPRING_ARTEMIS_MODE: native
@@ -97,35 +97,35 @@ services:
       SPRING_ARTEMIS_PASSWORD: admin
 
       # Digital Credit Connection
-      IO_DEMO_CREDIT_ENABLED: 'true'
-      IO_DEMO_CREDIT_PROTOCOL: http
-      IO_DEMO_CREDIT_HOST: credit
-      IO_DEMO_CREDIT_PORT: 8080
-      IO_DEMO_CREDIT_CONTEXT-PATH: /credit
-      IO_DEMO_CREDIT_USERNAME: admin@demo.io
-      IO_DEMO_CREDIT_PASSWORD: Demo123!
+      IO_DIGISIC_CREDIT_ENABLED: 'true'
+      IO_DIGISIC_CREDIT_PROTOCOL: http
+      IO_DIGISIC_CREDIT_HOST: credit
+      IO_DIGISIC_CREDIT_PORT: 8080
+      IO_DIGISIC_CREDIT_CONTEXT-PATH: /credit
+      IO_DIGISIC_CREDIT_USERNAME: admin@demo.io
+      IO_DIGISIC_CREDIT_PASSWORD: Demo123!
 
       # Digital Credit Application Process JMS Queues
-      IO_DEMO_PARTNER_CREDIT_APP_REQUEST: CREDIT.APP.REQUEST
-      IO_DEMO_PARTNER_CREDIT_APP_RESPONSE: CREDIT.APP.RESPONSE
+      IO_DIGISIC_PARTNER_CREDIT_APP_REQUEST: CREDIT.APP.REQUEST
+      IO_DIGISIC_PARTNER_CREDIT_APP_RESPONSE: CREDIT.APP.RESPONSE
 
       # ATM Location Service Connection 
-      IO_DEMO_BANK_ATM_PROTOCOL: https
-      IO_DEMO_BANK_ATM_HOST: bankingservices.io # uat-api.synapsefi.com #
-      IO_DEMO_BANK_ATM_PORT: 
+      IO_DIGISIC_BANK_ATM_PROTOCOL: https
+      IO_DIGISIC_BANK_ATM_HOST: bankingservices.io # uat-api.synapsefi.com #
+      IO_DIGISIC_BANK_ATM_PORT: 
 
       # VISA Direct Payment Service
-      IO_DEMO_BANK_VISA_PROTOCOL: https
-      IO_DEMO_BANK_VISA_HOST: creditservices.io
-      IO_DEMO_BANK_VISA_PORT:
+      IO_DIGISIC_BANK_VISA_PROTOCOL: https
+      IO_DIGISIC_BANK_VISA_HOST: creditservices.io
+      IO_DIGISIC_BANK_VISA_PORT:
       
       # Open Banking API Service
-      IO_DEMO_BANK_OBP_ENABLED: 'true'
-      IO_DEMO_BANK_OBP_CONSUMER_KEY: vwfpvwfr1kngt0up2jelebzmvxrhst4vhxvw1jm3
-      IO_DEMO_BANK_OBP_VERSION: v4.0.0
-      IO_DEMO_BANK_OBP_PROTOCOL: https
-      IO_DEMO_BANK_OBP_HOST:
-      IO_DEMO_BANK_OBP_PORT:
+      IO_DIGISIC_BANK_OBP_ENABLED: 'true'
+      IO_DIGISIC_BANK_OBP_CONSUMER_KEY: vwfpvwfr1kngt0up2jelebzmvxrhst4vhxvw1jm3
+      IO_DIGISIC_BANK_OBP_VERSION: v4.0.0
+      IO_DIGISIC_BANK_OBP_PROTOCOL: https
+      IO_DIGISIC_BANK_OBP_HOST:
+      IO_DIGISIC_BANK_OBP_PORT:
 
       # Database Configuration
       SPRING_DATASOURCE_PLATFORM: mysql

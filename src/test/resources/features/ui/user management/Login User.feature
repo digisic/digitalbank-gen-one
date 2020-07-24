@@ -49,7 +49,8 @@ Scenario: Login user with valid username, valid password
 @negative
 Scenario: Login user with valid username, valid password, credentials expired
   Given Angel is a registered user with email address Angel1496@gmail.com
-  And they have an account with expired credentials  When Angel navigates to the Login page
+  And they have an account with expired credentials
+  When Angel navigates to the Login page
   And they enter 'Angel1496@gmail.com' into the login Username field
   And they enter 'Demo123!' into the login Password field
   And they submit the login request
@@ -59,7 +60,8 @@ Scenario: Login user with valid username, valid password, credentials expired
 @negative
 Scenario: Login user with valid username, valid password, account is expired
   Given Ierne is a registered user with email address Ierne4219@gmail.com
-  And they have an expired account  When Ierne navigates to the Login page
+  And they have an expired account
+  When Ierne navigates to the Login page
   And they enter 'Ierne4219@gmail.com' into the login Username field
   And they enter 'Demo123!' into the login Password field
   And they submit the login request
@@ -69,7 +71,8 @@ Scenario: Login user with valid username, valid password, account is expired
 @negative
 Scenario: Login user with valid username, valid password, account is locked
   Given Cameron is a registered user with email address Cameron57931@gmail.com
-  And they have a locked account  When Cameron navigates to the Login page
+  And they have a locked account
+  When Cameron navigates to the Login page
   And they enter 'Cameron57931@gmail.com' into the login Username field
   And they enter 'Demo123!' into the login Password field
   And they submit the login request
@@ -79,7 +82,8 @@ Scenario: Login user with valid username, valid password, account is locked
 @negative
 Scenario: Login user with valid username, valid password, account is disabled
   Given Johnathan is a registered user with email address Johnathan873928@gmail.com
-  And they have a disabled account  When Johnathan navigates to the Login page
+  And they have a disabled account
+  When Johnathan navigates to the Login page
   And they enter 'Johnathan873928@gmail.com' into the login Username field
   And they enter 'Demo123!' into the login Password field
   And they submit the login request

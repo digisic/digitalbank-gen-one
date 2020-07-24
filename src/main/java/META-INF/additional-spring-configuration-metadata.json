@@ -30,54 +30,54 @@
     "description": "A description for 'io.demo.credit.password'"
   },
   {
-    "name": "io.demo.bank.atm.protocol",
+    "name": "io.digisic.bank.atm.protocol",
     "type": "java.lang.String",
-    "description": "A description for 'io.demo.bank.atm.protocol'"
+    "description": "A description for 'io.digisic.bank.atm.protocol'"
   },
   {
-    "name": "io.demo.bank.atm.host",
+    "name": "io.digisic.bank.atm.host",
     "type": "java.lang.String",
-    "description": "A description for 'io.demo.bank.atm.host'"
+    "description": "A description for 'io.digisic.bank.atm.host'"
   },
   {
-    "name": "io.demo.bank.atm.port",
+    "name": "io.digisic.bank.atm.port",
     "type": "java.lang.String",
-    "description": "A description for 'io.demo.bank.atm.port'"
+    "description": "A description for 'io.digisic.bank.atm.port'"
   },
   {
-    "name": "io.demo.bank.atm.protocol",
+    "name": "io.digisic.bank.atm.protocol",
     "type": "java.lang.String",
-    "description": "A description for 'io.demo.bank.atm.protocol'"
+    "description": "A description for 'io.digisic.bank.atm.protocol'"
   },
   {
-    "name": "io.demo.bank.atm.protocol",
+    "name": "io.digisic.bank.atm.protocol",
     "type": "java.lang.String",
-    "description": "A description for 'io.demo.bank.atm.protocol'"
+    "description": "A description for 'io.digisic.bank.atm.protocol'"
   },
   {
-    "name": "io.demo.bank.atm.protocol",
+    "name": "io.digisic.bank.atm.protocol",
     "type": "java.lang.String",
-    "description": "A description for 'io.demo.bank.atm.protocol'"
+    "description": "A description for 'io.digisic.bank.atm.protocol'"
   },
   {
-    "name": "io.demo.bank.visa.protocol",
+    "name": "io.digisic.bank.visa.protocol",
     "type": "java.lang.String",
-    "description": "A description for 'io.demo.bank.visa.protocol'"
+    "description": "A description for 'io.digisic.bank.visa.protocol'"
   },
   {
-    "name": "io.demo.bank.visa.host",
+    "name": "io.digisic.bank.visa.host",
     "type": "java.lang.String",
-    "description": "A description for 'io.demo.bank.visa.host'"
+    "description": "A description for 'io.digisic.bank.visa.host'"
   },
   {
-    "name": "io.demo.bank.visa.port",
+    "name": "io.digisic.bank.visa.port",
     "type": "java.lang.String",
-    "description": "A description for 'io.demo.bank.visa.port'"
+    "description": "A description for 'io.digisic.bank.visa.port'"
   },
   {
-    "name": "io.demo.bank.atm.protocol",
+    "name": "io.digisic.bank.atm.protocol",
     "type": "java.lang.String",
-    "description": "A description for 'io.demo.bank.atm.protocol'"
+    "description": "A description for 'io.digisic.bank.atm.protocol'"
   },
   {
     "name": "io.demo.partner.credit.app.request",
@@ -110,58 +110,58 @@
     "description": "A description for 'io.demo.credit.enabled'"
   },
   {
-    "name": "io.demo.bank.obp.enabled",
+    "name": "io.digisic.bank.obp.enabled",
     "type": "java.lang.String",
-    "description": "A description for 'io.demo.bank.obp.enabled'"
+    "description": "A description for 'io.digisic.bank.obp.enabled'"
   },
   {
-    "name": "io.demo.bank.obp.protocol",
+    "name": "io.digisic.bank.obp.protocol",
     "type": "java.lang.String",
-    "description": "A description for 'io.demo.bank.obp.protocol'"
+    "description": "A description for 'io.digisic.bank.obp.protocol'"
   },
   {
-    "name": "io.demo.bank.obp.host",
+    "name": "io.digisic.bank.obp.host",
     "type": "java.lang.String",
-    "description": "A description for 'io.demo.bank.obp.host'"
+    "description": "A description for 'io.digisic.bank.obp.host'"
   },
   {
-    "name": "io.demo.bank.obp.port",
+    "name": "io.digisic.bank.obp.port",
     "type": "java.lang.String",
-    "description": "A description for 'io.demo.bank.obp.port'"
+    "description": "A description for 'io.digisic.bank.obp.port'"
   },
   {
-    "name": "io.demo.bank.obp.version",
+    "name": "io.digisic.bank.obp.version",
     "type": "java.lang.String",
-    "description": "A description for 'io.demo.bank.obp.version'"
+    "description": "A description for 'io.digisic.bank.obp.version'"
   },
   {
-    "name": "io.demo.bank.obp.user",
+    "name": "io.digisic.bank.obp.user",
     "type": "java.lang.String",
-    "description": "A description for 'io.demo.bank.obp.user'"
+    "description": "A description for 'io.digisic.bank.obp.user'"
   },
   {
-    "name": "io.demo.bank.obp.password",
+    "name": "io.digisic.bank.obp.password",
     "type": "java.lang.String",
-    "description": "A description for 'io.demo.bank.obp.password'"
+    "description": "A description for 'io.digisic.bank.obp.password'"
   },
   {
-    "name": "io.demo.bank.obp.consumer_key",
+    "name": "io.digisic.bank.obp.consumer_key",
     "type": "java.lang.String",
-    "description": "A description for 'io.demo.bank.obp.consumer_key'"
+    "description": "A description for 'io.digisic.bank.obp.consumer_key'"
   },
   {
-    "name": "io.demo.bank.obp.enabled",
+    "name": "io.digisic.bank.obp.enabled",
     "type": "java.lang.String",
-    "description": "A description for 'io.demo.bank.obp.enabled'"
+    "description": "A description for 'io.digisic.bank.obp.enabled'"
   },
   {
-    "name": "io.demo.bank.obp.consumer_key",
+    "name": "io.digisic.bank.obp.consumer_key",
     "type": "java.lang.String",
-    "description": "A description for 'io.demo.bank.obp.consumer_key'"
+    "description": "A description for 'io.digisic.bank.obp.consumer_key'"
   },
   {
-    "name": "io.demo.bank.obp.enabled",
+    "name": "io.digisic.bank.obp.enabled",
     "type": "java.lang.String",
-    "description": "A description for 'io.demo.bank.obp.enabled'"
+    "description": "A description for 'io.digisic.bank.obp.enabled'"
   }
 ]}

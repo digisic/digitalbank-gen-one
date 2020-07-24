@@ -153,6 +153,9 @@
   	        	// save the element
   	        	var element = $(this);
   	        	
+  	        	// Thymeleaf to set base url
+  	        	var baseURL = "[[@{/account/update?id=}]]";
+  	        	
   	        	// save the new name and id of the account
   	        	var acctId = $(this).closest('form').find('input').val();
   	        	var acctName = $(this).html();
@@ -195,7 +198,7 @@
   		        	$.ajax({
   		        		type : "POST",
   		        	    contentType : "application/json",
-  		        	    url : "/bank/account/update?id=" + acctId + "&newName=" + acctName,
+  		        	    url : baseURL + acctId + "&newName=" + acctName,
   		        	    cache : false,
   		        	    timeout : 600000,
   		        	    success : function(data) {

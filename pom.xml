@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>io.demo</groupId>
+	<groupId>io.digisic</groupId>
 	<artifactId>digitalbank</artifactId>
 	<version>${revision}</version>
 	<packaging>war</packaging>
@@ -41,7 +41,7 @@
         <webdriver.driver>firefox</webdriver.driver>
         <webdriver.base.url>http://localhost:8080/bank/</webdriver.base.url>
         <buildNumber>local</buildNumber>
-        <revision>2.0.0.${buildNumber}</revision>
+        <revision>2.1.0.${buildNumber}</revision>
         <contextPathName>bank</contextPathName>
 	</properties>
 	

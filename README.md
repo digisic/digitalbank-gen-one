@@ -31,7 +31,7 @@ Digital Bank is a sample application that was developed for exploratory purposes
 
 Digital Bank can be deployed as a single standalone application service or be deployed and configured to integrate with Digital Credit.
 
-* [WAR Package Deployment](https://dl.bintray.com/asburymr/digitalbank/)
+* [WAR Package Deployment](https://dl.bintray.com/digisic/digitalbank/)
   * Apache Tomcat version 8.5 or higher
     * Deployment does not work with Apache Tomcat 7.x
   * Copy the WAR file into an existing Tomcat instance under ${catalina.base}/webapps folder. 
@@ -40,7 +40,7 @@ Digital Bank can be deployed as a single standalone application service or be de
     * The digitalbank.properties file is configured to be a "watched resource" in the deployment context. Any updates to the digitalbank.properties file will automatically trigger Tomcat to recycle the application to pick up the new changes.
   * Start the Tomcat service.
   * A digitalbank.log file will be created within ${catalina.base}/logs.
-* [Docker Deployment](https://hub.docker.com/r/asburymr/digitalbank)
+* [Docker Deployment](https://hub.docker.com/r/digisic/digitalbank)
   * Deploy Digital Bank as a standalone service.
 * [Docker Compose Deployment](docker-compose)
   * Deploy Digital Bank as a full stack to enable all services.
@@ -83,7 +83,7 @@ Digital Bank can be deployed as a single standalone application service or be de
 
 [Mark Asbury](https://github.com/asburymr)
 
-See the additional list of [contributors](https://github.com/asburymr/Digital-Bank/graphs/contributors) who participated in this project.
+See the additional list of [contributors](https://github.com/digisic/Digital-Bank/graphs/contributors) who participated in this project.
 
 ## License
 
