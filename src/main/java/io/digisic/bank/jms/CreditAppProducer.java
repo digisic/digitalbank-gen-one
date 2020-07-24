@@ -15,7 +15,7 @@ import io.digisic.bank.model.CreditCardApplication;
 
 
 @Component
-@ConditionalOnProperty(value="io.demo.credit.enabled", havingValue = "true", matchIfMissing = false)
+@ConditionalOnProperty(value="io.digisic.credit.enabled", havingValue = "true", matchIfMissing = false)
 public class CreditAppProducer {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(CreditAppProducer.class);
@@ -23,7 +23,7 @@ public class CreditAppProducer {
 	@Autowired
     JmsTemplate jmsTemplate;
 
-    @Value("${io.demo.partner.credit.app.request}")
+    @Value("${io.digisic.partner.credit.app.request}")
     String destinationQueue;
 
     public String sendCreditApplication(CreditCardApplication app){

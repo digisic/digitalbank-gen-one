@@ -267,13 +267,13 @@ public class Constants {
 																	+ " Expect a response from the credit provider shortly.";
 	
 	// Application Properties
-	public static final String APP_CREDIT_ENABLED					= "io.demo.credit.enabled";
-	public static final String APP_CREDIT_PROTOCOL					= "io.demo.credit.protocol";
-	public static final String APP_CREDIT_HOST						= "io.demo.credit.host";
-	public static final String APP_CREDIT_PORT						= "io.demo.credit.port";
-	public static final String APP_CREDIT_CONTEXT_PATH				= "io.demo.credit.context-path";
-	public static final String APP_CREDIT_USER						= "io.demo.credit.username";
-	public static final String APP_CREDIT_PASSWORD					= "io.demo.credit.password";
+	public static final String APP_CREDIT_ENABLED					= "io.digisic.credit.enabled";
+	public static final String APP_CREDIT_PROTOCOL					= "io.digisic.credit.protocol";
+	public static final String APP_CREDIT_HOST						= "io.digisic.credit.host";
+	public static final String APP_CREDIT_PORT						= "io.digisic.credit.port";
+	public static final String APP_CREDIT_CONTEXT_PATH				= "io.digisic.credit.context-path";
+	public static final String APP_CREDIT_USER						= "io.digisic.credit.username";
+	public static final String APP_CREDIT_PASSWORD					= "io.digisic.credit.password";
 	public static final String APP_ATM_PROTOCOL						= "io.digisic.bank.atm.protocol";
 	public static final String APP_ATM_HOST							= "io.digisic.bank.atm.host";
 	public static final String APP_ATM_PORT							= "io.digisic.bank.atm.port";

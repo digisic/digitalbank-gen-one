@@ -20,7 +20,7 @@ import org.springframework.jms.support.JmsHeaders;
 
 
 @Component
-@ConditionalOnProperty(value="io.demo.credit.enabled", havingValue = "true", matchIfMissing = false)
+@ConditionalOnProperty(value="io.digisic.credit.enabled", havingValue = "true", matchIfMissing = false)
 public class CreditAppConsumer {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(CreditAppConsumer.class);
@@ -33,7 +33,7 @@ public class CreditAppConsumer {
 	 * the credit provider
 	 */
 			
-	@JmsListener(destination = "${io.demo.partner.credit.app.response}")
+	@JmsListener(destination = "${io.digisic.partner.credit.app.response}")
 	public void receiveCreditApplicationStatus(String msg, @Header(JmsHeaders.CORRELATION_ID) String correlationId){
 		
 		LOG.debug("Recieved New Message: " + msg);
