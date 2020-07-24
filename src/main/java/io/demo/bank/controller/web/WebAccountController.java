@@ -209,8 +209,7 @@ public class WebAccountController extends WebCommonController {
 	
 	@GetMapping(Constants.URI_CHK_VIEW)
 	public String checkingView (Principal principal, Model model,
-							   @ModelAttribute(MODEL_ATT_ACCT_SEL_SWITCH) ArrayList<String> selectSwitch,
-							   @ModelAttribute(MODEL_NEW_ACCT_CONF_MSG) String newAcctConfMsg) {
+							   @ModelAttribute(MODEL_ATT_ACCT_SEL_SWITCH) ArrayList<String> selectSwitch) {
 		
 		// Set Display Defaults
 		setDisplayDefaults(principal, model);
@@ -267,8 +266,7 @@ public class WebAccountController extends WebCommonController {
 	
 	@GetMapping(Constants.URI_SAV_VIEW)
 	public String savingsView (Principal principal, Model model,
-							   @ModelAttribute(MODEL_ATT_ACCT_SEL_SWITCH) ArrayList<String> selectSwitch,
-							   @ModelAttribute(MODEL_NEW_ACCT_CONF_MSG) String newAcctConfMsg) {
+							   @ModelAttribute(MODEL_ATT_ACCT_SEL_SWITCH) ArrayList<String> selectSwitch) {
 		
 		// Set Display Defaults
 		setDisplayDefaults(principal, model);
