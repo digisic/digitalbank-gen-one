@@ -31,9 +31,9 @@
 	                      		<form th:action="@{/account/checking-add}" method="post">
 		                     		<div class="card-body card-block">
 	                   					<div class="form-group text-left">
-	                   						<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show" th:if="${errorMsg}">
+	                   						<div id="newAccountErrorAlert" class="sufee-alert alert with-close alert-danger alert-dismissible fade show" th:if="${errorMsg}">
 						                       <span class="badge badge-pill badge-danger">Error</span>
-						                       <span th:text="${errorMsg}"></span>
+						                       <span id="newAccountErrorMsg" th:text="${errorMsg}"></span>
 						                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						                           <span aria-hidden="true">&times;</span>
 						                       </button>
