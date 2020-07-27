@@ -79,7 +79,7 @@ services:
 # Digital Bank Service Configuration
 # =====================================================================
   bank:
-    image: digisic/digitalbank:2.1.0.1
+    image: digisic/digitalbank:2.1.0.2
     container_name: bank
     environment:
 
