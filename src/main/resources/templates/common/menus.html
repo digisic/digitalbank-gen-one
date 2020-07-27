@@ -186,11 +186,11 @@
         </header><!-- /header -->
         <!-- Header-->
 
-        <div th:fragment="rp-breadcrumbs" class="breadcrumbs">
+        <div th:fragment="rp-breadcrumbs (pageTitle)" class="breadcrumbs">
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1></h1>
+                        <h1 th:text="${pageTitle}"></h1>
                     </div>
                 </div>
             </div>
