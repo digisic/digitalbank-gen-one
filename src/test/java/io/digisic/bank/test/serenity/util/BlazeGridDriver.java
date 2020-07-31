@@ -43,6 +43,9 @@ public class BlazeGridDriver implements DriverSource {
 
 	        driver = new RemoteWebDriver(url, capabilities);
 	        
+	        // Maximize the browser window so it occupies full screen and video is easier to see in the Blazemeter test report
+	        driver.manage().window().maximize();
+	        
 	        return driver;
 			
 		} catch (MalformedURLException ex) {
