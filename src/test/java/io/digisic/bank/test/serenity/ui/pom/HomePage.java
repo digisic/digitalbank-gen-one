@@ -20,7 +20,7 @@ public class HomePage extends PageObject {
 	@FindBy(id="savings-menu")
 	private WebElementFacade savingsMenu;
 	
-	@FindBy(id="new-savings-menu-option")
+	@FindBy(id="new-savings-menu-item")
 	private WebElementFacade newSavingsMenuOption;
 
 	private static String homePageURI = "/home";
