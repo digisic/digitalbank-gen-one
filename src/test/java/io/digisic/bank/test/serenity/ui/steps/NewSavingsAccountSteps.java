@@ -50,7 +50,7 @@ public class NewSavingsAccountSteps extends ScenarioSteps{
 	
 	@Step ("Validate insufficient initial balance alert appears")
 	public void validateInsufficientBalAlertPresent() {
-		newSavingsAccountPage.validateInsufficientBalAlertPresent();
+		assertTrue(newSavingsAccountPage.insufficientDepositAlertDisplayed());
 	}
 	
 	@Step ("User is expected to be redirected to the View Savings Accounts page with the new account visible")

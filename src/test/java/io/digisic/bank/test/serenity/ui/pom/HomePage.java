@@ -1,5 +1,7 @@
 package io.digisic.bank.test.serenity.ui.pom;
 
+import org.openqa.selenium.WebElement;
+
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
@@ -22,6 +24,12 @@ public class HomePage extends PageObject {
 	
 	@FindBy(id="new-savings-menu-item")
 	private WebElementFacade newSavingsMenuOption;
+	
+	@FindBy(id="checking-menu")
+	private WebElement checkingMenu;
+	
+	@FindBy(id="new-checking-menu-item")
+	private WebElement newCheckingMenuOption;
 
 	private static String homePageURI = "/home";
 	
@@ -47,6 +55,14 @@ public class HomePage extends PageObject {
 	
 	public void clickNewSavingsMenuOption() {
 		newSavingsMenuOption.click();
+	}
+	
+	public void clickCheckingMenu() {
+		checkingMenu.click();
+	}
+	
+	public void clickNewCheckingMenuOption() {
+		newCheckingMenuOption.click();
 	}
 	
 }
