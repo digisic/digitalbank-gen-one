@@ -39,7 +39,6 @@ public class BlazeGridDriver implements DriverSource {
 	        capabilities.setCapability("blazemeter.projectId", env.getProperty("blazemeter.project.id"));
 	        capabilities.setCapability("blazemeter.testId", env.getProperty("blazemeter.test.id"));
 	        capabilities.setCapability("blazemeter.buildId", env.getProperty("blazemeter.build.id") + "." + buildIdExt);
-	        
 
 	        driver = new RemoteWebDriver(url, capabilities);
 	        
