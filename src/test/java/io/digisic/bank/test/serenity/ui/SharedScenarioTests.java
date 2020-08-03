@@ -54,8 +54,12 @@ public class SharedScenarioTests {
 			if (remoteDriver != null) {
 				
 				 Map<String, String> map = new HashMap<>();
-		         map.put("testCaseName", scenario.getName());
-		         map.put("testSuiteName", scenario.getId().substring(scenario.getId().lastIndexOf("/") + 1, scenario.getId().lastIndexOf(".")));
+		         /*map.put("testCaseName", scenario.getName());
+		         map.put("testSuiteName", scenario.getId().substring(scenario.getId().lastIndexOf("/") + 1, scenario.getId().lastIndexOf(".")));*/
+				 String testSuite = scenario.getId().substring(scenario.getId().lastIndexOf("/") + 1, scenario.getId().lastIndexOf("."));
+				 String aggregatedTestName = testSuite+": "+scenario.getName();
+				 map.put("testCaseName", aggregatedTestName);
+		         map.put("testSuiteName", aggregatedTestName);
 		         
 		         remoteDriver.executeAsyncScript("/* FLOW_MARKER test-case-start */", map);
 			}
@@ -84,6 +88,10 @@ public class SharedScenarioTests {
 	                map.put("message", scenario.getStatus().toString());
 				}
 				remoteDriver.executeAsyncScript("/* FLOW_MARKER test-case-stop */", map);
+				
+				System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!RUNNING AFTER FOR: "+scenario.getName());
+				// Close the driver!
+				remoteDriver.quit();
 			} // end if remote driver
 		} // end if blaze grid
 	}
