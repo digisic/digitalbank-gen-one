@@ -6,7 +6,7 @@ Feature: Create Savings Account (UI)
 
 
 @negative
-Scenario: NewAcctTestCase1-MoneyMarketAcctNotCreated_InsufficientBalance
+Scenario: NewAcctTestCase1-MoneyMarketAcctNotCreated-InsufficientBalance
   Given Cian is logged into the application with Cian95072@gmail.com
   And they attempt to open a new 'Savings Account'
   When Cian enters 'AKP Savings' into the Account Name field
@@ -18,7 +18,7 @@ Scenario: NewAcctTestCase1-MoneyMarketAcctNotCreated_InsufficientBalance
   And they verify they are presented with a message indicating insufficient balance 
 
 @negative
-Scenario: NewAcctTestCase2-MoneyMarketAcctNotCreated_InsufficientBalance
+Scenario: NewAcctTestCase2-MoneyMarketAcctNotCreated-InsufficientBalance
   Given Li is logged into the application with Li009609@gmail.com
   And they attempt to open a new 'Savings Account'
   When Li enters 'AKP Savings' into the Account Name field
@@ -41,7 +41,7 @@ Scenario: NewAcctTestCase3-MoneyMarketAcctCreated
   Then Nafisika verifies a 'Money Market Savings Account' should be created
   And they verify account balance should be '2500'
 
-@positive
+@positive @special
 Scenario: NewAcctTestCase4-MoneyMarketAcctCreated
   Given Shukrani is logged into the application with Shukrani18756@gmail.com
   And they attempt to open a new 'Savings Account'
@@ -78,7 +78,7 @@ Scenario: NewAcctTestCase6-SavingsAcctCreated
   And they verify account balance should be '359'
 
 @negative
-Scenario: NewAcctTestCase7-SavingsAcctNotCreated_InsufficientBalance
+Scenario: NewAcctTestCase7-SavingsAcctNotCreated-InsufficientBalance
   Given Abhayananda is logged into the application with Abhayananda8283@gmail.com
   And they attempt to open a new 'Savings Account'
   When Abhayananda enters 'AKP Savings' into the Account Name field
@@ -90,7 +90,7 @@ Scenario: NewAcctTestCase7-SavingsAcctNotCreated_InsufficientBalance
   And they verify they are presented with a message indicating insufficient balance 
 
 @negative
-Scenario: NewAcctTestCase8-SavingsAcctNotCreated_InsufficientBalance
+Scenario: NewAcctTestCase8-SavingsAcctNotCreated-InsufficientBalance
   Given Zacharias is logged into the application with Zacharias4205@gmail.com
   And they attempt to open a new 'Savings Account'
   When Zacharias enters 'AKP Savings' into the Account Name field
@@ -113,7 +113,7 @@ Scenario: NewAcctTestCase9-FormValidationFailure
   And they verify they are presented with a message indicating form validation error
 
 @negative
-Scenario: NewAcctTestCase10-MoneyMarketAcctNotCreated_InsufficientBalance
+Scenario: NewAcctTestCase10-MoneyMarketAcctNotCreated-InsufficientBalance
   Given Amala is logged into the application with Amala475631@gmail.com
   And they attempt to open a new 'Savings Account'
   When Amala enters 'AKP Savings' into the Account Name field
@@ -125,7 +125,7 @@ Scenario: NewAcctTestCase10-MoneyMarketAcctNotCreated_InsufficientBalance
   And they verify they are presented with a message indicating insufficient balance 
 
 @negative
-Scenario: NewAcctTestCase11-MoneyMarketAcctNotCreated_InsufficientBalance
+Scenario: NewAcctTestCase11-MoneyMarketAcctNotCreated-InsufficientBalance
   Given Shawnn is logged into the application with Shawnn991648@gmail.com
   And they attempt to open a new 'Savings Account'
   When Shawnn enters 'AKP Savings' into the Account Name field
@@ -185,7 +185,7 @@ Scenario: NewAcctTestCase15-SavingsAcctCreated
   And they verify account balance should be '854'
 
 @negative
-Scenario: NewAcctTestCase16-SavingsAcctNotCreated_InsufficientBalance
+Scenario: NewAcctTestCase16-SavingsAcctNotCreated-InsufficientBalance
   Given Monima is logged into the application with Monima449828@gmail.com
   And they attempt to open a new 'Savings Account'
   When Monima enters 'AKP Savings' into the Account Name field
@@ -197,7 +197,7 @@ Scenario: NewAcctTestCase16-SavingsAcctNotCreated_InsufficientBalance
   And they verify they are presented with a message indicating insufficient balance 
 
 @negative
-Scenario: NewAcctTestCase17-SavingsAcctNotCreated_InsufficientBalance
+Scenario: NewAcctTestCase17-SavingsAcctNotCreated-InsufficientBalance
   Given Ghaniy is logged into the application with Ghaniy46455@gmail.com
   And they attempt to open a new 'Savings Account'
   When Ghaniy enters 'AKP Savings' into the Account Name field

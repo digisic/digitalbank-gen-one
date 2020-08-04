@@ -84,6 +84,9 @@ public class SharedScenarioTests {
 	                map.put("message", scenario.getStatus().toString());
 				}
 				remoteDriver.executeAsyncScript("/* FLOW_MARKER test-case-stop */", map);
+				
+				// Close the driver!
+				remoteDriver.quit();
 			} // end if remote driver
 		} // end if blaze grid
 	}

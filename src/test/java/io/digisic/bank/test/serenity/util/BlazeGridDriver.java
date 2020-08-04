@@ -33,15 +33,17 @@ public class BlazeGridDriver implements DriverSource {
 	        capabilities.setCapability("blazemeter.sessionTimeout", env.getProperty("blazemeter.session.timeout"));
 	        capabilities.setCapability("blazemeter.videoEnabled", env.getProperty("blazemeter.video.enabled"));
 	        capabilities.setCapability("browserName", env.getProperty("blazemeter.browser.name"));
-	        capabilities.setCapability("browserVersion", env.getProperty("env.browser.version"));
+	        capabilities.setCapability("browserVersion", env.getProperty("blazemeter.browser.version"));
 	        capabilities.setCapability("blazemeter.testName", env.getProperty("blazemeter.test.name"));
 	        capabilities.setCapability("blazemeter.locationId", env.getProperty("blazemeter.location.id"));
 	        capabilities.setCapability("blazemeter.projectId", env.getProperty("blazemeter.project.id"));
 	        capabilities.setCapability("blazemeter.testId", env.getProperty("blazemeter.test.id"));
 	        capabilities.setCapability("blazemeter.buildId", env.getProperty("blazemeter.build.id") + "." + buildIdExt);
-	        
 
 	        driver = new RemoteWebDriver(url, capabilities);
+	        
+	        // Maximize the browser window so it occupies full screen and video is easier to see in the Blazemeter test report
+	        driver.manage().window().maximize();
 	        
 	        return driver;
 			
