@@ -41,16 +41,19 @@
 	                   					</div>
 	                   					
 		                      			<div class="row form-group">
-		    								<div class="col col-sm-4">
+		    								<div class="col col-sm-5">
 					                            <label class=" form-control-label"><strong>Account for Deposit</strong></label>
-				                            	<select class="form-control" th:field="*{account.id}" required>
-				                            		<option class="text-light"value="">---------- Select Account -----------</option>
-				                              		<option th:each="acct : ${accountList}" th:text="|${acct.name}  -  (${acct.AccountType.name})  -  ($${acct.currentBalance})|" th:value="${acct.id}"></option>
-				            					</select>
+					                            <div class="form-inline">
+					                            	<select class="form-control" th:field="*{account.id}" id="selectedAccount" name="selectedAccount" required onchange="showSelectedBalance()">
+					                            		<option class="text-light"value="">---------- Select Account -----------</option>
+					                              		<option th:each="acct : ${accountList}" th:text="|${acct.name} (${acct.AccountType.name})|" th:value="${acct.id}"></option>
+					            					</select>
+					            					<small id="selectedAccountBalance" class="text-muted ml-2"></small>
+					            				</div>
 					                        </div>
 					                   	</div>
 		                        		<div class="row form-group">
-		                        			<div class="col col-sm-4">
+		                        			<div class="col col-sm-3">
 					                            <label class="form-control-label"><strong>Deposit Amount</strong></label>
 					                            <input type="text" class="form-control" th:field="${transaction.amount}" required th:pattern="${patternTransactionAmount}">
 					                        	<small class="form-text text-muted">ex. 25.00</small>
@@ -75,6 +78,23 @@
     
 	<!-- Footer -->
 	<div th:replace="common/sections :: footer-scripts"></div>
+	
+	<!-- Displays the current balance of the selected account -->
+	<script th:inline="javascript">
+        /*<![CDATA[*/
+        function showSelectedBalance() {
+            var accounts = /*[[${accountList}]]*/ null;
+            var selectedIndex = $("#selectedAccount option:selected").index();
+            var selectedAccount = accounts[selectedIndex-1];
+            if (selectedAccount) {
+            	$("#selectedAccountBalance").text("Balance: $"+selectedAccount.currentBalance.toFixed(2));
+            } else {
+            	$("#selectedAccountBalance").text("");
+            }
+        }
+        $(function() { showSelectedBalance(); });
+        /*]]>*/
+	</script>
 
 </body>
 </html>
