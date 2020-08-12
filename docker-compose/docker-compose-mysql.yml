@@ -67,7 +67,7 @@ services:
       SPRING_DATASOURCE_USERNAME: digitaluser
       SPRING_DATASOURCE_PASSWORD: Demo123!
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/digitalcredit?useSSL=false&allowPublicKeyRetrieval=true
-      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQL5Dialect
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQL55Dialect
 
     ports:
       - "3500:8080"
@@ -82,7 +82,7 @@ services:
 # Digital Bank Service Configuration
 # =====================================================================
   bank:
-    image: digisic/digitalbank:2.1.0.3
+    image: digisic/digitalbank:2.1.0.4
     container_name: bank
     environment:
 

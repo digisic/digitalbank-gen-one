@@ -30,6 +30,7 @@ public class Constants {
 	public static final String URI_FONTS_RES 		= "/fonts/**";
 	public static final String URI_JS_RES 			= "/js/**";
 	public static final String URI_IMAGES_RES 		= "/images/**";
+	public static final String URI_FAVICON_RES 		= "/favicon.ico";
 	public static final String URI_ABOUT_RES 		= "/about/**";
 	public static final String URI_CONTACT_RES 		= "/contact/**";
 	public static final String URI_ERROR_RES 		= "/error/**";

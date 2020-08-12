@@ -88,7 +88,7 @@ public class UserController extends CommonController{
 		LOG.debug("REST Create User -> Check email for uniqueness.");
 		
 		// Make sure email is not already registered with another account
-		if (userService.checkEmailAdressExists(newUser.getAddress())) {
+		if (userService.checkEmailAdressExists(newUser.getEmailAddress())) {
 			throw new RestNotAcceptableException (Messages.USER_EMAIL_EXISTS);
 		}
 		
