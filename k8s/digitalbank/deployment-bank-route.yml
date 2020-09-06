@@ -1,0 +1,16 @@
+# IngresRoute
+---
+kind: IngressRoute
+apiVersion: traefik.containo.us/v1alpha1
+metadata:
+  name: digital-bank-route
+  namespace: digibank
+spec:
+  entryPoints: 
+    - web
+  routes:
+  - match: Host(`localhost`)
+    kind: Rule
+    services:
+    - name: digital-bank-svc
+      port: 8080

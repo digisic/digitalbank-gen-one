@@ -1,0 +1,45 @@
+# ServiceAccount
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: traefik
+  namespace: kube-system
+
+# Service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: traefik
+    release: traefik
+  name: traefik
+  namespace: kube-system
+spec:
+  externalIPs:
+  - 192.168.1.3
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: web
+    nodePort: 31909
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  - name: websecure
+    nodePort: 30584
+    port: 443
+    protocol: TCP
+    targetPort: 443
+  - name: admin
+    nodePort: 32316
+    port: 8100
+    protocol: TCP
+    targetPort: 8100
+  selector:
+    app: traefik
+    release: traefik
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer: {}

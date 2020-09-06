@@ -1,0 +1,110 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: digital-bank-deployment
+  namespace: digibank
+  labels:
+    app: digital-bank
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: digital-bank
+  template:
+    metadata:
+      labels:
+        app: digital-bank
+    spec:
+      containers:
+      - name: digital-bank
+        image: digisic/digitalbank:latest
+        resources:
+          requests:
+            memory: "256M"
+            cpu: "250m"
+          limits:
+            memory: "512M"
+            cpu: "500m"
+        ports:
+          - name: db-bank-port
+            containerPort: 8080  
+        env:
+            # Debug Options
+            - name: LOGGING_LEVEL_IO_DEMO_BANK
+              value: "INFO"
+            # Digital Broker connection
+            - name: SPRING_ARTEMIS_MODE
+              value: "native"
+            - name: SPRING_ARTEMIS_HOST
+              value: "digital-bank-broker-svc"
+            - name: SPRING_ARTEMIS_PORT
+              value: "61616"
+            - name: SPRING_ARTEMIS_USER
+              value: "admin"
+            - name: SPRING_ARTEMIS_PASSWORD
+              value: "admin"
+            # Digital Credit Connection
+            - name: IO_DIGISIC_CREDIT_ENABLED
+              value: "true"
+            - name: IO_DIGISIC_CREDIT_PROTOCOL
+              value: "http"
+            - name: IO_DIGISIC_CREDIT_HOST
+              value: "digital-bank-credit-svc"
+            - name: IO_DIGISIC_CREDIT_PORT
+              value: "8085"
+            - name: IO_DIGISIC_CREDIT_CONTEXT-PATH-PATH
+              value: "/credit"
+            - name: IO_DIGISIC_CREDIT_USERNAME
+              value: "admin@demo.io"
+            - name: IO_DIGISIC_CREDIT_PASSWORD
+              value: "Demo123!"
+            # Digital Credit Application Process JMS Queues
+            - name: IO_DIGISIC_PARTNER_CREDIT_APP_REQUEST
+              value: "CREDIT.APP.REQUEST"
+            - name: IO_DIGISIC_PARTNER_CREDIT_APP_RESPONSE
+              value: "CREDIT.APP.RESPONSE"
+            # ATM Location Service Connection 
+            - name: IO_DIGISIC_BANK_ATM_PROTOCOL
+              value: "http"
+            - name: IO_DIGISIC_BANK_ATM_HOST
+              #value: "34.105.38.216"
+              value: "192.168.0.11"              
+            - name: IO_DIGISIC_BANK_ATM_PORT
+              value: "8081"
+            # VISA Direct Payment Service
+            - name: IO_DIGISIC_BANK_VISA_PROTOCOL
+              value: "http"     
+            - name: IO_DIGISIC_BANK_VISA_HOST
+              #value: "34.105.38.216"     
+              value: "192.168.0.11"   
+            - name: IO_DIGISIC_BANK_VISA_PORT
+              value: "8081" 
+            # Open Banking API Service
+            - name: IO_DIGISIC_BANK_OBP_ENABLED
+              value: "true"  
+            - name: IO_DIGISIC_BANK_OBP_CONSUMER_KEY
+              value: "vwfpvwfr1kngt0up2jelebzmvxrhst4vhxvw1jm3"  
+            - name: IO_DIGISIC_BANK_OBP_VERSION
+              value: "v4.0.0"  
+            - name: IO_DIGISIC_BANK_OBP_PROTOCOL
+              value: "https"         
+            - name: IO_DIGISIC_BANK_OBP_HOST
+              value: ""     
+            - name: IO_DIGISIC_BANK_OBP_PORT
+              value: ""             
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: digital-bank-svc
+  namespace: digibank
+spec:
+  selector:
+    app: digital-bank
+  ports:
+    - name: http
+      port: 8080  
+      targetPort:  db-bank-port
+
