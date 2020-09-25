@@ -7,6 +7,8 @@ services:
   mssql:
     image: mcr.microsoft.com/mssql/server:latest
     container_name: mssql
+    hostname: mssql
+    privileged: true
     command: sh -c '/usr/src/init.sh & /opt/mssql/bin/sqlservr'
     environment:
       ACCEPT_EULA: 'Y'
@@ -26,6 +28,7 @@ services:
   broker:
     image: digisic/digitalbroker:2.1.0.1
     container_name: broker
+    hostname: broker
     ports:
       - "8161:8161"
       - "61616:61616"
@@ -39,6 +42,7 @@ services:
   credit:
     image: digisic/digitalcredit:2.1.0.1
     container_name: credit
+    hostname: credit
     environment:
 
       # Debug Options
@@ -81,6 +85,7 @@ services:
   bank:
     image: digisic/digitalbank:2.1.0.4
     container_name: bank
+    hostname: bank
     environment:
 
       # Debug Options

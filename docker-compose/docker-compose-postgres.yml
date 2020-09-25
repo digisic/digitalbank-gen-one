@@ -7,6 +7,8 @@ services:
   postgres:
     image: postgres:latest
     container_name: postgres
+    hostname: postgres
+    privileged: true
     environment:
       POSTGRES_PASSWORD: Demo123!
     ports:
@@ -24,6 +26,7 @@ services:
   broker:
     image: digisic/digitalbroker:2.1.0.1
     container_name: broker
+    hostname: broker
     ports:
       - "8161:8161"
       - "61616:61616"
@@ -37,6 +40,7 @@ services:
   credit:
     image: digisic/digitalcredit:2.1.0.1
     container_name: credit
+    hostname: credit
     environment:
 
       # Debug Options
@@ -79,6 +83,7 @@ services:
   bank:
     image: digisic/digitalbank:2.1.0.4
     container_name: bank
+    hostname: bank
     environment:
 
       # Debug Options
