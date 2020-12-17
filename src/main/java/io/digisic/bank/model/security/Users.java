@@ -1,5 +1,6 @@
 package io.digisic.bank.model.security;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -33,7 +34,7 @@ import io.digisic.bank.util.Messages;
 import io.digisic.bank.util.Patterns;
 
 @Entity
-public class Users implements UserDetails {
+public class Users implements UserDetails, Serializable {
 
 	private static final Logger LOG = LoggerFactory.getLogger(Users.class);
 
@@ -102,6 +103,19 @@ public class Users implements UserDetails {
 
 		return authorities;
 	}
+	
+	@Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Users) {
+          return username.equals( ((Users) obj).getUsername() );
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return username != null ? username.hashCode() : 0;
+    }
 
 	@Override
 	public String getPassword() {

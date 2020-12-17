@@ -13,8 +13,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
 import io.digisic.bank.security.JwtTokenFilterConfigurer;
 import io.digisic.bank.security.JwtTokenProvider;
 import io.digisic.bank.service.UserSecurityService;
@@ -52,6 +52,11 @@ public class MultiHttpSecurityConfig {
 	    	Constants.URI_FAVICON_RES
 	    	
 	};
+	
+	@Bean
+	public HttpSessionEventPublisher httpSessionEventPublisher() {
+	    return new HttpSessionEventPublisher();
+	}
   
 	@Bean
 	public BCryptPasswordEncoder encoder() {
@@ -103,13 +108,23 @@ public class MultiHttpSecurityConfig {
 					.antMatchers(PUBLIC).permitAll()
 					.anyRequest().hasRole(Patterns.ROLE_USER)
 					.and()
-				.formLogin().failureUrl(Constants.URI_LOGIN_ERR).defaultSuccessUrl(Constants.URI_HOME)
+				.formLogin()
+					.failureUrl(Constants.URI_LOGIN_ERR)
+					.defaultSuccessUrl(Constants.URI_HOME)
 					.loginPage(Constants.URI_LOGIN).permitAll()
 					.and()
-					.logout().logoutRequestMatcher(new AntPathRequestMatcher(Constants.URI_LOGOUT)).logoutSuccessUrl(Constants.URI_LOGOUT_SUCC)
+				.logout()
+					.logoutRequestMatcher(new AntPathRequestMatcher(Constants.URI_LOGOUT))
+					.logoutSuccessUrl(Constants.URI_LOGOUT_SUCC)
 					.deleteCookies(Constants.COO_JSESSION_ID).permitAll()
 					.and()
-					.rememberMe().key(Constants.COO_REMEBER_ME).tokenValiditySeconds(86400);
+				.rememberMe()
+					.key(Constants.COO_REMEBER_ME)
+					.tokenValiditySeconds(86400)
+					.and()
+				.sessionManagement()
+					.sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+					.maximumSessions(1).maxSessionsPreventsLogin(true);
 		
 		
 			// Needed to support the h2-console interface
