@@ -370,11 +370,13 @@ public class CreditCardService {
 	 * Check if we have an Auth Token, if not Create a new connection
 	 */
 	public boolean checkCreditConnection () {
+
+// always refresh token
+//		if (CreditCardService.authToken != null) {
+//			return true;
+//		} 
 		
-		if (CreditCardService.authToken != null) {
-			return true;
-		} 
-		else if (getConnectionProperties()) {
+		if (getConnectionProperties()) {
 			return createCreditConnection();
 		}
 		
