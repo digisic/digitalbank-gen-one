@@ -4,7 +4,11 @@ public class Constants {
 	
 	// Cookies
 	public static final String COO_REMEBER_ME 		= "remeber-me";
+	
+	
+	// Session Management
 	public static final String COO_JSESSION_ID		= "JSESSIONID";
+	public static final String SESSION_MAX			= "io.digisic.max.sessions";
 	
 	// API
 	public static final String API_SECRET			= "Zq4t7w!z%C&F)J@NcRfUjXn2r5u8x/A?";

@@ -1,6 +1,9 @@
 package io.digisic.bank.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -98,9 +101,21 @@ public class MultiHttpSecurityConfig {
 	
 	@Configuration                                                   
     public static class FormLoginWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
-
-        @Override
+		
+		private static final Logger LOG = LoggerFactory.getLogger(FormLoginWebSecurityConfigurerAdapter.class);
+		
+		@Value("${io.digisic.max.sessions}")
+		private String propMaxSessions;
+		
+		@Override
         protected void configure(HttpSecurity http) throws Exception {
+			
+			Integer iMaxSessions = 1;
+			
+			try{iMaxSessions = Integer.parseInt(propMaxSessions);}
+			catch (NumberFormatException nfe) {}
+        	
+        	LOG.info("Max Sessions: " + iMaxSessions);
         	
         	http.csrf().disable()
 				.cors().disable()
@@ -124,7 +139,7 @@ public class MultiHttpSecurityConfig {
 					.and()
 				.sessionManagement()
 					.sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
-					.maximumSessions(1).maxSessionsPreventsLogin(true);
+					.maximumSessions(iMaxSessions).maxSessionsPreventsLogin(true);
 		
 		
 			// Needed to support the h2-console interface

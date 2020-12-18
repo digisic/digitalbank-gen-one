@@ -168,5 +168,10 @@
     "name": "io.digisic.bank.obp.enabled",
     "type": "java.lang.String",
     "description": "A description for 'io.digisic.bank.obp.enabled'"
+  },
+  {
+    "name": "io.digisic.max.sessions",
+    "type": "java.lang.String",
+    "description": "A description for 'io.digisic.max.sessions'"
   }
 ]}
