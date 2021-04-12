@@ -46,6 +46,8 @@ services:
       - "3500:8443"
     networks:
       - digitalnet
+    volumes:
+      - digitalcredit:/usr/local/tomcat/conf
     depends_on:
       - broker
     restart: unless-stopped
@@ -109,6 +111,8 @@ services:
       - "8443:8443"
     networks:
       - digitalnet
+    volumes:
+      - digitalbank:/usr/local/tomcat/conf
     depends_on:
       - broker
       - credit
@@ -119,4 +123,7 @@ services:
 # =====================================================================
 networks:
   digitalnet:
+volumes:
+  digitalcredit:
+  digitalbank:
 

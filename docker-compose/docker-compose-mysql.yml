@@ -77,6 +77,8 @@ services:
       - "3500:8443"
     networks:
       - digitalnet
+    volumes:
+      - digitalcredit:/usr/local/tomcat/conf
     depends_on:
       - mysql
       - broker
@@ -147,6 +149,8 @@ services:
       - "8443:8443"
     networks:
       - digitalnet
+    volumes:
+      - digitalbank:/usr/local/tomcat/conf
     depends_on:
       - mysql
       - broker
@@ -159,5 +163,7 @@ services:
 networks:
   digitalnet:
 volumes:
+  digitalcredit:
+  digitalbank:
   mysqldata:
 
