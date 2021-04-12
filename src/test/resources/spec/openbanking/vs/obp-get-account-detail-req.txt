@@ -1,0 +1,4 @@
+GET /obp/v4.0.0/banks/RBOSGB2L/accounts/8ca8a7e4-6d02-48e3-a029-0b2bf89de9f0/account HTTP/1.1
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.1.1 (java 1.5)

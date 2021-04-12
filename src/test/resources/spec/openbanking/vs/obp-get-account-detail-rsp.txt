@@ -1,0 +1,48 @@
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+Status: 200 OK
+Connection: keep-alive
+
+{
+  "id":"8ca8a7e4-6d02-48e3-a029-0b2bf89de9f0",
+  "bank_id":"RBOSGB2L",
+  "label":"Gold Account",
+  "number":"546387432",
+  "owners":[{
+    "id":"5995d6a2-01b3-423c-a173-5481df49bdaf",
+    "provider":"http://127.0.0.1:8080",
+    "display_name":"OBP"
+  }],
+  "product_code":"AC",
+  "balance":{
+    "currency":"EUR",
+    "amount":"1035.97"
+  },
+  "account_routings":[{
+    "scheme":"AccountNumber",
+    "address":"4930396"
+  }],
+  "views_basic":[{
+    "id":"owner",
+    "short_name":"Owner",
+    "description":"This view is for the owner for the account.",
+    "is_public":false
+  }],
+  "account_attributes":[{
+    "product_code":"saving1",
+    "account_attribute_id":"613c83ea-80f9-4560-8404-b9cd4ec42a7f",
+    "name":"OVERDRAFT_START_DATE",
+    "type":"DATE_WITH_DAY",
+    "value":"2012-04-23"
+  }],
+  "tags":[{
+    "id":"5995d6a2-01b3-423c-a173-5481df49bdaf",
+    "value":"OBP",
+    "date":"2017-09-19T00:00:00Z",
+    "user":{
+      "id":"5995d6a2-01b3-423c-a173-5481df49bdaf",
+      "provider":"http://127.0.0.1:8080",
+      "display_name":"OBP"
+    }
+  }]
+}

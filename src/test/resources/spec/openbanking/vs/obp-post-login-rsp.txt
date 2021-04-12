@@ -1,0 +1,8 @@
+HTTP/1.1 201 OK
+Content-Type: application/json;charset=utf-8
+Status: 201 OK
+Connection: keep-alive
+
+{
+  "token": "eyJhbGciOiJIUzI1NiJ9.eyIiOiIifQ.eajnRT6zTZxJTjqfDczjK0WLJOY8wNaOXY-q8fsdATo"
+}

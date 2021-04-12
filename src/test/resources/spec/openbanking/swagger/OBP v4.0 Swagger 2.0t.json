@@ -1,0 +1,1276 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Open Bank Project API",
+        "description": "An Open Source API for Banks. (c) TESOBE GmbH. 2011 - 2021. Licensed under the AGPL and commercial licences.",
+        "contact": {
+            "name": "TESOBE GmbH. / Open Bank Project",
+            "url": "https://openbankproject.com",
+            "email": "contact@tesobe.com"
+        },
+        "version": "v4.0.0"
+    },
+    "host": "apisandbox.openbankproject.com",
+    "basePath": "/",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "securityDefinitions": {
+        "directLogin": {
+            "type": "apiKey",
+            "description": "https://github.com/OpenBankProject/OBP-API/wiki/Direct-Login",
+            "in": "header",
+            "name": "Authorization"
+        },
+        "gatewayLogin": {
+            "type": "apiKey",
+            "description": "https://github.com/OpenBankProject/OBP-API/wiki/Gateway-Login",
+            "in": "header",
+            "name": "Authorization"
+        }
+    },
+    "security": [
+        {
+            "directLogin": [],
+            "gatewayLogin": []
+        }
+    ],
+    "paths": {
+        "/my/logins/direct": {
+            "post": {
+                "tags": [
+                    "Bank",
+                    "New-Style"
+                ],
+                "summary": "Direct Login",
+                "security": [
+                    {
+                        "directLogin": [],
+                        "gatewayLogin": []
+                    }
+                ],
+                "description": "<p>Create a new bank (Authenticated access).</p><p>The user creating this will be automatically assigned the Role CanCreateEntitlementAtOneBank.<br />Thus the User can manage the bank they create and assign Roles to other Users.</p><p>Authentication is Mandatory</p>",
+                "operationId": "OBPv4.0.0-directLogin",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "EmptyClassJson object that needs to be added.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/EmptyClassJson"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/TokenJson"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorUserNotLoggedIn"
+                        }
+                    }
+                }
+            }
+        },
+        "/obp/v4.0.0/banks": {
+            "get": {
+                "tags": [
+                    "Bank",
+                    "Account Information Service (AIS)",
+                    "PSD2",
+                    "New-Style"
+                ],
+                "summary": "Get Banks",
+                "security": [
+                    {
+                        "directLogin": [],
+                        "gatewayLogin": []
+                    }
+                ],
+                "description": "<p>Get banks on this API instance<br />Returns a list of banks supported on this server:</p><ul><li>ID used as parameter in URLs</li><li>Short and full name of bank</li><li>Logo URL</li><li>Website</li></ul><p>Authentication is Optional</p>",
+                "operationId": "OBPv4.0.0-getBanks",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "EmptyClassJson object that needs to be added.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/EmptyClassJson"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/BanksJson400"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorUnknownError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Bank",
+                    "New-Style"
+                ],
+                "summary": "Create Bank",
+                "security": [
+                    {
+                        "directLogin": [],
+                        "gatewayLogin": []
+                    }
+                ],
+                "description": "<p>Create a new bank (Authenticated access).</p><p>The user creating this will be automatically assigned the Role CanCreateEntitlementAtOneBank.<br />Thus the User can manage the bank they create and assign Roles to other Users.</p><p>Authentication is Mandatory</p>",
+                "operationId": "OBPv4.0.0-createBank",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "BankJson400 object that needs to be added.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/BankJson400"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/BankJson400"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorInvalidJsonFormat"
+                        }
+                    }
+                }
+            }
+        },
+        "/obp/v4.0.0/banks/{BANK_ID}": {
+            "get": {
+                "tags": [
+                    "Bank",
+                    "Account Information Service (AIS)",
+                    "PSD2",
+                    "New-Style"
+                ],
+                "summary": "Get Bank",
+                "security": [
+                    {
+                        "directLogin": [],
+                        "gatewayLogin": []
+                    }
+                ],
+                "description": "<p>Get the bank specified by BANK_ID<br />Returns information about a single bank specified by BANK_ID including:</p><ul><li>Short and full name of bank</li><li>Logo URL</li><li>Website</li></ul><p>Authentication is Mandatory</p>",
+                "operationId": "OBPv3.0.0-bankById",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "EmptyClassJson object that needs to be added.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/EmptyClassJson"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "BANK_ID",
+                        "description": "The bank id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/BankJson400"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorUserNotLoggedIn"
+                        }
+                    }
+                }
+            }
+        },
+        "/obp/v4.0.0/banks/{BANK_ID}/accounts": {
+            "get": {
+                "tags": [
+                    "Account",
+                    "PrivateData",
+                    "PublicData",
+                    "New-Style"
+                ],
+                "summary": "Get Accounts at Bank",
+                "security": [
+                    {
+                        "directLogin": [],
+                        "gatewayLogin": []
+                    }
+                ],
+                "description": "<p>Returns the list of accounts at BANK_ID that the user has access to.<br />For each account the API returns the account ID and the views available to the user..<br />Each account must have at least one private View.</p><p>optional request parameters for filter with attributes<br />URL params example: /banks/some-bank-id/accounts?manager=John&amp;count=8</p><p>Authentication is Mandatory</p>",
+                "operationId": "OBPv4.0.0-getPrivateAccountsAtOneBank",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "EmptyClassJson object that needs to be added.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/EmptyClassJson"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "BANK_ID",
+                        "description": "The bank id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/BasicAccountsJSON"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorUserNotLoggedIn"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Account",
+                    "Onboarding",
+                    "New-Style"
+                ],
+                "summary": "Create Account (POST)",
+                "security": [
+                    {
+                        "directLogin": [],
+                        "gatewayLogin": []
+                    }
+                ],
+                "description": "<p>Create Account at bank specified by BANK_ID.</p><p>The User can create an Account for himself  - or -  the User that has the USER_ID specified in the POST body.</p><p>If the POST body USER_ID <em>is</em> specified, the logged in user must have the Role CanCreateAccount. Once created, the Account will be owned by the User specified by USER_ID.</p><p>If the POST body USER_ID is <em>not</em> specified, the account will be owned by the logged in User.</p><p>The 'product_code' field SHOULD be a product_code from Product.<br />If the product_code matches a product_code from Product, account attributes will be created that match the Product Attributes.</p><p>Note: The Amount MUST be zero.</p><p>Authentication is Mandatory</p>",
+                "operationId": "OBPv4.0.0-addAccount",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "CreateAccountRequestJsonV310 object that needs to be added.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateAccountRequestJsonV310"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "BANK_ID",
+                        "description": "The bank id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/CreateAccountResponseJsonV310"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorInvalidJsonFormat"
+                        }
+                    }
+                }
+            }
+        },
+        "/obp/v4.0.0/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/account": {
+            "get": {
+                "tags": [
+                    "Account",
+                    "New-Style"
+                ],
+                "summary": "Get Account by Id (Full)",
+                "security": [
+                    {
+                        "directLogin": [],
+                        "gatewayLogin": []
+                    }
+                ],
+                "description": "<p>Information returned about an account specified by ACCOUNT_ID as moderated by the view (VIEW_ID):</p><ul><li>Number</li><li>Owners</li><li>Type</li><li>Balance</li><li>IBAN</li><li>Available views (sorted by short_name)</li></ul><p>More details about the data moderation by the view <a href=\"#1_2_1-getViewsForBankAccount\">here</a>.</p><p>PSD2 Context: PSD2 requires customers to have access to their account information via third party applications.<br />This call provides balance and other account information via delegated authentication using OAuth.</p><p>Authentication is required if the 'is_public' field in view (VIEW_ID) is not set to <code>true</code>.</p><p>Authentication is Mandatory</p>",
+                "operationId": "OBPv4.0.0-getPrivateAccountByIdFull",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "EmptyClassJson object that needs to be added.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/EmptyClassJson"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "ACCOUNT_ID",
+                        "description": "The account id",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "name": "BANK_ID",
+                        "description": "The bank id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/ModeratedAccountJSON400"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorUserNotLoggedIn"
+                        }
+                    }
+                }
+            }
+        },
+        "/obp/v4.0.0/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/transactions": {
+            "get": {
+                "tags": [
+                    "Transaction",
+                    "Account",
+                    "New-Style"
+                ],
+                "summary": "Get Transactions for Account (Full)",
+                "security": [
+                    {
+                        "directLogin": [],
+                        "gatewayLogin": []
+                    }
+                ],
+                "description": "<p>Returns transactions list of the account specified by ACCOUNT_ID and <a href=\"#1_2_1-getViewsForBankAccount\">moderated</a> by the view (VIEW_ID).</p><p>Authentication is Optional</p><p>Authentication is required if the view is not public.</p><p>Possible custom url parameters for pagination:</p><ul><li>limit=NUMBER ==&gt; default value: 50</li><li>offset=NUMBER ==&gt; default value: 0</li></ul><p>eg1:?limit=100&amp;offset=0</p><ul><li>sort_direction=ASC/DESC ==&gt; default value: DESC.</li></ul><p>eg2:?limit=100&amp;offset=0&amp;sort_direction=ASC</p><ul><li>from_date=DATE =&gt; example value: 2020-03-22T12:32:48.685Z. NOTE! The default value is one year ago (2020-03-22T12:32:48.685Z).</li><li>to_date=DATE =&gt; example value: 2021-03-22T12:32:48.685Z. NOTE! The default value is now (2021-03-22T12:32:48.685Z).</li></ul><p>Date format parameter: yyyy-MM-dd'T'HH:mm:ss.SSS'Z'(2017-09-19T02:31:05.000Z) ==&gt; time zone is UTC.</p><p>eg3:?sort_direction=ASC&amp;limit=100&amp;offset=0&amp;from_date=2017-09-19T02:31:05.000Z&amp;to_date=2017-09-19T02:31:05.000Z</p>",
+                "operationId": "OBPv3.0.0-getTransactionsForBankAccount",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "EmptyClassJson object that needs to be added.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/EmptyClassJson"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "ACCOUNT_ID",
+                        "description": "The account id",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "name": "BANK_ID",
+                        "description": "The bank id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/TransactionsJsonV300"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorFilterSortDirectionError"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "TokenJson": {
+            "properties": {
+                "token": {
+                    "type": "string",
+                    "example": "eyJhbGciOiJIUzI1NiJ9.eyIiOiIifQ.eajnRT6zTZxJTjqfDczjK0WLJOY8wNaOXY-q8fsdATo"
+                }
+            }
+        },
+        "ErrorInvalidJsonFormat": {
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "OBP-10001: Incorrect json format."
+                }
+            }
+        },
+        "EmptyClassJson": {
+            "required": [
+                "jsonString"
+            ],
+            "properties": {
+                "jsonString": {
+                    "type": "string",
+                    "example": "{}"
+                }
+            }
+        },
+        "BanksJson400": {
+            "required": [
+                "banks"
+            ],
+            "properties": {
+                "banks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/BankJson400"
+                    }
+                }
+            }
+        },
+        "BankJson400": {
+            "required": [
+                "bank_routing",
+                "website",
+                "full_name",
+                "logo",
+                "id",
+                "short_name"
+            ],
+            "properties": {
+                "bank_routing": {
+                    "$ref": "#/definitions/BankRoutingJsonV121"
+                },
+                "website": {
+                    "type": "string",
+                    "example": "www.openbankproject.com"
+                },
+                "full_name": {
+                    "type": "string",
+                    "example": "full_name"
+                },
+                "logo": {
+                    "type": "string",
+                    "example": "logo"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "gh.29.uk"
+                },
+                "short_name": {
+                    "type": "string",
+                    "example": "short_name "
+                }
+            }
+        },
+        "BankRoutingJsonV121": {
+            "required": [
+                "scheme",
+                "address"
+            ],
+            "properties": {
+                "scheme": {
+                    "type": "string",
+                    "example": "Bank_ID"
+                },
+                "address": {
+                    "type": "string",
+                    "example": "gh.29.uk"
+                }
+            }
+        },
+        "ErrorUnknownError": {
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "OBP-50000: Unknown Error."
+                }
+            }
+        },
+        "BasicAccountsJSON": {
+            "required": [
+                "accounts"
+            ],
+            "properties": {
+                "accounts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/BasicAccountJSON"
+                    }
+                }
+            }
+        },
+        "ErrorUserNotLoggedIn": {
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "OBP-20001: User not logged in. Authentication is required!"
+                }
+            }
+        },
+        "CreateAccountRequestJsonV310": {
+            "required": [
+                "branch_id",
+                "account_routings",
+                "label",
+                "balance",
+                "user_id",
+                "product_code"
+            ],
+            "properties": {
+                "branch_id": {
+                    "type": "string",
+                    "example": "DERBY6"
+                },
+                "account_routings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AccountRoutingJsonV121"
+                    }
+                },
+                "label": {
+                    "type": "string",
+                    "example": "My Account"
+                },
+                "balance": {
+                    "$ref": "#/definitions/AmountOfMoneyJsonV121"
+                },
+                "user_id": {
+                    "type": "string",
+                    "example": "9ca9a7e4-6d02-40e3-a129-0b2bf89de9b1"
+                },
+                "product_code": {
+                    "type": "string",
+                    "example": "AC"
+                }
+            }
+        },
+        "AccountRoutingJsonV121": {
+            "required": [
+                "scheme",
+                "address"
+            ],
+            "properties": {
+                "scheme": {
+                    "type": "string",
+                    "example": "AccountNumber"
+                },
+                "address": {
+                    "type": "string",
+                    "example": "4930396"
+                }
+            }
+        },
+        "AmountOfMoneyJsonV121": {
+            "required": [
+                "currency",
+                "amount"
+            ],
+            "properties": {
+                "currency": {
+                    "type": "string",
+                    "example": "EUR"
+                },
+                "amount": {
+                    "type": "string",
+                    "example": "0"
+                }
+            }
+        },
+        "CreateAccountResponseJsonV310": {
+            "required": [
+                "account_attributes",
+                "branch_id",
+                "account_routings",
+                "label",
+                "balance",
+                "user_id",
+                "product_code",
+                "account_id"
+            ],
+            "properties": {
+                "account_attributes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AccountAttributeResponseJson"
+                    }
+                },
+                "branch_id": {
+                    "type": "string",
+                    "example": "DERBY6"
+                },
+                "account_routings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AccountRoutingJsonV121"
+                    }
+                },
+                "label": {
+                    "type": "string",
+                    "example": "My Account"
+                },
+                "balance": {
+                    "$ref": "#/definitions/AmountOfMoneyJsonV121"
+                },
+                "user_id": {
+                    "type": "string",
+                    "example": "9ca9a7e4-6d02-40e3-a129-0b2bf89de9b1"
+                },
+                "product_code": {
+                    "type": "string",
+                    "example": "AC"
+                },
+                "account_id": {
+                    "type": "string",
+                    "example": "8ca8a7e4-6d02-40e3-a129-0b2bf89de9f0"
+                }
+            }
+        },
+        "AccountAttributeResponseJson": {
+            "required": [
+                "name",
+                "account_attribute_id",
+                "product_code",
+                "type",
+                "value"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "OVERDRAFT_START_DATE"
+                },
+                "account_attribute_id": {
+                    "type": "string",
+                    "example": "613c83ea-80f9-4560-8404-b9cd4ec42a7f"
+                },
+                "product_code": {
+                    "type": "string",
+                    "example": "saving1"
+                },
+                "type": {
+                    "type": "string",
+                    "example": "DATE_WITH_DAY"
+                },
+                "value": {
+                    "type": "string",
+                    "example": "2012-04-23"
+                }
+            }
+        },
+        "BasicAccountJSON": {
+            "required": [
+                "id",
+                "label",
+                "bank_id",
+                "views_available"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "8ca8a7e4-6d02-48e3-a029-0b2bf89de9f0"
+                },
+                "label": {
+                    "type": "string",
+                    "example": "NoneLabel"
+                },
+                "bank_id": {
+                    "type": "string",
+                    "example": "gh.29.uk"
+                },
+                "views_available": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/BasicViewJson"
+                    }
+                }
+            }
+        },
+        "BasicViewJson": {
+            "required": [
+                "id",
+                "short_name",
+                "is_public"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "1"
+                },
+                "short_name": {
+                    "type": "string",
+                    "example": "HHH"
+                },
+                "is_public": {
+                    "type": "boolean",
+                    "example": "true"
+                }
+            }
+        },
+        "ModeratedAccountJSON400": {
+            "required": [
+                "number",
+                "account_attributes",
+                "views_available",
+                "tags",
+                "account_routings",
+                "label",
+                "owners",
+                "balance",
+                "product_code",
+                "bank_id",
+                "id"
+            ],
+            "properties": {
+                "number": {
+                    "type": "string",
+                    "example": "123"
+                },
+                "account_attributes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AccountAttributeResponseJson"
+                    }
+                },
+                "views_basic": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ViewJSONV121"
+                    }
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AccountTagJSON"
+                    }
+                },
+                "account_routings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AccountRoutingJsonV121"
+                    }
+                },
+                "label": {
+                    "type": "string",
+                    "example": "NoneLabel"
+                },
+                "owners": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/UserJSONV121"
+                    }
+                },
+                "balance": {
+                    "$ref": "#/definitions/AmountOfMoneyJsonV121"
+                },
+                "product_code": {
+                    "type": "string",
+                    "example": "OBP"
+                },
+                "bank_id": {
+                    "type": "string",
+                    "example": "gh.29.uk"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "5995d6a2-01b3-423c-a173-5481df49bdaf"
+                }
+            }
+        },
+        "ViewJSONV121": {
+            "required": [
+                "description",
+                "is_public",
+                "id",
+                "short_name"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "example": "description"
+                },
+                "is_public": {
+                    "type": "boolean",
+                    "example": "true"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "123"
+                },
+                "short_name": {
+                    "type": "string",
+                    "example": "short_name"
+                }
+            }
+        },
+        "AccountTagJSON": {
+            "required": [
+                "id",
+                "value",
+                "date",
+                "user"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "5995d6a2-01b3-423c-a173-5481df49bdaf"
+                },
+                "value": {
+                    "type": "string",
+                    "example": "OBP"
+                },
+                "date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2017-09-19T00:00:00Z"
+                },
+                "user": {
+                    "$ref": "#/definitions/UserJSONV121"
+                }
+            }
+        },
+        "UserJSONV121": {
+            "required": [
+                "id",
+                "provider",
+                "display_name"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "5995d6a2-01b3-423c-a173-5481df49bdaf"
+                },
+                "provider": {
+                    "type": "string",
+                    "example": "http://127.0.0.1:8080"
+                },
+                "display_name": {
+                    "type": "string",
+                    "example": "OBP"
+                }
+            }
+        },
+        "TransactionsJsonV300": {
+            "required": [
+                "transactions"
+            ],
+            "properties": {
+                "transactions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TransactionJsonV300"
+                    }
+                }
+            }
+        },
+        "TransactionJsonV300": {
+            "required": [
+                "this_account",
+                "id",
+                "details",
+                "metadata",
+                "other_account",
+                "transaction_attributes"
+            ],
+            "properties": {
+                "this_account": {
+                    "$ref": "#/definitions/ThisAccountJsonV300"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "String"
+                },
+                "details": {
+                    "$ref": "#/definitions/TransactionDetailsJSON"
+                },
+                "metadata": {
+                    "$ref": "#/definitions/TransactionMetadataJSON"
+                },
+                "other_account": {
+                    "$ref": "#/definitions/OtherAccountJsonV300"
+                },
+                "transaction_attributes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TransactionAttributeResponseJson"
+                    }
+                }
+            }
+        },
+        "ThisAccountJsonV300": {
+            "required": [
+                "id",
+                "bank_routing",
+                "account_routings",
+                "holders"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "String"
+                },
+                "bank_routing": {
+                    "$ref": "#/definitions/BankRoutingJsonV121"
+                },
+                "account_routings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AccountRoutingJsonV121"
+                    }
+                },
+                "holders": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AccountHolderJSON"
+                    }
+                }
+            }
+        },
+        "TransactionDetailsJSON": {
+            "required": [
+                "new_balance",
+                "description",
+                "completed",
+                "type",
+                "value",
+                "posted"
+            ],
+            "properties": {
+                "new_balance": {
+                    "$ref": "#/definitions/AmountOfMoneyJsonV121"
+                },
+                "description": {
+                    "type": "string",
+                    "example": "this is for family"
+                },
+                "completed": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2017-09-19T00:00:00Z"
+                },
+                "type": {
+                    "type": "string",
+                    "example": "AC"
+                },
+                "value": {
+                    "$ref": "#/definitions/AmountOfMoneyJsonV121"
+                },
+                "posted": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2017-09-19T00:00:00Z"
+                }
+            }
+        },
+        "TransactionMetadataJSON": {
+            "required": [
+                "narrative",
+                "tags",
+                "where",
+                "images",
+                "comments"
+            ],
+            "properties": {
+                "narrative": {
+                    "type": "string",
+                    "example": "NONE"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TransactionTagJSON"
+                    }
+                },
+                "where": {
+                    "$ref": "#/definitions/LocationJSONV121"
+                },
+                "images": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TransactionImageJSON"
+                    }
+                },
+                "comments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TransactionCommentJSON"
+                    }
+                }
+            }
+        },
+        "OtherAccountJsonV300": {
+            "required": [
+                "account_routings",
+                "holder",
+                "id",
+                "metadata",
+                "bank_routing"
+            ],
+            "properties": {
+                "account_routings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AccountRoutingJsonV121"
+                    }
+                },
+                "holder": {
+                    "$ref": "#/definitions/AccountHolderJSON"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "5995d6a2-01b3-423c-a173-5481df49bdaf"
+                },
+                "metadata": {
+                    "$ref": "#/definitions/OtherAccountMetadataJSON"
+                },
+                "bank_routing": {
+                    "$ref": "#/definitions/BankRoutingJsonV121"
+                }
+            }
+        },
+        "TransactionAttributeResponseJson": {
+            "required": [
+                "transaction_attribute_id",
+                "name",
+                "type",
+                "value"
+            ],
+            "properties": {
+                "transaction_attribute_id": {
+                    "type": "string",
+                    "example": "7uy8a7e4-6d02-40e3-a129-0b2bf89de8uh"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "HOUSE_RENT"
+                },
+                "type": {
+                    "type": "string",
+                    "example": "DATE_WITH_DAY"
+                },
+                "value": {
+                    "type": "string",
+                    "example": "123456789"
+                }
+            }
+        },
+        "AccountHolderJSON": {
+            "required": [
+                "name",
+                "is_alias"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "OBP"
+                },
+                "is_alias": {
+                    "type": "boolean",
+                    "example": "true"
+                }
+            }
+        },
+        "TransactionTagJSON": {
+            "required": [
+                "id",
+                "value",
+                "date",
+                "user"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "5995d6a2-01b3-423c-a173-5481df49bdaf"
+                },
+                "value": {
+                    "type": "string",
+                    "example": "OBP"
+                },
+                "date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2017-09-19T00:00:00Z"
+                },
+                "user": {
+                    "$ref": "#/definitions/UserJSONV121"
+                }
+            }
+        },
+        "LocationJSONV121": {
+            "required": [
+                "latitude",
+                "longitude",
+                "date",
+                "user"
+            ],
+            "properties": {
+                "latitude": {
+                    "type": "number",
+                    "format": "double",
+                    "example": "1.231"
+                },
+                "longitude": {
+                    "type": "number",
+                    "format": "double",
+                    "example": "1.231"
+                },
+                "date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2017-09-19T00:00:00Z"
+                },
+                "user": {
+                    "$ref": "#/definitions/UserJSONV121"
+                }
+            }
+        },
+        "TransactionImageJSON": {
+            "required": [
+                "URL",
+                "label",
+                "id",
+                "date",
+                "user"
+            ],
+            "properties": {
+                "URL": {
+                    "type": "string",
+                    "example": "www.openbankproject.com"
+                },
+                "label": {
+                    "type": "string",
+                    "example": "NONE"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "5995d6a2-01b3-423c-a173-5481df49bdaf"
+                },
+                "date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2017-09-19T00:00:00Z"
+                },
+                "user": {
+                    "$ref": "#/definitions/UserJSONV121"
+                }
+            }
+        },
+        "TransactionCommentJSON": {
+            "required": [
+                "id",
+                "value",
+                "date",
+                "user"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "5995d6a2-01b3-423c-a173-5481df49bdaf"
+                },
+                "value": {
+                    "type": "string",
+                    "example": "OBP"
+                },
+                "date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2017-09-19T00:00:00Z"
+                },
+                "user": {
+                    "$ref": "#/definitions/UserJSONV121"
+                }
+            }
+        },
+        "OtherAccountMetadataJSON": {
+            "required": [
+                "public_alias",
+                "image_URL",
+                "physical_location",
+                "private_alias",
+                "URL",
+                "more_info",
+                "corporate_location",
+                "open_corporates_URL"
+            ],
+            "properties": {
+                "public_alias": {
+                    "type": "string",
+                    "example": "NONE"
+                },
+                "image_URL": {
+                    "type": "string",
+                    "example": "www.openbankproject.com"
+                },
+                "physical_location": {
+                    "$ref": "#/definitions/LocationJSONV121"
+                },
+                "private_alias": {
+                    "type": "string",
+                    "example": "NONE"
+                },
+                "URL": {
+                    "type": "string",
+                    "example": "www.openbankproject.com"
+                },
+                "more_info": {
+                    "type": "string",
+                    "example": "www.openbankproject.com"
+                },
+                "corporate_location": {
+                    "$ref": "#/definitions/LocationJSONV121"
+                },
+                "open_corporates_URL": {
+                    "type": "string",
+                    "example": "www.openbankproject.com"
+                }
+            }
+        },
+        "ErrorFilterSortDirectionError": {
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "OBP-10023: obp_sort_direction parameter can only take two values: DESC or ASC!"
+                }
+            }
+        }
+    }
+}

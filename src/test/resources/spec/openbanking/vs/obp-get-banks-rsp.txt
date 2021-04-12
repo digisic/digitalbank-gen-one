@@ -1,0 +1,57 @@
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+Status: 200 OK
+Connection: keep-alive
+
+{
+  "banks": [
+    {
+      "id": "RBOSGB2L",
+      "short_name": "Royal Bank of Scotland",
+      "full_name": "Royal Bank of Scotland",
+      "logo": "https://personal.rbs.co.uk/logo.gif",
+      "website": "https://personal.rbs.co.uk",
+      "bank_routing": 
+        {
+          "scheme": "OBP",
+          "address": "RBOSGB2L"
+        }
+    },
+    {
+      "id": "MYMBGB2L",
+      "short_name": "Metro Bank plc",
+      "full_name": "Metro Bank plc",
+      "logo": "https://www.metrobankonline.co.uk/logo.gif",
+      "website": "https://www.metrobankonline.co.uk",
+      "bank_routing":
+        {
+          "scheme": "BIC",
+          "address": "MYMBGB2L"
+        }
+    },
+    {
+      "id": "MRMDUS33",
+      "short_name": "HSBC Bank",
+      "full_name": "HSBC Bank",
+      "logo": "http://www.hsbc.com/logo.gif",
+      "website": "http://www.hsbc.com",
+      "bank_routing":
+        {
+          "scheme": "OBP",
+          "address": "MRMDUS33"
+        }
+    },
+    {
+      "id": "LOYDGB2L",
+      "short_name": "Lloyds Bank plc",
+      "full_name": "Lloyds Bank plc",
+      "logo": "https://www.lloydsbank.com/logo.gif",
+      "website": "https://www.lloydsbank.com",
+      "bank_routing": 
+        {
+          "scheme": "BIC",
+          "address": "LOYDGB2L"
+        }
+    }
+  ]
+}

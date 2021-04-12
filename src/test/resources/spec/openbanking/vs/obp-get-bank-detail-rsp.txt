@@ -1,0 +1,16 @@
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+Status: 200 OK
+Connection: keep-alive
+
+{
+  "id":"RBOSGB2L",
+  "short_name":"Royal Bank of Scotland",
+  "full_name":"Royal Bank of Scotland",
+  "logo":"https://personal.rbs.co.uk/logo.gif",
+  "website":"https://personal.rbs.co.uk",
+  "bank_routing":{
+    "scheme":"OBP",
+    "address":"RBOSGB2L"
+  }
+}

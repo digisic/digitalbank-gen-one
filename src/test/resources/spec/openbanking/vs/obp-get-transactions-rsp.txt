@@ -1,0 +1,101 @@
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+Status: 200 OK
+Connection: keep-alive
+
+{
+  "transactions":[{
+    "id":"5995d6a2-01b3-423c-a173-5481df49bdaf",
+    "this_account":{
+      "id":"8ca8a7e4-6d02-48e3-a029-0b2bf89de9f0",
+      "bank_routing":{
+        "scheme":"Bank_ID",
+        "address":"RBSSGBKAXXX"
+      },
+      "account_routings":[{
+        "scheme":"AccountNumber",
+        "address":"546387432"
+      }],
+      "holders":[{
+        "name":"Josh Smith",
+        "is_alias":true
+      }]
+    },
+    "other_account":{
+      "id":"8ca8a7e4-6d02-48e3-a029-0b2bf89de9f0",
+      "holder":{
+        "name":"Josh Smith",
+        "is_alias":true
+      },
+      "bank_routing":{
+        "scheme":"Bank_ID",
+        "address":"RBSSGBKAXXX"
+      },
+      "account_routings":[{
+        "scheme":"AccountNumber",
+        "address":"546387432"
+      }]
+    },
+    "details":{
+      "type":"POS",
+      "description":"Point of Sale - Pharmaceutical",
+      "posted":"2017-09-19T00:00:00Z",
+      "completed":"2017-09-19T00:00:00Z",
+      "new_balance":{
+        "currency":"USD",
+        "amount":"1035.97"
+      },
+      "value":{
+        "currency":"USD",
+        "amount":"58.62"
+      }
+    }
+  },
+  {
+    "id":"5995d6a2-01b3-423c-a173-5481df49bdaf",
+    "this_account":{
+      "id":"8ca8a7e4-6d02-48e3-a029-0b2bf89de9f0",
+      "bank_routing":{
+        "scheme":"Bank_ID",
+        "address":"RBSSGBKAXXX"
+      },
+      "account_routings":[{
+        "scheme":"AccountNumber",
+        "address":"546387432"
+      }],
+      "holders":[{
+        "name":"Josh Smith",
+        "is_alias":true
+      }]
+    },
+    "other_account":{
+      "id":"8ca8a7e4-6d02-48e3-a029-0b2bf89de9f0",
+      "holder":{
+        "name":"Josh Smith",
+        "is_alias":true
+      },
+      "bank_routing":{
+        "scheme":"Bank_ID",
+        "address":"RBSSGBKAXXX"
+      },
+      "account_routings":[{
+        "scheme":"AccountNumber",
+        "address":"546387432"
+      }]
+    },
+    "details":{
+      "type":"POS",
+      "description":"Point of Sale - Amazon.com",
+      "posted":"2017-07-21T00:00:00Z",
+      "completed":"2017-07-22T00:00:00Z",
+      "new_balance":{
+        "currency":"USD",
+        "amount":"1094.59"
+      },
+      "value":{
+        "currency":"USD",
+        "amount":"123.82"
+      }
+    }
+  }]
+}

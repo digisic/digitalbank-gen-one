@@ -1,0 +1,27 @@
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+Status: 200 OK
+Connection: keep-alive
+
+{
+  "accounts":[{
+    "id":"8ca8a7e4-6d02-48e3-a029-0b2bf89de9f0",
+    "label":"Gold Checking",
+    "bank_id":"RBOSGB2L",
+    "views_available":[{
+      "id":"1",
+      "short_name":"GCA",
+      "is_public":true
+    }]
+  },
+  {
+    "id":"8ca8a7e4-6d02-48e3-a029-0b2bf89de9f5",
+    "label":"Personal Checking",
+    "bank_id":"RBOSGB2L",
+    "views_available":[{
+      "id":"1",
+      "short_name":"PCA",
+      "is_public":true
+    }]
+  }]
+}
