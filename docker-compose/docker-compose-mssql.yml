@@ -40,12 +40,12 @@ services:
 # Digital Credit Service Configuration
 # =====================================================================    
   credit:
-    image: digisic/digitalcredit:2.1.0.1
+    image: digisic/digitalcredit:2.1.0.2
     container_name: credit
     hostname: credit
     environment:
-
-      # Debug Options
+    
+      # Logging Options
       LOGGING_LEVEL_IO_DIGISIC_CREDIT: INFO
 
       # Digital Broker Connection
@@ -71,7 +71,7 @@ services:
       SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.SQLServerDialect
 
     ports:
-      - "3500:8080"
+      - "3500:8443"
     networks:
       - digitalnet
     depends_on:
@@ -83,12 +83,16 @@ services:
 # Digital Bank Service Configuration
 # =====================================================================
   bank:
-    image: digisic/digitalbank:2.1.0.7
+    image: digisic/digitalbank:2.1.0.8
     container_name: bank
     hostname: bank
     environment:
 
-      # Debug Options
+      # Session Management
+      SERVER_SERVLET_SESSION_TIMEOUT: 5m
+      IO_DIGISIC_MAX_SESSSIONS: 10000 # Set to 1 for single concurrent user session
+
+      # Logging Options
       LOGGING_LEVEL_IO_DIGISIC_BANK: INFO
       
       # Digital Broker connection
@@ -100,9 +104,9 @@ services:
 
       # Digital Credit Connection
       IO_DIGISIC_CREDIT_ENABLED: 'true'
-      IO_DIGISIC_CREDIT_PROTOCOL: http
+      IO_DIGISIC_CREDIT_PROTOCOL: https
       IO_DIGISIC_CREDIT_HOST: credit
-      IO_DIGISIC_CREDIT_PORT: 8080
+      IO_DIGISIC_CREDIT_PORT: 8443
       IO_DIGISIC_CREDIT_CONTEXT-PATH: /credit
       IO_DIGISIC_CREDIT_USERNAME: admin@demo.io
       IO_DIGISIC_CREDIT_PASSWORD: Demo123!
@@ -137,7 +141,7 @@ services:
       SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.SQLServerDialect
 
     ports:
-      - "8080:8080"
+      - "8443:8443"
     networks:
       - digitalnet
     depends_on:

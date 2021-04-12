@@ -22,7 +22,6 @@ import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import io.digisic.bank.jms.CreditAppProducer;
 import io.digisic.bank.model.CreditCardApplication;
 import io.digisic.bank.model.CreditCardBillingDetail;
@@ -55,7 +54,6 @@ public class CreditCardService {
 	private static final String DEFAULT_DIGTIAL_CREDIT_USERNAME 	= "admin@demo.io";
 	private static final String DEFAULT_DIGTIAL_CREDIT_PASSWORD 	= "Demo123!";
 	
-	
 	@Autowired
 	private CreditCardReferenceRepository ccReferenceRepository;
 	
@@ -64,6 +62,9 @@ public class CreditCardService {
 	
 	@Autowired(required = false)
 	private CreditAppProducer creditAppProducer;
+	
+	@Autowired
+	RestTemplate restTemplate;
 	
 	/*
 	 * Get Credit Card Account Details
@@ -75,8 +76,6 @@ public class CreditCardService {
 			
 			// Create the Request
 			HttpEntity<?> requestEntity = new HttpEntity<>(requestHeaders);
-			
-			RestTemplate restTemplate = new RestTemplate();
 			
 			// Set URL for Authentication
 			String url = CreditCardService.apiBaseUrl + MessageFormat.format(Constants.APP_CREDIT_URI_CC_ID, id);
@@ -133,8 +132,6 @@ public class CreditCardService {
 			// Create the Request
 			HttpEntity<?> requestEntity = new HttpEntity<>(requestHeaders);
 			
-			RestTemplate restTemplate = new RestTemplate();
-			
 			// Set URL for Authentication
 			String url = CreditCardService.apiBaseUrl + MessageFormat.format(Constants.APP_CREDIT_URI_CC_ID_BILLING, id);
 			
@@ -190,8 +187,6 @@ public class CreditCardService {
 			
 			// Create the Request
 			HttpEntity<?> requestEntity = new HttpEntity<>(requestHeaders);
-			
-			RestTemplate restTemplate = new RestTemplate();
 			
 			// Set URL for Authentication
 			String url = CreditCardService.apiBaseUrl + MessageFormat.format(Constants.APP_CREDIT_URI_CC_ID_TRANS, id);
@@ -371,11 +366,6 @@ public class CreditCardService {
 	 */
 	public boolean checkCreditConnection () {
 
-// always refresh token
-//		if (CreditCardService.authToken != null) {
-//			return true;
-//		} 
-		
 		if (getConnectionProperties()) {
 			return createCreditConnection();
 		}
@@ -395,8 +385,6 @@ public class CreditCardService {
 			
 			// Create the Request
 			HttpEntity<?> requestEntity = new HttpEntity<>(requestHeaders);
-			
-			RestTemplate restTemplate = new RestTemplate();
 			
 			// Set URL for Authentication
 			String url = CreditCardService.apiBaseUrl + MessageFormat.format(Constants.APP_CREDIT_URI_CC_ID, id);
@@ -473,8 +461,6 @@ public class CreditCardService {
 		
         // Create the Request
 		HttpEntity<?> requestEntity = new HttpEntity<>(requestHeaders);
-		
-		RestTemplate restTemplate = new RestTemplate();
 		
 		try { // Submit Authentication Request
 			
