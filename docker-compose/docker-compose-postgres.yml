@@ -90,7 +90,7 @@ services:
     
       # Session Management
       SERVER_SERVLET_SESSION_TIMEOUT: 5m
-      IO_DIGISIC_MAX_SESSSIONS: 10000 # Set to 1 for single concurrent user session
+      IO_DIGISIC_MAX_SESSIONS: 10000 # Set to 1 for single concurrent user session
 
       # Logging Options
       LOGGING_LEVEL_IO_DIGISIC_BANK: INFO
