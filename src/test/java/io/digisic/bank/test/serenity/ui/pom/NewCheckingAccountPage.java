@@ -4,7 +4,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import net.serenitybdd.core.pages.WebElementFacade;
+import net.thucydides.core.annotations.DefaultUrl;
 
+@DefaultUrl ("https://localhost:8443/account/checking-add")
 public class NewCheckingAccountPage {
 	
 	@FindBy(id="Standard Checking")

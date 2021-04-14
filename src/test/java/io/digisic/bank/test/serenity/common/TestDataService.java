@@ -12,7 +12,7 @@ public class TestDataService {
 	// Get the base URL from the environment
 	private String baseURL = (System.getProperty("webdriver.base.url") != null) 
 						   ? System.getProperty("webdriver.base.url")
-						   : "http://localhost:8080";
+						   : "https://localhost:8443/bank";
 	
 	private String authToken 	= "";
 	private UserDetails userDetails = new UserDetails();
@@ -30,7 +30,7 @@ public class TestDataService {
 			authenticateAPI();
 			
 		// Find user
-		SerenityRest.given()
+		SerenityRest.given().relaxedHTTPSValidation()
 					.contentType("application/json")
 					.header("Authorization", "Bearer " + authToken)
 					.baseUri(baseURL)
@@ -73,7 +73,7 @@ public class TestDataService {
 		String ssn = "";
 			
 		// Find user
-		SerenityRest.given()
+		SerenityRest.given().relaxedHTTPSValidation()
 					.contentType("application/json")
 					.header("Authorization", "Bearer " + authToken)
 					.baseUri(baseURL)
@@ -115,7 +115,7 @@ public class TestDataService {
 		String email = "";
 			
 		// Find user
-		SerenityRest.given()
+		SerenityRest.given().relaxedHTTPSValidation()
 					.contentType("application/json")
 					.header("Authorization", "Bearer " + authToken)
 					.baseUri(baseURL)
@@ -180,7 +180,7 @@ public class TestDataService {
 					   + "}";
 		
 		// Create new user within application
-		SerenityRest.given()
+		SerenityRest.given().relaxedHTTPSValidation()
 					.contentType("application/json")
 					.header("Authorization", "Bearer " + authToken)
 					.baseUri(baseURL)
@@ -203,7 +203,7 @@ public class TestDataService {
 				    	 				  .getInt("id"));
 		 	
 		 	// Add API role for user
-		 	SerenityRest.given()
+		 	SerenityRest.given().relaxedHTTPSValidation()
 			.contentType("application/json")
 			.header("Authorization", "Bearer " + authToken)
 			.baseUri(baseURL)
@@ -229,7 +229,7 @@ public class TestDataService {
 		if (authToken == null || authToken.length() < 1) 
 			authenticateAPI();
 		
-		SerenityRest.given()
+		SerenityRest.given().relaxedHTTPSValidation()
 					.contentType("application/json")
 					.header("Authorization", "Bearer " + authToken)
 					.baseUri(baseURL)
@@ -251,7 +251,7 @@ public class TestDataService {
 		if (authToken == null || authToken.length() < 1) 
 			authenticateAPI();
 		
-		SerenityRest.given()
+		SerenityRest.given().relaxedHTTPSValidation()
 					.contentType("application/json")
 					.header("Authorization", "Bearer " + authToken)
 					.baseUri(baseURL)
@@ -273,7 +273,7 @@ public class TestDataService {
 		if (authToken == null || authToken.length() < 1) 
 			authenticateAPI();
 		
-		SerenityRest.given()
+		SerenityRest.given().relaxedHTTPSValidation()
 					.contentType("application/json")
 					.header("Authorization", "Bearer " + authToken)
 					.baseUri(baseURL)
@@ -295,7 +295,7 @@ public class TestDataService {
 		if (authToken == null || authToken.length() < 1) 
 			authenticateAPI();
 		
-		SerenityRest.given()
+		SerenityRest.given().relaxedHTTPSValidation()
 					.contentType("application/json")
 					.header("Authorization", "Bearer " + authToken)
 					.baseUri(baseURL)
@@ -317,7 +317,8 @@ public class TestDataService {
 		String apiUsername 	= "admin@demo.io";
 		String apiPassword 	= "Demo123!";
 		
-		SerenityRest.given()
+		
+		SerenityRest.given().relaxedHTTPSValidation()
 					.queryParams("username", apiUsername)
 					.queryParams("password", apiPassword)
 					.contentType("application/json")

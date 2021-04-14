@@ -5,7 +5,7 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 
-@DefaultUrl ("http://localhost:8080/user/password")
+@DefaultUrl ("https://localhost:8443/user/password")
 public class ChangePasswordPage extends PageObject {
 
 	@FindBy(id="currentPassword")

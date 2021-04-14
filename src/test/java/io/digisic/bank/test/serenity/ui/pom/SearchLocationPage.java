@@ -5,7 +5,7 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 
-@DefaultUrl("http://localhost:8080/home")
+@DefaultUrl("https://localhost:8443/home")
 public class SearchLocationPage extends PageObject {
 	
 	

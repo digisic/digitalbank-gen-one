@@ -9,7 +9,7 @@ public class AtmLocationSearchSteps {
 	// Get the base URL from the environment
 	private String baseURL = (System.getProperty("webdriver.base.url") != null) 
 						   ? System.getProperty("webdriver.base.url")
-						   : "http://localhost:8080";
+						   : "https://localhost:8443/bank";
 	
 	private String zipcode;
 	
@@ -24,7 +24,7 @@ public class AtmLocationSearchSteps {
 		
 		String authToken = SerenityRest.lastResponse().then().extract().jsonPath().getString("authToken");
 		
-		SerenityRest.given()
+		SerenityRest.given().relaxedHTTPSValidation()
 					.contentType("application/json")
 					.header("Authorization", "Bearer " + authToken)
 					.baseUri(baseURL)

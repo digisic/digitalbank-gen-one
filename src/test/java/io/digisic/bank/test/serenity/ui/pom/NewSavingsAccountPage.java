@@ -7,7 +7,7 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 
-@DefaultUrl ("http://localhost:8080/account/savings-add")
+@DefaultUrl ("https://localhost:8443/account/savings-add")
 public class NewSavingsAccountPage extends PageObject {
 
 	@FindBy(id="Savings")

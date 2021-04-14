@@ -42,13 +42,13 @@ public class NewSavingsAccountTests {
 		newSavings.selectAccountType(accountType);
 	}
 
-	@And("^they enter '(.*)' into the Money Market Inital Deposit field$")
+	@And("^they enter '(.*)' into the Money Market Initial Deposit field$")
 	public void enterMoneyMarketInitialDeposit(String initialDeposit) throws Throwable {
 		newSavings.validateMinBalanceDisplayed(2500);
 		newSavings.enterInitialBalance(initialDeposit);
 	}
 	
-	@And("^they enter '(.*)' into the Savings Inital Deposit field$")
+	@And("^they enter '(.*)' into the Savings Initial Deposit field$")
 	public void enterRegularSavingsInitialDeposit(String initialDeposit) throws Throwable {
 		newSavings.validateMinBalanceDisplayed(25);
 		newSavings.enterInitialBalance(initialDeposit);
@@ -59,7 +59,7 @@ public class NewSavingsAccountTests {
 		newSavings.clickSubmit();
 	}
 
-	@Then("^(.*) verifies the account coould not be created$")
+	@Then("^(.*) verifies the account could not be created$")
 	public void accountNotCreated(String persona) throws Throwable {
 		newSavings.notRedirectedToViewSavingsPage();
 	}

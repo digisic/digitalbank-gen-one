@@ -8,7 +8,7 @@ public class UserAuthenticationSteps {
 	// Get the base URL from the environment
 	private String baseURL = (System.getProperty("webdriver.base.url") != null) 
 						   ? System.getProperty("webdriver.base.url")
-						   : "http://localhost:8080";
+						   : "https://localhost:8443/bank";
 	
 	public String authToken;
 	private final String password = "Demo123!";
@@ -17,7 +17,7 @@ public class UserAuthenticationSteps {
 	@Step("Authenticate '{0}' using email '{1}'")
 	public void authenticateUser(String persona, String email) {
 		
-		SerenityRest.given()
+		SerenityRest.given().relaxedHTTPSValidation()
 					.queryParams("username", email)
 					.queryParams("password", password)
 					.contentType("application/json")

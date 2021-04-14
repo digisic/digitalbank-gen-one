@@ -6,243 +6,243 @@ Feature: Create Savings Account (UI)
 
 
 @negative
-Scenario: NewAcctTestCase1-MoneyMarketAcctNotCreated-InsufficientBalance
-  Given Cian is logged into the application with Cian95072@gmail.com
+Scenario: New Savings Account with 'Valid' Name with Ownership 'Individual' and Type 'Money Market' and Deposit '0-2499' with result 'Account Not Created'
+  Given Carleen is logged into the application with Carleen6231@gmail.com
   And they attempt to open a new 'Savings Account'
-  When Cian enters 'AKP Savings' into the Account Name field
+  When Carleen enters 'Figs Savings' into the Account Name field
   And they select 'Individual' from the Ownership radio button
   And they select 'Money Market' from the Account Type radio button
-  And they enter '1553' into the Money Market Inital Deposit field
+  And they enter '1807' into the Money Market Initial Deposit field
   And they click the Submit button
-  Then Cian verifies the account coould not be created
+  Then Carleen verifies the account could not be created
   And they verify they are presented with a message indicating insufficient balance 
 
 @negative
-Scenario: NewAcctTestCase2-MoneyMarketAcctNotCreated-InsufficientBalance
-  Given Li is logged into the application with Li009609@gmail.com
+Scenario: New Savings Account with 'Valid' Name with Ownership 'Individual' and Type 'Money Market' and Deposit '&lt;0' with result 'Account Not Created'
+  Given Busara is logged into the application with Busara4792@gmail.com
   And they attempt to open a new 'Savings Account'
-  When Li enters 'AKP Savings' into the Account Name field
+  When Busara enters 'Nectarines Savings' into the Account Name field
   And they select 'Individual' from the Ownership radio button
   And they select 'Money Market' from the Account Type radio button
-  And they enter '-95' into the Money Market Inital Deposit field
+  And they enter '-30' into the Money Market Initial Deposit field
   And they click the Submit button
-  Then Li verifies the account coould not be created
-  And they verify they are presented with a message indicating insufficient balance 
-
-@positive
-Scenario: NewAcctTestCase3-MoneyMarketAcctCreated
-  Given Nafisika is logged into the application with Nafisika0740@gmail.com
-  And they attempt to open a new 'Savings Account'
-  When Nafisika enters 'AKP Savings' into the Account Name field
-  And they select 'Individual' from the Ownership radio button
-  And they select 'Money Market' from the Account Type radio button
-  And they enter '2500' into the Money Market Inital Deposit field
-  And they click the Submit button
-  Then Nafisika verifies a 'Money Market Savings Account' should be created
-  And they verify account balance should be '2500'
-
-@positive @special
-Scenario: NewAcctTestCase4-MoneyMarketAcctCreated
-  Given Shukrani is logged into the application with Shukrani18756@gmail.com
-  And they attempt to open a new 'Savings Account'
-  When Shukrani enters 'AKP Savings' into the Account Name field
-  And they select 'Individual' from the Ownership radio button
-  And they select 'Money Market' from the Account Type radio button
-  And they enter '3953' into the Money Market Inital Deposit field
-  And they click the Submit button
-  Then Shukrani verifies a 'Money Market Savings Account' should be created
-  And they verify account balance should be '3953'
-
-@positive
-Scenario: NewAcctTestCase5-SavingsAcctCreated
-  Given Deeptiman is logged into the application with Deeptiman269426@gmail.com
-  And they attempt to open a new 'Savings Account'
-  When Deeptiman enters 'AKP Savings' into the Account Name field
-  And they select 'Individual' from the Ownership radio button
-  And they select 'Savings' from the Account Type radio button
-  And they enter '25' into the Savings Inital Deposit field
-  And they click the Submit button
-  Then Deeptiman verifies a 'Regular Savings Account' should be created
-  And they verify account balance should be '25'
-
-@positive
-Scenario: NewAcctTestCase6-SavingsAcctCreated
-  Given Chasity is logged into the application with Chasity547010@gmail.com
-  And they attempt to open a new 'Savings Account'
-  When Chasity enters 'AKP Savings' into the Account Name field
-  And they select 'Individual' from the Ownership radio button
-  And they select 'Savings' from the Account Type radio button
-  And they enter '359' into the Savings Inital Deposit field
-  And they click the Submit button
-  Then Chasity verifies a 'Regular Savings Account' should be created
-  And they verify account balance should be '359'
-
-@negative
-Scenario: NewAcctTestCase7-SavingsAcctNotCreated-InsufficientBalance
-  Given Abhayananda is logged into the application with Abhayananda8283@gmail.com
-  And they attempt to open a new 'Savings Account'
-  When Abhayananda enters 'AKP Savings' into the Account Name field
-  And they select 'Individual' from the Ownership radio button
-  And they select 'Savings' from the Account Type radio button
-  And they enter '2' into the Savings Inital Deposit field
-  And they click the Submit button
-  Then Abhayananda verifies the account coould not be created
-  And they verify they are presented with a message indicating insufficient balance 
-
-@negative
-Scenario: NewAcctTestCase8-SavingsAcctNotCreated-InsufficientBalance
-  Given Zacharias is logged into the application with Zacharias4205@gmail.com
-  And they attempt to open a new 'Savings Account'
-  When Zacharias enters 'AKP Savings' into the Account Name field
-  And they select 'Individual' from the Ownership radio button
-  And they select 'Savings' from the Account Type radio button
-  And they enter '-14' into the Savings Inital Deposit field
-  And they click the Submit button
-  Then Zacharias verifies the account coould not be created
-  And they verify they are presented with a message indicating insufficient balance 
-
-@negative
-Scenario: NewAcctTestCase9-FormValidationFailure
-  Given Sumait is logged into the application with Sumait17606@gmail.com
-  And they attempt to open a new 'Savings Account'
-  When Sumait enters 'AKP Savings' into the Account Name field
-  And they select 'Individual' from the Ownership radio button
-  And they select 'None Selected' from the Account Type radio button
-  And they click the Submit button
-  Then Sumait verifies the account coould not be created
+  Then Busara verifies the account could not be created
   And they verify they are presented with a message indicating form validation error
 
-@negative
-Scenario: NewAcctTestCase10-MoneyMarketAcctNotCreated-InsufficientBalance
-  Given Amala is logged into the application with Amala475631@gmail.com
-  And they attempt to open a new 'Savings Account'
-  When Amala enters 'AKP Savings' into the Account Name field
-  And they select 'Joint' from the Ownership radio button
-  And they select 'Money Market' from the Account Type radio button
-  And they enter '2168' into the Money Market Inital Deposit field
-  And they click the Submit button
-  Then Amala verifies the account coould not be created
-  And they verify they are presented with a message indicating insufficient balance 
-
-@negative
-Scenario: NewAcctTestCase11-MoneyMarketAcctNotCreated-InsufficientBalance
-  Given Shawnn is logged into the application with Shawnn991648@gmail.com
-  And they attempt to open a new 'Savings Account'
-  When Shawnn enters 'AKP Savings' into the Account Name field
-  And they select 'Joint' from the Ownership radio button
-  And they select 'Money Market' from the Account Type radio button
-  And they enter '-98' into the Money Market Inital Deposit field
-  And they click the Submit button
-  Then Shawnn verifies the account coould not be created
-  And they verify they are presented with a message indicating insufficient balance 
-
 @positive
-Scenario: NewAcctTestCase12-MoneyMarketAcctCreated
-  Given Anastasios is logged into the application with Anastasios8364@gmail.com
+Scenario: New Savings Account with 'Valid' Name with Ownership 'Individual' and Type 'Money Market' and Deposit '2500' with result 'Money Market Account Created'
+  Given Ducha is logged into the application with Ducha793045@gmail.com
   And they attempt to open a new 'Savings Account'
-  When Anastasios enters 'AKP Savings' into the Account Name field
-  And they select 'Joint' from the Ownership radio button
+  When Ducha enters 'Tangerine Savings' into the Account Name field
+  And they select 'Individual' from the Ownership radio button
   And they select 'Money Market' from the Account Type radio button
-  And they enter '2500' into the Money Market Inital Deposit field
+  And they enter '2500' into the Money Market Initial Deposit field
   And they click the Submit button
-  Then Anastasios verifies a 'Money Market Savings Account' should be created
+  Then Ducha verifies a 'Money Market Savings Account' should be created
   And they verify account balance should be '2500'
 
 @positive
-Scenario: NewAcctTestCase13-MoneyMarketAcctCreated
-  Given Inerney is logged into the application with Inerney81239@gmail.com
+Scenario: New Savings Account with 'Valid' Name with Ownership 'Individual' and Type 'Money Market' and Deposit '&gt;2500' with result 'Money Market Account Created'
+  Given Kamalkali is logged into the application with Kamalkali45522@gmail.com
   And they attempt to open a new 'Savings Account'
-  When Inerney enters 'AKP Savings' into the Account Name field
-  And they select 'Joint' from the Ownership radio button
+  When Kamalkali enters 'Jujube Savings' into the Account Name field
+  And they select 'Individual' from the Ownership radio button
   And they select 'Money Market' from the Account Type radio button
-  And they enter '2752' into the Money Market Inital Deposit field
+  And they enter '3311' into the Money Market Initial Deposit field
   And they click the Submit button
-  Then Inerney verifies a 'Money Market Savings Account' should be created
-  And they verify account balance should be '2752'
+  Then Kamalkali verifies a 'Money Market Savings Account' should be created
+  And they verify account balance should be '3311'
 
 @positive
-Scenario: NewAcctTestCase14-SavingsAcctCreated
-  Given Jaishree is logged into the application with Jaishree156889@gmail.com
+Scenario: New Savings Account with 'Valid' Name with Ownership 'Individual' and Type 'Savings' and Deposit '25' with result 'Reg. Savings Account Created'
+  Given Citiwala is logged into the application with Citiwala79985@gmail.com
   And they attempt to open a new 'Savings Account'
-  When Jaishree enters 'AKP Savings' into the Account Name field
-  And they select 'Joint' from the Ownership radio button
+  When Citiwala enters 'Barberry Savings' into the Account Name field
+  And they select 'Individual' from the Ownership radio button
   And they select 'Savings' from the Account Type radio button
-  And they enter '25' into the Savings Inital Deposit field
+  And they enter '25' into the Savings Initial Deposit field
   And they click the Submit button
-  Then Jaishree verifies a 'Regular Savings Account' should be created
+  Then Citiwala verifies a 'Regular Savings Account' should be created
   And they verify account balance should be '25'
 
 @positive
-Scenario: NewAcctTestCase15-SavingsAcctCreated
-  Given Karunashankar is logged into the application with Karunashankar299223@gmail.com
+Scenario: New Savings Account with 'Valid' Name with Ownership 'Individual' and Type 'Savings' and Deposit '&gt;25' with result 'Reg. Savings Account Created'
+  Given CamronCamshron is logged into the application with CamronCamshron879652@gmail.com
   And they attempt to open a new 'Savings Account'
-  When Karunashankar enters 'AKP Savings' into the Account Name field
-  And they select 'Joint' from the Ownership radio button
+  When CamronCamshron enters 'Mandarin Savings' into the Account Name field
+  And they select 'Individual' from the Ownership radio button
   And they select 'Savings' from the Account Type radio button
-  And they enter '854' into the Savings Inital Deposit field
+  And they enter '687' into the Savings Initial Deposit field
   And they click the Submit button
-  Then Karunashankar verifies a 'Regular Savings Account' should be created
-  And they verify account balance should be '854'
+  Then CamronCamshron verifies a 'Regular Savings Account' should be created
+  And they verify account balance should be '687'
 
 @negative
-Scenario: NewAcctTestCase16-SavingsAcctNotCreated-InsufficientBalance
-  Given Monima is logged into the application with Monima449828@gmail.com
+Scenario: New Savings Account with 'Valid' Name with Ownership 'Individual' and Type 'Savings' and Deposit '0-24' with result 'Account Not Created'
+  Given Izhar is logged into the application with Izhar202550@gmail.com
   And they attempt to open a new 'Savings Account'
-  When Monima enters 'AKP Savings' into the Account Name field
-  And they select 'Joint' from the Ownership radio button
+  When Izhar enters 'Watermelon Savings' into the Account Name field
+  And they select 'Individual' from the Ownership radio button
   And they select 'Savings' from the Account Type radio button
-  And they enter '19' into the Savings Inital Deposit field
+  And they enter '19' into the Savings Initial Deposit field
   And they click the Submit button
-  Then Monima verifies the account coould not be created
+  Then Izhar verifies the account could not be created
   And they verify they are presented with a message indicating insufficient balance 
 
 @negative
-Scenario: NewAcctTestCase17-SavingsAcctNotCreated-InsufficientBalance
-  Given Ghaniy is logged into the application with Ghaniy46455@gmail.com
+Scenario: New Savings Account with 'Valid' Name with Ownership 'Individual' and Type 'Savings' and Deposit '&lt;0' with result 'Account Not Created'
+  Given Keyur is logged into the application with Keyur2368@gmail.com
   And they attempt to open a new 'Savings Account'
-  When Ghaniy enters 'AKP Savings' into the Account Name field
-  And they select 'Joint' from the Ownership radio button
+  When Keyur enters 'Jujube Savings' into the Account Name field
+  And they select 'Individual' from the Ownership radio button
   And they select 'Savings' from the Account Type radio button
-  And they enter '-31' into the Savings Inital Deposit field
+  And they enter '-60' into the Savings Initial Deposit field
   And they click the Submit button
-  Then Ghaniy verifies the account coould not be created
-  And they verify they are presented with a message indicating insufficient balance 
-
-@negative
-Scenario: NewAcctTestCase18-FormValidationFailure
-  Given Shauden is logged into the application with Shauden04483@gmail.com
-  And they attempt to open a new 'Savings Account'
-  When Shauden enters 'AKP Savings' into the Account Name field
-  And they select 'Joint' from the Ownership radio button
-  And they select 'None Selected' from the Account Type radio button
-  And they click the Submit button
-  Then Shauden verifies the account coould not be created
+  Then Keyur verifies the account could not be created
   And they verify they are presented with a message indicating form validation error
 
 @negative
-Scenario: NewAcctTestCase19-FormValidationFailure
-  Given Anora is logged into the application with Anora504843@gmail.com
+Scenario: New Savings Account with 'Valid' Name with Ownership 'Individual' and Type 'None Selected' and Deposit '' with result 'Account Not Created'
+  Given Madaha is logged into the application with Madaha72830@gmail.com
   And they attempt to open a new 'Savings Account'
-  When Anora enters 'AKP Savings' into the Account Name field
+  When Madaha enters 'Key Lime Savings' into the Account Name field
+  And they select 'Individual' from the Ownership radio button
+  And they select 'None Selected' from the Account Type radio button
+  And they click the Submit button
+  Then Madaha verifies the account could not be created
+  And they verify they are presented with a message indicating form validation error
+
+@negative
+Scenario: New Savings Account with 'Valid' Name with Ownership 'Joint' and Type 'Money Market' and Deposit '0-2499' with result 'Account Not Created'
+  Given Nureet is logged into the application with Nureet70644@gmail.com
+  And they attempt to open a new 'Savings Account'
+  When Nureet enters 'Pineapple Savings' into the Account Name field
+  And they select 'Joint' from the Ownership radio button
+  And they select 'Money Market' from the Account Type radio button
+  And they enter '411' into the Money Market Initial Deposit field
+  And they click the Submit button
+  Then Nureet verifies the account could not be created
+  And they verify they are presented with a message indicating insufficient balance 
+
+@negative
+Scenario: New Savings Account with 'Valid' Name with Ownership 'Joint' and Type 'Money Market' and Deposit '&lt;0' with result 'Account Not Created'
+  Given Phoebe is logged into the application with Phoebe81976@gmail.com
+  And they attempt to open a new 'Savings Account'
+  When Phoebe enters 'Custard Apple Savings' into the Account Name field
+  And they select 'Joint' from the Ownership radio button
+  And they select 'Money Market' from the Account Type radio button
+  And they enter '-42' into the Money Market Initial Deposit field
+  And they click the Submit button
+  Then Phoebe verifies the account could not be created
+  And they verify they are presented with a message indicating form validation error
+
+@positive
+Scenario: New Savings Account with 'Valid' Name with Ownership 'Joint' and Type 'Money Market' and Deposit '2500' with result 'Money Market Account Created'
+  Given Marcos is logged into the application with Marcos789361@gmail.com
+  And they attempt to open a new 'Savings Account'
+  When Marcos enters 'Raspberry Savings' into the Account Name field
+  And they select 'Joint' from the Ownership radio button
+  And they select 'Money Market' from the Account Type radio button
+  And they enter '2500' into the Money Market Initial Deposit field
+  And they click the Submit button
+  Then Marcos verifies a 'Money Market Savings Account' should be created
+  And they verify account balance should be '2500'
+
+@positive
+Scenario: New Savings Account with 'Valid' Name with Ownership 'Joint' and Type 'Money Market' and Deposit '&gt;2500' with result 'Money Market Account Created'
+  Given Frances is logged into the application with Frances323900@gmail.com
+  And they attempt to open a new 'Savings Account'
+  When Frances enters 'Barberry Savings' into the Account Name field
+  And they select 'Joint' from the Ownership radio button
+  And they select 'Money Market' from the Account Type radio button
+  And they enter '3619' into the Money Market Initial Deposit field
+  And they click the Submit button
+  Then Frances verifies a 'Money Market Savings Account' should be created
+  And they verify account balance should be '3619'
+
+@positive
+Scenario: New Savings Account with 'Valid' Name with Ownership 'Joint' and Type 'Savings' and Deposit '25' with result 'Reg. Savings Account Created'
+  Given Evadne is logged into the application with Evadne2633@gmail.com
+  And they attempt to open a new 'Savings Account'
+  When Evadne enters 'Passion Fruit Savings' into the Account Name field
+  And they select 'Joint' from the Ownership radio button
+  And they select 'Savings' from the Account Type radio button
+  And they enter '25' into the Savings Initial Deposit field
+  And they click the Submit button
+  Then Evadne verifies a 'Regular Savings Account' should be created
+  And they verify account balance should be '25'
+
+@positive
+Scenario: New Savings Account with 'Valid' Name with Ownership 'Joint' and Type 'Savings' and Deposit '&gt;25' with result 'Reg. Savings Account Created'
+  Given Autolycus is logged into the application with Autolycus615233@gmail.com
+  And they attempt to open a new 'Savings Account'
+  When Autolycus enters 'Vanilla Savings' into the Account Name field
+  And they select 'Joint' from the Ownership radio button
+  And they select 'Savings' from the Account Type radio button
+  And they enter '439' into the Savings Initial Deposit field
+  And they click the Submit button
+  Then Autolycus verifies a 'Regular Savings Account' should be created
+  And they verify account balance should be '439'
+
+@negative
+Scenario: New Savings Account with 'Valid' Name with Ownership 'Joint' and Type 'Savings' and Deposit '0-24' with result 'Account Not Created'
+  Given Kefira is logged into the application with Kefira7788@gmail.com
+  And they attempt to open a new 'Savings Account'
+  When Kefira enters 'Pawpaw Savings' into the Account Name field
+  And they select 'Joint' from the Ownership radio button
+  And they select 'Savings' from the Account Type radio button
+  And they enter '12' into the Savings Initial Deposit field
+  And they click the Submit button
+  Then Kefira verifies the account could not be created
+  And they verify they are presented with a message indicating insufficient balance 
+
+@negative
+Scenario: New Savings Account with 'Valid' Name with Ownership 'Joint' and Type 'Savings' and Deposit '&lt;0' with result 'Account Not Created'
+  Given Nurisha is logged into the application with Nurisha0309@gmail.com
+  And they attempt to open a new 'Savings Account'
+  When Nurisha enters 'Blueberry Savings' into the Account Name field
+  And they select 'Joint' from the Ownership radio button
+  And they select 'Savings' from the Account Type radio button
+  And they enter '-77' into the Savings Initial Deposit field
+  And they click the Submit button
+  Then Nurisha verifies the account could not be created
+  And they verify they are presented with a message indicating form validation error
+
+@negative
+Scenario: New Savings Account with 'Valid' Name with Ownership 'Joint' and Type 'None Selected' and Deposit '' with result 'Account Not Created'
+  Given Tsoka is logged into the application with Tsoka36489@gmail.com
+  And they attempt to open a new 'Savings Account'
+  When Tsoka enters 'Orange Savings' into the Account Name field
+  And they select 'Joint' from the Ownership radio button
+  And they select 'None Selected' from the Account Type radio button
+  And they click the Submit button
+  Then Tsoka verifies the account could not be created
+  And they verify they are presented with a message indicating form validation error
+
+@negative
+Scenario: New Savings Account with 'Valid' Name with Ownership 'None Selected' and Type '' and Deposit '' with result 'Account Not Created'
+  Given Nicodemus is logged into the application with Nicodemus4858@gmail.com
+  And they attempt to open a new 'Savings Account'
+  When Nicodemus enters 'Crabapple Savings' into the Account Name field
   And they select 'None Selected' from the Ownership radio button
   And they click the Submit button
-  Then Anora verifies the account coould not be created
+  Then Nicodemus verifies the account could not be created
   And they verify they are presented with a message indicating form validation error
 
 @negative
-Scenario: NewAcctTestCase20-FormValidationFailure
-  Given Yaakov is logged into the application with Yaakov1803@gmail.com
+Scenario: New Savings Account with 'Empty' Name with Ownership '' and Type '' and Deposit '' with result 'Account Not Created'
+  Given Nishant is logged into the application with Nishant190233@gmail.com
   And they attempt to open a new 'Savings Account'
-  When Yaakov enters '' into the Account Name field
+  When Nishant enters '' into the Account Name field
   And they click the Submit button
-  Then Yaakov verifies the account coould not be created
+  Then Nishant verifies the account could not be created
   And they verify they are presented with a message indicating form validation error
 
 @negative
-Scenario: NewAcctTestCase21-FormValidationFailure
-  Given Naima is logged into the application with Naima051493@gmail.com
+Scenario: New Savings Account with 'Invalid' Name with Ownership '' and Type '' and Deposit '' with result 'Account Not Created'
+  Given Lipi is logged into the application with Lipi7131@gmail.com
   And they attempt to open a new 'Savings Account'
-  When Naima enters 'AKP Savings %($!(*)))' into the Account Name field
+  When Lipi enters 'Rhubarb Savings ()($' into the Account Name field
   And they click the Submit button
-  Then Naima verifies the account coould not be created
+  Then Lipi verifies the account could not be created
   And they verify they are presented with a message indicating form validation error

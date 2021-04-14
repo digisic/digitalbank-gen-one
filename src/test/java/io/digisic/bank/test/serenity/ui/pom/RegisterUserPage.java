@@ -10,7 +10,7 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 
-@DefaultUrl ("http://localhost:8080/signup")
+@DefaultUrl ("https://localhost:8443/signup")
 public class RegisterUserPage extends PageObject{
 	
 	@FindBy(id="title")
