@@ -333,7 +333,7 @@
 			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M3</version><!--$NO-MVN-MAN-VER$-->
+                <version>3.0.0-M5</version><!--$NO-MVN-MAN-VER$-->
                 <configuration>
                 	<excludes>
                         <exclude>**/serenity/*Test*.java</exclude>
@@ -347,7 +347,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version><!--$NO-MVN-MAN-VER$-->
+                <version>3.8.1</version><!--$NO-MVN-MAN-VER$-->
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>

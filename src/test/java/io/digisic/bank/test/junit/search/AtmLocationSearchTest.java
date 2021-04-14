@@ -33,18 +33,24 @@ import io.digisic.bank.service.SearchService;
 @ContextConfiguration(classes = SearchService.class)
 @ExtendWith(SpringExtension.class)
 @ExtendWith(VirtualServerResolver.class)
-public class AtmLocationSearchTest extends BaseTest {
+public class AtmLocationSearchTest {
 
 	private static final Logger LOG = LoggerFactory.getLogger(AtmLocationSearchTest.class);
+	
+	// CodeSV Java Key Store Properties
+	protected static final String KEYSTORE_PATH = AtmLocationSearchTest.class.getClassLoader().getResource("keystore.jks").getPath();
+    protected static final String KEYSTORE_PASSWORD = "password";
+    protected static final String TLS = "TLS";
 	
     public VirtualServerResolver vs = new VirtualServerResolver();
     
     @Autowired
 	private SearchService searchService;
     
+    
     @BeforeAll
     public static void testSetup() {
-		setUpAppKeystoreForTest();
+    	setUpAppKeystoreForTest();
     }
     
     @AfterAll
@@ -169,6 +175,22 @@ public class AtmLocationSearchTest extends BaseTest {
 		});
 		
 	}
+	
+	/*
+     * Configure Key Store for Tests
+     */
+    public static void setUpAppKeystoreForTest() {	
+        System.setProperty("javax.net.ssl.trustStore", KEYSTORE_PATH);
+        System.setProperty("javax.net.ssl.trustStorePassword", KEYSTORE_PASSWORD);
+    }
+    
+    /*
+     * Clear configuration
+     */
+    public static void resetKeystore() {
+        System.clearProperty("javax.net.ssl.trustStore");
+        System.clearProperty("javax.net.ssl.trustStorePassword");
+    }
 
 	
 	private static final String ZERO_RESULTS_OK = 	"{\n" + "    \"atms\": [],\n" +
