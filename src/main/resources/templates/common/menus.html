@@ -144,9 +144,11 @@
                             <img class="user-avatar rounded-circle" th:src="@{/images/} + ${avatar}" alt="User Avatar"></img>
                         </a>
                         <div class="user-menu dropdown-menu">
-                                <a class="nav-link" th:href="@{/user/profile}"><i class="fa fa- user"></i>My Profile</a>
-                                <a class="nav-link" th:href="@{/user/password}"><i class="fa fa- user"></i>Change Password</a>
-                                <a class="nav-link" th:href="@{/logout}"><i class="fa fa-power -off"></i>Logout</a> 
+                                <a class="nav-link" th:href="@{/user/profile}"><i class="fa fa-user"></i>&nbsp;My Profile</a>
+                                <a class="nav-link" th:href="@{/user/password}"><i class="fa fa-user"></i>&nbsp;Change Password</a>
+                                <a class="nav-link" th:href="@{/user/create-data}"><i class="fa fa-cogs"></i>&nbsp;Create Data</a>
+                                <a class="nav-link" th:href="@{/user/delete-data}"><i class="fa fa-trash-o"></i>&nbsp;Delete Data</a>
+                                <a class="nav-link" th:href="@{/logout}"><i class="fa fa-power-off"></i>&nbsp;Logout</a> 
                         </div>
                     </div>
                     <div class="language-select dropdown" id="language-select">

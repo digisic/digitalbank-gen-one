@@ -355,6 +355,13 @@ public class AccountService {
 	}
 	
 	/*
+	 * Delete All Accounts for User
+	 */
+	public void deleteAllAccounts(Users user) {
+		accountRepository.deleteByOwner(user);
+	}
+	
+	/*
 	 * Add a new transaction that will apply a credit to the account.
 	 * 
 	 * The Account passed in is expected to be a full Account object. With that said,

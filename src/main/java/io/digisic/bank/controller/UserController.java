@@ -27,6 +27,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import io.digisic.bank.exception.RestNotAcceptableException;
 import io.digisic.bank.model.UserProfile;
 import io.digisic.bank.model.security.Users;
+import io.digisic.bank.service.AccountService;
+import io.digisic.bank.service.SampleDataService;
 import io.digisic.bank.service.UserService;
 import io.digisic.bank.util.Constants;
 import io.digisic.bank.util.Messages;
@@ -41,6 +43,12 @@ public class UserController extends CommonController{
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	SampleDataService sampleDataService;
+	
+	@Autowired
+	AccountService accountService;
 	
 	
 	/*
@@ -150,6 +158,33 @@ public class UserController extends CommonController{
 	@GetMapping(Constants.URI_API_USR_PROF)
 	public ResponseEntity<?> getUserProfile(@PathVariable(Constants.PATH_VARIABLE_ID) Long id) {
 		return ResponseEntity.ok(getUserById(id).getUserProfile());
+	}
+	
+	/*
+	 * ADMIN role
+	 * Create User Sample Data
+	 */
+	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
+	@PostMapping(Constants.URI_API_USR_DATA_CREATE)
+	public ResponseEntity<?> createSampleData(@PathVariable(Constants.PATH_VARIABLE_ID) Long id) {
+		
+		sampleDataService.createIndividualSavings(getUserById(id));
+		sampleDataService.createIndividualChecking(getUserById(id));
+		
+		return ResponseEntity.noContent().build();
+	}
+	
+	/*
+	 * ADMIN role
+	 * Delete User Data
+	 */
+	@PreAuthorize(Constants.HAS_ROLE_ADMIN)
+	@PostMapping(Constants.URI_API_USR_DATA_DELETE)
+	public ResponseEntity<?> deleteCurrentData(@PathVariable(Constants.PATH_VARIABLE_ID) Long id) {
+		
+		accountService.deleteAllAccounts(getUserById(id));
+		
+		return ResponseEntity.noContent().build();
 	}
 	
 	/*

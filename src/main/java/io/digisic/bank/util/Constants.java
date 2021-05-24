@@ -63,6 +63,8 @@ public class Constants {
 	public static final String URI_USER					= "/user";
 	public static final String URI_USR_PASSWORD 		= "/password";
 	public static final String URI_USR_PROFILE 			= "/profile";
+	public static final String URI_USR_CREATE_DATA 		= "/create-data";
+	public static final String URI_USR_DELETE_DATA		= "/delete-data";
 	public static final String URI_ACCOUNT				= "/account";
 	public static final String URI_ACCOUNT_UPDATE		= "/update";
 	public static final String URI_CHK_ADD				= "/checking-add";
@@ -100,6 +102,8 @@ public class Constants {
 	public static final String URI_API_USR_PROF			= "/api/v1/user/{id}/profile";
 	public static final String URI_API_USR_PROF_CURR	= "/api/v1/user/profile";
 	public static final String URI_API_USR_ROLE			= "/api/v1/user/{id}/role";
+	public static final String URI_API_USR_DATA_CREATE	= "/api/v1/user/{id}/data/create";
+	public static final String URI_API_USR_DATA_DELETE	= "/api/v1/user/{id}/data/delete";
 	public static final String URI_API_USR_ROLE_CURR	= "/api/v1/user/role";
 	public static final String URI_API_USR_SET_PASS		= "/api/v1/user/{id}/password";
 	public static final String URI_API_USR_CHG_PASS		= "/api/v1/user/password";

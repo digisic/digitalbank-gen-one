@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import io.digisic.bank.model.UserProfile;
 import io.digisic.bank.model.security.Users;
+import io.digisic.bank.service.AccountService;
+import io.digisic.bank.service.SampleDataService;
 import io.digisic.bank.service.UserService;
 import io.digisic.bank.util.Constants;
 import io.digisic.bank.util.Messages;
@@ -27,6 +29,12 @@ public class WebUserController extends WebCommonController {
 		  
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private AccountService accountService;
+	
+	@Autowired
+	private SampleDataService sampleDataService;
 		
 
 	@GetMapping(Constants.URI_USR_PASSWORD)
@@ -130,5 +138,32 @@ public class WebUserController extends WebCommonController {
 		model.addAttribute(MODEL_ATT_SUCCESS_MSG, Messages.USER_PROFILE_UPDATED);
 		    
 		return Constants.VIEW_USR_PROFILE;
+	}
+	
+	@GetMapping(Constants.URI_USR_CREATE_DATA)
+	public String createData(Principal principal, Model model) {
+    
+		// Set Display Defaults
+		setDisplayDefaults(principal, model);
+				
+		Users user = userService.findByUsername(principal.getName());
+		
+		sampleDataService.createIndividualSavings(user);
+		sampleDataService.createIndividualChecking(user);
+ 
+		return Constants.DIR_REDIRECT + Constants.URI_HOME;
+	}
+	
+	@GetMapping(Constants.URI_USR_DELETE_DATA)
+	public String deleteData(Principal principal, Model model) {
+    
+		// Set Display Defaults
+		setDisplayDefaults(principal, model);
+				
+		Users user = userService.findByUsername(principal.getName());
+		
+		accountService.deleteAllAccounts(user);
+		
+		return Constants.DIR_REDIRECT + Constants.URI_HOME;
 	}
 }

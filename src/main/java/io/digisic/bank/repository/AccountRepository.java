@@ -28,4 +28,5 @@ public interface AccountRepository extends CrudRepository<Account, Long> {
 	
 	List<Account> findByCoownerAndAccountType_Category (Users user, String category);
 	
+	void deleteByOwner(Users user);
 }
