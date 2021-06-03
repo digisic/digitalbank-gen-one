@@ -1,4 +1,4 @@
-# Digital Bank
+# Digital Bank (Generation One)
 
 Digital Bank is a sample application that was developed for exploratory purposes to examine development frameworks and techniques. The application is an example online digital banking application with integrations into other services.
 
