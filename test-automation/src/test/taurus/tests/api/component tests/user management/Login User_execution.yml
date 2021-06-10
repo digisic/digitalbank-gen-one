@@ -1,0 +1,78 @@
+---
+settings:
+    env:
+      BASE_URL: http://localhost:8080/bank
+reporting:
+  - module: junit-xml
+    filename: result.xml
+    data-source: pass-fail
+modules:
+  cloud:
+    report-name: Login User Test Report
+    test: Login User Test
+execution:
+  - scenario: Login User TC 1 - valid username, invalid password
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Login User TC 2 - valid username, empty password
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Login User TC 3 - valid username, valid password, credentials expired
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Login User TC 4 - valid username, valid password
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Login User TC 5 - valid username, valid password, account is expired
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Login User TC 6 - valid username, valid password, account is locked
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Login User TC 7 - valid username, valid password, account is disabled
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Login User TC 8 - invalid username, valid password
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Login User TC 9 - invalid username, invalid password
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Login User TC 10 - invalid username, empty password
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Login User TC 11 - empty username, valid password
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Login User TC 12 - empty username, invalid password
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Login User TC 13 - empty username, empty password
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1

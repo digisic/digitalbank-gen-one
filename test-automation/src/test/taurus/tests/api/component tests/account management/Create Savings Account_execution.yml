@@ -1,0 +1,118 @@
+---
+settings:
+    env:
+      BASE_URL: http://localhost:8080/bank
+reporting:
+  - module: junit-xml
+    filename: result.xml
+    data-source: pass-fail
+modules:
+  cloud:
+    report-name: Create Savings Account Test Report
+    test: Create Savings Account Test
+execution:
+  - scenario: Create Savings Account TC 1 - Individual Money Market Not Created - Minimum Deposit Not Met
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create Savings Account TC 2 - Individual Money Market Not Created - Initial Deposit Less Than Zero
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create Savings Account TC 3 - Individual Money Market Created
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create Savings Account TC 4 - Individual Money Market Created
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create Savings Account TC 5 - Individual Savings Created
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create Savings Account TC 6 - Individual Savings Created
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create Savings Account TC 7 - Individual Savings Not Created - Minimum Deposit Not Met
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create Savings Account TC 8 - Individual Savings Not Created - Initial Deposit Less Than Zero
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create Savings Account TC 9 - Data Validation Error
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create Savings Account TC 10 - Joint Money Market Not Created - Minimum Deposit Not Met
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create Savings Account TC 11 - Joint Money Market Not Created - Initial Deposit Less Than Zero
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create Savings Account TC 12 - Joint Money Market Created
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create Savings Account TC 13 - Joint Money Market Created
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create Savings Account TC 14 - Joint Savings Created
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create Savings Account TC 15 - Joint Savings Created
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create Savings Account TC 16 - Joint Savings Not Created - Minimum Deposit Not Met
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create Savings Account TC 17 - Joint Savings Not Created - Initial Deposit Less Than Zero
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create Savings Account TC 18 - Data Validation Error
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create Savings Account TC 19 - Data Validation Error
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create Savings Account TC 20 - Data Validation Error
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create Savings Account TC 21 - Data Validation Error
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1

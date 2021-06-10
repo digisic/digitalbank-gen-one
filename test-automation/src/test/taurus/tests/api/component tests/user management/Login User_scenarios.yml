@@ -1,0 +1,236 @@
+---
+scenarios:
+
+  Login User TC 1 - valid username, invalid password:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=Gubnat2383@gmail.com&password=BXuBtSLPsssvE859'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Login User TC 2 - valid username, empty password:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=Gair96171@gmail.com&password='
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Login User TC 3 - valid username, valid password, credentials expired:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=Adara055131@gmail.com&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Login User TC 4 - valid username, valid password:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=Treasigh87512@gmail.com&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Login User TC 5 - valid username, valid password, account is expired:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=Devanie373406@gmail.com&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Login User TC 6 - valid username, valid password, account is locked:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=Kartik1826@gmail.com&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Login User TC 7 - valid username, valid password, account is disabled:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=Cumania46978@gmail.com&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Login User TC 8 - invalid username, valid password:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=IhvGeorgina810150@gmail.com&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Login User TC 9 - invalid username, invalid password:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=DNilay592227@gmail.com&password=PYMDyCEAuiVn5805'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Login User TC 10 - invalid username, empty password:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=EnGiovana172879@gmail.com&password='
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Login User TC 11 - empty username, valid password:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Login User TC 12 - empty username, invalid password:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=&password=IhzGCFqokL4'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Login User TC 13 - empty username, empty password:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=&password='
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true

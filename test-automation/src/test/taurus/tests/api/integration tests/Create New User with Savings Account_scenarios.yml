@@ -1,0 +1,546 @@
+---
+scenarios:
+
+  Create New User with Savings Account 1 :
+    follow-redirects: true
+    requests:
+
+
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 2. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 5. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "CALLE MUNICIPAL EE 10", "country": "US", "dob": "12/27/1924", "emailAddress": "Myles.Rasmussen${__Random(100000000,999999999)}@gmail.com", "firstName": "Myles", "gender": "M", "homePhone": "3363598215", "lastName": "Rasmussen", "locality": "Denver", "mobilePhone": "3363598215", "password": "Demo123!", "postalCode": "80237", "region": "CO", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "3363598215" }'
+        assert:
+         - contains:
+           - '201'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          userId: 'id'
+        extract-jsonpath:
+          username: 'username'
+
+
+      - url: '${BASE_URL}/api/v1/auth?username=${username}&password=Demo123!'
+        method: POST
+        label: 7. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 10. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "SAV", "openingDeposit": 436, "ownerTypeCode": "JNT" }'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create New User with Savings Account 2 :
+    follow-redirects: true
+    requests:
+
+
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 2. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 5. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "CALLE VICTORIA #29A", "country": "US", "dob": "03/15/1992", "emailAddress": "Ramon.Reynolds${__Random(100000000,999999999)}@gmail.com", "firstName": "Ramon", "gender": "M", "homePhone": "8655858251", "lastName": "Reynolds", "locality": "San Juan", "mobilePhone": "8655858251", "password": "Demo123!", "postalCode": "00918", "region": "PR", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "8655858251" }'
+        assert:
+         - contains:
+           - '201'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          userId: 'id'
+        extract-jsonpath:
+          username: 'username'
+
+
+      - url: '${BASE_URL}/api/v1/auth?username=${username}&password=Demo123!'
+        method: POST
+        label: 7. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 10. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "SAV", "openingDeposit": 25, "ownerTypeCode": "JNT" }'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create New User with Savings Account 3 :
+    follow-redirects: true
+    requests:
+
+
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 2. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 5. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "URB. ALTURAS DE VEGA BAJA CALL", "country": "US", "dob": "02/26/1947", "emailAddress": "Kasey.Vaughn${__Random(100000000,999999999)}@gmail.com", "firstName": "Kasey", "gender": "M", "homePhone": "4739781479", "lastName": "Vaughn", "locality": "Shallowater", "mobilePhone": "4739781479", "password": "Demo123!", "postalCode": "79363", "region": "TX", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "4739781479" }'
+        assert:
+         - contains:
+           - '201'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          userId: 'id'
+        extract-jsonpath:
+          username: 'username'
+
+
+      - url: '${BASE_URL}/api/v1/auth?username=${username}&password=Demo123!'
+        method: POST
+        label: 7. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 10. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": 3230, "ownerTypeCode": "JNT" }'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create New User with Savings Account 4 :
+    follow-redirects: true
+    requests:
+
+
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 2. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 5. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "RES SABANA CALLE P.R.G2 #301", "country": "US", "dob": "01/18/1976", "emailAddress": "Kyle.Molina${__Random(100000000,999999999)}@gmail.com", "firstName": "Kyle", "gender": "M", "homePhone": "7622667209", "lastName": "Molina", "locality": "Baltimore", "mobilePhone": "7622667209", "password": "Demo123!", "postalCode": "21217", "region": "MD", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "7622667209" }'
+        assert:
+         - contains:
+           - '201'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          userId: 'id'
+        extract-jsonpath:
+          username: 'username'
+
+
+      - url: '${BASE_URL}/api/v1/auth?username=${username}&password=Demo123!'
+        method: POST
+        label: 7. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 10. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": 2500, "ownerTypeCode": "JNT" }'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create New User with Savings Account 5 :
+    follow-redirects: true
+    requests:
+
+
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 2. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 5. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "URB. GUANAJIBO HOMES", "country": "US", "dob": "02/13/1941", "emailAddress": "Joe.Vasquez${__Random(100000000,999999999)}@gmail.com", "firstName": "Joe", "gender": "M", "homePhone": "6495115339", "lastName": "Vasquez", "locality": "Mission", "mobilePhone": "6495115339", "password": "Demo123!", "postalCode": "78572", "region": "TX", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "6495115339" }'
+        assert:
+         - contains:
+           - '201'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          userId: 'id'
+        extract-jsonpath:
+          username: 'username'
+
+
+      - url: '${BASE_URL}/api/v1/auth?username=${username}&password=Demo123!'
+        method: POST
+        label: 7. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 10. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "SAV", "openingDeposit": 457, "ownerTypeCode": "IND" }'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create New User with Savings Account 6 :
+    follow-redirects: true
+    requests:
+
+
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 2. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 5. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "UNIT 206 180 GRAND AVE", "country": "US", "dob": "07/05/1944", "emailAddress": "Noel.Gamble${__Random(100000000,999999999)}@gmail.com", "firstName": "Noel", "gender": "M", "homePhone": "6477882740", "lastName": "Gamble", "locality": "Yauco", "mobilePhone": "6477882740", "password": "Demo123!", "postalCode": "00698", "region": "PR", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "6477882740" }'
+        assert:
+         - contains:
+           - '201'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          userId: 'id'
+        extract-jsonpath:
+          username: 'username'
+
+
+      - url: '${BASE_URL}/api/v1/auth?username=${username}&password=Demo123!'
+        method: POST
+        label: 7. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 10. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "SAV", "openingDeposit": 25, "ownerTypeCode": "IND" }'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create New User with Savings Account 7 :
+    follow-redirects: true
+    requests:
+
+
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 2. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 5. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "CALLE 4 E25 URB ANA MARIA", "country": "US", "dob": "05/18/1985", "emailAddress": "Drew.Bryan${__Random(100000000,999999999)}@gmail.com", "firstName": "Drew", "gender": "M", "homePhone": "8985549179", "lastName": "Bryan", "locality": "Lumberton", "mobilePhone": "8985549179", "password": "Demo123!", "postalCode": "77657", "region": "TX", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "8985549179" }'
+        assert:
+         - contains:
+           - '201'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          userId: 'id'
+        extract-jsonpath:
+          username: 'username'
+
+
+      - url: '${BASE_URL}/api/v1/auth?username=${username}&password=Demo123!'
+        method: POST
+        label: 7. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 10. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": 3168, "ownerTypeCode": "IND" }'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create New User with Savings Account 8 :
+    follow-redirects: true
+    requests:
+
+
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 2. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 5. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "112 LAKEVIEW ROAD", "country": "US", "dob": "08/23/1979", "emailAddress": "Issac.Banks${__Random(100000000,999999999)}@gmail.com", "firstName": "Issac", "gender": "M", "homePhone": "5644372105", "lastName": "Banks", "locality": "Hasbrouck Heights", "mobilePhone": "5644372105", "password": "Demo123!", "postalCode": "07604", "region": "NJ", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "5644372105" }'
+        assert:
+         - contains:
+           - '201'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          userId: 'id'
+        extract-jsonpath:
+          username: 'username'
+
+
+      - url: '${BASE_URL}/api/v1/auth?username=${username}&password=Demo123!'
+        method: POST
+        label: 7. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 10. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": 2500, "ownerTypeCode": "IND" }'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true

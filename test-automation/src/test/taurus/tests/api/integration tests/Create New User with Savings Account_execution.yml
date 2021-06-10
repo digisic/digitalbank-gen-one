@@ -1,0 +1,53 @@
+---
+settings:
+    env:
+      BASE_URL: http://localhost:8080/bank
+reporting:
+  - module: junit-xml
+    filename: result.xml
+    data-source: pass-fail
+modules:
+  cloud:
+    report-name: Create New User with Savings Account Test Report
+    test: Create New User with Savings Account Test
+execution:
+  - scenario: Create New User with Savings Account 1 
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create New User with Savings Account 2 
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create New User with Savings Account 3 
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create New User with Savings Account 4 
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create New User with Savings Account 5 
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create New User with Savings Account 6 
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create New User with Savings Account 7 
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create New User with Savings Account 8 
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1

@@ -1,0 +1,233 @@
+---
+settings:
+    env:
+      BASE_URL: http://localhost:8080/bank
+reporting:
+  - module: junit-xml
+    filename: result.xml
+    data-source: pass-fail
+modules:
+  cloud:
+    report-name: Create User Test Report
+    test: Create User Test
+execution:
+  - scenario: Create User TC 1 - existing registered user, valid request data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 2 - bad credential detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 3 - bad credential detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 4 - bad credential detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 5 - bad credential detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 6 - bad credential detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 7 - bad credential detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 8 - bad credential detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 9 - bad credential detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 10 - bad credential detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 11 - existing registered user, valid request data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 12 - bad credential detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 13 - bad credential detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 14 - bad credential detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 15 - bad credential detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 16 - bad credential detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 17 - bad personal detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 18 - valid request data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 19 - bad personal detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 20 - bad personal detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 21 - bad personal detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 22 - bad personal detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 23 - bad personal detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 24 - bad personal detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 25 - bad personal detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 26 - bad personal detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 27 - bad contact details data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 28 - bad contact details data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 29 - bad personal detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 30 - bad contact details data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 31 - bad contact details data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 32 - bad contact details data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 33 - bad contact details data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 34 - bad contact details data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 35 - bad contact details data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 36 - bad credential detail data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 37 - bad contact details data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 38 - bad contact details data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 39 - existing registered user, valid request data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 40 - bad contact details data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 41 - bad contact details data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 42 - bad contact details data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 43 - bad contact details data
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1
+  - scenario: Create User TC 44 - using an account without admin authority
+    concurrency: 1
+    ramp-up: 1s
+    hold-for: 0m
+    iterations: 1

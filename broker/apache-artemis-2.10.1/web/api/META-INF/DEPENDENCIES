@@ -1,0 +1,105 @@
+// ------------------------------------------------------------------
+// Transitive dependencies of this project determined from the
+// maven pom organized by organization.
+// ------------------------------------------------------------------
+
+ActiveMQ Artemis Web
+
+
+From: 'an unknown organization'
+  - micrometer-core (https://github.com/micrometer-metrics/micrometer) io.micrometer:micrometer-core:jar:1.1.4
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - HdrHistogram (http://hdrhistogram.github.io/HdrHistogram/) org.hdrhistogram:HdrHistogram:bundle:2.1.9
+    License: Public Domain, per Creative Commons CC0  (http://creativecommons.org/publicdomain/zero/1.0/)
+  - Java Concurrency Tools Core Library (https://github.com/JCTools) org.jctools:jctools-core:bundle:2.1.2
+    License: Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - LatencyUtils (http://latencyutils.github.io/LatencyUtils/) org.latencyutils:LatencyUtils:jar:2.0.3
+    License: Public Domain, per Creative Commons CC0  (http://creativecommons.org/publicdomain/zero/1.0/)
+
+From: 'Apache Software Foundation' (http://www.apache.org)
+  - JTA 1.1 (http://geronimo.apache.org/specs/geronimo-jta_1.1_spec) org.apache.geronimo.specs:geronimo-jta_1.1_spec:jar:1.1.1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'JBoss by Red Hat' (http://www.jboss.org)
+  - JBoss Logging 3 (http://www.jboss.org) org.jboss.logging:jboss-logging:jar:3.4.0.Final
+    License: Apache License, version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - JBoss Log Manager (http://www.jboss.org/jboss-logmanager) org.jboss.logmanager:jboss-logmanager:jar:2.1.10.Final
+    License: Apache License 2.0  (http://repository.jboss.org/licenses/apache-2.0.txt)
+  - wildfly-common (http://www.jboss.org/wildfly-common) org.wildfly.common:wildfly-common:jar:1.5.2.Final
+    License: Apache License 2.0  (http://repository.jboss.org/licenses/apache-2.0.txt)
+
+From: 'JBoss, a division of Red Hat' (http://www.jboss.org)
+  - JGroups (http://www.jgroups.org) org.jgroups:jgroups:bundle:3.6.13.Final
+    License: Apache License 2.0  (http://www.apache.org/licenses/LICENSE-2.0.html)
+
+From: 'The Apache Software Foundation' (http://www.apache.org)
+  - Apache Geronimo JMS Spec 2.0 (http://geronimo.apache.org/maven/specs/geronimo-jms_2.0_spec/1.0-alpha-2) org.apache.geronimo.specs:geronimo-jms_2.0_spec:bundle:1.0-alpha-2
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Geronimo JSon Spec 1.0 (http://geronimo.apache.org/maven/specs/geronimo-json_1.0_spec/1.0-alpha-1) org.apache.geronimo.specs:geronimo-json_1.0_spec:bundle:1.0-alpha-1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'The Apache Software Foundation' (http://www.apache.org/)
+  - Apache Commons Collections (http://commons.apache.org/collections/) commons-collections:commons-collections:jar:3.2.2
+    License: Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Commons Logging (http://commons.apache.org/proper/commons-logging/) commons-logging:commons-logging:jar:1.2
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Commons Lang (http://commons.apache.org/lang/) org.apache.commons:commons-lang3:jar:3.0
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Johnzon :: Core (http://johnzon.apache.org/johnzon-core) org.apache.johnzon:johnzon-core:bundle:0.9.5
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'The Apache Software Foundation' (https://www.apache.org/)
+  - Apache Commons BeanUtils (https://commons.apache.org/proper/commons-beanutils/) commons-beanutils:commons-beanutils:jar:1.9.4
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Commons IO (http://commons.apache.org/proper/commons-io/) commons-io:commons-io:jar:2.6
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - ActiveMQ Artemis Native () org.apache.activemq:activemq-artemis-native:bundle:1.0.0
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - ActiveMQ Artemis Commons (http://apache.org/activemq/artemis-commons) org.apache.activemq:artemis-commons:jar:2.10.1
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - ActiveMQ Artemis Core Client (http://apache.org/activemq/artemis-core-client) org.apache.activemq:artemis-core-client:jar:2.10.1
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - ActiveMQ Artemis JDBC Store (http://apache.org/activemq/artemis-jdbc-store) org.apache.activemq:artemis-jdbc-store:jar:2.10.1
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - ActiveMQ Artemis JMS Client (http://apache.org/activemq/artemis-jms-client) org.apache.activemq:artemis-jms-client:jar:2.10.1
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - ActiveMQ Artemis JMS Server (http://apache.org/activemq/artemis-jms-server) org.apache.activemq:artemis-jms-server:jar:2.10.1
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - ActiveMQ Artemis Journal (http://apache.org/activemq/artemis-journal) org.apache.activemq:artemis-journal:jar:2.10.1
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - ActiveMQ Artemis Selector Implementation (http://apache.org/activemq/artemis-selector) org.apache.activemq:artemis-selector:jar:2.10.1
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - ActiveMQ Artemis Server (http://apache.org/activemq/artemis-server) org.apache.activemq:artemis-server:jar:2.10.1
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - ActiveMQ Artemis Service Extensions (http://apache.org/activemq/artemis-service-extensions) org.apache.activemq:artemis-service-extensions:jar:2.10.1
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Commons Configuration (http://commons.apache.org/proper/commons-configuration/) org.apache.commons:commons-configuration2:jar:2.4
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Commons Text (http://commons.apache.org/proper/commons-text) org.apache.commons:commons-text:jar:1.6
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'The Netty Project' (http://netty.io/)
+  - Netty/Buffer (http://netty.io/netty-buffer/) io.netty:netty-buffer:jar:4.1.34.Final
+    License: Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+  - Netty/Codec (http://netty.io/netty-codec/) io.netty:netty-codec:jar:4.1.34.Final
+    License: Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+  - Netty/Codec/HTTP (http://netty.io/netty-codec-http/) io.netty:netty-codec-http:jar:4.1.34.Final
+    License: Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+  - Netty/Common (http://netty.io/netty-common/) io.netty:netty-common:jar:4.1.34.Final
+    License: Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+  - Netty/Handler (http://netty.io/netty-handler/) io.netty:netty-handler:jar:4.1.34.Final
+    License: Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+  - Netty/Resolver (http://netty.io/netty-resolver/) io.netty:netty-resolver:jar:4.1.34.Final
+    License: Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+  - Netty/Transport (http://netty.io/netty-transport/) io.netty:netty-transport:jar:4.1.34.Final
+    License: Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+  - Netty/Transport/Native/Epoll (http://netty.io/netty-transport-native-epoll/) io.netty:netty-transport-native-epoll:jar:4.1.34.Final
+    License: Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+  - Netty/Transport/Native/KQueue (http://netty.io/netty-transport-native-kqueue/) io.netty:netty-transport-native-kqueue:jar:4.1.34.Final
+    License: Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+  - Netty/Transport/Native/Unix/Common (http://netty.io/netty-transport-native-unix-common/) io.netty:netty-transport-native-unix-common:jar:4.1.34.Final
+    License: Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+
+
+
+

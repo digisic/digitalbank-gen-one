@@ -1,0 +1,1578 @@
+---
+scenarios:
+
+  Millennial Madness with Account Type (Blue), Age (), Balance (), Rating (644), and Years (4):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": , "balance": , "rating": 756, "years": 4}'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Millennial Madness with Account Type (Blue), Age (26), Balance (), Rating (653), and Years (5):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 26, "balance": , "rating": 970, "years": 3}'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Millennial Madness with Account Type (Blue), Age (28), Balance (-1522), Rating (907), and Years (5):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 23, "balance": -682, "rating": 979, "years": 5}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: false
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (30), Balance (2600), Rating (828), and Years (5):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 35, "balance": 3503, "rating": 999, "years": 5}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: false
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (29), Balance (9108), Rating (805), and Years (5):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 29, "balance": 6799, "rating": 806, "years": 5}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: false
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (10), Balance (), Rating (667), and Years (2):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 2, "balance": , "rating": 831, "years": 3}'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Millennial Madness with Account Type (Blue), Age (14), Balance (-7630), Rating (966), and Years (5):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 11, "balance": -6654, "rating": 629, "years": 5}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (4), Balance (1633), Rating (641), and Years (3):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 10, "balance": 3111, "rating": 954, "years": 4}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (3), Balance (5931), Rating (965), and Years (5):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 4, "balance": 5085, "rating": 795, "years": 2}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (53), Balance (), Rating (768), and Years (3):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 49, "balance": , "rating": 831, "years": 5}'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Millennial Madness with Account Type (Blue), Age (60), Balance (-1212), Rating (827), and Years (5):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 46, "balance": -8315, "rating": 978, "years": 2}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (53), Balance (4863), Rating (816), and Years (3):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 43, "balance": 1133, "rating": 648, "years": 3}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (72), Balance (-3360), Rating (816), and Years (3):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 87, "balance": -8320, "rating": 622, "years": 4}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (100), Balance (3202), Rating (866), and Years (3):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 91, "balance": 3795, "rating": 958, "years": 4}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (74), Balance (8281), Rating (972), and Years (2):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 101, "balance": 8583, "rating": 717, "years": 5}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (4), Balance (66896), Rating (240), and Years (5):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 15, "balance": 39885, "rating": 101, "years": 3}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (47), Balance (31116), Rating (56), and Years (4):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 49, "balance": 20435, "rating": 74, "years": 5}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (66), Balance (61424), Rating (488), and Years (5):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 121, "balance": 57844, "rating": 211, "years": 3}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (), Balance (), Rating (310), and Years (2):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": , "balance": , "rating": 223, "years": 4}'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Millennial Madness with Account Type (Blue), Age (36), Balance (-2581), Rating (75), and Years (4):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 29, "balance": -3319, "rating": 270, "years": 5}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (44), Balance (-3996), Rating (396), and Years (3):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 59, "balance": -6118, "rating": 284, "years": 4}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (90), Balance (-3971), Rating (209), and Years (3):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 120, "balance": -8926, "rating": 136, "years": 4}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (15), Balance (107), Rating (84), and Years (3):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 7, "balance": 2862, "rating": 327, "years": 2}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (63), Balance (1372), Rating (252), and Years (2):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 39, "balance": 3248, "rating": 157, "years": 4}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (71), Balance (3568), Rating (404), and Years (4):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 85, "balance": 3605, "rating": 274, "years": 3}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (16), Balance (5767), Rating (248), and Years (3):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 19, "balance": 6648, "rating": 322, "years": 3}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (30), Balance (7532), Rating (241), and Years (5):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 32, "balance": 6825, "rating": 448, "years": 4}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (7), Balance (-1130), Rating (586), and Years (2):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 15, "balance": -4476, "rating": 566, "years": 5}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (), Balance (7464), Rating (534), and Years (2):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": , "balance": 7818, "rating": 540, "years": 5}'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Millennial Madness with Account Type (Blue), Age (), Balance (), Rating (), and Years (5):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": , "balance": , "rating": , "years": 4}'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Millennial Madness with Account Type (Blue), Age (), Balance (7903), Rating (256), and Years (48):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": , "balance": 6479, "rating": 484, "years": 20}'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Millennial Madness with Account Type (Blue), Age (22), Balance (3471), Rating (598), and Years (35):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": 23, "balance": 3078, "rating": 510, "years": 27}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Blue), Age (), Balance (), Rating (), and Years (22):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": , "balance": , "rating": , "years": 15}'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Millennial Madness with Account Type (Blue), Age (), Balance (), Rating (), and Years ():
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Blue", "age": , "balance": , "rating": , "years": }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Millennial Madness with Account Type (Gold), Age (67), Balance (), Rating (704), and Years (2):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Gold", "age": 92, "balance": , "rating": 800, "years": 2}'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Millennial Madness with Account Type (Gold), Age (88), Balance (5198), Rating (328), and Years (3):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Gold", "age": 110, "balance": 5796, "rating": 128, "years": 5}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Gold), Age (), Balance (), Rating (507), and Years (4):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Gold", "age": , "balance": , "rating": 549, "years": 5}'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Millennial Madness with Account Type (Gold), Age (23), Balance (24773), Rating (310), and Years (23):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Gold", "age": 31, "balance": 81328, "rating": 128, "years": 16}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: false
+           assume-success: false
+
+  Millennial Madness with Account Type (Gold), Age (), Balance (), Rating (), and Years ():
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Gold", "age": , "balance": , "rating": , "years": }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Millennial Madness with Account Type (), Age (), Balance (), Rating (), and Years ():
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "", "age": , "balance": , "rating": , "years": }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Millennial Madness with Account Type (Platinum), Age (62), Balance (5950), Rating (192), and Years (3):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Platinum", "age": 58, "balance": 9634, "rating": 207, "years": 4}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Platinum), Age (), Balance (87497), Rating (545), and Years (5):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Platinum", "age": , "balance": 58297, "rating": 514, "years": 2}'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Millennial Madness with Account Type (Platinum), Age (), Balance (-2827), Rating (599), and Years (4):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Platinum", "age": , "balance": -6520, "rating": 503, "years": 3}'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Millennial Madness with Account Type (Platinum), Age (), Balance (4115), Rating (568), and Years (3):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Platinum", "age": , "balance": 3568, "rating": 514, "years": 3}'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Millennial Madness with Account Type (Platinum), Age (45), Balance (7164), Rating (698), and Years (17):
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Platinum", "age": 44, "balance": 5845, "rating": 646, "years": 24}'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        assert:
+         - contains:
+           - Millennial Madness 
+           subject: body
+           regexp: true
+           not: true
+           assume-success: false
+
+  Millennial Madness with Account Type (Platinum), Age (), Balance (), Rating (), and Years ():
+    follow-redirects: false
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate User
+        headers:
+          Content-Type: application/json
+        extract-jsonpath:
+          authToken: 'authToken'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+      - url: '${BASE_URL}/api/v1/promotions'
+        method: POST
+        label: 2. Promotion Qualification
+        headers:
+          Content-Type: application/json
+          Authorization: Bearer ${authToken}
+        body: '{"accountType": "Platinum", "age": , "balance": , "rating": , "years": }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true

@@ -1,0 +1,1368 @@
+---
+scenarios:
+
+  Create User TC 1 - existing registered user, valid request data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/users'
+        method: GET
+        label: 2. Get Existing Email Address
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          emailAddress: '$[0].userProfile.emailAddress'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 3. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "COLLE JOSE DE DIEGO #12", "country": "US", "dob": "07/08/1945", "emailAddress": "${emailAddress}", "firstName": "Declan", "gender": "M", "homePhone": "6022676026", "lastName": "Mayer", "locality": "Yauco", "mobilePhone": "", "password": "Demo123!", "postalCode": "00698", "region": "PR", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "" }'
+        assert:
+         - contains:
+           - '406'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 2 - bad credential detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "URB LAS DELICIAS 5 CALLE CORAL", "country": "US", "dob": "03/22/1975", "emailAddress": "", "firstName": "Arnold", "gender": "M", "homePhone": "3048363721", "lastName": "Rush", "locality": "Indianapolis", "mobilePhone": "", "password": "", "postalCode": "46260", "region": "IN", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 3 - bad credential detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "ESTANCIAS DE LA CEIBA", "country": "US", "dob": "07/15/1949", "emailAddress": "Steven.......Jackson8980@gmail.com", "firstName": "Steven", "gender": "M", "homePhone": "5197945076", "lastName": "Jackson", "locality": "Sprague River", "mobilePhone": "", "password": "", "postalCode": "97639", "region": "OR", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 4 - bad credential detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "URB MONTERREY OTOAO 919", "country": "US", "dob": "12/22/1954", "emailAddress": "Zack.Kim477595gmail.com", "firstName": "Zack", "gender": "M", "homePhone": "3516987777", "lastName": "Kim", "locality": "Trade", "mobilePhone": "", "password": "", "postalCode": "37691", "region": "TN", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 5 - bad credential detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "URB MARTOELL C30 JOSE DIE", "country": "US", "dob": "08/17/1968", "emailAddress": "Arnold.Aguilar69149@", "firstName": "Arnold", "gender": "M", "homePhone": "9088234832", "lastName": "Aguilar", "locality": "Houston", "mobilePhone": "", "password": "", "postalCode": "77289", "region": "TX", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 6 - bad credential detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "CALLE AD-4", "country": "US", "dob": "04/24/1965", "emailAddress": "@gmail.com", "firstName": "Bo", "gender": "M", "homePhone": "6848881375", "lastName": "Solis", "locality": "Portland", "mobilePhone": "", "password": "", "postalCode": "71663", "region": "AR", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 7 - bad credential detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "BO BERMEJALES CARR 143 SECTOR", "country": "US", "dob": "07/22/1975", "emailAddress": "Kieran.Quinn${__Random(100000000,999999999)}@gmail.com", "firstName": "Kieran", "gender": "M", "homePhone": "9277652018", "lastName": "Quinn", "locality": "Jacksonville", "mobilePhone": "", "password": "Demo123", "postalCode": "32218", "region": "FL", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "9277652018" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 8 - bad credential detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "CALLE 4 D-33 VEGA BAJA LKS", "country": "US", "dob": "08/17/1956", "emailAddress": "Oliver.Rivas${__Random(100000000,999999999)}@gmail.com", "firstName": "Oliver", "gender": "M", "homePhone": "3069686467", "lastName": "Rivas", "locality": "Campobello", "mobilePhone": "", "password": "DEMO123!", "postalCode": "29322", "region": "SC", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "3069686467" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 9 - bad credential detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "VILLA ROCA 24 BO BARAHONA G5", "country": "US", "dob": "01/31/1975", "emailAddress": "Joey.Bowen${__Random(100000000,999999999)}@gmail.com", "firstName": "Joey", "gender": "M", "homePhone": "2765576174", "lastName": "Bowen", "locality": "Issaquah", "mobilePhone": "", "password": "DemoMMM!", "postalCode": "98027", "region": "WA", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "2765576174" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 10 - bad credential detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "BOX 458 SAN ANTONIO", "country": "US", "dob": "10/08/1928", "emailAddress": "Micah.Stark${__Random(100000000,999999999)}@gmail.com", "firstName": "Micah", "gender": "M", "homePhone": "5093532648", "lastName": "Stark", "locality": "Lafayette", "mobilePhone": "", "password": "demo123!", "postalCode": "70598", "region": "LA", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "5093532648" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 11 - existing registered user, valid request data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/users'
+        method: GET
+        label: 2. Get Existing Email Address
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          emailAddress: '$[0].userProfile.emailAddress'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 3. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "ROBERTO GONZALEZ 58", "country": "US", "dob": "06/19/1936", "emailAddress": "${emailAddress}", "firstName": "Harry", "gender": "M", "homePhone": "7155767629", "lastName": "English", "locality": "Dublin", "mobilePhone": "", "password": "Demo123!", "postalCode": "76446", "region": "TX", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "7155767629" }'
+        assert:
+         - contains:
+           - '406'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 12 - bad credential detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "URB LOS VERSALLES 2049 CALLE L", "country": "US", "dob": "06/25/1974", "emailAddress": "", "firstName": "Easton", "gender": "M", "homePhone": "5135228171", "lastName": "Holland", "locality": "Walls", "mobilePhone": "", "password": "", "postalCode": "38680", "region": "MS", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "5135228171" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 13 - bad credential detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "BUENAVENTURA 1170 MAGNOLIA", "country": "US", "dob": "09/30/1939", "emailAddress": "Gonzalo.......Patterson571315@gmail.com", "firstName": "Gonzalo", "gender": "M", "homePhone": "4161973558", "lastName": "Patterson", "locality": "Durham", "mobilePhone": "", "password": "", "postalCode": "67438", "region": "KS", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "4161973558" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 14 - bad credential detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "CALLE AZUCENA 40A BO  SUSUA", "country": "US", "dob": "09/20/1938", "emailAddress": "Trevin.Wood843182gmail.com", "firstName": "Trevin", "gender": "M", "homePhone": "2092331656", "lastName": "Wood", "locality": "Roxbury Crossing", "mobilePhone": "", "password": "", "postalCode": "02120", "region": "MA", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "2092331656" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 15 - bad credential detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "NBR 152 520 KINGSDALE AVENUE", "country": "US", "dob": "08/18/1984", "emailAddress": "Darrin.Kidd113471@", "firstName": "Darrin", "gender": "M", "homePhone": "6826254809", "lastName": "Kidd", "locality": "Knobel", "mobilePhone": "", "password": "", "postalCode": "72435", "region": "AR", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "6826254809" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 16 - bad credential detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "CALLE 2 BUZON 9 INT PALENQUE", "country": "US", "dob": "11/26/1961", "emailAddress": "@gmail.com", "firstName": "Heath", "gender": "M", "homePhone": "7604498828", "lastName": "Ewing", "locality": "Greenville", "mobilePhone": "", "password": "", "postalCode": "03048", "region": "NH", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "7604498828" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 17 - bad personal detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "HC 1 BOX 7227", "country": "US", "dob": "06/06/1950", "emailAddress": "", "firstName": "Seamus", "gender": "M", "homePhone": "2072355636", "lastName": "Jacobson", "locality": "Cleveland", "mobilePhone": "2072355636", "password": "", "postalCode": "44128", "region": "OH", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "Mhkdshykdh" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 18 - valid request data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "HC-03 BOX 20665", "country": "US", "dob": "01/11/1923", "emailAddress": "Alan.Lee${__Random(100000000,999999999)}@gmail.com", "firstName": "Alan", "gender": "M", "homePhone": "7731418718", "lastName": "Lee", "locality": "Austin", "mobilePhone": "7731418718", "password": "Demo123!", "postalCode": "72007", "region": "AR", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "7731418718" }'
+        assert:
+         - contains:
+           - '201'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          userId: 'id'
+        extract-jsonpath:
+          username: 'username'
+
+  Create User TC 19 - bad personal detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "RR 1 BOX 13235 BO BOTIJAS 2 SE", "country": "US", "dob": "03/06/1966", "emailAddress": "", "firstName": "Lawson", "gender": "M", "homePhone": "9363623443", "lastName": "Gibbs", "locality": "Morrisonville", "mobilePhone": "Zdtegutydg", "password": "", "postalCode": "53571", "region": "WI", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 20 - bad personal detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "URB LOS ROBLES 137 CLE ALMENDR", "country": "US", "dob": "02/23/1937", "emailAddress": "", "firstName": "Garett", "gender": "M", "homePhone": "Owfsdxnfju", "lastName": "Dawson", "locality": "Arecibo", "mobilePhone": "", "password": "", "postalCode": "00612", "region": "PR", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 21 - bad personal detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "BELLA VISTA NUM  8", "country": "US", "dob": "08/06/1953", "emailAddress": "", "firstName": "Dominick", "gender": "M", "homePhone": "", "lastName": "Johns", "locality": "Bradenton", "mobilePhone": "", "password": "", "postalCode": "34201", "region": "FL", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 22 - bad personal detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "BOX 1630", "country": "", "dob": "06/23/1951", "emailAddress": "", "firstName": "Bobby", "gender": "M", "homePhone": "", "lastName": "Delacruz", "locality": "Yale", "mobilePhone": "", "password": "", "postalCode": "48097", "region": "MI", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 23 - bad personal detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "HC04 BOX14266", "country": "", "dob": "05/10/1964", "emailAddress": "", "firstName": "Dane", "gender": "M", "homePhone": "", "lastName": "Cote", "locality": "Steamboat Springs", "mobilePhone": "", "password": "", "postalCode": "", "region": "CO", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 24 - bad personal detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "CARR  SAN JOSE 87 1", "country": "", "dob": "07/06/1932", "emailAddress": "", "firstName": "Luciano", "gender": "M", "homePhone": "", "lastName": "Ball", "locality": "Atkinson", "mobilePhone": "", "password": "", "postalCode": "", "region": "", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 25 - bad personal detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "CALLE SANCHEZ LOPEZ A-25", "country": "", "dob": "11/20/1942", "emailAddress": "", "firstName": "Ramon", "gender": "M", "homePhone": "", "lastName": "Clay", "locality": "", "mobilePhone": "", "password": "", "postalCode": "", "region": "", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 26 - bad personal detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "", "country": "", "dob": "09/15/2000", "emailAddress": "", "firstName": "Jamal", "gender": "M", "homePhone": "", "lastName": "Dyer", "locality": "", "mobilePhone": "", "password": "", "postalCode": "", "region": "", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 27 - bad contact details data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "", "country": "", "dob": "10/04/1944", "emailAddress": "", "firstName": "Bobby", "gender": "M", "homePhone": "", "lastName": "", "locality": "", "mobilePhone": "", "password": "", "postalCode": "", "region": "", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 28 - bad contact details data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "", "country": "", "dob": "02/19/1948", "emailAddress": "", "firstName": "", "gender": "M", "homePhone": "", "lastName": "", "locality": "", "mobilePhone": "", "password": "", "postalCode": "", "region": "", "ssn": "${__Random(100000000,999999999)}", "title": "Mr.", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 29 - bad personal detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "HC01 BOX 11370", "country": "US", "dob": "03/06/1938", "emailAddress": "", "firstName": "Myah", "gender": "F", "homePhone": "3315671623", "lastName": "Mcgowan", "locality": "Los Angeles", "mobilePhone": "", "password": "", "postalCode": "90019", "region": "CA", "ssn": "${__Random(100000000,999999999)}", "title": "Mrs.", "workPhone": "Yuuxa Mgaj" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 30 - bad contact details data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "", "country": "", "dob": "07/16/1957", "emailAddress": "", "firstName": "", "gender": "F", "homePhone": "", "lastName": "", "locality": "", "mobilePhone": "", "password": "", "postalCode": "", "region": "", "ssn": "${__Random(100000000,999999999)}", "title": "Ms,", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 31 - bad contact details data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "", "country": "", "dob": "10/25/1981", "emailAddress": "", "firstName": "", "gender": "", "homePhone": "", "lastName": "", "locality": "", "mobilePhone": "", "password": "", "postalCode": "", "region": "", "ssn": "${__Random(100000000,999999999)}", "title": "", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 32 - bad contact details data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "", "country": "", "dob": "11/19/1988", "emailAddress": "", "firstName": "", "gender": "hcak", "homePhone": "", "lastName": "", "locality": "", "mobilePhone": "", "password": "", "postalCode": "", "region": "", "ssn": "${__Random(100000000,999999999)}", "title": "", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 33 - bad contact details data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "", "country": "", "dob": "", "emailAddress": "", "firstName": "", "gender": "", "homePhone": "", "lastName": "", "locality": "", "mobilePhone": "", "password": "", "postalCode": "", "region": "", "ssn": "${__Random(100000000,999999999)}", "title": "", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 34 - bad contact details data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "", "country": "", "dob": "22522609", "emailAddress": "", "firstName": "", "gender": "", "homePhone": "", "lastName": "", "locality": "", "mobilePhone": "", "password": "", "postalCode": "", "region": "", "ssn": "${__Random(100000000,999999999)}", "title": "", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 35 - bad contact details data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "", "country": "", "dob": "06/30/1953", "emailAddress": "", "firstName": "", "gender": "F", "homePhone": "", "lastName": "", "locality": "", "mobilePhone": "", "password": "", "postalCode": "", "region": "", "ssn": "${__Random(100,999)}-${__Random(10,99)}-${__Random(1000,9999)}", "title": "Mrs.", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 36 - bad credential detail data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "URB SAN VICENTE CALLE 6 120", "country": "US", "dob": "03/30/1951", "emailAddress": "Shayna.Joseph${__Random(100000000,999999999)}@gmail.com", "firstName": "Shayna", "gender": "F", "homePhone": "8729568418", "lastName": "Joseph", "locality": "Indianapolis", "mobilePhone": "8729568418", "password": "", "postalCode": "46234", "region": "IN", "ssn": "${__Random(100,999)}-${__Random(10,99)}-${__Random(1000,9999)}", "title": "Ms,", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 37 - bad contact details data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "", "country": "", "dob": "", "emailAddress": "", "firstName": "", "gender": "", "homePhone": "", "lastName": "", "locality": "", "mobilePhone": "", "password": "", "postalCode": "", "region": "", "ssn": "${__Random(100,999)}-${__Random(10,99)}-${__Random(1000,9999)}", "title": "", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 38 - bad contact details data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "", "country": "", "dob": "35339894", "emailAddress": "", "firstName": "", "gender": "", "homePhone": "", "lastName": "", "locality": "", "mobilePhone": "", "password": "", "postalCode": "", "region": "", "ssn": "${__Random(100,999)}-${__Random(10,99)}-${__Random(1000,9999)}", "title": "", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 39 - existing registered user, valid request data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/users'
+        method: GET
+        label: 2. Get Existing SSN
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          ssn: '$[0].userProfile.ssn'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 3. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "URB SAN AUGUSTO", "country": "US", "dob": "11/12/1943", "emailAddress": "Dakota.Keith${__Random(100000000,999999999)}@gmail.com", "firstName": "Dakota", "gender": "M", "homePhone": "557914562", "lastName": "Keith", "locality": "Ponce", "mobilePhone": "", "password": "Demo123!", "postalCode": "00716", "region": "PR", "ssn": "${ssn}", "title": "Mr.", "workPhone": "557914562" }'
+        assert:
+         - contains:
+           - '406'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 40 - bad contact details data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "", "country": "", "dob": "", "emailAddress": "", "firstName": "", "gender": "", "homePhone": "", "lastName": "", "locality": "", "mobilePhone": "", "password": "", "postalCode": "", "region": "", "ssn": "272704", "title": "", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 41 - bad contact details data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "", "country": "", "dob": "", "emailAddress": "", "firstName": "", "gender": "", "homePhone": "", "lastName": "", "locality": "", "mobilePhone": "", "password": "", "postalCode": "", "region": "", "ssn": "35516042726332", "title": "", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 42 - bad contact details data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "", "country": "", "dob": "", "emailAddress": "", "firstName": "", "gender": "", "homePhone": "", "lastName": "", "locality": "", "mobilePhone": "", "password": "", "postalCode": "", "region": "", "ssn": "175$09$1394", "title": "", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 43 - bad contact details data:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=admin@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "", "country": "", "dob": "", "emailAddress": "", "firstName": "", "gender": "", "homePhone": "", "lastName": "", "locality": "", "mobilePhone": "", "password": "", "postalCode": "", "region": "", "ssn": "", "title": "", "workPhone": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create User TC 44 - using an account without admin authority:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user?role=API'
+        method: POST
+        label: 2. Create API User
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "address": "URB ALTIUES CALLE E BLOQ E #12", "country": "US", "dob": "09/14/1970", "emailAddress": "Kobe.Chapman0385@gmail.com", "firstName": "Kobe", "gender": "M", "homePhone": "9198896944", "lastName": "Chapman", "locality": "Camden On Gauley", "mobilePhone": "", "password": "Demo123!", "postalCode": "26208", "region": "WV", "ssn": "984-45-6319", "title": "Mr.", "workPhone": "" }'
+        assert:
+         - contains:
+           - '403'
+           subject: http-code
+           regexp: true
+           assume-success: true

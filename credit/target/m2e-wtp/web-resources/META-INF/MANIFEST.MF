@@ -1,0 +1,64 @@
+Manifest-Version: 1.0
+Build-Jdk-Spec: 15
+Class-Path: lib/spring-boot-starter-data-rest-2.1.7.RELEASE.jar lib/spri
+ ng-boot-starter-web-2.1.7.RELEASE.jar lib/spring-boot-starter-json-2.1.
+ 7.RELEASE.jar lib/jackson-datatype-jdk8-2.9.9.jar lib/jackson-datatype-
+ jsr310-2.9.9.jar lib/jackson-module-parameter-names-2.9.9.jar lib/sprin
+ g-boot-starter-tomcat-2.1.7.RELEASE.jar lib/tomcat-embed-core-9.0.22.ja
+ r lib/tomcat-embed-el-9.0.22.jar lib/tomcat-embed-websocket-9.0.22.jar 
+ lib/hibernate-validator-6.0.17.Final.jar lib/validation-api-2.0.1.Final
+ .jar lib/spring-web-5.1.9.RELEASE.jar lib/spring-data-rest-webmvc-3.1.1
+ 0.RELEASE.jar lib/spring-data-rest-core-3.1.10.RELEASE.jar lib/spring-h
+ ateoas-0.25.2.RELEASE.jar lib/evo-inflector-1.2.2.jar lib/spring-boot-s
+ tarter-jdbc-2.1.7.RELEASE.jar lib/spring-boot-starter-2.1.7.RELEASE.jar
+  lib/spring-boot-2.1.7.RELEASE.jar lib/spring-boot-autoconfigure-2.1.7.
+ RELEASE.jar lib/spring-boot-starter-logging-2.1.7.RELEASE.jar lib/logba
+ ck-classic-1.2.3.jar lib/logback-core-1.2.3.jar lib/log4j-to-slf4j-2.11
+ .2.jar lib/log4j-api-2.11.2.jar lib/jul-to-slf4j-1.7.26.jar lib/javax.a
+ nnotation-api-1.3.2.jar lib/snakeyaml-1.23.jar lib/HikariCP-3.2.0.jar l
+ ib/spring-jdbc-5.1.9.RELEASE.jar lib/spring-boot-starter-data-jpa-2.1.7
+ .RELEASE.jar lib/spring-boot-starter-aop-2.1.7.RELEASE.jar lib/aspectjw
+ eaver-1.9.4.jar lib/javax.transaction-api-1.3.jar lib/jaxb-api-2.3.1.ja
+ r lib/javax.activation-api-1.2.0.jar lib/hibernate-core-5.3.10.Final.ja
+ r lib/jboss-logging-3.3.2.Final.jar lib/javax.persistence-api-2.2.jar l
+ ib/javassist-3.23.2-GA.jar lib/antlr-2.7.7.jar lib/jandex-2.0.5.Final.j
+ ar lib/dom4j-2.1.1.jar lib/hibernate-commons-annotations-5.0.4.Final.ja
+ r lib/spring-data-jpa-2.1.10.RELEASE.jar lib/spring-data-commons-2.1.10
+ .RELEASE.jar lib/spring-orm-5.1.9.RELEASE.jar lib/spring-aspects-5.1.9.
+ RELEASE.jar lib/spring-boot-starter-security-2.1.7.RELEASE.jar lib/spri
+ ng-aop-5.1.9.RELEASE.jar lib/spring-security-config-5.1.6.RELEASE.jar l
+ ib/spring-security-web-5.1.6.RELEASE.jar lib/spring-expression-5.1.9.RE
+ LEASE.jar lib/jjwt-0.9.1.jar lib/springfox-swagger2-2.9.2.jar lib/swagg
+ er-annotations-1.5.20.jar lib/swagger-models-1.5.20.jar lib/springfox-s
+ pi-2.9.2.jar lib/springfox-core-2.9.2.jar lib/springfox-schema-2.9.2.ja
+ r lib/springfox-swagger-common-2.9.2.jar lib/springfox-spring-web-2.9.2
+ .jar lib/classmate-1.4.0.jar lib/slf4j-api-1.7.26.jar lib/spring-plugin
+ -core-1.2.0.RELEASE.jar lib/spring-plugin-metadata-1.2.0.RELEASE.jar li
+ b/mapstruct-1.2.0.Final.jar lib/springfox-swagger-ui-2.9.2.jar lib/h2-1
+ .4.199.jar lib/mssql-jdbc-6.4.0.jre8.jar lib/mysql-connector-java-8.0.1
+ 7.jar lib/postgresql-42.2.6.jar lib/spring-core-5.1.9.RELEASE.jar lib/s
+ pring-jcl-5.1.9.RELEASE.jar lib/spring-webmvc-5.1.9.RELEASE.jar lib/spr
+ ing-security-core-5.1.6.RELEASE.jar lib/spring-boot-starter-artemis-2.1
+ .7.RELEASE.jar lib/javax.jms-api-2.0.1.jar lib/javax.json-api-1.1.4.jar
+  lib/spring-jms-5.1.9.RELEASE.jar lib/spring-beans-5.1.9.RELEASE.jar li
+ b/spring-messaging-5.1.9.RELEASE.jar lib/spring-tx-5.1.9.RELEASE.jar li
+ b/artemis-jms-client-2.6.4.jar lib/artemis-core-client-2.6.4.jar lib/jg
+ roups-3.6.13.Final.jar lib/artemis-commons-2.6.4.jar lib/commons-beanut
+ ils-1.9.3.jar lib/johnzon-core-1.1.13.jar lib/netty-transport-native-ep
+ oll-4.1.38.Final-linux-x86_64.jar lib/netty-transport-native-unix-commo
+ n-4.1.38.Final.jar lib/netty-transport-native-kqueue-4.1.38.Final-osx-x
+ 86_64.jar lib/netty-codec-http-4.1.38.Final.jar lib/netty-buffer-4.1.38
+ .Final.jar lib/netty-transport-4.1.38.Final.jar lib/netty-resolver-4.1.
+ 38.Final.jar lib/netty-handler-4.1.38.Final.jar lib/netty-codec-4.1.38.
+ Final.jar lib/netty-common-4.1.38.Final.jar lib/artemis-selector-2.6.4.
+ jar lib/geronimo-jms_2.0_spec-1.0-alpha-2.jar lib/jackson-databind-2.9.
+ 9.jar lib/jackson-annotations-2.9.0.jar lib/jackson-core-2.9.9.jar lib/
+ byte-buddy-1.9.16.jar lib/commons-collections-3.2.2.jar lib/spring-cont
+ ext-5.1.9.RELEASE.jar lib/guava-29.0-jre.jar lib/failureaccess-1.0.1.ja
+ r lib/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar li
+ b/jsr305-3.0.2.jar lib/checker-qual-2.11.1.jar lib/error_prone_annotati
+ ons-2.3.4.jar lib/j2objc-annotations-1.3.jar
+Implementation-Title: Digital Credit
+Implementation-Version: 2.1.0.local
+Created-By: Maven Integration for Eclipse
+
