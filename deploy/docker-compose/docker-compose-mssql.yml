@@ -26,7 +26,7 @@ services:
 # Digital Broker Service Configuration
 # =====================================================================
   broker:
-    image: digisic/digitalbroker:2.1.0.1
+    image: digisic/digitalbroker:latest
     container_name: broker
     hostname: broker
     ports:
@@ -40,7 +40,7 @@ services:
 # Digital Credit Service Configuration
 # =====================================================================    
   credit:
-    image: digisic/digitalcredit:2.1.0.2
+    image: digisic/digitalcredit:latest
     container_name: credit
     hostname: credit
     environment:
@@ -85,7 +85,7 @@ services:
 # Digital Bank Service Configuration
 # =====================================================================
   bank:
-    image: digisic/digitalbank:2.1.0.9
+    image: digisic/digitalbank:latest
     container_name: bank
     hostname: bank
     environment:
