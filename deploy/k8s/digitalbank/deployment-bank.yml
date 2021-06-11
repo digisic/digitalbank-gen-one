@@ -18,16 +18,9 @@ spec:
       containers:
       - name: digital-bank
         image: digisic/digitalbank:latest
-        resources:
-          requests:
-            memory: "256M"
-            cpu: "250m"
-          limits:
-            memory: "512M"
-            cpu: "500m"
         ports:
           - name: db-bank-port
-            containerPort: 8080  
+            containerPort: 8443  
         env:
             # Debug Options
             - name: LOGGING_LEVEL_IO_DEMO_BANK
@@ -65,20 +58,18 @@ spec:
               value: "CREDIT.APP.RESPONSE"
             # ATM Location Service Connection 
             - name: IO_DIGISIC_BANK_ATM_PROTOCOL
-              value: "http"
+              value: "https"
             - name: IO_DIGISIC_BANK_ATM_HOST
-              #value: "34.105.38.216"
-              value: "192.168.0.11"              
+              value: "bankingservices.io"           
             - name: IO_DIGISIC_BANK_ATM_PORT
-              value: "8081"
+              value: ""
             # VISA Direct Payment Service
             - name: IO_DIGISIC_BANK_VISA_PROTOCOL
-              value: "http"     
-            - name: IO_DIGISIC_BANK_VISA_HOST
-              #value: "34.105.38.216"     
-              value: "192.168.0.11"   
+              value: "https"     
+            - name: IO_DIGISIC_BANK_VISA_HOST  
+              value: "creditservices.io"   
             - name: IO_DIGISIC_BANK_VISA_PORT
-              value: "8081" 
+              value: "" 
             # Open Banking API Service
             - name: IO_DIGISIC_BANK_OBP_ENABLED
               value: "true"  
@@ -103,8 +94,9 @@ metadata:
 spec:
   selector:
     app: digital-bank
+    type: NodePort
   ports:
-    - name: http
-      port: 8080  
+    - name: https
+      port: 8443  
       targetPort:  db-bank-port
 

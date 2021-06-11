@@ -18,16 +18,9 @@ spec:
       containers:
       - name: digital-bank-credit
         image: digisic/digitalcredit:latest
-        resources:
-          requests:
-            memory: "256M"
-            cpu: "250m"
-          limits:
-            memory: "512M"
-            cpu: "500m"
         ports:
           - name: db-credit-port
-            containerPort: 8080
+            containerPort: 8443
         env:
           # Debug Options
           - name: LOGGING_LEVEL_IO_DIGISIC_CREDIT
@@ -64,9 +57,9 @@ metadata:
 spec:
   selector:
     app: digital-bank-credit
-  #type: NodePort
+    type: NodePort
   ports:
     - name: http-credit
-      port: 8085  
+      port: 3500  
       targetPort: db-credit-port
 

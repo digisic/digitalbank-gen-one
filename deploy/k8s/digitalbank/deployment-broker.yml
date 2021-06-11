@@ -17,19 +17,12 @@ spec:
     spec:
       containers:
       - name: digital-bank-broker
-        image: digisic/digitalbroker:latest
-        resources:
-          requests:
-            memory: "256M"
-            cpu: "250m"
-          limits:
-            memory: "512M"
-            cpu: "500m"          
+        image: digisic/digitalbroker:latest        
         ports:
           - name: broker-port-1
             containerPort: 8161
           - name: broker-port-2
-            containerPort: 8161
+            containerPort: 61616
 
 ---
 

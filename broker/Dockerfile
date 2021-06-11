@@ -29,15 +29,17 @@ ENV ANONYMOUS_LOGIN false
 ENV CREATE_ARGUMENTS --user ${ARTEMIS_USER} --password ${ARTEMIS_PASSWORD} --silent --http-host 0.0.0.0 --relax-jolokia
 
 # add user and group for artemis
-RUN groupadd -g 1000 -r artemis && useradd -r -u 1000 -g artemis artemis \
- && apt-get -qq -o=Dpkg::Use-Pty=0 update && \
-    apt-get -qq -o=Dpkg::Use-Pty=0 install -y --no-install-recommends \
-    libaio1=0.3.110-3 && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y libaio1
+RUN groupadd -g 1000 -r artemis && useradd -r -u 1000 -g artemis artemis 
+
+# Download Apache Artemis
+RUN apt-get update && apt-get install -y wget
+RUN wget -O amq.tar.gz https://downloads.apache.org/activemq/activemq-artemis/2.17.0/apache-artemis-2.17.0-bin.tar.gz
+RUN tar -xvf amq.tar.gz
+RUN rm amq.tar.gz
+RUN mv apache-artemis-2.17.0 activemq-artemis
 
 USER artemis
-
-ADD apache-artemis-2.10.1 /opt/activemq-artemis
 
 # Web Server
 EXPOSE 8161 \

@@ -13,4 +13,4 @@ spec:
     kind: Rule
     services:
     - name: digital-bank-svc
-      port: 8080
+      port: 8443
