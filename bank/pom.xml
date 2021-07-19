@@ -18,9 +18,9 @@
 
 	<repositories>
 		<repository>
-			<id>bintray-ca-sv</id>
-			<name>bintray-ca</name>
-			<url>http://ca.bintray.com/sv</url>
+			<id>artifactory-broadcom-sv</id>
+			<name>artifactory-broadcom</name>
+			<url>https://packages.broadcom.com/artifactory/sv</url>
 		</repository>
 	</repositories>
 
