@@ -1,0 +1,49 @@
+---
+tableKeys:
+  - schema: public
+    tableName: table2
+    primaryKeys:
+      - columnName: pk2
+    foreignKeys:
+      - columnName: fk21
+        referredSchema: public
+        referredTable: table1
+        referredColumn: pk1
+
+formattedStringColumns:
+  - schema: public
+    tableName: user_profile
+    columnName: email_address
+    regex: '[a-z0-9]{5,15}@[a-z]{6,9}\.[a-z]{2,3}'
+
+  - schema: public
+    tableName: user_profile
+    columnName: home_phone
+    regex: '[0-9]{3}-[0-9]{3}-[0-9]{3}'
+
+  - schema: public
+    tableName: user_profile
+    columnName: work_phone
+    regex: '[0-9]{3}-[0-9]{3}-[0-9]{3}'
+
+  - schema: public
+    tableName: user_profile
+    columnName: mobile_phone
+    regex: '[0-9]{3}-[0-9]{2}-[0-9]{4}'
+
+fixedTables:
+  - schema: public
+    tableName: ownership_type
+
+  - schema: public
+    tableName: role
+
+  - schema: public
+    tableName: transaction_state
+
+sampledColumns:
+  - schema: public
+    tableName: account
+    columns:
+      - interest_rate
+      - payment_term

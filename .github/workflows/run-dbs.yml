@@ -14,10 +14,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Run a one-line script
+      - name: Download package from jfrog
         run: echo Hello, world!
 
-      - name: Run a multi-line script
+      - name: Generate a DB from .synthesized/config
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
