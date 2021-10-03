@@ -47,3 +47,7 @@ local.properties
 .settings/
 .loadpath
 .temp-DigitalBankApplication*.txt
+
+
+### VSCode ####
+/.vscode/
