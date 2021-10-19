@@ -1,0 +1,193 @@
+{
+  "uuid": "c1e5b3dc-e862-4fb9-9670-55da9e40670c",
+  "lastMigration": 18,
+  "name": "Open Banking Integration",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3004,
+  "hostname": "0.0.0.0",
+  "routes": [
+    {
+      "uuid": "40ff5377-711c-43c2-b6a4-09b62996987f",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "obp/v4.0.0/banks",
+      "responses": [
+        {
+          "uuid": "8b73b935-4637-4a4d-9d03-4b71423b6e64",
+          "body": "{\n  \"banks\": [\n    {\n      \"id\": \"RBOSGB2L\",\n      \"short_name\": \"Royal Bank of Scotland\",\n      \"full_name\": \"Royal Bank of Scotland\",\n      \"logo\": \"https://personal.rbs.co.uk/logo.gif\",\n      \"website\": \"https://personal.rbs.co.uk\",\n      \"bank_routing\": \n        {\n          \"scheme\": \"OBP\",\n          \"address\": \"RBOSGB2L\"\n        }\n    },\n    {\n      \"id\": \"MYMBGB2L\",\n      \"short_name\": \"Metro Bank plc\",\n      \"full_name\": \"Metro Bank plc\",\n      \"logo\": \"https://www.metrobankonline.co.uk/logo.gif\",\n      \"website\": \"https://www.metrobankonline.co.uk\",\n      \"bank_routing\":\n        {\n          \"scheme\": \"BIC\",\n          \"address\": \"MYMBGB2L\"\n        }\n    },\n    {\n      \"id\": \"MRMDUS33\",\n      \"short_name\": \"HSBC Bank\",\n      \"full_name\": \"HSBC Bank\",\n      \"logo\": \"http://www.hsbc.com/logo.gif\",\n      \"website\": \"http://www.hsbc.com\",\n      \"bank_routing\":\n        {\n          \"scheme\": \"OBP\",\n          \"address\": \"MRMDUS33\"\n        }\n    },\n    {\n      \"id\": \"LOYDGB2L\",\n      \"short_name\": \"Lloyds Bank plc\",\n      \"full_name\": \"Lloyds Bank plc\",\n      \"logo\": \"https://www.lloydsbank.com/logo.gif\",\n      \"website\": \"https://www.lloydsbank.com\",\n      \"bank_routing\": \n        {\n          \"scheme\": \"BIC\",\n          \"address\": \"LOYDGB2L\"\n        }\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json;charset=utf-8"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "ec9a3bbf-0ebe-4a6d-9573-e993249748f3",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "obp/v4.0.0/banks/RBOSGB2L",
+      "responses": [
+        {
+          "uuid": "0a1fbeb7-e265-44c5-b473-7f02aa3b2afa",
+          "body": "{\n  \"id\":\"RBOSGB2L\",\n  \"short_name\":\"Royal Bank of Scotland\",\n  \"full_name\":\"Royal Bank of Scotland\",\n  \"logo\":\"https://personal.rbs.co.uk/logo.gif\",\n  \"website\":\"https://personal.rbs.co.uk\",\n  \"bank_routing\":{\n    \"scheme\":\"OBP\",\n    \"address\":\"RBOSGB2L\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "142ceb5e-ca42-4bc1-bcc0-c8761ae6db73",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "my/logins/direct",
+      "responses": [
+        {
+          "uuid": "27a3d8e3-cf74-4a98-a37f-ff6fe6f290b5",
+          "body": "{\n  \"token\": \"eyJhbGciOiJIUzI1NiJ9.eyIiOiIifQ.eajnRT6zTZxJTjqfDczjK0WLJOY8wNaOXY-q8fsdATo\"\n}",
+          "latency": 0,
+          "statusCode": 201,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "49af9829-a7fc-407a-8555-7132bc90a6d4",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "obp/v4.0.0/banks/RBOSGB2L/accounts",
+      "responses": [
+        {
+          "uuid": "88bcc9ad-73ca-41ef-b993-27c8f45fe8e8",
+          "body": "{\n  \"accounts\":[{\n    \"id\":\"8ca8a7e4-6d02-48e3-a029-0b2bf89de9f0\",\n    \"label\":\"Gold Checking\",\n    \"bank_id\":\"RBOSGB2L\",\n    \"views_available\":[{\n      \"id\":\"1\",\n      \"short_name\":\"GCA\",\n      \"is_public\":true\n    }]\n  },\n  {\n    \"id\":\"8ca8a7e4-6d02-48e3-a029-0b2bf89de9f5\",\n    \"label\":\"Personal Checking\",\n    \"bank_id\":\"RBOSGB2L\",\n    \"views_available\":[{\n      \"id\":\"1\",\n      \"short_name\":\"PCA\",\n      \"is_public\":true\n    }]\n  }]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "c13f60a0-414f-4934-9c7e-ebbfa793de7c",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "obp/v4.0.0/banks/RBOSGB2L/accounts/8ca8a7e4-6d02-48e3-a029-0b2bf89de9f0/account",
+      "responses": [
+        {
+          "uuid": "763c61b2-846e-4de7-b225-bb17bb9a441a",
+          "body": "{\n  \"id\":\"8ca8a7e4-6d02-48e3-a029-0b2bf89de9f0\",\n  \"bank_id\":\"RBOSGB2L\",\n  \"label\":\"Gold Account\",\n  \"number\":\"546387432\",\n  \"owners\":[{\n    \"id\":\"5995d6a2-01b3-423c-a173-5481df49bdaf\",\n    \"provider\":\"http://127.0.0.1:8080\",\n    \"display_name\":\"OBP\"\n  }],\n  \"product_code\":\"AC\",\n  \"balance\":{\n    \"currency\":\"EUR\",\n    \"amount\":\"1035.97\"\n  },\n  \"account_routings\":[{\n    \"scheme\":\"AccountNumber\",\n    \"address\":\"4930396\"\n  }],\n  \"views_basic\":[{\n    \"id\":\"owner\",\n    \"short_name\":\"Owner\",\n    \"description\":\"This view is for the owner for the account.\",\n    \"is_public\":false\n  }],\n  \"account_attributes\":[{\n    \"product_code\":\"saving1\",\n    \"account_attribute_id\":\"613c83ea-80f9-4560-8404-b9cd4ec42a7f\",\n    \"name\":\"OVERDRAFT_START_DATE\",\n    \"type\":\"DATE_WITH_DAY\",\n    \"value\":\"2012-04-23\"\n  }],\n  \"tags\":[{\n    \"id\":\"5995d6a2-01b3-423c-a173-5481df49bdaf\",\n    \"value\":\"OBP\",\n    \"date\":\"2017-09-19T00:00:00Z\",\n    \"user\":{\n      \"id\":\"5995d6a2-01b3-423c-a173-5481df49bdaf\",\n      \"provider\":\"http://127.0.0.1:8080\",\n      \"display_name\":\"OBP\"\n    }\n  }]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "454e7fb8-a685-4ef3-929d-ccef0d6052ec",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "obp/v4.0.0/banks/RBOSGB2L/accounts/8ca8a7e4-6d02-48e3-a029-0b2bf89de9f0/transactions",
+      "responses": [
+        {
+          "uuid": "2dc7082c-6539-4e08-84cd-42479ade3252",
+          "body": "{\n  \"transactions\":[{\n    \"id\":\"5995d6a2-01b3-423c-a173-5481df49bdaf\",\n    \"this_account\":{\n      \"id\":\"8ca8a7e4-6d02-48e3-a029-0b2bf89de9f0\",\n      \"bank_routing\":{\n        \"scheme\":\"Bank_ID\",\n        \"address\":\"RBSSGBKAXXX\"\n      },\n      \"account_routings\":[{\n        \"scheme\":\"AccountNumber\",\n        \"address\":\"546387432\"\n      }],\n      \"holders\":[{\n        \"name\":\"Josh Smith\",\n        \"is_alias\":true\n      }]\n    },\n    \"other_account\":{\n      \"id\":\"8ca8a7e4-6d02-48e3-a029-0b2bf89de9f0\",\n      \"holder\":{\n        \"name\":\"Josh Smith\",\n        \"is_alias\":true\n      },\n      \"bank_routing\":{\n        \"scheme\":\"Bank_ID\",\n        \"address\":\"RBSSGBKAXXX\"\n      },\n      \"account_routings\":[{\n        \"scheme\":\"AccountNumber\",\n        \"address\":\"546387432\"\n      }]\n    },\n    \"details\":{\n      \"type\":\"POS\",\n      \"description\":\"Point of Sale - Pharmaceutical\",\n      \"posted\":\"2017-09-19T00:00:00Z\",\n      \"completed\":\"2017-09-19T00:00:00Z\",\n      \"new_balance\":{\n        \"currency\":\"USD\",\n        \"amount\":\"1035.97\"\n      },\n      \"value\":{\n        \"currency\":\"USD\",\n        \"amount\":\"58.62\"\n      }\n    }\n  },\n  {\n    \"id\":\"5995d6a2-01b3-423c-a173-5481df49bdaf\",\n    \"this_account\":{\n      \"id\":\"8ca8a7e4-6d02-48e3-a029-0b2bf89de9f0\",\n      \"bank_routing\":{\n        \"scheme\":\"Bank_ID\",\n        \"address\":\"RBSSGBKAXXX\"\n      },\n      \"account_routings\":[{\n        \"scheme\":\"AccountNumber\",\n        \"address\":\"546387432\"\n      }],\n      \"holders\":[{\n        \"name\":\"Josh Smith\",\n        \"is_alias\":true\n      }]\n    },\n    \"other_account\":{\n      \"id\":\"8ca8a7e4-6d02-48e3-a029-0b2bf89de9f0\",\n      \"holder\":{\n        \"name\":\"Josh Smith\",\n        \"is_alias\":true\n      },\n      \"bank_routing\":{\n        \"scheme\":\"Bank_ID\",\n        \"address\":\"RBSSGBKAXXX\"\n      },\n      \"account_routings\":[{\n        \"scheme\":\"AccountNumber\",\n        \"address\":\"546387432\"\n      }]\n    },\n    \"details\":{\n      \"type\":\"POS\",\n      \"description\":\"Point of Sale - Amazon.com\",\n      \"posted\":\"2017-07-21T00:00:00Z\",\n      \"completed\":\"2017-07-22T00:00:00Z\",\n      \"new_balance\":{\n        \"currency\":\"USD\",\n        \"amount\":\"1094.59\"\n      },\n      \"value\":{\n        \"currency\":\"USD\",\n        \"amount\":\"123.82\"\n      }\n    }\n  }]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "https": false,
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ]
+}

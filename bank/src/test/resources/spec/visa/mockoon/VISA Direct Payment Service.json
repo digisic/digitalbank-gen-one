@@ -1,0 +1,147 @@
+{
+  "uuid": "465089c3-557b-435b-b6a4-a09be5011ca0",
+  "lastMigration": 18,
+  "name": "VISA Direct Payment",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3003,
+  "hostname": "0.0.0.0",
+  "routes": [
+    {
+      "uuid": "ac729a1a-99f9-46d8-b4f2-f13fe7d268e9",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "visadirect/fundstransfer/v1/pullfundstransactions",
+      "responses": [
+        {
+          "uuid": "384ce992-3b07-480d-accd-8071d3e38493",
+          "body": "{\n\t\"transactionIdentifier\": 875806056061895,\n\t\"actionCode\": \"00\",\n\t\"approvalCode\": \"98765X\",\n\t\"responseCode\": \"5\",\n\t\"transmissionDateTime\": \"2019-07-17T16:30:35.000Z\",\n\t\"cavvResultCode\": \"8\",\n\t\"cpsAuthorizationCharacteristicsIndicator\": \"3333\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Funds Approved",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "idcode",
+              "value": "ABCD1234ABCD123",
+              "operator": "equals"
+            },
+            {
+              "target": "query",
+              "modifier": "amount",
+              "value": "100",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "3a4461a3-237b-4dae-9df1-9f5fdee5823c",
+          "body": "{\n\t\"transactionIdentifier\": 875806056061895,\n\t\"actionCode\": \"57\",\n\t\"approvalCode\": \"98765X\",\n\t\"responseCode\": \"5\",\n\t\"transmissionDateTime\": \"2019-07-17T16:30:35.000Z\",\n\t\"cavvResultCode\": \"8\",\n\t\"cpsAuthorizationCharacteristicsIndicator\": \"3333\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Funds Not Approved",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "idcode",
+              "value": "ABCD1234ABCD123",
+              "operator": "equals"
+            },
+            {
+              "target": "query",
+              "modifier": "amount",
+              "value": "20",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "5818d914-60b0-43a2-b88b-6aac0215516d",
+          "body": "{\n\t\"transactionIdentifier\": 875806056061895,\n\t\"actionCode\": \"51\",\n\t\"approvalCode\": \"98765X\",\n\t\"responseCode\": \"5\",\n\t\"transmissionDateTime\": \"2019-07-17T16:30:35.000Z\",\n\t\"cavvResultCode\": \"8\",\n\t\"cpsAuthorizationCharacteristicsIndicator\": \"3333\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Insufficient Funds",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "idcode",
+              "value": "ABCD1234ABCD123",
+              "operator": "equals"
+            },
+            {
+              "target": "query",
+              "modifier": "amount",
+              "value": "1000",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "26eead58-8a78-4e8f-a228-30767e756185",
+          "body": "{\n\t\"transactionIdentifier\": 875806056061895,\n\t\"actionCode\": \"03\",\n\t\"approvalCode\": \"98765X\",\n\t\"responseCode\": \"5\",\n\t\"transmissionDateTime\": \"2019-07-17T16:30:35.000Z\",\n\t\"cavvResultCode\": \"8\",\n\t\"cpsAuthorizationCharacteristicsIndicator\": \"3333\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Invalid Merchant",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "idcode",
+              "value": "ABCD1234ABCD456",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "https": false,
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ]
+}
