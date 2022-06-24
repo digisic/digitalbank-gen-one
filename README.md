@@ -2,6 +2,34 @@
 
 Digital Bank is a sample application that was developed for exploratory purposes to examine development frameworks and techniques. The application is an example online digital banking application with integrations into other services.
 
+## Vuln Contributors
+
+1. Step 1: Clone source code
+   ```
+   git clone https://github.com/0xmanhnv/digitalbank-gen-one.git
+   ```
+2. Step 2: Checkout new master
+   ```
+   git checkout -b <branch name> #example: git checkout -b "0xmanhnv-vuln1"
+   ```
+3. Step 3: Modify code
+4. Step 4: Add code to git
+   ```
+   git add .
+
+   or
+
+   git add <file modified> #example: git add readme.md
+   ```
+5. Step 5: Commit code
+   ```
+   git commit -m <commit content> #example: git commit -m "Update readme"
+   ```
+6. Step 6: Push code to remote repo
+   ```
+   git push origin <branch name> #example: git push origin 0xmanhnv-vuln1
+   ```
+
 ## Getting Started
 
 * Using either an Eclipse IDE or IntelliJ, import the source code as an Existing Maven Project. 
