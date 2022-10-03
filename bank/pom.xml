@@ -20,7 +20,7 @@
 		<repository>
 			<id>bintray-ca-sv</id>
 			<name>bintray-ca</name>
-			<url>http://ca.bintray.com/sv</url>
+			<url>https://dl.bintray.com/ca/sv/</url>
 		</repository>
 	</repositories>
 
